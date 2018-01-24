@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Image, View } from "react-native";
-// import { ImageCache } from "react-native-img-cache";
+import { ImageCache } from "react-native-img-cache";
 
 import {
   Container,
@@ -42,10 +42,10 @@ class Home extends Component {
           <Left>
             <Button
               transparent
-              // onPress={() => {
-              //   ImageCache.get().clear();
-              //   bandsApi.clearAsyncStorage();
-              // }}
+              onPress={() => {
+                ImageCache.get().clear();
+                bandsApi.clearAsyncStorage();
+              }}
             >
               <Icon name="menu" />
             </Button>

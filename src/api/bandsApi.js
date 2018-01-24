@@ -17,18 +17,17 @@ class bandsApi {
   // So this is returning a function, which returns a Promise, I think...
   // I've addeda setTimeout on the value.json() to simulate a network delay,
   // see https://stackoverflow.com/questions/39495551/add-delay-to-javascript-method-that-returns-promise
-  // static getBandsData = () =>
-  fetch("../data/bands-data-with-image-paths.json");
-    .then(response => response.json())
-    // .then(
-    //   value =>
-    //     new Promise(resolve => setTimeout(() => resolve(value.json()), 100))
-    // )
-    .catch(error => {
-      console.log(`getAllPeople() error=${error}`);
-      return error;
-    });
-
+  static getBandsData = () =>
+    fetch("../data/bands-data-with-image-paths.json")
+      .then(response => response.json())
+      // .then(
+      //   value =>
+      //     new Promise(resolve => setTimeout(() => resolve(value.json()), 100))
+      // )
+      .catch(error => {
+        console.log(`getAllPeople() error=${error}`);
+        return error;
+      });
 }
 
 export default bandsApi;

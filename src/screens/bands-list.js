@@ -3,7 +3,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { StackNavigator as stackNavigator } from "react-navigation";
 // import { StyleProvider, getTheme } from "native-base";
-import IconMaterialCommunity from "react-native-vector-icons/MaterialCommunityIcons";
+// import IconMaterialCommunity from "react-native-vector-icons/MaterialCommunityIcons";
 // import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 
 // import { Alert } from "react-native";
@@ -28,7 +28,7 @@ import {
 } from "native-base";
 
 // import { CachedImage, ImageCacheProvider } from "react-native-cached-image";
-import { CachedImage } from "react-native-img-cache";
+// import { CachedImage } from "react-native-img-cache";
 
 // Consts
 // import { extendedConfig as firebaseConfig } from "../api/firebase.js";
@@ -47,11 +47,23 @@ import styles from "../styles/home-styles.js";
 //   actions: [NavigationActions.navigate({ routeName: "Home" })]
 // });
 
+// class BandsList extends Component {
+//   static navigationOptions = {
+//     tabBarLabel: "Bands List",
+//     tabBarIcon: ({ tintColor }) => (
+//       <IconMaterialCommunity
+//         name="guitar-acoustic"
+//         size={30}
+//         style={{ color: tintColor }}
+//       />
+//     )
+//   };
+
 class BandsList extends Component {
   static navigationOptions = {
     tabBarLabel: "Bands List",
     tabBarIcon: ({ tintColor }) => (
-      <IconMaterialCommunity
+      <Icon
         name="guitar-acoustic"
         size={30}
         style={{ color: tintColor }}
@@ -106,7 +118,7 @@ class BandsList extends Component {
       //   />
       // );
       return (
-        <CachedImage
+        <Image
           source={{ uri: bandMemberObj.thumbFullUrl }}
           style={{ width: 55, height: 55, borderRadius: 27.5 }}
         />

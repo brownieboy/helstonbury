@@ -19,6 +19,7 @@ import {
 import styles from "../styles/band-card-styles.js";
 const deviceWidth = Dimensions.get("window").width;
 // import IconMaterialCommunity from "react-native-vector-icons/MaterialCommunityIcons";
+import BandsTabIcon from "../components/bands-tab-icon.js";
 
 import openFacebookLink from "../helper-functions/open-facebook-link.js";
 
@@ -35,15 +36,8 @@ import openFacebookLink from "../helper-functions/open-facebook-link.js";
 
 class BandCard extends Component {
   static navigationOptions = {
-    tabBarIcon: ({ tintColor }) => (
-      <Icon
-        // name="guitar-acoustic"
-        ios="ios-musical-note-outline"
-        android="md-musical-notes"
-        size={30}
-        style={{ color: tintColor }}
-      />
-    )
+    tabBarLabel: "Bands List",
+    tabBarIcon: ({ tintColor }) => <BandsTabIcon tintColor={tintColor} />
   };
 
   getFaceBookLinkComponent = () => {

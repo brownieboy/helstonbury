@@ -41,6 +41,7 @@ import { loadBands } from "../dux/bandsReducer.js";
 // import MainFooterTabNav from "../components/mainfootertabnav.js";
 import BandCard from "./band-card.js";
 import styles from "../styles/home-styles.js";
+import BandsTabIcon from "../components/bands-tab-icon.js";
 
 // import { NavigationActions } from "react-navigation";
 
@@ -61,18 +62,11 @@ import styles from "../styles/home-styles.js";
 //     )
 //   };
 
+
 class BandsList extends Component {
   static navigationOptions = {
     tabBarLabel: "Bands List",
-    tabBarIcon: ({ tintColor }) => (
-      <Icon
-        // name="guitar-acoustic"
-        ios="ios-musical-note-outline"
-        android="md-musical-notes"
-        size={30}
-        style={{ color: tintColor }}
-      />
-    )
+    tabBarIcon: ({ tintColor }) => <BandsTabIcon tintColor={tintColor} />
   };
 
   constructor(props) {

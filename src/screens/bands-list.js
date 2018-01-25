@@ -67,6 +67,8 @@ class BandsList extends Component {
     tabBarIcon: ({ tintColor }) => (
       <Icon
         // name="guitar-acoustic"
+        ios="ios-musical-note-outline"
+        android="md-musical-notes"
         size={30}
         style={{ color: tintColor }}
       />

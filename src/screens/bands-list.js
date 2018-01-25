@@ -8,6 +8,8 @@ import { StackNavigator as stackNavigator } from "react-navigation";
 
 // import { Alert } from "react-native";
 
+import { Image } from "react-native";
+
 import {
   Container,
   // Footer,
@@ -64,7 +66,7 @@ class BandsList extends Component {
     tabBarLabel: "Bands List",
     tabBarIcon: ({ tintColor }) => (
       <Icon
-        name="guitar-acoustic"
+        // name="guitar-acoustic"
         size={30}
         style={{ color: tintColor }}
       />

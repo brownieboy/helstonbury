@@ -37,7 +37,7 @@ class BandCard extends Component {
   static navigationOptions = {
     tabBarIcon: ({ tintColor }) => (
       <Icon
-        name="guitar-acoustic"
+        // name="guitar-acoustic"
         size={30}
         style={{ color: tintColor }}
       />

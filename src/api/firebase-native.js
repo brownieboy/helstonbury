@@ -1,4 +1,4 @@
-// import firebase from "react-native-firebase";
+import firebase from "react-native-firebase";
 
 const config = {
   apiKey: "AIzaSyDWMrob4ieV9UVEOCXUlDt19O9YAWAZveA",
@@ -16,6 +16,7 @@ export const extendedConfig = {
   cardsPhotoPath: "img/bands/cards"
 };
 
-// firebase.initializeApp(config);
+firebase.initializeApp(config);
+// firebase.app(config);
 
-// export default firebase;
+export default firebase;

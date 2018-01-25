@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Image, Dimensions } from "react-native";
-import { CachedImage } from "react-native-img-cache";
+// import { CachedImage } from "react-native-img-cache";
 
 import {
   Container,
@@ -18,20 +18,33 @@ import {
 } from "native-base";
 import styles from "../styles/band-card-styles.js";
 const deviceWidth = Dimensions.get("window").width;
-import IconMaterialCommunity from "react-native-vector-icons/MaterialCommunityIcons";
+// import IconMaterialCommunity from "react-native-vector-icons/MaterialCommunityIcons";
 
 import openFacebookLink from "../helper-functions/open-facebook-link.js";
+
+// class BandCard extends Component {
+//   static navigationOptions = {
+//     tabBarIcon: ({ tintColor }) => (
+//       <IconMaterialCommunity
+//         name="guitar-acoustic"
+//         size={30}
+//         style={{ color: tintColor }}
+//       />
+//     )
+//   };
 
 class BandCard extends Component {
   static navigationOptions = {
     tabBarIcon: ({ tintColor }) => (
-      <IconMaterialCommunity
-        name="guitar-acoustic"
+      <Icon
+        // name="guitar-acoustic"
         size={30}
         style={{ color: tintColor }}
       />
     )
   };
+
+
 
   getFaceBookLinkComponent = () => {
     const {
@@ -85,7 +98,7 @@ class BandCard extends Component {
 
             <CardItem>
               <Body>
-                <CachedImage
+                <Image
                   style={{
                     alignSelf: "center",
                     height: 150,

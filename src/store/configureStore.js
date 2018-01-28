@@ -1,22 +1,31 @@
 import { compose, createStore, applyMiddleware } from "redux";
+import createSagaMiddleware from "redux-saga";
 import { enableBatching } from "redux-batched-actions";
+import thunk from "redux-thunk";
 // import { composeWithDevTools } from "remote-redux-devtools";
 
 import mainReducer from "../dux/mainReducer.js";
-import thunk from "redux-thunk";
+
+import sagas from "../dux/sagas.js";
+
+const sagaMiddleware = createSagaMiddleware();
 
 /* eslint-disable no-underscore-dangle */
-// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;  // For web extension
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // For web extension
 // const composeEnhancers = composeWithDevTools || compose; // For NPM, best for React Native
-const composeEnhancers = compose; // For NPM, best for React Native
+// const composeEnhancers = compose; // For NPM, best for React Native
 
-
-const configureStore = initialState =>
-  createStore(
+// This module exports a function.  So the returns a function, so the sagaMiddleware.run()
+// call has to be inside that function so it runs when the function is run.
+const configureStore = initialState => {
+  const store = createStore(
     enableBatching(mainReducer),
     initialState,
-    composeEnhancers(applyMiddleware(thunk))
+    composeEnhancers(applyMiddleware(sagaMiddleware, thunk))
   );
+  sagaMiddleware.run(sagas);
+  return store;
+};
 /* eslint-enable */
 
 export default configureStore;

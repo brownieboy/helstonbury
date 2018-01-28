@@ -39,7 +39,9 @@ export const loadBands = () => dispatch => {
     .getBandsData()
     .then(bandsData => {
       // addFireBaseImagesToData(bandsData);
-      console.log("bandsData in reducer=" + JSON.stringify(bandsData[0], null, 4));
+      console.log(
+        "bandsData in reducer=" + JSON.stringify(bandsData[0], null, 4)
+      );
       dispatch(
         batchActions([loadedBandsSuccess(bandsData), loadingBands(false)])
       );
@@ -49,6 +51,12 @@ export const loadBands = () => dispatch => {
       dispatch(batchActions([loadedBandsFailure(), loadingBands(false)]));
       return err;
     });
+};
+
+export const bandsDuxConstants = {
+  LOADED_BANDS_SUCCESS,
+  LOADED_BANDS_FAILURE,
+  LOADING_BANDS
 };
 
 export default bandsReducer;

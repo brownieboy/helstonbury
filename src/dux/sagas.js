@@ -28,7 +28,7 @@ function* loadBandsGen(action) {
 */
 
 function* mySaga() {
-  yield takeLatest(bandsDuxConstants.LOADING_BANDS, loadBandsGen);
+  yield takeLatest(bandsDuxConstants.LOAD_BANDS, loadBandsGen);
 }
 
 export default mySaga;

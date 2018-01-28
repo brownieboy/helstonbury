@@ -3,6 +3,7 @@ import { batchActions } from "redux-batched-actions";
 import bandsApi from "../api/bandsApi.js";
 
 // Action type constants
+const LOAD_BANDS = "LOAD_BANDS";
 const LOADING_BANDS = "LOADING_BANDS";
 const LOADED_BANDS_SUCCESS = "LOADED_BANDS_SUCCESS";
 const LOADED_BANDS_FAILURE = "LOADED_BANDS_FAILURE";
@@ -30,30 +31,33 @@ const loadedBandsSuccess = newbandsList => ({
   payload: newbandsList
 });
 
+export const loadBands = () => ({ type: LOAD_BANDS });
+
 const loadedBandsFailure = () => ({ type: LOADED_BANDS_FAILURE });
 
 // A thunk must return a function, hence the double () => dispatch =>
-export const loadBands = () => dispatch => {
-  dispatch(loadingBands(true));
-  bandsApi
-    .getBandsData()
-    .then(bandsData => {
-      // addFireBaseImagesToData(bandsData);
-      console.log(
-        "bandsData in reducer=" + JSON.stringify(bandsData[0], null, 4)
-      );
-      dispatch(
-        batchActions([loadedBandsSuccess(bandsData), loadingBands(false)])
-      );
-    })
-    .catch(err => {
-      console.log(`error in data retrieval: ${err}`);
-      dispatch(batchActions([loadedBandsFailure(), loadingBands(false)]));
-      return err;
-    });
-};
+// export const loadBands = () => dispatch => {
+//   dispatch(loadingBands(true));
+//   bandsApi
+//     .getBandsData()
+//     .then(bandsData => {
+//       // addFireBaseImagesToData(bandsData);
+//       console.log(
+//         "bandsData in reducer=" + JSON.stringify(bandsData[0], null, 4)
+//       );
+//       dispatch(
+//         batchActions([loadedBandsSuccess(bandsData), loadingBands(false)])
+//       );
+//     })
+//     .catch(err => {
+//       console.log(`error in data retrieval: ${err}`);
+//       dispatch(batchActions([loadedBandsFailure(), loadingBands(false)]));
+//       return err;
+//     });
+// };
 
 export const bandsDuxConstants = {
+  LOAD_BANDS,
   LOADED_BANDS_SUCCESS,
   LOADED_BANDS_FAILURE,
   LOADING_BANDS

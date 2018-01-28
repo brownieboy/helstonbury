@@ -33,11 +33,11 @@ class bandsApi {
       });
       */
 
-  static getBandsData = () => {
-    return new Promise(resolve =>
+  // Returns a promise
+  static fetchBandsData = () =>
+    new Promise(resolve =>
       setTimeout(() => resolve(bandsDataWithImagePaths, 500))
     );
-  };
 }
 
 export default bandsApi;

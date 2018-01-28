@@ -1,6 +1,6 @@
-import { batchActions } from "redux-batched-actions";
+// import { batchActions } from "redux-batched-actions";
 // import firebase, { extendedConfig as firebaseConfig } from "../api/firebase.js";
-import bandsApi from "../api/bandsApi.js";
+// import bandsApi from "../api/bandsApi.js";
 
 // Action type constants
 const LOAD_BANDS = "LOAD_BANDS";

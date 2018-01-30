@@ -9,7 +9,7 @@ import tabNavStyles from "./styles/tab-navigator-styles.js";
 // Screens
 import Home from "./screens/home.js";
 import BandsList from "./screens/bands-list-nav.js";
-import Appearances from "./screens/appearances.js";
+import Appearances from "./screens/appearances-conn.js";
 import Stages from "./screens/stages.js";
 
 const mainData = {

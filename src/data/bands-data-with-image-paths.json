@@ -25,6 +25,7 @@
     "blurb": "One Direction (commonly abbreviated as 1D) are an English-Irish pop boy band based in London, composed of Niall Horan, Liam Payne, Harry Styles, Louis Tomlinson, and Zayn Malik until the latter's departure on 25 March 2015.",
     "card": "One_Direction_2015.jpg",
     "cardFullUrl": "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fcards%2FOne_Direction_2015.jpg?alt=media&token=b17465cc-5a03-40b6-8227-6ca715ce04d1",
+    "bandId": "onedirection",
     "id": "onedirection",
     "name": "One Direction",
     "summary": "Boy band.  Shite.  One Dimension would be a better name.",
@@ -94,7 +95,7 @@
         "stageName": "Lower Beer Stage"
       }
     ],
-    "bandsId": "stones",
+    "bandId": "stones",
     "blurb": "The Rolling Stones are an English rock band formed in London, England in 1962. The first stable line-up consisted of Brian Jones (guitar, harmonica), Mick Jagger (lead vocals), Keith Richards (guitar, backing vocals), Bill Wyman (bass), Charlie Watts (drums), and Ian Stewart (piano). ",
     "card": "553px-Trs_20150623_milwaukee_jp_105.jpg",
     "cardFullUrl": "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fcards%2F553px-Trs_20150623_milwaukee_jp_105.jpg?alt=media&token=03ff8b03-afd8-4c3a-805e-335e56a9d06a",
@@ -107,7 +108,6 @@
   {
     "appearances": [
       {
-        "bandId": "u2",
         "dateTimeEnd": "2018-07-21T20:30",
         "dateTimeStart": "2018-07-21T19:30",
         "stageId": "main",

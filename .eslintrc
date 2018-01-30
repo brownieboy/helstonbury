@@ -17,7 +17,9 @@
             }
         ],
         "class-methods-use-this": "off",
+        "generator-star-spacing": "off",
         "indent": [2, 2, {"SwitchCase": 1}],
+        "require-jsdoc": "off",
         "lines-around-comment": "off",
         "newline-after-var": "off",
         "no-confusing-arrow": [

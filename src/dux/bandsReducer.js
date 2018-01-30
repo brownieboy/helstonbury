@@ -15,25 +15,23 @@ const bandsReducer = (state = { loading: false, bandsList: [] }, action) => {
       return { ...state, loading: true };
     case LOADED_BANDS_SUCCESS:
       return { ...state, loading: false, bandsList: action.payload };
+    case LOADED_BANDS_FAILURE:
+      return { ...state, loading: false };
     default:
       return state;
   }
 };
 
-// Action creators
-// export const loadingBands = loading => ({
-//   type: LOADING_BANDS,
-//   payload: loading
-// });
-
-// const loadedBandsSuccess = newbandsList => ({
-//   type: LOADED_BANDS_SUCCESS,
-//   payload: newbandsList
-// });
-
 export const loadBands = () => ({ type: LOAD_BANDS });
 
-// const loadedBandsFailure = () => ({ type: LOADED_BANDS_FAILURE });
+export const bandsDuxConstants = {
+  LOAD_BANDS,
+  LOADED_BANDS_SUCCESS,
+  LOADED_BANDS_FAILURE,
+  LOADING_BANDS
+};
+
+export default bandsReducer;
 
 // A thunk must return a function, hence the double () => dispatch =>
 // export const loadBands = () => dispatch => {
@@ -55,12 +53,3 @@ export const loadBands = () => ({ type: LOAD_BANDS });
 //       return err;
 //     });
 // };
-
-export const bandsDuxConstants = {
-  LOAD_BANDS,
-  LOADED_BANDS_SUCCESS,
-  LOADED_BANDS_FAILURE,
-  LOADING_BANDS
-};
-
-export default bandsReducer;

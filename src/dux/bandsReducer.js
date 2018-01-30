@@ -12,7 +12,7 @@ const LOADED_BANDS_FAILURE = "LOADED_BANDS_FAILURE";
 const bandsReducer = (state = { loading: false, bandsList: [] }, action) => {
   switch (action.type) {
     case LOADING_BANDS:
-      return { ...state, loading: action.payload };
+      return { ...state, loading: true };
     case LOADED_BANDS_SUCCESS:
       return { ...state, bandsList: action.payload };
     default:
@@ -21,19 +21,19 @@ const bandsReducer = (state = { loading: false, bandsList: [] }, action) => {
 };
 
 // Action creators
-export const loadingBands = loading => ({
-  type: LOADING_BANDS,
-  payload: loading
-});
+// export const loadingBands = loading => ({
+//   type: LOADING_BANDS,
+//   payload: loading
+// });
 
-const loadedBandsSuccess = newbandsList => ({
-  type: LOADED_BANDS_SUCCESS,
-  payload: newbandsList
-});
+// const loadedBandsSuccess = newbandsList => ({
+//   type: LOADED_BANDS_SUCCESS,
+//   payload: newbandsList
+// });
 
 export const loadBands = () => ({ type: LOAD_BANDS });
 
-const loadedBandsFailure = () => ({ type: LOADED_BANDS_FAILURE });
+// const loadedBandsFailure = () => ({ type: LOADED_BANDS_FAILURE });
 
 // A thunk must return a function, hence the double () => dispatch =>
 // export const loadBands = () => dispatch => {

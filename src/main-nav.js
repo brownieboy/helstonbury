@@ -8,7 +8,7 @@ import tabNavStyles from "./styles/tab-navigator-styles.js";
 
 // Screens
 import Home from "./screens/home.js";
-import BandsList from "./screens/bands-list.js";
+import BandsList from "./screens/bands-list-nav.js";
 import Stages from "./screens/stages.js";
 
 const mainData = {

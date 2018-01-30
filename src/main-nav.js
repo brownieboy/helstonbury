@@ -9,6 +9,7 @@ import tabNavStyles from "./styles/tab-navigator-styles.js";
 // Screens
 import Home from "./screens/home.js";
 import BandsList from "./screens/bands-list-nav.js";
+import Appearances from "./screens/appearances.js";
 import Stages from "./screens/stages.js";
 
 const mainData = {
@@ -16,7 +17,6 @@ const mainData = {
   appearancesList: [],
   stagesList: []
 };
-
 
 const AppNavigator = tabNavigator(
   {
@@ -26,6 +26,7 @@ const AppNavigator = tabNavigator(
     BandsList: {
       screen: BandsList
     },
+    Appearances: { screen: Appearances },
     Stages: {
       screen: Stages
     }
@@ -40,39 +41,7 @@ const AppNavigator = tabNavigator(
   }
 );
 
-/*
-const AppNavigator = stackNavigator(
-  {
-    Home: {
-      screen: Home
-    },
-    BandsList: {
-      screen: BandsList
-    },
-    BandCard: {
-      screen: BandCard
-    }
-  },
-  {
-    initialRouteName: "Home",
-    headerMode: "none"
-  }
-);
-*/
-
 class HomeNav extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = { loading: true };
-  // }
-
-  // async componentWillMount() {
-  //   await Font.loadAsync({
-  //     Roboto: require("native-base/Fonts/Roboto.ttf"),
-  //     Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf")
-  //   });
-  //   this.setState({ loading: false });
-  // }
 
   render() {
     // if (this.state.loading) {

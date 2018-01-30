@@ -14,7 +14,7 @@ const bandsReducer = (state = { loading: false, bandsList: [] }, action) => {
     case LOADING_BANDS:
       return { ...state, loading: true };
     case LOADED_BANDS_SUCCESS:
-      return { ...state, bandsList: action.payload };
+      return { ...state, loading: false, bandsList: action.payload };
     default:
       return state;
   }

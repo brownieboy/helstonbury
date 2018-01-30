@@ -157,9 +157,9 @@ class BandsList extends Component {
   render() {
     // const { navigation } = this.props;
     const { bandsProp } = this.props;
-    console.log(
-      "BandsList..render(), bandsProp = " + JSON.stringify(bandsProp, null, 4)
-    );
+    // console.log(
+    //   "BandsList..render(), bandsProp = " + JSON.stringify(bandsProp, null, 4)
+    // );
     // console.log("bandslist render, length=" + this.props.bandsProp.bandsList.length);
     return (
       <Container style={styles.container}>

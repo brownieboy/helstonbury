@@ -26,7 +26,7 @@ function* loadBandsGen() {
   yield console.log("loadBands() triggered in sagas.js");
   try {
     const bandsList = yield call(bandsApi.fetchBandsData);
-    console.log("generator bandsList=" + JSON.stringify(bandsList, null, 4));
+    // console.log("generator bandsList=" + JSON.stringify(bandsList, null, 4));
     yield put({
       type: bandsDuxConstants.LOADED_BANDS_SUCCESS,
       payload: bandsList

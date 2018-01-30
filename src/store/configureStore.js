@@ -1,7 +1,7 @@
 import { compose, createStore, applyMiddleware } from "redux";
 import createSagaMiddleware from "redux-saga";
 import { enableBatching } from "redux-batched-actions";
-import thunk from "redux-thunk";
+// import thunk from "redux-thunk";
 // import { composeWithDevTools } from "remote-redux-devtools";
 
 import mainReducer from "../dux/mainReducer.js";
@@ -21,7 +21,7 @@ const configureStore = initialState => {
   const store = createStore(
     enableBatching(mainReducer),
     initialState,
-    composeEnhancers(applyMiddleware(sagaMiddleware, thunk))
+    composeEnhancers(applyMiddleware(sagaMiddleware))
   );
   sagaMiddleware.run(sagas);
   return store;

@@ -8,8 +8,8 @@ function* loadBandsGen() {
   // yield console.log("loadBands() triggered in sagas.js");
   yield put(bandsDuxActions.setFetchBandsRequest());
   try {
-    const bandsList = yield call(bandsApi.fetchBandsData);
-    yield put(bandsDuxActions.setFetchBandsSucceeded(bandsList));
+    const bandsDataNormalised = yield call(bandsApi.fetchBandsData);
+    yield put(bandsDuxActions.setFetchBandsSucceeded(bandsDataNormalised.bandsArray));
   } catch (e) {
     yield put(bandsDuxActions.setFetchBandsFailed(e));
   }

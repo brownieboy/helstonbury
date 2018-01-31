@@ -1,10 +1,11 @@
 // import firebase, { extendedConfig as firebaseConfig } from "./firebase.js";
 // import { extendedConfig as firebaseConfig } from "./firebase.js";
-import { AsyncStorage } from "react-native";
+// import { AsyncStorage } from "react-native";
 
-const bandsDataKey = "hb:bandsData";
+// const bandsDataKey = "hb:bandsData";
 
-import bandsDataWithImagePaths from "../data/bands-data-with-image-paths.json";
+// import bandsDataWithImagePaths from "../data/bands-data-with-image-paths.json";
+import bandsDataNormalised from "../data/data-local-normalised.json";
 
 // const images = [
 //   "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fcards%2F508px-ACDC_In_Tacoma_2009.jpg?alt=media&token=3fa46b14-5e83-4306-be6a-2bc36b199575",
@@ -32,11 +33,11 @@ class bandsApi {
         return error;
       });
       */
-
+//
   // Returns a promise
   static fetchBandsData = () =>
     new Promise(resolve =>
-      setTimeout(() => resolve(bandsDataWithImagePaths, 500))
+      setTimeout(() => resolve(bandsDataNormalised, 500))
     );
 }
 

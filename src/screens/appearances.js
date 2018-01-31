@@ -17,11 +17,16 @@ class Appearances extends Component {
   static navigationOptions = {
     tabBarLabel: "Appearances",
     tabBarIcon: ({ tintColor }) => (
-      <Icon ios="ios-calendar-outline" android="md-calendar" style={{ color: tintColor }} />
+      <Icon
+        ios="ios-calendar-outline"
+        android="md-calendar"
+        style={{ color: tintColor }}
+      />
     )
   };
 
   render() {
+    const { bandsListByDateTime } = this.props;
     return (
       <Container style={styles.container}>
         <Header>
@@ -33,6 +38,7 @@ class Appearances extends Component {
 
         <Content padder>
           <Text>Appearances data goes here.</Text>
+          <Text>{JSON.stringify(bandsListByDateTime, null, 4)}</Text>
         </Content>
       </Container>
     );

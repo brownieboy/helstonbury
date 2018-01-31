@@ -5,16 +5,18 @@ import { connect } from "react-redux";
 import Appearances from "./appearances.js";
 
 // Reducer
-import { loadBands } from "../dux/bandsReducer.js";
-
+import { loadBands, selectors as bandSelectors } from "../dux/bandsReducer.js";
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ loadBandsProp: loadBands }, dispatch);
 
-const mapStateToProps = state => ({ bandsProp: state.bands });
+const mapStateToProps = state => ({
+  bandsProp: state.bands,
+  bandsListByDateTime: bandSelectors.selectBandsByDateTime(state.bands)
+});
 
-const AppearancesConn = connect(mapStateToProps, mapDispatchToProps)(Appearances);
-
+const AppearancesConn = connect(mapStateToProps, mapDispatchToProps)(
+  Appearances
+);
 
 export default AppearancesConn;
-

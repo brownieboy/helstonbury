@@ -1,24 +1,10 @@
-// import { batchActions } from "redux-batched-actions";
-// import firebase, { extendedConfig as firebaseConfig } from "../api/firebase.js";
-// import bandsApi from "../api/bandsApi.js";
+import { createSelector } from "reselect";
 
 // Action type constants
-const LOAD_BANDS_NOW = "LOAD_BANDS_NOW"; // Imp
+const LOAD_BANDS_NOW = "LOAD_BANDS_NOW"; // Imperative, hence "NOW"!
 const FETCH_BANDS_REQUEST = "FETCH_BANDS_REQUEST";
 const FETCH_BANDS_SUCCESS = "FETCH_BANDS_SUCCESS";
 const FETCH_BANDS_FAILURE = "FETCH_BANDS_FAILURE";
-
-/*
-{ type: 'FETCH_POSTS' }
-{ type: 'FETCH_POSTS', status: 'error', error: 'Oops' }
-{ type: 'FETCH_POSTS', status: 'success', response: { ... } }
-
-{ type: 'FETCH_POSTS_REQUEST' }
-{ type: 'FETCH_POSTS_FAILURE', error: 'Oops' }
-{ type: 'FETCH_POSTS_SUCCESS', response: { ... } }
-
-
- */
 
 // Reducer
 const bandsReducer = (
@@ -27,7 +13,6 @@ const bandsReducer = (
 ) => {
   switch (action.type) {
     case FETCH_BANDS_REQUEST:
-      console.log("reducer FETCH_BANDS_REQUEST");
       return { ...state, fetchStatus: "loading" };
     case FETCH_BANDS_SUCCESS:
       return {
@@ -41,6 +26,66 @@ const bandsReducer = (
       return state;
   }
 };
+
+// Sort/filter functions for selectors
+const selectBands = state => state.bandsList;
+
+// Selectors
+const selectBandsByDateTime = createSelector([selectBands], bandsList =>
+  bandsList
+    .slice()
+    .sort((a, b) => new Date(a.appearances.dateTimeStart) - new Date(b.appearances.dateTimeStart))
+);
+
+export const selectors = {
+  selectBandsByDateTime
+};
+
+/*
+// Sort/filter functions for selectors
+const selectPeople = state => state.people.peopleList;
+// const selectSortStyle = state => state.people.sortStyle;
+
+// Selectors
+const selectPeopleDateStartReverse = createSelector(
+  [selectPeople],
+  peopleList =>
+    peopleList
+      .slice()
+      .sort((a, b) => new Date(b.dateTimeStart) - new Date(a.dateTimeStart))
+);
+
+const selectPeopleAlpha = createSelector([selectPeople], peopleList =>
+  stringSort(peopleList.slice(), "name")
+);
+
+const selectPeopleStateSortOrder = createSelector([selectPeople], peopleList =>
+  peopleList.slice().sort((a, b) => a.stateSortOrder - b.stateSortOrder)
+);
+
+const selectPeopleStateSortOrderThenDate = createSelector(
+  [selectPeople],
+  peopleList =>
+    peopleList
+      .slice()
+      .sort(
+        (a, b) =>
+          a.stateSortOrder - b.stateSortOrder ||
+          (a.dateTimeStart && b.dateTimeStart
+            ? new Date(a.dateTimeStart) - new Date(b.dateTimeStart)
+            : 1)
+      )
+);
+
+export const selectors = {
+  selectPeopleAlpha,
+  selectPeopleDateStartReverse,
+  selectPeopleStateSortOrder,
+  selectPeopleStateSortOrderThenDate
+};
+
+
+ */
 
 export const loadBands = () => ({ type: LOAD_BANDS_NOW });
 const setFetchBandsRequest = () => ({
@@ -60,26 +105,6 @@ export const bandsDuxActions = {
   setFetchBandsRequest,
   setFetchBandsSucceeded
 };
-/*
-these should all be action creators
-  yield put({
-    type: bandsDuxConstants.FETCH_BANDS_REQUEST
-  });
-  try {
-    const bandsList = yield call(bandsApi.fetchBandsData);
-    // console.log("generator bandsList=" + JSON.stringify(bandsList, null, 4));
-    yield put({
-      type: bandsDuxConstants.FETCH_BANDS_SUCCESS,
-      payload: bandsList
-    });
-  } catch (e) {
-    yield put({
-      type: bandsDuxConstants.FETCH_BANDS_FAILURE,
-      message: e.message
-    });
-
-
-  */
 
 export const bandsDuxConstants = {
   LOAD_BANDS_NOW,

@@ -1,6 +1,6 @@
 import { compose, createStore, applyMiddleware } from "redux";
 import createSagaMiddleware from "redux-saga";
-import { enableBatching } from "redux-batched-actions";
+// import { enableBatching } from "redux-batched-actions";
 // import thunk from "redux-thunk";
 // import { composeWithDevTools } from "remote-redux-devtools";
 
@@ -11,7 +11,14 @@ import sagas from "../dux/sagas.js";
 const sagaMiddleware = createSagaMiddleware();
 
 /* eslint-disable no-underscore-dangle */
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // For web extension
+
+// if (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
+//   console.log("Redux devtools available, I think");
+// } else {
+//   console.log("Redux devtools not available, I think");
+// }
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;// For web extension
 // const composeEnhancers = composeWithDevTools || compose; // For NPM, best for React Native
 // const composeEnhancers = compose; // For NPM, best for React Native
 
@@ -19,7 +26,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // call has to be inside that function so it runs when the function is run.
 const configureStore = initialState => {
   const store = createStore(
-    enableBatching(mainReducer),
+    mainReducer,
     initialState,
     composeEnhancers(applyMiddleware(sagaMiddleware))
   );

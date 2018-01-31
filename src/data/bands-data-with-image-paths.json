@@ -22,6 +22,15 @@
     "thumbFullUrl": "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fthumbs%2Facdc.jpg?alt=media&token=44af02fb-645d-4c13-9b08-c2f1898140cd"
   },
   {
+    "appearances": [
+      {
+        "bandId": "stones",
+        "dateTimeEnd": "2018-07-22T22:30",
+        "dateTimeStart": "2018-07-22T21:30",
+        "stageId": "lowerbeer",
+        "stageName": "Lower Beer Stage"
+      }
+    ],
     "blurb": "One Direction (commonly abbreviated as 1D) are an English-Irish pop boy band based in London, composed of Niall Horan, Liam Payne, Harry Styles, Louis Tomlinson, and Zayn Malik until the latter's departure on 25 March 2015.",
     "card": "One_Direction_2015.jpg",
     "cardFullUrl": "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fcards%2FOne_Direction_2015.jpg?alt=media&token=b17465cc-5a03-40b6-8227-6ca715ce04d1",
@@ -73,6 +82,15 @@
     "thumbFullUrl": "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fthumbs%2Ftaylor.jpg?alt=media&token=ba3ebbd5-fb26-4ac1-9775-26d3c1603d24"
   },
   {
+    "appearances": [
+      {
+        "bandId": "taylor",
+        "dateTimeEnd": "2018-07-22T14:30",
+        "dateTimeStart": "2018-07-22T13:30",
+        "stageId": "acapella",
+        "stageName": "Acapella Stage"
+      }
+    ],
     "bandId": "genesis",
     "blurb": "Genesis were an English rock band formed at Charterhouse School, Godalming, Surrey in 1967. The most commercially successful and longest-lasting line-up consisted of keyboardist Tony Banks, bassist/guitarist Mike Rutherford and drummer/singer Phil Collins. Significant former members were guitarist Steve Hackett and original lead singer Peter Gabriel.",
     "card": "genesis.jpg",

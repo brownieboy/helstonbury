@@ -27,6 +27,7 @@ const bandsReducer = (
 ) => {
   switch (action.type) {
     case FETCH_BANDS_REQUEST:
+    console.log("reducer FETCH_BANDS_REQUEST");
       return { ...state, fetchStatus: "loading" };
     case FETCH_BANDS_SUCCESS:
       return {
@@ -42,6 +43,33 @@ const bandsReducer = (
 };
 
 export const loadBands = () => ({ type: LOAD_BANDS_NOW });
+const setFetchBandsRequest = () => ({
+  type: FETCH_BANDS_REQUEST
+});
+
+export const bandsDuxActions = {
+  setFetchBandsRequest
+};
+/*
+these should all be action creators
+  yield put({
+    type: bandsDuxConstants.FETCH_BANDS_REQUEST
+  });
+  try {
+    const bandsList = yield call(bandsApi.fetchBandsData);
+    // console.log("generator bandsList=" + JSON.stringify(bandsList, null, 4));
+    yield put({
+      type: bandsDuxConstants.FETCH_BANDS_SUCCESS,
+      payload: bandsList
+    });
+  } catch (e) {
+    yield put({
+      type: bandsDuxConstants.FETCH_BANDS_FAILURE,
+      message: e.message
+    });
+
+
+  */
 
 export const bandsDuxConstants = {
   LOAD_BANDS_NOW,

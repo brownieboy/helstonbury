@@ -1,39 +1,119 @@
-// import { batchActions } from "redux-batched-actions";
-// import firebase, { extendedConfig as firebaseConfig } from "../api/firebase.js";
-// import bandsApi from "../api/bandsApi.js";
+import { createSelector } from "reselect";
 
 // Action type constants
-const LOAD_BANDS = "LOAD_BANDS";
-const LOADING_BANDS = "LOADING_BANDS";
-const LOADED_BANDS_SUCCESS = "LOADED_BANDS_SUCCESS";
-const LOADED_BANDS_FAILURE = "LOADED_BANDS_FAILURE";
+const LOAD_BANDS_NOW = "LOAD_BANDS_NOW"; // Imperative, hence "NOW"!
+const FETCH_BANDS_REQUEST = "FETCH_BANDS_REQUEST";
+const FETCH_BANDS_SUCCESS = "FETCH_BANDS_SUCCESS";
+const FETCH_BANDS_FAILURE = "FETCH_BANDS_FAILURE";
 
 // Reducer
-const bandsReducer = (state = { loading: false, bandsList: [] }, action) => {
+const bandsReducer = (
+  state = { fetchStatus: "", fetchError: "", bandsList: [] },
+  action
+) => {
   switch (action.type) {
-    case LOADING_BANDS:
-      return { ...state, loading: true };
-    case LOADED_BANDS_SUCCESS:
-      return { ...state, loading: false, bandsList: action.payload };
+    case FETCH_BANDS_REQUEST:
+      return { ...state, fetchStatus: "loading" };
+    case FETCH_BANDS_SUCCESS:
+      return {
+        ...state,
+        fetchStatus: "",
+        bandsList: action.payload
+      };
+    case FETCH_BANDS_FAILURE:
+      return { ...state, fetchStatus: "failure", fetchError: action.payload };
     default:
       return state;
   }
 };
 
-// Action creators
-// export const loadingBands = loading => ({
-//   type: LOADING_BANDS,
-//   payload: loading
-// });
+// Sort/filter functions for selectors
+const selectBands = state => state.bandsList;
 
-// const loadedBandsSuccess = newbandsList => ({
-//   type: LOADED_BANDS_SUCCESS,
-//   payload: newbandsList
-// });
+// Selectors
+const selectBandsByDateTime = createSelector([selectBands], bandsList =>
+  bandsList
+    .slice()
+    .sort((a, b) => (a && b ? new Date(a.appearances.dateTimeStart) - new Date(b.appearances.dateTimeStart) : 1))
+);
 
-export const loadBands = () => ({ type: LOAD_BANDS });
+export const selectors = {
+  selectBandsByDateTime
+};
 
-// const loadedBandsFailure = () => ({ type: LOADED_BANDS_FAILURE });
+/*
+// Sort/filter functions for selectors
+const selectPeople = state => state.people.peopleList;
+// const selectSortStyle = state => state.people.sortStyle;
+
+// Selectors
+const selectPeopleDateStartReverse = createSelector(
+  [selectPeople],
+  peopleList =>
+    peopleList
+      .slice()
+      .sort((a, b) => new Date(b.dateTimeStart) - new Date(a.dateTimeStart))
+);
+
+const selectPeopleAlpha = createSelector([selectPeople], peopleList =>
+  stringSort(peopleList.slice(), "name")
+);
+
+const selectPeopleStateSortOrder = createSelector([selectPeople], peopleList =>
+  peopleList.slice().sort((a, b) => a.stateSortOrder - b.stateSortOrder)
+);
+
+const selectPeopleStateSortOrderThenDate = createSelector(
+  [selectPeople],
+  peopleList =>
+    peopleList
+      .slice()
+      .sort(
+        (a, b) =>
+          a.stateSortOrder - b.stateSortOrder ||
+          (a.dateTimeStart && b.dateTimeStart
+            ? new Date(a.dateTimeStart) - new Date(b.dateTimeStart)
+            : 1)
+      )
+);
+
+export const selectors = {
+  selectPeopleAlpha,
+  selectPeopleDateStartReverse,
+  selectPeopleStateSortOrder,
+  selectPeopleStateSortOrderThenDate
+};
+
+
+ */
+
+export const loadBands = () => ({ type: LOAD_BANDS_NOW });
+const setFetchBandsRequest = () => ({
+  type: FETCH_BANDS_REQUEST
+});
+const setFetchBandsSucceeded = bandsList => ({
+  type: FETCH_BANDS_SUCCESS,
+  payload: bandsList
+});
+const setFetchBandsFailed = errorMessage => ({
+  type: FETCH_BANDS_FAILURE,
+  payload: errorMessage
+});
+
+export const bandsDuxActions = {
+  setFetchBandsFailed,
+  setFetchBandsRequest,
+  setFetchBandsSucceeded
+};
+
+export const bandsDuxConstants = {
+  LOAD_BANDS_NOW,
+  FETCH_BANDS_REQUEST,
+  FETCH_BANDS_SUCCESS,
+  FETCH_BANDS_FAILURE
+};
+
+export default bandsReducer;
 
 // A thunk must return a function, hence the double () => dispatch =>
 // export const loadBands = () => dispatch => {
@@ -55,12 +135,3 @@ export const loadBands = () => ({ type: LOAD_BANDS });
 //       return err;
 //     });
 // };
-
-export const bandsDuxConstants = {
-  LOAD_BANDS,
-  LOADED_BANDS_SUCCESS,
-  LOADED_BANDS_FAILURE,
-  LOADING_BANDS
-};
-
-export default bandsReducer;

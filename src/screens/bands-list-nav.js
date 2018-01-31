@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { StackNavigator as stackNavigator } from "react-navigation";
 // import { StyleProvider, getTheme } from "native-base";
 // import IconMaterialCommunity from "react-native-vector-icons/MaterialCommunityIcons";
 // import IconFontAwesome from "react-native-vector-icons/FontAwesome";
@@ -32,9 +35,11 @@ import {
 // Consts
 // import { extendedConfig as firebaseConfig } from "../api/firebase.js";
 
-
+// Reducer
+import { loadBands } from "../dux/bandsReducer.js";
 
 // import MainFooterTabNav from "../components/mainfootertabnav.js";
+import BandCard from "./band-card.js";
 import styles from "../styles/home-styles.js";
 import BandsTabIcon from "../components/bands-tab-icon.js";
 
@@ -177,7 +182,30 @@ class BandsList extends Component {
   }
 }
 
-export default BandsList;
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ loadBandsProp: loadBands }, dispatch);
+
+const mapStateToProps = state => ({ bandsProp: state.bands });
+
+const BandsListConn = connect(mapStateToProps, mapDispatchToProps)(BandsList);
+
+const BandsNavigator = stackNavigator(
+  {
+    BandsList: {
+      screen: BandsListConn
+    },
+    BandCard: {
+      screen: BandCard
+    }
+  },
+  {
+    initialRouteName: "BandsList",
+    headerMode: "none"
+  }
+);
+
+// export default BandsList;
+export default BandsNavigator;
 
 /*
 

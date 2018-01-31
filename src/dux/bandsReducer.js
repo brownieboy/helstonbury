@@ -27,7 +27,7 @@ const bandsReducer = (
 ) => {
   switch (action.type) {
     case FETCH_BANDS_REQUEST:
-    console.log("reducer FETCH_BANDS_REQUEST");
+      console.log("reducer FETCH_BANDS_REQUEST");
       return { ...state, fetchStatus: "loading" };
     case FETCH_BANDS_SUCCESS:
       return {
@@ -46,9 +46,19 @@ export const loadBands = () => ({ type: LOAD_BANDS_NOW });
 const setFetchBandsRequest = () => ({
   type: FETCH_BANDS_REQUEST
 });
+const setFetchBandsSucceeded = bandsList => ({
+  type: FETCH_BANDS_SUCCESS,
+  payload: bandsList
+});
+const setFetchBandsFailed = errorMessage => ({
+  type: FETCH_BANDS_FAILURE,
+  payload: errorMessage
+});
 
 export const bandsDuxActions = {
-  setFetchBandsRequest
+  setFetchBandsFailed,
+  setFetchBandsRequest,
+  setFetchBandsSucceeded
 };
 /*
 these should all be action creators

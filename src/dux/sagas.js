@@ -3,7 +3,7 @@ import { call, put, takeLatest } from "redux-saga/effects";
 import bandsApi from "../api/bandsApi.js";
 import { bandsDuxActions, bandsDuxConstants } from "./bandsReducer.js";
 
-// worker Saga: will be fired on LOAD_BANDSactions
+// worker Saga: will be fired on LOAD_BANDS_NOW actions
 function* loadBandsGen() {
   // yield console.log("loadBands() triggered in sagas.js");
   yield put(bandsDuxActions.setFetchBandsRequest());

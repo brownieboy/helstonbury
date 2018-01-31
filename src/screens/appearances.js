@@ -5,9 +5,12 @@ import {
   Icon,
   Title,
   Content,
+  List,
+  ListItem,
   Text,
   Right,
-  Body
+  Body,
+  Spinner
 } from "native-base";
 
 import styles from "../styles/band-card-styles.js";
@@ -25,6 +28,23 @@ class Appearances extends Component {
     )
   };
 
+  getBandsListItems = bandsList =>
+    bandsList.map(bandMember => {
+      return (
+        <ListItem key={bandMember.bandId}>
+          <Body>
+            <Text>{bandMember.name}</Text>
+            <Text numberOfLines={1} note>
+              Appear:{" "}
+              {bandMember.appearances && bandMember.appearances.length > 0
+                ? bandMember.appearances[0].dateTimeStart
+                : "???"}
+            </Text>
+          </Body>
+        </ListItem>
+      );
+    });
+
   render() {
     const { bandsListByDateTime } = this.props;
     return (
@@ -38,7 +58,13 @@ class Appearances extends Component {
 
         <Content padder>
           <Text>Appearances data goes here.</Text>
-          <Text>{JSON.stringify(bandsListByDateTime, null, 4)}</Text>
+          <Content style={{ backgroundColor: "#fff" }}>
+            {bandsListByDateTime.length > 0 ? (
+              <List>{this.getBandsListItems(bandsListByDateTime)}</List>
+            ) : (
+              <Spinner />
+            )}
+          </Content>
         </Content>
       </Container>
     );

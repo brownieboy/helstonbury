@@ -31,11 +31,16 @@ const bandsReducer = (
 const selectBands = state => state.bandsList;
 
 // Selectors
-const selectBandsByDateTime = createSelector([selectBands], bandsList =>
-  bandsList
-    .slice()
-    .sort((a, b) => new Date(a.appearances.dateTimeStart) - new Date(b.appearances.dateTimeStart) : 1)
-);
+const selectBandsByDateTime = createSelector([selectBands], bandsList => {
+  return bandsList.slice().sort((a, b) => {
+    return a.appearances &&
+      b.appearances & (a.appearances.length > 0) &&
+      b.appearances.length > 0
+      ? new Date(a.appearances[0].dateTimeStart) -
+          new Date(b.appearances[0].dateTimeStart)
+      : 1;
+  });
+});
 
 export const selectors = {
   selectBandsByDateTime

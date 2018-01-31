@@ -34,7 +34,7 @@ const selectBands = state => state.bandsList;
 const selectBandsByDateTime = createSelector([selectBands], bandsList =>
   bandsList
     .slice()
-    .sort((a, b) => new Date(a.appearances.dateTimeStart) - new Date(b.appearances.dateTimeStart))
+    .sort((a, b) => (a && b ? new Date(a.appearances.dateTimeStart) - new Date(b.appearances.dateTimeStart) : 1))
 );
 
 export const selectors = {

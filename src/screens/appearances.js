@@ -57,7 +57,6 @@ class Appearances extends Component {
         </Header>
 
         <Content padder>
-          <Text>Appearances data goes here.</Text>
           <Content style={{ backgroundColor: "#fff" }}>
             {bandsListByDateTime.length > 0 ? (
               <List>{this.getBandsListItems(bandsListByDateTime)}</List>

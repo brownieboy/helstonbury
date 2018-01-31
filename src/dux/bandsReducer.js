@@ -3,32 +3,51 @@
 // import bandsApi from "../api/bandsApi.js";
 
 // Action type constants
-const LOAD_BANDS = "LOAD_BANDS";
-const LOADING_BANDS = "LOADING_BANDS";
-const LOADED_BANDS_SUCCESS = "LOADED_BANDS_SUCCESS";
-const LOADED_BANDS_FAILURE = "LOADED_BANDS_FAILURE";
+const LOAD_BANDS_NOW = "LOAD_BANDS_NOW"; // Imp
+const FETCH_BANDS_REQUEST = "FETCH_BANDS_REQUEST";
+const FETCH_BANDS_SUCCESS = "FETCH_BANDS_SUCCESS";
+const FETCH_BANDS_FAILURE = "FETCH_BANDS_FAILURE";
+
+/*
+{ type: 'FETCH_POSTS' }
+{ type: 'FETCH_POSTS', status: 'error', error: 'Oops' }
+{ type: 'FETCH_POSTS', status: 'success', response: { ... } }
+
+{ type: 'FETCH_POSTS_REQUEST' }
+{ type: 'FETCH_POSTS_FAILURE', error: 'Oops' }
+{ type: 'FETCH_POSTS_SUCCESS', response: { ... } }
+
+
+ */
 
 // Reducer
-const bandsReducer = (state = { loading: false, bandsList: [] }, action) => {
+const bandsReducer = (
+  state = { fetchStatus: "", fetchError: "", bandsList: [] },
+  action
+) => {
   switch (action.type) {
-    case LOADING_BANDS:
-      return { ...state, loading: true };
-    case LOADED_BANDS_SUCCESS:
-      return { ...state, loading: false, bandsList: action.payload };
-    case LOADED_BANDS_FAILURE:
-      return { ...state, loading: false };
+    case FETCH_BANDS_REQUEST:
+      return { ...state, fetchStatus: "loading" };
+    case FETCH_BANDS_SUCCESS:
+      return {
+        ...state,
+        fetchStatus: "",
+        bandsList: action.payload
+      };
+    case FETCH_BANDS_FAILURE:
+      return { ...state, fetchStatus: "failure", fetchError: action.payload };
     default:
       return state;
   }
 };
 
-export const loadBands = () => ({ type: LOAD_BANDS });
+export const loadBands = () => ({ type: LOAD_BANDS_NOW });
 
 export const bandsDuxConstants = {
-  LOAD_BANDS,
-  LOADED_BANDS_SUCCESS,
-  LOADED_BANDS_FAILURE,
-  LOADING_BANDS
+  LOAD_BANDS_NOW,
+  FETCH_BANDS_REQUEST,
+  FETCH_BANDS_SUCCESS,
+  FETCH_BANDS_FAILURE
 };
 
 export default bandsReducer;

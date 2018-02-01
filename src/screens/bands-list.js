@@ -133,11 +133,8 @@ class BandsList extends Component {
           <Left>{this.getThumbNail(bandMember)}</Left>
           <Body>
             <Text>{bandMember.name}</Text>
-            <Text numberOfLines={1} note>
+            <Text numberOfLines={2} note>
               {bandMember.summary}
-            </Text>
-            <Text numberOfLines={1} note>
-              Main stage, Sunday @ 15:00
             </Text>
           </Body>
           <Right>

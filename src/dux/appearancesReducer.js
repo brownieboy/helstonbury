@@ -28,7 +28,9 @@ const appearancesReducer = (
 };
 
 // Sort/filter functions for selectors
-const selectAppearances = state => state.appearancesList;
+const selectAppearances = state => {
+    console.log("selectAppearnces in reducer, state=" + JSON.stringify(state, null, 4));
+  return state.appearancesList};
 
 // Selectors
 const selectAppearancesByDateTime = createSelector([selectAppearances], appearancesList => {

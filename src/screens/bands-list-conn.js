@@ -5,16 +5,19 @@ import { connect } from "react-redux";
 import BandsList from "./bands-list.js";
 
 // Reducer
-import { loadBandsNow } from "../dux/bandsReducer.js";
-
+import {
+  loadBandsNow,
+  selectors as bandSelectors
+} from "../dux/bandsReducer.js";
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ loadBandsProp: loadBandsNow }, dispatch);
 
-const mapStateToProps = state => ({ bandsProp: state.bands });
+const mapStateToProps = state => ({
+  bandsProp: state.bands,
+  bandsAlphabeticalProp: bandSelectors.selectAlphabetical(state)
+});
 
 const BandsListConn = connect(mapStateToProps, mapDispatchToProps)(BandsList);
 
-
 export default BandsListConn;
-

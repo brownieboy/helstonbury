@@ -3,101 +3,75 @@
     {
       "appearances": [
         {
-          "appearances": [
-            {
-              "dateTimeEnd": "2018-07-22T22:30",
-              "dateTimeStart": "2018-07-22T21:30",
-              "stageId": "lowerbeer",
-              "stageName": "Lower Beer Stage",
-              "stageSortOrder": 50
-            }
-          ],
-          "bandId": "onedirection",
-          "blurb":
-            "One Direction (commonly abbreviated as 1D) are an English-Irish pop boy band based in London, composed of Niall Horan, Liam Payne, Harry Styles, Louis Tomlinson, and Zayn Malik until the latter's departure on 25 March 2015.",
-          "card": "One_Direction_2015.jpg",
-          "cardFullUrl":
-            "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fcards%2FOne_Direction_2015.jpg?alt=media&token=b17465cc-5a03-40b6-8227-6ca715ce04d1",
-          "id": "onedirection",
-          "name": "One Direction",
-          "summary": "Boy band.  Shite.  One Dimension would be a better name.",
-          "thumb": "onedirection.jpg",
-          "thumbFullUrl":
-            "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fthumbs%2Fonedirection.jpg?alt=media&token=2859c7c6-32ea-420a-9b77-e4094b16843f"
-        },
+          "dateTimeEnd": "2018-07-22T22:30",
+          "dateTimeStart": "2018-07-22T21:30",
+          "stageId": "lowerbeer",
+          "stageName": "Lower Beer Stage",
+          "stageSortOrder": 50
+        }
+      ],
+      "bandId": "onedirection",
+      "blurb":
+        "One Direction (commonly abbreviated as 1D) are an English-Irish pop boy band based in London, composed of Niall Horan, Liam Payne, Harry Styles, Louis Tomlinson, and Zayn Malik until the latter's departure on 25 March 2015.",
+      "card": "One_Direction_2015.jpg",
+      "cardFullUrl":
+        "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fcards%2FOne_Direction_2015.jpg?alt=media&token=b17465cc-5a03-40b6-8227-6ca715ce04d1",
+      "id": "onedirection",
+      "name": "One Direction",
+      "summary": "Boy band.  Shite.  One Dimension would be a better name.",
+      "thumb": "onedirection.jpg",
+      "thumbFullUrl":
+        "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fthumbs%2Fonedirection.jpg?alt=media&token=2859c7c6-32ea-420a-9b77-e4094b16843f"
+    },
+    {
+      "appearances": [
         {
-          "appearances": [
-            {
-              "dateTimeEnd": "2018-07-20T18:30",
-              "dateTimeStart": "2018-07-20T17:30",
-              "stageId": "cannon",
-              "stageName": "Cannon Stage",
-              "stageSortOrder": 10
-            }
-          ],
-          "bandId": "courtney",
-          "blurb":
-            "Courtney Melba Barnett (born 3 November 1987) is an Australian singer, songwriter, and musician.  Known for her witty, rambling lyrics and deadpan singing style, Barnett attracted attention with the release of her debut EP, I've Got A Friend Called Emily Ferris. Barnett was mentioned by both Rolling Stone[3] and The New York Times as a standout performer.",
-          "card": "courtney.jpg",
-          "cardFullUrl":
-            "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fcards%2Fcourtney.jpg?alt=media&token=a202e934-24e5-4da0-8a59-1949d34eb51c",
-          "id": "courtney",
-          "name": "Courtney Barnett",
-          "summary":
-            "The best thing to have come out of Australia since... well, ever!!",
-          "thumb": "courtney.jpg",
-          "thumbFullUrl":
-            "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fthumbs%2Fcourtney.jpg?alt=media&token=86fcd935-9718-47fc-9c19-4ac7a3daf867"
-        },
+          "dateTimeEnd": "2018-07-20T18:30",
+          "dateTimeStart": "2018-07-20T17:30",
+          "stageId": "cannon",
+          "stageName": "Cannon Stage",
+          "stageSortOrder": 10
+        }
+      ],
+      "bandId": "courtney",
+      "blurb":
+        "Courtney Melba Barnett (born 3 November 1987) is an Australian singer, songwriter, and musician.  Known for her witty, rambling lyrics and deadpan singing style, Barnett attracted attention with the release of her debut EP, I've Got A Friend Called Emily Ferris. Barnett was mentioned by both Rolling Stone[3] and The New York Times as a standout performer.",
+      "card": "courtney.jpg",
+      "cardFullUrl":
+        "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fcards%2Fcourtney.jpg?alt=media&token=a202e934-24e5-4da0-8a59-1949d34eb51c",
+      "id": "courtney",
+      "name": "Courtney Barnett",
+      "summary":
+        "The best thing to have come out of Australia since... well, ever!!",
+      "thumb": "courtney.jpg",
+      "thumbFullUrl":
+        "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fthumbs%2Fcourtney.jpg?alt=media&token=86fcd935-9718-47fc-9c19-4ac7a3daf867"
+    },
+    {
+      "appearances": [
         {
-          "appearances": [
-            {
-              "bandId": "taylor",
-              "dateTimeEnd": "2018-07-22T14:30",
-              "dateTimeStart": "2018-07-22T13:30",
-              "stageId": "acapella",
-              "stageName": "Acapella Stage"
-            }
-          ],
           "bandId": "taylor",
-          "blurb":
-            "Taylor Alison Swift (born December 13, 1989) is an American singer-songwriter. One of the leading contemporary recording artists, she is known for narrative songs about her personal life, which have received widespread media coverage.",
-          "card": "taylor.jpg",
-          "cardFullUrl":
-            "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fcards%2Ftaylor.jpg?alt=media&token=4383d28c-d209-432e-a155-25f27bda08f5",
-          "id": "taylor",
-          "name": "Taylor Swift",
-          "summary": "Quite big with the kids.  Never heard of her, myself",
-          "thumb": "taylor.jpg",
-          "thumbFullUrl":
-            "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fthumbs%2Ftaylor.jpg?alt=media&token=ba3ebbd5-fb26-4ac1-9775-26d3c1603d24"
-        },
-        {
-          "appearances": [
-            {
-              "bandId": "taylor",
-              "dateTimeEnd": "2018-07-22T15:30",
-              "dateTimeStart": "2018-07-22T14:30",
-              "stageId": "acapella",
-              "stageName": "Acapella Stage"
-            }
-          ],
-          "bandId": "genesis",
-          "blurb":
-            "Genesis were an English rock band formed at Charterhouse School, Godalming, Surrey in 1967. The most commercially successful and longest-lasting line-up consisted of keyboardist Tony Banks, bassist/guitarist Mike Rutherford and drummer/singer Phil Collins. Significant former members were guitarist Steve Hackett and original lead singer Peter Gabriel.",
-          "card": "genesis.jpg",
-          "cardFullUrl":
-            "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fcards%2Fgenesis.jpg?alt=media&token=74da81a8-32de-4f9f-9bf9-7b8443aee526",
-          "facebookId": "14923463205",
-          "facebookPageName": "Genesis Facebook page",
-          "id": "genesis",
-          "name": "Genesis",
-          "summary":
-            "Phil Collins & co get back together just for Helstonbury!",
-          "thumb": "genesis.jpg",
-          "thumbFullUrl":
-            "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fthumbs%2Fgenesis.jpg?alt=media&token=c8996eb6-ae36-4c0e-95cc-72aca5404db4"
-        },
+          "dateTimeEnd": "2018-07-22T14:30",
+          "dateTimeStart": "2018-07-22T13:30",
+          "stageId": "acapella",
+          "stageName": "Acapella Stage"
+        }
+      ],
+      "bandId": "taylor",
+      "blurb":
+        "Taylor Alison Swift (born December 13, 1989) is an American singer-songwriter. One of the leading contemporary recording artists, she is known for narrative songs about her personal life, which have received widespread media coverage.",
+      "card": "taylor.jpg",
+      "cardFullUrl":
+        "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fcards%2Ftaylor.jpg?alt=media&token=4383d28c-d209-432e-a155-25f27bda08f5",
+      "id": "taylor",
+      "name": "Taylor Swift",
+      "summary": "Quite big with the kids.  Never heard of her, myself",
+      "thumb": "taylor.jpg",
+      "thumbFullUrl":
+        "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fthumbs%2Ftaylor.jpg?alt=media&token=ba3ebbd5-fb26-4ac1-9775-26d3c1603d24"
+    },
+    {
+      "appearances": [
         {
           "dateTimeEnd": "2018-07-21T21:30",
           "dateTimeStart": "2018-07-21T20:30",
@@ -120,6 +94,31 @@
       "thumb": "acdc.jpg",
       "thumbFullUrl":
         "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fthumbs%2Facdc.jpg?alt=media&token=44af02fb-645d-4c13-9b08-c2f1898140cd"
+    },
+    {
+      "appearances": [
+        {
+          "bandId": "taylor",
+          "dateTimeEnd": "2018-07-22T15:30",
+          "dateTimeStart": "2018-07-22T14:30",
+          "stageId": "acapella",
+          "stageName": "Acapella Stage"
+        }
+      ],
+      "bandId": "genesis",
+      "blurb":
+        "Genesis were an English rock band formed at Charterhouse School, Godalming, Surrey in 1967. The most commercially successful and longest-lasting line-up consisted of keyboardist Tony Banks, bassist/guitarist Mike Rutherford and drummer/singer Phil Collins. Significant former members were guitarist Steve Hackett and original lead singer Peter Gabriel.",
+      "card": "genesis.jpg",
+      "cardFullUrl":
+        "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fcards%2Fgenesis.jpg?alt=media&token=74da81a8-32de-4f9f-9bf9-7b8443aee526",
+      "facebookId": "14923463205",
+      "facebookPageName": "Genesis Facebook page",
+      "id": "genesis",
+      "name": "Genesis",
+      "summary": "Phil Collins & co get back together just for Helstonbury!",
+      "thumb": "genesis.jpg",
+      "thumbFullUrl":
+        "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fthumbs%2Fgenesis.jpg?alt=media&token=c8996eb6-ae36-4c0e-95cc-72aca5404db4"
     },
     {
       "appearances": [

@@ -30,7 +30,11 @@ const bandsReducer = (
 };
 
 // Sort/filter functions for selectors
-const selectBands = state => state.bandsList;
+const selectBands = state => {
+  console.log("selectBands in reducer, state=" + JSON.stringify(state, null, 4));
+
+  return state.bands.bandsList;
+};
 
 // Selectors
 // const selectBandsByDateTime = createSelector([selectBands], bandsList => {
@@ -44,9 +48,12 @@ const selectBands = state => state.bandsList;
 //   });
 // });
 
-const selectAlphabetical = createSelector([selectBands], bandsList =>
-  stringSort(bandsList.slice(), "name")
-);
+const selectAlphabetical = createSelector([selectBands], bandsList => {
+  console.log(
+    "selectAlphabetical bandsList=" + JSON.stringify(bandsList, null, 4)
+  );
+  return stringSort(bandsList.slice(), "name");
+});
 
 // const selectPeopleAlpha = createSelector([selectPeople], peopleList =>
 //   stringSort(peopleList.slice(), "name")

@@ -118,8 +118,8 @@ class BandsList extends Component {
     return <Text>Hi</Text>;
   };
 
-  getBandsListItems = () =>
-    this.props.bandsProp.bandsList.map(bandMember => {
+  getBandsListItems = bandsList =>
+    bandsList.map(bandMember => {
       return (
         <ListItem
           key={bandMember.bandId}
@@ -154,7 +154,8 @@ class BandsList extends Component {
     //   "BandsList..render(), bandsProp = " + JSON.stringify(bandsProp, null, 4)
     // );
     // console.log("bandslist render, length=" + this.props.bandsProp.bandsList.length);
-    const { bandsList = [] } = this.props.bandsProp;
+    // const { bandsList = [] } = this.props.bandsProp;
+    const { bandsAlphabeticalProp = [] } = this.props;
     return (
       <Container style={styles.container}>
         <Header>
@@ -165,8 +166,8 @@ class BandsList extends Component {
         </Header>
 
         <Content style={{ backgroundColor: "#fff" }}>
-          {bandsList.length > 0 ? (
-            <List>{this.getBandsListItems()}</List>
+          {bandsAlphabeticalProp.length > 0 ? (
+            <List>{this.getBandsListItems(bandsAlphabeticalProp)}</List>
           ) : (
             <Spinner />
           )}

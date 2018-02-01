@@ -92,7 +92,7 @@ export const selectors = {
 
  */
 
-export const loadBands = () => ({ type: LOAD_BANDS_NOW });
+export const loadBandsNow = () => ({ type: LOAD_BANDS_NOW });
 const setFetchBandsRequest = () => ({
   type: FETCH_BANDS_REQUEST
 });
@@ -111,12 +111,12 @@ export const bandsDuxActions = {
   setFetchBandsSucceeded
 };
 
-export const bandsDuxConstants = {
-  LOAD_BANDS_NOW,
-  FETCH_BANDS_REQUEST,
-  FETCH_BANDS_SUCCESS,
-  FETCH_BANDS_FAILURE
-};
+// export const bandsDuxConstants = {
+//   LOAD_BANDS_NOW,
+//   FETCH_BANDS_REQUEST,
+//   FETCH_BANDS_SUCCESS,
+//   FETCH_BANDS_FAILURE
+// };
 
 export default bandsReducer;
 

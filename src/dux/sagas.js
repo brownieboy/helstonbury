@@ -1,7 +1,11 @@
 // import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
 import { all, call, put, takeLatest } from "redux-saga/effects";
 import bandsApi from "../api/bandsApi.js";
-import { bandsDuxActions, bandsDuxConstants } from "./bandsReducer.js";
+import {
+  bandsDuxActions,
+  // bandsDuxConstants,
+  loadBandsNow
+} from "./bandsReducer.js";
 import {
   appearancesDuxActions
   // appearancesDuxConstants
@@ -35,7 +39,10 @@ function* loadBandsGen() {
 }
 
 function* mySaga() {
-  yield takeLatest(bandsDuxConstants.LOAD_BANDS_NOW, loadBandsGen);
+  // yield takeLatest(bandsDuxConstants.LOAD_BANDS_NOW, loadBandsGen);
+  yield takeLatest(loadBandsNow().type, loadBandsGen);
 }
+
+//  yield takeLatest(loadBandsNow(), loadBandsGen);
 
 export default mySaga;

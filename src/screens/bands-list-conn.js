@@ -5,11 +5,11 @@ import { connect } from "react-redux";
 import BandsList from "./bands-list.js";
 
 // Reducer
-import { loadBands } from "../dux/bandsReducer.js";
+import { loadBandsNow } from "../dux/bandsReducer.js";
 
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ loadBandsProp: loadBands }, dispatch);
+  bindActionCreators({ loadBandsProp: loadBandsNow }, dispatch);
 
 const mapStateToProps = state => ({ bandsProp: state.bands });
 

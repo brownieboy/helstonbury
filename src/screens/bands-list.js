@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 // import { StyleProvider, getTheme } from "native-base";
 // import IconMaterialCommunity from "react-native-vector-icons/MaterialCommunityIcons";
 // import IconFontAwesome from "react-native-vector-icons/FontAwesome";
@@ -32,8 +33,6 @@ import {
 // Consts
 // import { extendedConfig as firebaseConfig } from "../api/firebase.js";
 
-
-
 // import MainFooterTabNav from "../components/mainfootertabnav.js";
 import styles from "../styles/home-styles.js";
 import BandsTabIcon from "../components/bands-tab-icon.js";
@@ -57,7 +56,6 @@ import BandsTabIcon from "../components/bands-tab-icon.js";
 //     )
 //   };
 
-
 class BandsList extends Component {
   static navigationOptions = {
     tabBarLabel: "Bands List",
@@ -78,7 +76,7 @@ class BandsList extends Component {
   }
 
   componentWillMount() {
-    console.log("BandsList..componentWillMount()");
+    // console.log("BandsList..componentWillMount()");
     const { loadBandsProp } = this.props;
     loadBandsProp();
   }
@@ -151,7 +149,7 @@ class BandsList extends Component {
 
   render() {
     // const { navigation } = this.props;
-    const { bandsProp } = this.props;
+    // const { bandsProp } = this.props;
     // console.log(
     //   "BandsList..render(), bandsProp = " + JSON.stringify(bandsProp, null, 4)
     // );
@@ -176,6 +174,13 @@ class BandsList extends Component {
     );
   }
 }
+
+BandsList.propTypes = {
+  bandsList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  bandsProp: PropTypes.object.isRequired,
+  loadBandsProp: PropTypes.func.isRequired,
+  navigation: PropTypes.object.isRequired
+};
 
 export default BandsList;
 

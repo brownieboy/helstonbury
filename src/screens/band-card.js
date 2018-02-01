@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Image, Dimensions } from "react-native";
+import PropTypes from "prop-types";
 // import { CachedImage } from "react-native-img-cache";
 
 import {
@@ -113,5 +114,9 @@ class BandCard extends Component {
     );
   }
 }
+
+BandCard.propTypes = {
+  navigation: PropTypes.object.isRequired
+};
 
 export default BandCard;

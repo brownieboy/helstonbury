@@ -3,8 +3,8 @@ import { all, call, put, takeLatest } from "redux-saga/effects";
 import bandsApi from "../api/bandsApi.js";
 import { bandsDuxActions, bandsDuxConstants } from "./bandsReducer.js";
 import {
-  appearancesDuxActions,
-  appearancesDuxConstants
+  appearancesDuxActions
+  // appearancesDuxConstants
 } from "./appearancesReducer.js";
 
 // worker Saga: will be fired on LOAD_BANDS_NOW actions

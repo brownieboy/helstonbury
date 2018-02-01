@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+
 import {
   Container,
   Header,
@@ -69,5 +71,9 @@ class Appearances extends Component {
     );
   }
 }
+
+Appearances.propTypes = {
+  appearancesListByDateTime: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired
+};
 
 export default Appearances;

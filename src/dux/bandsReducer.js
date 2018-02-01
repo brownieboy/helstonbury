@@ -1,5 +1,7 @@
 import { createSelector } from "reselect";
 
+import { stringSort } from "../helper-functions/sorting.js";
+
 // Action type constants
 const LOAD_BANDS_NOW = "LOAD_BANDS_NOW"; // Imperative, hence "NOW"!
 const FETCH_BANDS_REQUEST = "FETCH_BANDS_REQUEST";
@@ -31,19 +33,27 @@ const bandsReducer = (
 const selectBands = state => state.bandsList;
 
 // Selectors
-const selectBandsByDateTime = createSelector([selectBands], bandsList => {
-  return bandsList.slice().sort((a, b) => {
-    return a.appearances &&
-      b.appearances & (a.appearances.length > 0) &&
-      b.appearances.length > 0
-      ? new Date(a.appearances[0].dateTimeStart) -
-          new Date(b.appearances[0].dateTimeStart)
-      : 1;
-  });
-});
+// const selectBandsByDateTime = createSelector([selectBands], bandsList => {
+//   return bandsList.slice().sort((a, b) => {
+//     return a.appearances &&
+//       b.appearances & (a.appearances.length > 0) &&
+//       b.appearances.length > 0
+//       ? new Date(a.appearances[0].dateTimeStart) -
+//           new Date(b.appearances[0].dateTimeStart)
+//       : 1;
+//   });
+// });
+
+const selectAlphabetical = createSelector([selectBands], bandsList =>
+  stringSort(bandsList.slice(), "name")
+);
+
+// const selectPeopleAlpha = createSelector([selectPeople], peopleList =>
+//   stringSort(peopleList.slice(), "name")
+// );
 
 export const selectors = {
-  selectBandsByDateTime
+  selectAlphabetical
 };
 
 /*

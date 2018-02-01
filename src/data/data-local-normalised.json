@@ -1,227 +1,225 @@
 {
-    "bandsArray": [
+  "bandsArray": [
+    {
+      "appearances": [],
+      "bandId": "acdc",
+      "blurb":
+        "AC/DC (aka Acca-Dacca) is an Australian rock band, formed in Sydney in 1973 by brothers Malcolm and Angus Young.A hard rock/blues rock band, they have also been considered a heavy metal band, although they have always dubbed their music simply \"rock and roll\".",
+      "card": "508px-ACDC_In_Tacoma_2009.jpg",
+      "cardFullUrl":
+        "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fcards%2F508px-ACDC_In_Tacoma_2009.jpg?alt=media&token=3fa46b14-5e83-4306-be6a-2bc36b199575",
+      "facebookId": "6750402929",
+      "facebookPageName": "AC/DC Facebook page",
+      "id": "acdc",
+      "name": "AC/DC",
+      "summary": "Aussie heavy metal band, only don't call them that!",
+      "thumb": "acdc.jpg",
+      "thumbFullUrl":
+        "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fthumbs%2Facdc.jpg?alt=media&token=44af02fb-645d-4c13-9b08-c2f1898140cd"
+    },
+    {
+      "appearances": [
         {
-            "appearances": [],
-            "bandId": "acdc",
-            "blurb":
-                "AC/DC (aka Acca-Dacca) is an Australian rock band, formed in Sydney in 1973 by brothers Malcolm and Angus Young.A hard rock/blues rock band, they have also been considered a heavy metal band, although they have always dubbed their music simply \"rock and roll\".",
-            "card": "508px-ACDC_In_Tacoma_2009.jpg",
-            "cardFullUrl":
-                "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fcards%2F508px-ACDC_In_Tacoma_2009.jpg?alt=media&token=3fa46b14-5e83-4306-be6a-2bc36b199575",
-            "facebookId": "6750402929",
-            "facebookPageName": "AC/DC Facebook page",
-            "id": "acdc",
-            "name": "AC/DC",
-            "summary": "Aussie heavy metal band, only don't call them that!",
-            "thumb": "acdc.jpg",
-            "thumbFullUrl":
-                "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fthumbs%2Facdc.jpg?alt=media&token=44af02fb-645d-4c13-9b08-c2f1898140cd"
-        },
-        {
-            "appearances": [
-                {
-                    "dateTimeEnd": "2018-07-22T22:30",
-                    "dateTimeStart": "2018-07-22T21:30",
-                    "stageId": "lowerbeer",
-                    "stageName": "Lower Beer Stage",
-                    "stageSortOrder": 50
-                }
-            ],
-            "bandId": "onedirection",
-            "blurb":
-                "One Direction (commonly abbreviated as 1D) are an English-Irish pop boy band based in London, composed of Niall Horan, Liam Payne, Harry Styles, Louis Tomlinson, and Zayn Malik until the latter's departure on 25 March 2015.",
-            "card": "One_Direction_2015.jpg",
-            "cardFullUrl":
-                "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fcards%2FOne_Direction_2015.jpg?alt=media&token=b17465cc-5a03-40b6-8227-6ca715ce04d1",
-            "id": "onedirection",
-            "name": "One Direction",
-            "summary":
-                "Boy band.  Shite.  One Dimension would be a better name.",
-            "thumb": "onedirection.jpg",
-            "thumbFullUrl":
-                "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fthumbs%2Fonedirection.jpg?alt=media&token=2859c7c6-32ea-420a-9b77-e4094b16843f"
-        },
-        {
-            "appearances": [
-                {
-                    "dateTimeEnd": "2018-07-20T18:30",
-                    "dateTimeStart": "2018-07-20T17:30",
-                    "stageId": "cannon",
-                    "stageName": "Cannon Stage",
-                    "stageSortOrder": 10
-                }
-            ],
-            "bandId": "courtney",
-            "blurb":
-                "Courtney Melba Barnett (born 3 November 1987) is an Australian singer, songwriter, and musician.  Known for her witty, rambling lyrics and deadpan singing style, Barnett attracted attention with the release of her debut EP, I've Got A Friend Called Emily Ferris. Barnett was mentioned by both Rolling Stone[3] and The New York Times as a standout performer.",
-            "card": "courtney.jpg",
-            "cardFullUrl":
-                "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fcards%2Fcourtney.jpg?alt=media&token=a202e934-24e5-4da0-8a59-1949d34eb51c",
-            "id": "courtney",
-            "name": "Courtney Barnett",
-            "summary":
-                "The best thing to have come out of Australia since... well, ever!!",
-            "thumb": "courtney.jpg",
-            "thumbFullUrl":
-                "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fthumbs%2Fcourtney.jpg?alt=media&token=86fcd935-9718-47fc-9c19-4ac7a3daf867"
-        },
-        {
-            "appearances": [
-                {
-                    "bandId": "taylor",
-                    "dateTimeEnd": "2018-07-22T14:30",
-                    "dateTimeStart": "2018-07-22T13:30",
-                    "stageId": "acapella",
-                    "stageName": "Acapella Stage"
-                }
-            ],
-            "bandId": "taylor",
-            "blurb":
-                "Taylor Alison Swift (born December 13, 1989) is an American singer-songwriter. One of the leading contemporary recording artists, she is known for narrative songs about her personal life, which have received widespread media coverage.",
-            "card": "taylor.jpg",
-            "cardFullUrl":
-                "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fcards%2Ftaylor.jpg?alt=media&token=4383d28c-d209-432e-a155-25f27bda08f5",
-            "id": "taylor",
-            "name": "Taylor Swift",
-            "summary": "Quite big with the kids.  Never heard of her, myself",
-            "thumb": "taylor.jpg",
-            "thumbFullUrl":
-                "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fthumbs%2Ftaylor.jpg?alt=media&token=ba3ebbd5-fb26-4ac1-9775-26d3c1603d24"
-        },
-        {
-            "appearances": [
-                {
-                    "bandId": "taylor",
-                    "dateTimeEnd": "2018-07-22T15:30",
-                    "dateTimeStart": "2018-07-22T14:30",
-                    "stageId": "acapella",
-                    "stageName": "Acapella Stage"
-                }
-            ],
-            "bandId": "genesis",
-            "blurb":
-                "Genesis were an English rock band formed at Charterhouse School, Godalming, Surrey in 1967. The most commercially successful and longest-lasting line-up consisted of keyboardist Tony Banks, bassist/guitarist Mike Rutherford and drummer/singer Phil Collins. Significant former members were guitarist Steve Hackett and original lead singer Peter Gabriel.",
-            "card": "genesis.jpg",
-            "cardFullUrl":
-                "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fcards%2Fgenesis.jpg?alt=media&token=74da81a8-32de-4f9f-9bf9-7b8443aee526",
-            "facebookId": "14923463205",
-            "facebookPageName": "Genesis Facebook page",
-            "id": "genesis",
-            "name": "Genesis",
-            "summary":
-                "Phil Collins & co get back together just for Helstonbury!",
-            "thumb": "genesis.jpg",
-            "thumbFullUrl":
-                "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fthumbs%2Fgenesis.jpg?alt=media&token=c8996eb6-ae36-4c0e-95cc-72aca5404db4"
-        },
-        {
-            "appearances": [
-                {
-                    "dateTimeEnd": "2018-07-22T22:30",
-                    "dateTimeStart": "2018-07-22T21:30",
-                    "stageId": "lowerbeer",
-                    "stageName": "Lower Beer Stage",
-                    "stageSortOrder": 50
-                }
-            ],
-            "bandId": "stones",
-            "blurb":
-                "The Rolling Stones are an English rock band formed in London, England in 1962. The first stable line-up consisted of Brian Jones (guitar, harmonica), Mick Jagger (lead vocals), Keith Richards (guitar, backing vocals), Bill Wyman (bass), Charlie Watts (drums), and Ian Stewart (piano). ",
-            "card": "553px-Trs_20150623_milwaukee_jp_105.jpg",
-            "cardFullUrl":
-                "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fcards%2F553px-Trs_20150623_milwaukee_jp_105.jpg?alt=media&token=03ff8b03-afd8-4c3a-805e-335e56a9d06a",
-            "id": "stones",
-            "name": "Rolling Stones",
-            "summary":
-                "They finally played Glastonbury a few years back, but are they ready for the big one!",
-            "thumb": "stones.jpg",
-            "thumbFullUrl":
-                "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fthumbs%2Fstones.jpg?alt=media&token=ed78e27b-b0e6-4d1e-839f-f54fdbf8e50c"
-        },
-        {
-            "appearances": [
-                {
-                    "dateTimeEnd": "2018-07-21T20:30",
-                    "dateTimeStart": "2018-07-21T19:30",
-                    "stageId": "main",
-                    "stageName": "Main Stage",
-                    "stageSortOrder": 10
-                }
-            ],
-            "bandId": "u2",
-            "blurb":
-                "U2 are an Irish rock band from Dublin formed in 1976. The group consists of Bono (lead vocals and rhythm guitar), the Edge (lead guitar, keyboards, and backing vocals), Adam Clayton (bass guitar), and Larry Mullen Jr. (drums and percussion).[1] Initially rooted in post-punk, U2's musical style evolved throughout their career, yet has maintained an anthemic sound built on Bono's expressive vocals and the Edge's effects-based guitar textures.",
-            "card": "520px-U2_on_Joshua_Tree_Tour_2017_Brussels_8-1-17.jpg",
-            "cardFullUrl":
-                "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fcards%2F520px-U2_on_Joshua_Tree_Tour_2017_Brussels_8-1-17.jpg?alt=media&token=b8749e5d-30e6-4bb2-8633-e6eb4f6d6db4",
-            "id": "u2",
-            "name": "U2",
-            "summary": "Irish, apparently.",
-            "thumb": "u2.jpg",
-            "thumbFullUrl":
-                "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fthumbs%2Fu2.jpg?alt=media&token=51700fd4-7463-4537-be45-884b1ec58eae"
-        },
-        {
-            "appearances": [
-                {
-                    "dateTimeEnd": "2018-07-22T14:30",
-                    "dateTimeStart": "2018-07-22T13:30",
-                    "stageId": "lowerbeer",
-                    "stageName": "Lower Beer Stage",
-                    "stageSortOrder": 50
-                }
-            ],
-            "bandId": "coldplay",
-            "blurb":
-                "Coldplay are a British rock band formed in 1996 by lead vocalist and keyboardist Chris Martin and lead guitarist Jonny Buckland at University College London (UCL).  After they formed under the name Pectoralz, Guy Berryman joined the group as bassist. Will Champion joined as drummer and backing vocalist, completing the lineup. The band renamed themselves \"Coldplay\" in 1998.",
-            "card": "500px-Coldplay_-_Global-Citizen-Festival_Hamburg_14.jpg",
-            "cardFullUrl":
-                "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fcards%2F500px-Coldplay_-_Global-Citizen-Festival_Hamburg_14.jpg?alt=media&token=58f60e2a-17ff-4855-9766-8f1ba2246bc0",
-            "id": "coldplay",
-            "name": "Coldplay",
-            "summary":
-                "Never quite matched the quality of their first two albums, erm... 15 years ago.",
-            "thumb": "coldplay.jpg",
-            "thumbFullUrl":
-                "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fthumbs%2Fcoldplay.jpg?alt=media&token=3aa42fd3-bafd-4fd3-9193-558e7d13cb4e"
+          "dateTimeEnd": "2018-07-22T22:30",
+          "dateTimeStart": "2018-07-22T21:30",
+          "stageId": "lowerbeer",
+          "stageName": "Lower Beer Stage",
+          "stageSortOrder": 50
         }
-    ],
-    "appearancesArray": [
+      ],
+      "bandId": "onedirection",
+      "blurb":
+        "One Direction (commonly abbreviated as 1D) are an English-Irish pop boy band based in London, composed of Niall Horan, Liam Payne, Harry Styles, Louis Tomlinson, and Zayn Malik until the latter's departure on 25 March 2015.",
+      "card": "One_Direction_2015.jpg",
+      "cardFullUrl":
+        "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fcards%2FOne_Direction_2015.jpg?alt=media&token=b17465cc-5a03-40b6-8227-6ca715ce04d1",
+      "id": "onedirection",
+      "name": "One Direction",
+      "summary": "Boy band.  Shite.  One Dimension would be a better name.",
+      "thumb": "onedirection.jpg",
+      "thumbFullUrl":
+        "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fthumbs%2Fonedirection.jpg?alt=media&token=2859c7c6-32ea-420a-9b77-e4094b16843f"
+    },
+    {
+      "appearances": [
         {
-            "dateTimeEnd": "2018-07-22T22:30",
-            "dateTimeStart": "2018-07-22T21:30",
-            "stageId": "lowerbeer",
-            "stageName": "Lower Beer Stage",
-            "stageSortOrder": 50,
-            "bandId": "onedirection",
-            "name": "One Direction"
-        },
-        {
-            "dateTimeEnd": "2018-07-20T18:30",
-            "dateTimeStart": "2018-07-20T17:30",
-            "stageId": "cannon",
-            "stageName": "Cannon Stage",
-            "stageSortOrder": 10,
-            "bandId": "courtney",
-            "name": "Courtney Barnett"
-        },
-        {
-            "bandId": "taylor",
-            "name": "Taylor Swift",
-            "dateTimeEnd": "2018-07-22T14:30",
-            "dateTimeStart": "2018-07-22T13:30",
-            "stageId": "acapella",
-            "stageName": "Acapella Stage",
-            "stageSortOrder": 40
-        },
-        {
-            "dateTimeEnd": "2018-07-22T15:30",
-            "dateTimeStart": "2018-07-22T14:30",
-            "stageId": "acapella",
-            "stageName": "Acapella Stage",
-            "stageSortOrder": 40,
-            "bandId": "genesis",
-            "name": "Genesis"
+          "dateTimeEnd": "2018-07-20T18:30",
+          "dateTimeStart": "2018-07-20T17:30",
+          "stageId": "cannon",
+          "stageName": "Cannon Stage",
+          "stageSortOrder": 10
         }
-    ]
+      ],
+      "bandId": "courtney",
+      "blurb":
+        "Courtney Melba Barnett (born 3 November 1987) is an Australian singer, songwriter, and musician.  Known for her witty, rambling lyrics and deadpan singing style, Barnett attracted attention with the release of her debut EP, I've Got A Friend Called Emily Ferris. Barnett was mentioned by both Rolling Stone[3] and The New York Times as a standout performer.",
+      "card": "courtney.jpg",
+      "cardFullUrl":
+        "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fcards%2Fcourtney.jpg?alt=media&token=a202e934-24e5-4da0-8a59-1949d34eb51c",
+      "id": "courtney",
+      "name": "Courtney Barnett",
+      "summary":
+        "The best thing to have come out of Australia since... well, ever!!",
+      "thumb": "courtney.jpg",
+      "thumbFullUrl":
+        "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fthumbs%2Fcourtney.jpg?alt=media&token=86fcd935-9718-47fc-9c19-4ac7a3daf867"
+    },
+    {
+      "appearances": [
+        {
+          "bandId": "taylor",
+          "dateTimeEnd": "2018-07-22T14:30",
+          "dateTimeStart": "2018-07-22T13:30",
+          "stageId": "acapella",
+          "stageName": "Acapella Stage"
+        }
+      ],
+      "bandId": "taylor",
+      "blurb":
+        "Taylor Alison Swift (born December 13, 1989) is an American singer-songwriter. One of the leading contemporary recording artists, she is known for narrative songs about her personal life, which have received widespread media coverage.",
+      "card": "taylor.jpg",
+      "cardFullUrl":
+        "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fcards%2Ftaylor.jpg?alt=media&token=4383d28c-d209-432e-a155-25f27bda08f5",
+      "id": "taylor",
+      "name": "Taylor Swift",
+      "summary": "Quite big with the kids.  Never heard of her, myself",
+      "thumb": "taylor.jpg",
+      "thumbFullUrl":
+        "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fthumbs%2Ftaylor.jpg?alt=media&token=ba3ebbd5-fb26-4ac1-9775-26d3c1603d24"
+    },
+    {
+      "appearances": [
+        {
+          "bandId": "taylor",
+          "dateTimeEnd": "2018-07-22T15:30",
+          "dateTimeStart": "2018-07-22T14:30",
+          "stageId": "acapella",
+          "stageName": "Acapella Stage"
+        }
+      ],
+      "bandId": "genesis",
+      "blurb":
+        "Genesis were an English rock band formed at Charterhouse School, Godalming, Surrey in 1967. The most commercially successful and longest-lasting line-up consisted of keyboardist Tony Banks, bassist/guitarist Mike Rutherford and drummer/singer Phil Collins. Significant former members were guitarist Steve Hackett and original lead singer Peter Gabriel.",
+      "card": "genesis.jpg",
+      "cardFullUrl":
+        "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fcards%2Fgenesis.jpg?alt=media&token=74da81a8-32de-4f9f-9bf9-7b8443aee526",
+      "facebookId": "14923463205",
+      "facebookPageName": "Genesis Facebook page",
+      "id": "genesis",
+      "name": "Genesis",
+      "summary": "Phil Collins & co get back together just for Helstonbury!",
+      "thumb": "genesis.jpg",
+      "thumbFullUrl":
+        "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fthumbs%2Fgenesis.jpg?alt=media&token=c8996eb6-ae36-4c0e-95cc-72aca5404db4"
+    },
+    {
+      "appearances": [
+        {
+          "dateTimeEnd": "2018-07-22T22:30",
+          "dateTimeStart": "2018-07-22T21:30",
+          "stageId": "lowerbeer",
+          "stageName": "Lower Beer Stage",
+          "stageSortOrder": 50
+        }
+      ],
+      "bandId": "stones",
+      "blurb":
+        "The Rolling Stones are an English rock band formed in London, England in 1962. The first stable line-up consisted of Brian Jones (guitar, harmonica), Mick Jagger (lead vocals), Keith Richards (guitar, backing vocals), Bill Wyman (bass), Charlie Watts (drums), and Ian Stewart (piano). ",
+      "card": "553px-Trs_20150623_milwaukee_jp_105.jpg",
+      "cardFullUrl":
+        "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fcards%2F553px-Trs_20150623_milwaukee_jp_105.jpg?alt=media&token=03ff8b03-afd8-4c3a-805e-335e56a9d06a",
+      "id": "stones",
+      "name": "Rolling Stones",
+      "summary":
+        "They finally played Glastonbury a few years back, but are they ready for the big one!",
+      "thumb": "stones.jpg",
+      "thumbFullUrl":
+        "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fthumbs%2Fstones.jpg?alt=media&token=ed78e27b-b0e6-4d1e-839f-f54fdbf8e50c"
+    },
+    {
+      "appearances": [
+        {
+          "dateTimeEnd": "2018-07-21T20:30",
+          "dateTimeStart": "2018-07-21T19:30",
+          "stageId": "main",
+          "stageName": "Main Stage",
+          "stageSortOrder": 10
+        }
+      ],
+      "bandId": "u2",
+      "blurb":
+        "U2 are an Irish rock band from Dublin formed in 1976. The group consists of Bono (lead vocals and rhythm guitar), the Edge (lead guitar, keyboards, and backing vocals), Adam Clayton (bass guitar), and Larry Mullen Jr. (drums and percussion).[1] Initially rooted in post-punk, U2's musical style evolved throughout their career, yet has maintained an anthemic sound built on Bono's expressive vocals and the Edge's effects-based guitar textures.",
+      "card": "520px-U2_on_Joshua_Tree_Tour_2017_Brussels_8-1-17.jpg",
+      "cardFullUrl":
+        "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fcards%2F520px-U2_on_Joshua_Tree_Tour_2017_Brussels_8-1-17.jpg?alt=media&token=b8749e5d-30e6-4bb2-8633-e6eb4f6d6db4",
+      "id": "u2",
+      "name": "U2",
+      "summary": "Irish, apparently.",
+      "thumb": "u2.jpg",
+      "thumbFullUrl":
+        "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fthumbs%2Fu2.jpg?alt=media&token=51700fd4-7463-4537-be45-884b1ec58eae"
+    },
+    {
+      "appearances": [
+        {
+          "dateTimeEnd": "2018-07-22T14:30",
+          "dateTimeStart": "2018-07-22T13:30",
+          "stageId": "lowerbeer",
+          "stageName": "Lower Beer Stage",
+          "stageSortOrder": 50
+        }
+      ],
+      "bandId": "coldplay",
+      "blurb":
+        "Coldplay are a British rock band formed in 1996 by lead vocalist and keyboardist Chris Martin and lead guitarist Jonny Buckland at University College London (UCL).  After they formed under the name Pectoralz, Guy Berryman joined the group as bassist. Will Champion joined as drummer and backing vocalist, completing the lineup. The band renamed themselves \"Coldplay\" in 1998.",
+      "card": "500px-Coldplay_-_Global-Citizen-Festival_Hamburg_14.jpg",
+      "cardFullUrl":
+        "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fcards%2F500px-Coldplay_-_Global-Citizen-Festival_Hamburg_14.jpg?alt=media&token=58f60e2a-17ff-4855-9766-8f1ba2246bc0",
+      "id": "coldplay",
+      "name": "Coldplay",
+      "summary":
+        "Never quite matched the quality of their first two albums, erm... 15 years ago.",
+      "thumb": "coldplay.jpg",
+      "thumbFullUrl":
+        "https://firebasestorage.googleapis.com/v0/b/helstonbury-cadbf.appspot.com/o/img%2Fbands%2Fthumbs%2Fcoldplay.jpg?alt=media&token=3aa42fd3-bafd-4fd3-9193-558e7d13cb4e"
+    }
+  ],
+  "appearancesArray": [
+    {
+      "dateTimeEnd": "2018-07-22T22:30",
+      "dateTimeStart": "2018-07-22T21:30",
+      "stageId": "lowerbeer",
+      "stageName": "Lower Beer Stage",
+      "stageSortOrder": 50,
+      "bandId": "onedirection",
+      "name": "One Direction"
+    },
+    {
+      "dateTimeEnd": "2018-07-20T18:30",
+      "dateTimeStart": "2018-07-20T17:30",
+      "stageId": "cannon",
+      "stageName": "Cannon Stage",
+      "stageSortOrder": 10,
+      "bandId": "courtney",
+      "name": "Courtney Barnett"
+    },
+    {
+      "bandId": "taylor",
+      "name": "Taylor Swift",
+      "dateTimeEnd": "2018-07-22T14:30",
+      "dateTimeStart": "2018-07-22T13:30",
+      "stageId": "acapella",
+      "stageName": "Acapella Stage",
+      "stageSortOrder": 40
+    },
+    {
+      "dateTimeEnd": "2018-07-22T15:30",
+      "dateTimeStart": "2018-07-22T14:30",
+      "stageId": "acapella",
+      "stageName": "Acapella Stage",
+      "stageSortOrder": 40,
+      "bandId": "genesis",
+      "name": "Genesis"
+    }
+  ]
 }

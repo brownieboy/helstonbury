@@ -28,17 +28,15 @@ class Appearances extends Component {
     )
   };
 
-  getBandsListItems = bandsList =>
-    bandsList.map(bandMember => {
+  getAppearancesListItems = appearancesList =>
+    appearancesList.map(appearanceMember => {
+      const { dateTimeStart, bandId, name, stageName } = appearanceMember;
       return (
-        <ListItem key={bandMember.bandId}>
+        <ListItem key={`${bandId}${dateTimeStart}`}>
           <Body>
-            <Text>{bandMember.name}</Text>
+            <Text>{name}</Text>
             <Text numberOfLines={1} note>
-              Appear:{" "}
-              {bandMember.appearances && bandMember.appearances.length > 0
-                ? bandMember.appearances[0].dateTimeStart
-                : "???"}
+              Appear: {`${dateTimeStart || "???"} - ${stageName}`}
             </Text>
           </Body>
         </ListItem>
@@ -46,7 +44,7 @@ class Appearances extends Component {
     });
 
   render() {
-    const { bandsListByDateTime } = this.props;
+    const { appearancesListByDateTime } = this.props;
     return (
       <Container style={styles.container}>
         <Header>
@@ -58,8 +56,10 @@ class Appearances extends Component {
 
         <Content padder>
           <Content style={{ backgroundColor: "#fff" }}>
-            {bandsListByDateTime.length > 0 ? (
-              <List>{this.getBandsListItems(bandsListByDateTime)}</List>
+            {appearancesListByDateTime.length > 0 ? (
+              <List>
+                {this.getAppearancesListItems(appearancesListByDateTime)}
+              </List>
             ) : (
               <Spinner />
             )}

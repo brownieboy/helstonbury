@@ -7,7 +7,7 @@ const FETCH_APPEARANCES_SUCCESS = "FETCH_APPEARANCES_SUCCESS";
 const FETCH_APPEARANCES_FAILURE = "FETCH_APPEARANCES_FAILURE";
 
 // Reducer
-const bandsReducer = (
+const appearancesReducer = (
   state = { fetchStatus: "", fetchError: "", appearancesList: [] },
   action
 ) => {
@@ -39,7 +39,7 @@ const selectAppearancesByDateTime = createSelector([selectAppearances], appearan
 });
 
 export const selectors = {
-  selectBandsByDateTime
+  selectAppearancesByDateTime
 };
 
 /*
@@ -88,33 +88,33 @@ export const selectors = {
 
  */
 
-export const loadBands = () => ({ type: LOAD_APPEARANCES_NOW });
-const setFetchBandsRequest = () => ({
+export const loadAppearances = () => ({ type: LOAD_APPEARANCES_NOW });
+const setFetchAppearancesRequest = () => ({
   type: FETCH_APPEARANCES_REQUEST
 });
-const setFetchBandsSucceeded = appearancesList => ({
+const setFetchAppearancesSucceeded = appearancesList => ({
   type: FETCH_APPEARANCES_SUCCESS,
   payload: appearancesList
 });
-const setFetchBandsFailed = errorMessage => ({
+const setFetchAppearancesFailed = errorMessage => ({
   type: FETCH_APPEARANCES_FAILURE,
   payload: errorMessage
 });
 
-export const bandsDuxActions = {
-  setFetchBandsFailed,
-  setFetchBandsRequest,
-  setFetchBandsSucceeded
+export const appearancesDuxActions = {
+  setFetchAppearancesFailed,
+  setFetchAppearancesRequest,
+  setFetchAppearancesSucceeded
 };
 
-export const bandsDuxConstants = {
+export const appearancesDuxConstants = {
   LOAD_APPEARANCES_NOW,
   FETCH_APPEARANCES_REQUEST,
   FETCH_APPEARANCES_SUCCESS,
   FETCH_APPEARANCES_FAILURE
 };
 
-export default bandsReducer;
+export default appearancesReducer;
 
 // A thunk must return a function, hence the double () => dispatch =>
 // export const loadBands = () => dispatch => {

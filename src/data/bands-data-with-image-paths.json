@@ -1,6 +1,14 @@
 [
     {
-        "appearances":[],
+        "appearances": [
+            {
+                "dateTimeEnd": "2018-07-21T21:30",
+                "dateTimeStart": "2018-07-21T20:30",
+                "stageId": "main",
+                "stageName": "Main Stage",
+                "stageSortOrder": 10
+            }
+        ],
         "bandId": "acdc",
         "blurb":
             "AC/DC (aka Acca-Dacca) is an Australian rock band, formed in Sydney in 1973 by brothers Malcolm and Angus Young.A hard rock/blues rock band, they have also been considered a heavy metal band, although they have always dubbed their music simply \"rock and roll\".",
@@ -118,6 +126,13 @@
                 "dateTimeStart": "2018-07-22T21:30",
                 "stageId": "lowerbeer",
                 "stageName": "Lower Beer Stage"
+            },
+            {
+                "stageSortOrder": 50,
+                "dateTimeEnd": "2018-07-22T22:30",
+                "dateTimeStart": "2018-07-22T21:30",
+                "stageId": "main",
+                "stageName": "Main Stage",
             }
         ],
         "bandId": "stones",

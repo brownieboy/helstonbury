@@ -20,7 +20,7 @@ import styles from "../styles/band-card-styles.js";
 
 class Appearances extends Component {
   static navigationOptions = {
-    tabBarLabel: "Appearances",
+    tabBarLabel: "Schedule",
     tabBarIcon: ({ tintColor }) => (
       <Icon
         ios="ios-calendar-outline"
@@ -51,7 +51,7 @@ class Appearances extends Component {
       <Container style={styles.container}>
         <Header>
           <Body>
-            <Title>Appearances</Title>
+            <Title>Schedule</Title>
           </Body>
           <Right />
         </Header>

@@ -154,6 +154,7 @@ class BandsList extends Component {
     //   "BandsList..render(), bandsProp = " + JSON.stringify(bandsProp, null, 4)
     // );
     // console.log("bandslist render, length=" + this.props.bandsProp.bandsList.length);
+    const { bandsList = [] } = this.props.bandsProp;
     return (
       <Container style={styles.container}>
         <Header>
@@ -164,7 +165,7 @@ class BandsList extends Component {
         </Header>
 
         <Content style={{ backgroundColor: "#fff" }}>
-          {this.props.bandsProp.bandsList.length > 0 ? (
+          {bandsList.length > 0 ? (
             <List>{this.getBandsListItems()}</List>
           ) : (
             <Spinner />
@@ -176,7 +177,7 @@ class BandsList extends Component {
 }
 
 BandsList.propTypes = {
-  bandsList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  // bandsList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   bandsProp: PropTypes.object.isRequired,
   loadBandsProp: PropTypes.func.isRequired,
   navigation: PropTypes.object.isRequired

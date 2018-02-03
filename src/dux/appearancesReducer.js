@@ -1,4 +1,5 @@
 import { createSelector } from "reselect";
+import { stringThenDateTimeSort } from "../helper-functions/sorting.js";
 
 // Action type constants
 const LOAD_APPEARANCES_NOW = "LOAD_APPEARANCES_NOW"; // Imperative, hence "NOW"!
@@ -6,9 +7,11 @@ const FETCH_APPEARANCES_REQUEST = "FETCH_APPEARANCES_REQUEST";
 const FETCH_APPEARANCES_SUCCESS = "FETCH_APPEARANCES_SUCCESS";
 const FETCH_APPEARANCES_FAILURE = "FETCH_APPEARANCES_FAILURE";
 
-
 // Reducer
-const appearancesReducer = (state = { fetchStatus: "", fetchError: "", appearancesList: [] }, action) => {
+const appearancesReducer = (
+  state = { fetchStatus: "", fetchError: "", appearancesList: [] },
+  action
+) => {
   switch (action.type) {
     case FETCH_APPEARANCES_REQUEST:
       return { ...state, fetchStatus: "loading" };
@@ -26,36 +29,54 @@ const appearancesReducer = (state = { fetchStatus: "", fetchError: "", appearanc
 };
 
 // Sort/filter functions for selectors
-const selectAppearances = state => {
-  console.log("selectAppearances");
-  console.log(
-    "selectAppearancesn secltor in Dux, state=" +
-      JSON.stringify(state, null, 4).substring(0, 200)
-  );
-  return state.appearancesList;
-};
+const selectAppearances = state => state.appearancesList;
 
 // Selectors
 const selectAppearancesByDateTime = createSelector(
   [selectAppearances],
-  appearancesList => {
-    console.log(
-      "selectAppearancesByDateTime, appearancesList=" +
-        JSON.stringify(appearancesList, null, 4)
-    );
-    return appearancesList.slice().sort((a, b) => {
-      return new Date(a.dateTimeStart) - new Date(b.dateTimeStart);
-    });
-  }
+  appearancesList =>
+    appearancesList
+      .slice()
+      .sort((a, b) => new Date(a.dateTimeStart) - new Date(b.dateTimeStart))
 );
+
+const selectAppearancesByBandNameThenDateTime = createSelector(
+  [selectAppearances],
+  appearancesList =>
+    stringThenDateTimeSort(appearancesList.slice(), "name", "dateTimeStart")
+);
+
+// These getters have a supplied parameter, so they'll channge ever time.  Hence no
+// point in using Reselect library with them.
+// The function actually returns a function that's a closure over selectAppearancesByBandNameThenDateTimem
+// so needs to be run in the connector.
+// const getAppearancesForBand = () => bandKey =>
+//   selectAppearancesByBandNameThenDateTime
+//     .slice()
+//     .filter(bandMember => bandMember.bandId === bandKey);
 
 // const selectAppearancesByDateTime = () => [];
 
 export const selectors = {
-  selectAppearancesByDateTime
+  selectAppearancesByDateTime,
+  selectAppearancesByBandNameThenDateTime
 };
 
 /*
+const selectPeopleStateSortOrderThenDate = createSelector(
+  [selectPeople],
+  peopleList =>
+    peopleList
+      .slice()
+      .sort(
+        (a, b) =>
+          a.stateSortOrder - b.stateSortOrder ||
+          (a.dateTimeStart && b.dateTimeStart
+            ? new Date(a.dateTimeStart) - new Date(b.dateTimeStart)
+            : 1)
+      )
+);
+
 // Sort/filter functions for selectors
 const selectPeople = state => state.people.peopleList;
 // const selectSortStyle = state => state.people.sortStyle;
@@ -77,19 +98,6 @@ const selectPeopleStateSortOrder = createSelector([selectPeople], peopleList =>
   peopleList.slice().sort((a, b) => a.stateSortOrder - b.stateSortOrder)
 );
 
-const selectPeopleStateSortOrderThenDate = createSelector(
-  [selectPeople],
-  peopleList =>
-    peopleList
-      .slice()
-      .sort(
-        (a, b) =>
-          a.stateSortOrder - b.stateSortOrder ||
-          (a.dateTimeStart && b.dateTimeStart
-            ? new Date(a.dateTimeStart) - new Date(b.dateTimeStart)
-            : 1)
-      )
-);
 
 export const selectors = {
   selectPeopleAlpha,

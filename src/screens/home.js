@@ -68,7 +68,7 @@ class Home extends Component {
             </Text>
           </View>
 
-          <View style={{ marginTop: 190 }}>
+          <View style={{ marginTop: 150 }}>
             <Button
               transparent
               onPress={() => openFacebookLink("382432781776899")}

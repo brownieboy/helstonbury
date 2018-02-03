@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Image, Dimensions } from "react-native";
 import PropTypes from "prop-types";
+import { format } from "date-fns";
 // import { CachedImage } from "react-native-img-cache";
 
 import {
@@ -48,6 +49,15 @@ class BandCard extends Component {
       .slice()
       .sort((a, b) => new Date(a.dateTimeStart) - new Date(b.dateTimeStart));
 
+  getAppearanceTexts = appearances =>
+    appearances.map(appearance => (
+      <Text key={`${appearance.dateTimeStart}${appearance.stageId}`}>
+        {`${appearance.stageName}, ${format(
+          appearance.dateTimeStart,
+          "dddd"
+        )} at ${format(appearance.dateTimeStart, "HH:mm")}`}
+      </Text>
+    ));
 
   getFaceBookLinkComponent = () => {
     const {
@@ -77,7 +87,6 @@ class BandCard extends Component {
     const sortedAppearances = this.sortAppearancesByDate(
       bandDetails.appearances
     );
-    console.log("sortedAppearances=" + JSON.stringify(sortedAppearances));
     return (
       <Container style={styles.container}>
         <Header>
@@ -119,9 +128,8 @@ class BandCard extends Component {
             </CardItem>
             <CardItem>
               <Body>
-                <Text>
-                  Appearing: {JSON.stringify(sortedAppearances)}
-                </Text>
+                <Text style={{ fontSize: 12 }}>Appearing:</Text>
+                {this.getAppearanceTexts(sortedAppearances)}
               </Body>
             </CardItem>
             <CardItem style={{ paddingVertical: 0 }}>

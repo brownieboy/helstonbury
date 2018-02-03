@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import IconMaterial from "react-native-vector-icons/MaterialIcons";
 
 import {
   Container,
   Header,
-  Icon,
+  // Icon,
   Title,
   Content,
   List,
@@ -22,9 +23,11 @@ class Appearances extends Component {
   static navigationOptions = {
     tabBarLabel: "Schedule",
     tabBarIcon: ({ tintColor }) => (
-      <Icon
-        ios="ios-calendar-outline"
-        android="md-calendar"
+      <IconMaterial
+        // ios="ios-calendar-outline"
+        // android="md-calendar"
+        name="schedule"
+        size={30}
         style={{ color: tintColor }}
       />
     )
@@ -73,7 +76,8 @@ class Appearances extends Component {
 }
 
 Appearances.propTypes = {
-  appearancesListByDateTime: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired
+  appearancesListByDateTime: PropTypes.arrayOf(PropTypes.object.isRequired)
+    .isRequired
 };
 
 export default Appearances;

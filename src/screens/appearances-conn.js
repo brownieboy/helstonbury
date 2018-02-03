@@ -11,8 +11,8 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators({ loadappearancesProp: loadAppearances }, dispatch);
 
 const mapStateToProps = state => ({
-  appearancesProp: state.appearances,
-  appearancesListByDateTime: appearanceSelectors.selectAppearancesByDateTime(state.appearances)
+  // appearancesProp: state.appearancesState,
+  appearancesListByDateTime: appearanceSelectors.selectAppearancesByDateTime(state.appearancesState)
 });
 
 const AppearancesConn = connect(mapStateToProps, mapDispatchToProps)(

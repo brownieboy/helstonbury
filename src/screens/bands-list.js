@@ -176,7 +176,7 @@ class BandsList extends Component {
 
 BandsList.propTypes = {
   // bandsList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-  bandsProp: PropTypes.object.isRequired,
+  bandsAlphabeticalProp: PropTypes.arrayOf(PropTypes.object).isRequired,
   loadBandsProp: PropTypes.func.isRequired,
   navigation: PropTypes.object.isRequired
 };

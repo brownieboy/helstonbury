@@ -31,9 +31,10 @@ const bandsReducer = (
 
 // Sort/filter functions for selectors
 const selectBands = state => {
-  console.log("selectBands in reducer, state=" + JSON.stringify(state, null, 4).substring(0, 200));
+  console.log("selectBands selctor");
+  console.log("selectBands selector in reducer, state=" + JSON.stringify(state, null, 4).substring(0, 200));
 
-  return state.bands.bandsList;
+  return state.bandsList;
 };
 
 // Selectors
@@ -50,10 +51,13 @@ const selectBands = state => {
 
 const selectAlphabetical = createSelector([selectBands], bandsList => {
   console.log(
-    "selectAlphabetical bandsList=" + JSON.stringify(bandsList, null, 4).substring(1, 50)
+    "selectAlphabetical bandsList=" + JSON.stringify(bandsList, null, 4).substring(0, 200)
   );
   return stringSort(bandsList.slice(), "name");
 });
+
+// const selectAlphabetical = () => selectBands();
+
 
 // const selectPeopleAlpha = createSelector([selectPeople], peopleList =>
 //   stringSort(peopleList.slice(), "name")

@@ -14,8 +14,8 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators({ loadBandsProp: loadBandsNow }, dispatch);
 
 const mapStateToProps = state => ({
-  bandsProp: state.bands,
-  bandsAlphabeticalProp: bandSelectors.selectAlphabetical(state)
+  // bandsStateProp: state.bandsState,
+  bandsAlphabeticalProp: bandSelectors.selectAlphabetical(state.bandsState)
 });
 
 const BandsListConn = connect(mapStateToProps, mapDispatchToProps)(BandsList);

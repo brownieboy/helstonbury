@@ -6,11 +6,9 @@ const FETCH_APPEARANCES_REQUEST = "FETCH_APPEARANCES_REQUEST";
 const FETCH_APPEARANCES_SUCCESS = "FETCH_APPEARANCES_SUCCESS";
 const FETCH_APPEARANCES_FAILURE = "FETCH_APPEARANCES_FAILURE";
 
+
 // Reducer
-const appearancesReducer = (
-  state = { fetchStatus: "", fetchError: "", appearancesList: [] },
-  action
-) => {
+const appearancesReducer = (state = { fetchStatus: "", fetchError: "", appearancesList: [] }, action) => {
   switch (action.type) {
     case FETCH_APPEARANCES_REQUEST:
       return { ...state, fetchStatus: "loading" };
@@ -29,8 +27,9 @@ const appearancesReducer = (
 
 // Sort/filter functions for selectors
 const selectAppearances = state => {
+  console.log("selectAppearances");
   console.log(
-    "selectAppearnces in reducer, state=" +
+    "selectAppearancesn secltor in Dux, state=" +
       JSON.stringify(state, null, 4).substring(0, 200)
   );
   return state.appearancesList;
@@ -40,11 +39,17 @@ const selectAppearances = state => {
 const selectAppearancesByDateTime = createSelector(
   [selectAppearances],
   appearancesList => {
+    console.log(
+      "selectAppearancesByDateTime, appearancesList=" +
+        JSON.stringify(appearancesList, null, 4)
+    );
     return appearancesList.slice().sort((a, b) => {
       return new Date(a.dateTimeStart) - new Date(b.dateTimeStart);
     });
   }
 );
+
+// const selectAppearancesByDateTime = () => [];
 
 export const selectors = {
   selectAppearancesByDateTime

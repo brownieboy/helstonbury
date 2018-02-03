@@ -105,6 +105,8 @@ export const selectors = {
  */
 
 export const loadBandsNow = () => ({ type: LOAD_BANDS_NOW });
+// export const fetchBandsSucceeded = () => ({ type: FETCH_BANDS_REQUEST });
+
 const setFetchBandsRequest = () => ({
   type: FETCH_BANDS_REQUEST
 });

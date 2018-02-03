@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Image, Dimensions } from "react-native";
+import { Dimensions } from "react-native";
 import PropTypes from "prop-types";
 import { format } from "date-fns";
 // import { CachedImage } from "react-native-img-cache";
-
+import FastImage from "react-native-fast-image";
 import {
   Container,
   Header,
@@ -114,7 +114,7 @@ class BandCard extends Component {
 
             <CardItem>
               <Body>
-                <Image
+                <FastImage
                   style={{
                     alignSelf: "center",
                     height: 150,
@@ -141,6 +141,18 @@ class BandCard extends Component {
     );
   }
 }
+
+/*
+                <Image
+                  style={{
+                    alignSelf: "center",
+                    height: 150,
+                    width: deviceWidth / 1.18,
+                    marginVertical: 5
+                  }}
+                  source={{ uri: bandDetails.cardFullUrl }}
+                />
+ */
 
 BandCard.propTypes = {
   navigation: PropTypes.object.isRequired

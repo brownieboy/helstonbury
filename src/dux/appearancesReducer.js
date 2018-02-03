@@ -29,16 +29,22 @@ const appearancesReducer = (
 
 // Sort/filter functions for selectors
 const selectAppearances = state => {
-    console.log("selectAppearnces in reducer, state=" + JSON.stringify(state, null, 4));
-  return state.appearancesList};
+  console.log(
+    "selectAppearnces in reducer, state=" +
+      JSON.stringify(state, null, 4).substring(0, 200)
+  );
+  return state.appearancesList;
+};
 
 // Selectors
-const selectAppearancesByDateTime = createSelector([selectAppearances], appearancesList => {
-  return appearancesList.slice().sort((a, b) => {
-    return new Date(a.dateTimeStart) -
-          new Date(b.dateTimeStart);
-  });
-});
+const selectAppearancesByDateTime = createSelector(
+  [selectAppearances],
+  appearancesList => {
+    return appearancesList.slice().sort((a, b) => {
+      return new Date(a.dateTimeStart) - new Date(b.dateTimeStart);
+    });
+  }
+);
 
 export const selectors = {
   selectAppearancesByDateTime

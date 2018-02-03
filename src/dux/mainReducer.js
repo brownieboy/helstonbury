@@ -4,8 +4,8 @@ import bandsReducer from "./bandsReducer";
 import appearancesReducer from "./appearancesReducer.js";
 
 const mainReducer = combineReducers({
-  bands: bandsReducer,
-  appearances: appearancesReducer
+  bandsState: bandsReducer,
+  appearancesState: appearancesReducer
 });
 
 export default mainReducer;

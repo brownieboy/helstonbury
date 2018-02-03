@@ -17,7 +17,9 @@ import {
   Right,
   Body
 } from "native-base";
+
 import styles from "../styles/band-card-styles.js";
+
 const deviceWidth = Dimensions.get("window").width;
 // import IconMaterialCommunity from "react-native-vector-icons/MaterialCommunityIcons";
 import BandsTabIcon from "../components/bands-tab-icon.js";
@@ -40,6 +42,12 @@ class BandCard extends Component {
     tabBarLabel: "Bands List",
     tabBarIcon: ({ tintColor }) => <BandsTabIcon tintColor={tintColor} />
   };
+
+  sortAppearancesByDate = appearancesArray =>
+    appearancesArray
+      .slice()
+      .sort((a, b) => new Date(a.dateTimeStart) - new Date(b.dateTimeStart));
+
 
   getFaceBookLinkComponent = () => {
     const {
@@ -66,6 +74,10 @@ class BandCard extends Component {
 
   render() {
     const bandDetails = this.props.navigation.state.params.bandDetails;
+    const sortedAppearances = this.sortAppearancesByDate(
+      bandDetails.appearances
+    );
+    console.log("sortedAppearances=" + JSON.stringify(sortedAppearances));
     return (
       <Container style={styles.container}>
         <Header>
@@ -103,6 +115,13 @@ class BandCard extends Component {
                   source={{ uri: bandDetails.cardFullUrl }}
                 />
                 <Text>{bandDetails.blurb}</Text>
+              </Body>
+            </CardItem>
+            <CardItem>
+              <Body>
+                <Text>
+                  Appearing: {JSON.stringify(sortedAppearances)}
+                </Text>
               </Body>
             </CardItem>
             <CardItem style={{ paddingVertical: 0 }}>

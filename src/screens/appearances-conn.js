@@ -18,7 +18,7 @@ const mapStateToProps = state => ({
   appearancesListByDateTime: appearanceSelectors.selectAppearancesByDateTime(
     state.appearancesState
   ),
-  appearancesByDateTimeGroupedByStage: appearanceSelectors.selectAppearancesByDateTimeGroupedByStage(
+  appearancesGroupedByDayThenStage: appearanceSelectors.selectAppearancesGroupedByDayThenStage(
     state.appearancesState
   )
 });

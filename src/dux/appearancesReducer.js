@@ -44,17 +44,14 @@ const selectAppearancesByDateTime = createSelector(
       .sort((a, b) => new Date(a.dateTimeStart) - new Date(b.dateTimeStart))
 );
 
-const selectAppearancesByDateTimeGroupedByStage = createSelector(
+const selectAppearancesGroupedByDayThenStage = createSelector(
   [selectAppearancesByDateTime],
-  // appearancesList => groupBy(appearancesList.slice(), "stageSortOrder")
   appearancesList =>
-    appearancesList.length > 0
-      ? d3
-          .nest()
-          .key(appearance => format(new Date(appearance.dateTimeStart), "dddd"))
-          .key(appearance => appearance.stageName)
-          .entries(appearancesList)
-      : []
+    d3
+      .nest()
+      .key(appearance => format(new Date(appearance.dateTimeStart), "dddd"))
+      .key(appearance => appearance.stageName)
+      .entries(appearancesList)
 );
 
 const selectAppearancesByBandNameThenDateTime = createSelector(
@@ -77,7 +74,7 @@ const selectAppearancesByBandNameThenDateTime = createSelector(
 export const selectors = {
   selectAppearancesByDateTime,
   selectAppearancesByBandNameThenDateTime,
-  selectAppearancesByDateTimeGroupedByStage
+  selectAppearancesGroupedByDayThenStage
 };
 
 /*

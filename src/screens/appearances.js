@@ -27,7 +27,7 @@ class Appearances extends Component {
         // ios="ios-calendar-outline"
         // android="md-calendar"
         name="schedule"
-        size={30}
+        size={25}
         style={{ color: tintColor }}
       />
     )
@@ -49,8 +49,14 @@ class Appearances extends Component {
     });
 
   render() {
-    const { appearancesListByDateTime, appearancesByDateTimeGroupedByStage } = this.props;
-    console.log("appearancesByDateTimeGroupedByStage="  + JSON.stringify(appearancesByDateTimeGroupedByStage, null, 4));
+    const {
+      appearancesListByDateTime,
+      appearancesGroupedByDayThenStage
+    } = this.props;
+    console.log(
+      "appearancesGroupedByDayThenStage=" +
+        JSON.stringify(appearancesGroupedByDayThenStage, null, 4)
+    );
     return (
       <Container style={styles.container}>
         <Header>
@@ -78,7 +84,10 @@ class Appearances extends Component {
 
 Appearances.propTypes = {
   appearancesListByDateTime: PropTypes.arrayOf(PropTypes.object.isRequired)
-    .isRequired
+    .isRequired,
+  appearancesGroupedByDayThenStage: PropTypes.arrayOf(
+    PropTypes.object.isRequired
+  ).isRequired
 };
 
 export default Appearances;

@@ -1,5 +1,7 @@
 import { createSelector } from "reselect";
 import * as d3 from "d3-collection";
+import { format } from "date-fns";
+
 // import { d3 } from "d3-collection";
 import { stringThenDateTimeSort } from "../helper-functions/sorting.js";
 
@@ -49,6 +51,7 @@ const selectAppearancesByDateTimeGroupedByStage = createSelector(
     appearancesList.length > 0
       ? d3
           .nest()
+          .key(appearance => format(new Date(appearance.dateTimeStart), "dddd"))
           .key(appearance => appearance.stageName)
           .entries(appearancesList)
       : []

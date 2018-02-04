@@ -223,7 +223,7 @@
       "dateTimeStart": "2018-07-20T17:30",
       "stageId": "cannon",
       "stageName": "Cannon Stage",
-      "stageSortOrder": 10,
+      "stageSortOrder": 20,
       "bandId": "courtney",
       "name": "Courtney Barnett"
     },
@@ -246,7 +246,7 @@
       "name": "Genesis"
     },
     {
-      "stageSortOrder": 50,
+      "stageSortOrder": 10,
       "dateTimeEnd": "2018-07-22T22:30",
       "dateTimeStart": "2018-07-22T21:30",
       "stageId": "main",
@@ -255,7 +255,7 @@
       "name": "Rolling Stones"
     },
     {
-      "stageSortOrder": 10,
+      "stageSortOrder": 50,
       "dateTimeEnd": "2018-07-21T22:30",
       "dateTimeStart": "2018-07-21T21:30",
       "stageId": "lowerbeer",
@@ -270,7 +270,6 @@
       "stageName": "Main Stage",
       "stageSortOrder": 10,
       "bandId": "u2",
-
       "name": "U2"
     }
   ]

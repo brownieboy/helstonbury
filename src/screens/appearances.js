@@ -49,7 +49,8 @@ class Appearances extends Component {
     });
 
   render() {
-    const { appearancesListByDateTime } = this.props;
+    const { appearancesListByDateTime, appearancesByDateTimeGroupedByStage } = this.props;
+    console.log("appearancesByDateTimeGroupedByStage="  + JSON.stringify(appearancesByDateTimeGroupedByStage, null, 4));
     return (
       <Container style={styles.container}>
         <Header>

@@ -5,14 +5,22 @@ import { connect } from "react-redux";
 import Appearances from "./appearances.js";
 
 // Reducer
-import { loadAppearances, selectors as appearanceSelectors } from "../dux/appearancesReducer.js";
+import {
+  loadAppearances,
+  selectors as appearanceSelectors
+} from "../dux/appearancesReducer.js";
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ loadappearancesProp: loadAppearances }, dispatch);
 
 const mapStateToProps = state => ({
   // appearancesProp: state.appearancesState,
-  appearancesListByDateTime: appearanceSelectors.selectAppearancesByDateTime(state.appearancesState)
+  appearancesListByDateTime: appearanceSelectors.selectAppearancesByDateTime(
+    state.appearancesState
+  ),
+  appearancesByDateTimeGroupedByStage: appearanceSelectors.selectAppearancesByDateTimeGroupedByStage(
+    state.appearancesState
+  )
 });
 
 const AppearancesConn = connect(mapStateToProps, mapDispatchToProps)(

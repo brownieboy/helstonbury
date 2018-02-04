@@ -1,4 +1,5 @@
 import { createSelector } from "reselect";
+import groupBy from "lodash.groupby";
 import { stringThenDateTimeSort } from "../helper-functions/sorting.js";
 
 // Action type constants
@@ -40,6 +41,11 @@ const selectAppearancesByDateTime = createSelector(
       .sort((a, b) => new Date(a.dateTimeStart) - new Date(b.dateTimeStart))
 );
 
+const selectAppearancesByDateTimeGroupedByStage = createSelector(
+  [selectAppearancesByDateTime],
+  appearancesList => groupBy(appearancesList.slice(), "stageSortOrder")
+);
+
 const selectAppearancesByBandNameThenDateTime = createSelector(
   [selectAppearances],
   appearancesList =>
@@ -59,7 +65,8 @@ const selectAppearancesByBandNameThenDateTime = createSelector(
 
 export const selectors = {
   selectAppearancesByDateTime,
-  selectAppearancesByBandNameThenDateTime
+  selectAppearancesByBandNameThenDateTime,
+  selectAppearancesByDateTimeGroupedByStage
 };
 
 /*

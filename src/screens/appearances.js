@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import IconMaterial from "react-native-vector-icons/MaterialIcons";
 
+import { View } from "react-native";
+
 import {
   Container,
   Header,
@@ -27,12 +29,20 @@ class Appearances extends Component {
     )
   };
 
-  getAppearancesListByDayAndStage = groupedData =>
-    groupedData.map(dayMember => (
-      <ListItem itemDivider key={dayMember.key}>
-        <Text>{dayMember.key}</Text>
+  getAppearancesStageLevel = groupedStageData =>
+    groupedStageData.map(stageMember => (
+      <ListItem itemHeader key={stageMember.key}>
+        <Text>{stageMember.key}</Text>
       </ListItem>
     ));
+
+  getAppearancesListDayLevel = groupedDayData =>
+    groupedDayData.map(dayMember => [
+      <ListItem itemDivider key={dayMember.key}>
+        <Text>{dayMember.key}</Text>
+      </ListItem>,
+      <View>{this.getAppearancesStageLevel(dayMember.values)}</View>
+    ]);
 
   getAppearancesListItems = appearancesList =>
     appearancesList.map(appearanceMember => {
@@ -71,7 +81,7 @@ class Appearances extends Component {
           <Content style={{ backgroundColor: "#fff" }}>
             {appearancesListByDateTime.length > 0 ? (
               <List>
-                {this.getAppearancesListByDayAndStage(
+                {this.getAppearancesListDayLevel(
                   appearancesGroupedByDayThenStage
                 )}
               </List>

@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import FastImage from "react-native-fast-image";
-
 // import { StyleProvider, getTheme } from "native-base";
 // import IconMaterialCommunity from "react-native-vector-icons/MaterialCommunityIcons";
 // import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 
 // import { Alert } from "react-native";
 
-// import { Image } from "react-native";
+import { Image } from "react-native";
 
 import {
   Container,
@@ -111,7 +109,7 @@ class BandsList extends Component {
       //   />
       // );
       return (
-        <FastImage
+        <Image
           source={{ uri: bandMemberObj.thumbFullUrl }}
           style={{ width: 55, height: 55, borderRadius: 27.5 }}
         />

@@ -23,16 +23,15 @@ class Appearances extends Component {
   static navigationOptions = {
     tabBarLabel: "Schedule",
     tabBarIcon: ({ tintColor }) => (
-      <IconMaterial name="schedule" size={25} style={{ color: tintColor }} />
+      <IconMaterial
+        // ios="ios-calendar-outline"
+        // android="md-calendar"
+        name="schedule"
+        size={25}
+        style={{ color: tintColor }}
+      />
     )
   };
-
-  getAppearancesListByDayAndStage = groupedData =>
-    groupedData.map(dayMember => (
-      <ListItem itemDivider key={dayMember.key}>
-        <Text>{dayMember.key}</Text>
-      </ListItem>
-    ));
 
   getAppearancesListItems = appearancesList =>
     appearancesList.map(appearanceMember => {
@@ -71,9 +70,7 @@ class Appearances extends Component {
           <Content style={{ backgroundColor: "#fff" }}>
             {appearancesListByDateTime.length > 0 ? (
               <List>
-                {this.getAppearancesListByDayAndStage(
-                  appearancesGroupedByDayThenStage
-                )}
+                {this.getAppearancesListItems(appearancesListByDateTime)}
               </List>
             ) : (
               <Spinner />

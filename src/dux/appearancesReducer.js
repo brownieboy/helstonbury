@@ -1,5 +1,6 @@
 import { createSelector } from "reselect";
-import groupBy from "lodash.groupby";
+import * as d3 from "d3-collection";
+// import { d3 } from "d3-collection";
 import { stringThenDateTimeSort } from "../helper-functions/sorting.js";
 
 // Action type constants
@@ -43,7 +44,14 @@ const selectAppearancesByDateTime = createSelector(
 
 const selectAppearancesByDateTimeGroupedByStage = createSelector(
   [selectAppearancesByDateTime],
-  appearancesList => groupBy(appearancesList.slice(), "stageSortOrder")
+  // appearancesList => groupBy(appearancesList.slice(), "stageSortOrder")
+  appearancesList =>
+    appearancesList.length > 0
+      ? d3
+          .nest()
+          .key(appearance => appearance.stageName)
+          .entries(appearancesList)
+      : []
 );
 
 const selectAppearancesByBandNameThenDateTime = createSelector(

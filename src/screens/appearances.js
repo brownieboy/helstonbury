@@ -29,20 +29,22 @@ class Appearances extends Component {
     )
   };
 
-  getAppearancesLineLevel = lineData =>
+  getAppearanceLines = lineData =>
     lineData.map(lineMember => (
-      <ListItem key={lineMember.bandId}>
-        <Text >{lineMember.name}</Text>
-      </ListItem>
+      <ListItem key={lineMember.bandId}><Text>{lineMember.name}</Text></ListItem>
     ));
+
+  // getAppearancesLineLevel = lineData => (
+  //   <ListItem>{this.getAppearanceLines(lineData)}</ListItem>
+  // );
 
   getAppearancesStageLevel = groupedStageData =>
     groupedStageData.map(stageMember => [
       <ListItem key={stageMember.key}>
-        <Text>{stageMember.key}</Text>
+        <Text style={{ fontWeight: "bold" }}>{stageMember.key}</Text>
       </ListItem>,
       <View key={`${stageMember.key}-lineswrapper`}>
-        {this.getAppearancesLineLevel(stageMember.values)}
+        {this.getAppearanceLines(stageMember.values)}
       </View>
     ]);
 

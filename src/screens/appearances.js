@@ -32,7 +32,10 @@ class Appearances extends Component {
 
   getAppearanceLines = lineData =>
     lineData.map(lineMember => (
-      <ListItem key={lineMember.bandId}>
+      <ListItem
+        key={lineMember.bandId}
+        style={{ height: 15, borderBottomWidth: 0 }}
+      >
         <Text style={{ fontSize: 14 }}>{`${lineMember.name}: ${format(
           lineMember.dateTimeStart,
           "HH:mm"
@@ -49,7 +52,10 @@ class Appearances extends Component {
       <ListItem key={stageMember.key}>
         <Text style={{ fontWeight: "bold" }}>{stageMember.key}</Text>
       </ListItem>,
-      <View key={`${stageMember.key}-lineswrapper`}>
+      <View
+        key={`${stageMember.key}-lineswrapper`}
+        style={{ marginBottom: 10 }}
+      >
         {this.getAppearanceLines(stageMember.values)}
       </View>
     ]);

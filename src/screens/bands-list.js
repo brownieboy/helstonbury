@@ -5,8 +5,9 @@ import PropTypes from "prop-types";
 // import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 
 // import { Alert } from "react-native";
+import FastImage from "react-native-fast-image";
 
-import { Image } from "react-native";
+// import { Image } from "react-native";
 
 import {
   Container,
@@ -109,7 +110,7 @@ class BandsList extends Component {
       //   />
       // );
       return (
-        <Image
+        <FastImage
           source={{ uri: bandMemberObj.thumbFullUrl }}
           style={{ width: 55, height: 55, borderRadius: 27.5 }}
         />

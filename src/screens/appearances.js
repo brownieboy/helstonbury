@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import IconMaterial from "react-native-vector-icons/MaterialIcons";
+import { format } from "date-fns";
 
 import { View } from "react-native";
 
@@ -31,7 +32,12 @@ class Appearances extends Component {
 
   getAppearanceLines = lineData =>
     lineData.map(lineMember => (
-      <ListItem key={lineMember.bandId}><Text>{lineMember.name}</Text></ListItem>
+      <ListItem key={lineMember.bandId}>
+        <Text style={{ fontSize: 14 }}>{`${lineMember.name}: ${format(
+          lineMember.dateTimeStart,
+          "HH:mm"
+        )}-${format(lineMember.dateTimeEnd, "HH:mm")}`}</Text>
+      </ListItem>
     ));
 
   // getAppearancesLineLevel = lineData => (

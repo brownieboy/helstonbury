@@ -3,8 +3,8 @@
     {
       "appearances": [
         {
-          "dateTimeEnd": "2018-07-22T22:30",
-          "dateTimeStart": "2018-07-22T21:30",
+          "dateTimeEnd": "2018-07-20T22:30",
+          "dateTimeStart": "2018-07-20T21:30",
           "stageId": "lowerbeer",
           "stageName": "Lower Beer Stage",
           "stageSortOrder": 50
@@ -51,8 +51,8 @@
       "appearances": [
         {
           "bandId": "taylor",
-          "dateTimeEnd": "2018-07-22T14:30",
-          "dateTimeStart": "2018-07-22T13:30",
+          "dateTimeEnd": "2018-07-20T14:30",
+          "dateTimeStart": "2018-07-20T13:30",
           "stageId": "acapella",
           "stageName": "Acapella Stage"
         }
@@ -99,8 +99,8 @@
       "appearances": [
         {
           "bandId": "taylor",
-          "dateTimeEnd": "2018-07-22T15:30",
-          "dateTimeStart": "2018-07-22T14:30",
+          "dateTimeEnd": "2018-07-20T15:30",
+          "dateTimeStart": "2018-07-20T14:30",
           "stageId": "acapella",
           "stageName": "Acapella Stage"
         }
@@ -123,15 +123,15 @@
     {
       "appearances": [
         {
-          "dateTimeEnd": "2018-07-22T22:30",
-          "dateTimeStart": "2018-07-22T21:30",
+          "dateTimeEnd": "2018-07-20T22:30",
+          "dateTimeStart": "2018-07-20T21:30",
           "stageId": "lowerbeer",
           "stageName": "Lower Beer Stage",
           "stageSortOrder": 50
         },
         {
           "stageSortOrder": 50,
-          "dateTimeEnd": "2018-07-22T22:30",
+          "dateTimeEnd": "2018-07-20T22:30",
           "dateTimeStart": "2018-07-21T21:30",
           "stageId": "main",
           "stageName": "Main Stage"
@@ -177,8 +177,8 @@
     {
       "appearances": [
         {
-          "dateTimeEnd": "2018-07-22T14:30",
-          "dateTimeStart": "2018-07-22T13:30",
+          "dateTimeEnd": "2018-07-20T14:30",
+          "dateTimeStart": "2018-07-20T13:30",
           "stageId": "lowerbeer",
           "stageName": "Lower Beer Stage",
           "stageSortOrder": 50
@@ -210,8 +210,8 @@
       "name": "AC/DC"
     },
     {
-      "dateTimeEnd": "2018-07-22T22:30",
-      "dateTimeStart": "2018-07-22T21:30",
+      "dateTimeEnd": "2018-07-20T22:30",
+      "dateTimeStart": "2018-07-20T21:30",
       "stageId": "lowerbeer",
       "stageName": "Lower Beer Stage",
       "stageSortOrder": 50,
@@ -230,15 +230,15 @@
     {
       "bandId": "taylor",
       "name": "Taylor Swift",
-      "dateTimeEnd": "2018-07-22T14:30",
-      "dateTimeStart": "2018-07-22T13:30",
+      "dateTimeEnd": "2018-07-20T14:30",
+      "dateTimeStart": "2018-07-20T13:30",
       "stageId": "acapella",
       "stageName": "Acapella Stage",
       "stageSortOrder": 40
     },
     {
-      "dateTimeEnd": "2018-07-22T15:30",
-      "dateTimeStart": "2018-07-22T14:30",
+      "dateTimeEnd": "2018-07-20T15:30",
+      "dateTimeStart": "2018-07-20T14:30",
       "stageId": "acapella",
       "stageName": "Acapella Stage",
       "stageSortOrder": 40,
@@ -247,8 +247,8 @@
     },
     {
       "stageSortOrder": 10,
-      "dateTimeEnd": "2018-07-22T22:30",
-      "dateTimeStart": "2018-07-22T21:30",
+      "dateTimeEnd": "2018-07-20T22:30",
+      "dateTimeStart": "2018-07-20T21:30",
       "stageId": "main",
       "stageName": "Main Stage",
       "bandId": "stones",

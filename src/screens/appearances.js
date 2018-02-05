@@ -65,7 +65,7 @@ class Appearances extends Component {
       <ListItem itemDivider key={dayMember.key}>
         <Text>{dayMember.key.toUpperCase()}</Text>
       </ListItem>,
-      <View key={`${dayMember.key}-stagewrapper`}>
+      <View key={`${dayMember.key}-stagewrapper`} style={{ marginBottom: 20 }}>
         {this.getAppearancesStageLevel(dayMember.values)}
       </View>
     ]);

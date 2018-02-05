@@ -49,8 +49,8 @@ class Appearances extends Component {
 
   getAppearancesStageLevel = groupedStageData =>
     groupedStageData.map(stageMember => [
-      <ListItem key={stageMember.key}>
-        <Text style={{ fontWeight: "bold" }}>{stageMember.key}</Text>
+      <ListItem itemDivider key={stageMember.key}>
+        <Text>{stageMember.key}</Text>
       </ListItem>,
       <View
         key={`${stageMember.key}-lineswrapper`}
@@ -62,8 +62,10 @@ class Appearances extends Component {
 
   getAppearancesListDayLevel = groupedDayData =>
     groupedDayData.map(dayMember => [
-      <ListItem itemDivider key={dayMember.key}>
-        <Text>{dayMember.key.toUpperCase()}</Text>
+      <ListItem key={dayMember.key}>
+        <Text style={{ fontWeight: "bold" }}>
+          {dayMember.key.toUpperCase()}
+        </Text>
       </ListItem>,
       <View key={`${dayMember.key}-stagewrapper`} style={{ marginBottom: 20 }}>
         {this.getAppearancesStageLevel(dayMember.values)}

@@ -142,18 +142,6 @@ class BandCard extends Component {
   }
 }
 
-/*
-                <Image
-                  style={{
-                    alignSelf: "center",
-                    height: 150,
-                    width: deviceWidth / 1.18,
-                    marginVertical: 5
-                  }}
-                  source={{ uri: bandDetails.cardFullUrl }}
-                />
- */
-
 BandCard.propTypes = {
   navigation: PropTypes.object.isRequired
 };

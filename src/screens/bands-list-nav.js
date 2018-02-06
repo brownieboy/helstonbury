@@ -1,7 +1,7 @@
 import { StackNavigator as stackNavigator } from "react-navigation";
 
 import BandsListConn from "./bands-list-conn.js";
-import BandCard from "./band-card.js";
+import BandCard from "./band-card-conn.js";
 
 const BandsNavigator = stackNavigator(
   {

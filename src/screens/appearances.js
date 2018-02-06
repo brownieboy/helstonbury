@@ -32,7 +32,7 @@ class Appearances extends Component {
 
   getAppearanceLines = lineData =>
     lineData.map(lineMember => {
-      console.log("lineMember=" + JSON.stringify(lineMember, null, 4));
+      // console.log("lineMember=" + JSON.stringify(lineMember, null, 4));
       return (
         <ListItem
           key={lineMember.bandId}

@@ -64,15 +64,14 @@ const selectAppearancesByBandNameThenDateTime = createSelector(
 // point in using Reselect library with them.
 // The function actually returns a function that's a closure over selectAppearancesByBandNameThenDateTimem
 // so needs to be run in the connector.
-const getAppearancesForBand = () => bandKey =>
-  selectAppearancesByBandNameThenDateTime
-    .slice()
-    .filter(bandMember => bandMember.bandId === bandKey);
+// const getAppearancesForBand = () => bandKey =>
+//   selectAppearancesByBandNameThenDateTime
+//     .slice()
+//     .filter(bandMember => bandMember.bandId === bandKey);
 
 // const selectAppearancesByDateTime = () => [];
 
 export const selectors = {
-  getAppearancesForBand,
   selectAppearancesByDateTime,
   selectAppearancesByBandNameThenDateTime,
   selectAppearancesGroupedByDayThenStage

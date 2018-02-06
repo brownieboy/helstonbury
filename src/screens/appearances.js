@@ -33,23 +33,25 @@ class Appearances extends Component {
   getAppearanceLines = lineData =>
     lineData.map(lineMember => {
       console.log("lineMember=" + JSON.stringify(lineMember, null, 4));
-      return <ListItem
-        key={lineMember.bandId}
-        style={{ height: 15, borderBottomWidth: 0 }}
-      >
-        <TouchableHighlight
-          onPress={() =>
-            this.props.navigation.navigate("BandCard", {
-              bandDetails: lineMember
-            })
-          }
+      return (
+        <ListItem
+          key={lineMember.bandId}
+          style={{ height: 15, borderBottomWidth: 0 }}
         >
-          <Text style={{ fontSize: 14 }}>{`${lineMember.name}: ${format(
-            lineMember.dateTimeStart,
-            "HH:mm"
-          )}-${format(lineMember.dateTimeEnd, "HH:mm")}`}</Text>
-        </TouchableHighlight>
-      </ListItem>
+          <TouchableHighlight
+            onPress={() =>
+              this.props.navigation.navigate("BandCard", {
+                bandId: lineMember.bandId
+              })
+            }
+          >
+            <Text style={{ fontSize: 14 }}>{`${lineMember.name}: ${format(
+              lineMember.dateTimeStart,
+              "HH:mm"
+            )}-${format(lineMember.dateTimeEnd, "HH:mm")}`}</Text>
+          </TouchableHighlight>
+        </ListItem>
+      );
     });
 
   getAppearancesStageLevel = groupedStageData =>

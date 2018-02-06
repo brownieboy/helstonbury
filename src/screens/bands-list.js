@@ -127,7 +127,7 @@ class BandsList extends Component {
           thumbnail
           onPress={() =>
             this.props.navigation.navigate("BandCard", {
-              bandDetails: bandMember
+              bandId: bandMember.bandId
             })
           }
         >

@@ -44,6 +44,11 @@ class BandCard extends Component {
     tabBarIcon: ({ tintColor }) => <BandsTabIcon tintColor={tintColor} />
   };
 
+  // const getAppearancesForBand = () => bandKey =>
+  //   selectAppearancesByBandNameThenDateTime
+  //     .slice()
+  //     .filter(bandMember => bandMember.bandId === bandKey);
+
   sortAppearancesByDate = appearancesArray =>
     appearancesArray
       .slice()
@@ -59,11 +64,8 @@ class BandCard extends Component {
       </Text>
     ));
 
-  getFaceBookLinkComponent = () => {
-    const {
-      facebookId,
-      facebookPageName
-    } = this.props.navigation.state.params.bandDetails;
+  getFaceBookLinkComponent = bandDetails => {
+    const { facebookId, facebookPageName } = bandDetails;
 
     const faceBookText = facebookPageName ? (
       <Text>{facebookPageName}</Text>
@@ -83,10 +85,17 @@ class BandCard extends Component {
   };
 
   render() {
-    const bandDetails = this.props.navigation.state.params.bandDetails;
-    const sortedAppearances = this.sortAppearancesByDate(
-      bandDetails.appearances
-    );
+    // const bandDetails = this.props.navigation.state.params.bandDetails;
+    const bandId = this.props.navigation.state.params.bandId;
+    const { bandsAlphabetical, appearancesByBandThenDateTime } = this.props; // Basically, the whole state
+    // const sortedAppearances = this.sortAppearancesByDate(
+    //   bandDetails.appearances
+    // );
+    const sortedAppearances = [];
+    const bandDetails = bandsAlphabetical.filter(
+      bandMember => bandMember.bandId === bandId
+    )[0];
+
     return (
       <Container style={styles.container}>
         <Header>
@@ -133,7 +142,7 @@ class BandCard extends Component {
               </Body>
             </CardItem>
             <CardItem style={{ paddingVertical: 0 }}>
-              {this.getFaceBookLinkComponent()}
+              {this.getFaceBookLinkComponent(bandDetails)}
             </CardItem>
           </Card>
         </Content>
@@ -143,6 +152,9 @@ class BandCard extends Component {
 }
 
 BandCard.propTypes = {
+  bandsAlphabetical: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  appearancesByBandThenDateTime: PropTypes.arrayOf(PropTypes.object.isRequired)
+    .isRequired,
   navigation: PropTypes.object.isRequired
 };
 

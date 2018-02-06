@@ -6,10 +6,14 @@ import BandCard from "./band-card.js";
 
 // Dux stuff
 import { selectors as bandSelectors } from "../dux/bandsReducer.js";
+import { selectors as appearancesSelectors } from "../dux/appearancesReducer.js";
 
 const mapDispatchToProps = () => ({});
 const mapStateToProps = state => ({
-  bandsAlphabeticalProp: bandSelectors.selectAlphabetical(state.bandsState)
+  bandsAlphabetical: bandSelectors.selectAlphabetical(state.bandsState),
+  appearancesByBandThenDateTime: appearancesSelectors.selectAppearancesByBandNameThenDateTime(
+    state.appearancesState
+  )
 });
 
 const BandCardConn = connect(mapStateToProps, mapDispatchToProps)(BandCard);

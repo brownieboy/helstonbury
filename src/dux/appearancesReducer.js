@@ -50,9 +50,18 @@ const selectAppearancesGroupedByDayThenStage = createSelector(
     d3
       .nest()
       .key(appearance => format(new Date(appearance.dateTimeStart), "dddd"))
-      .key(appearance => appearance.stageName)
+      .key(appearance => `${appearance.stageSortOrder}~${appearance.stageName}`)
+      .sortKeys(
+        (a, b) => parseInt(a.split("~")[0], 10) - parseInt(b.split("~")[0], 10)
+      )
       .entries(appearancesList)
 );
+/*
+const nest = d3.nest()
+    .key(d => +d.date)
+    .sortKeys((a, b) => a - b)
+    .entries(data);
+*/
 
 const selectAppearancesByBandNameThenDateTime = createSelector(
   [selectAppearances],

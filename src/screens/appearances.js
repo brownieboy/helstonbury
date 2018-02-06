@@ -57,7 +57,7 @@ class Appearances extends Component {
   getAppearancesStageLevel = groupedStageData =>
     groupedStageData.map(stageMember => [
       <ListItem itemDivider key={stageMember.key}>
-        <Text>{stageMember.key}</Text>
+        <Text>{stageMember.key.split("~")[1]}</Text>
       </ListItem>,
       <View key={`${stageMember.key}-lineswrapper`}>
         {this.getAppearanceLines(stageMember.values)}
@@ -96,10 +96,10 @@ class Appearances extends Component {
       appearancesListByDateTime,
       appearancesGroupedByDayThenStage
     } = this.props;
-    // console.log(
-    //   "appearancesGroupedByDayThenStage=" +
-    //     JSON.stringify(appearancesGroupedByDayThenStage, null, 4)
-    // );
+    console.log(
+      "appearancesGroupedByDayThenStage=" +
+        JSON.stringify(appearancesGroupedByDayThenStage, null, 4)
+    );
     return (
       <Container style={styles.container}>
         <Header>

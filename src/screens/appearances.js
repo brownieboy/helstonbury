@@ -3,13 +3,14 @@ import PropTypes from "prop-types";
 import IconMaterial from "react-native-vector-icons/MaterialIcons";
 import { format } from "date-fns";
 
-import { TouchableHighlight, View } from "react-native";
+import { View } from "react-native";
 
 import {
   Container,
   Header,
-  // Icon,
+  Icon,
   Title,
+  Left,
   Content,
   List,
   ListItem,
@@ -36,20 +37,22 @@ class Appearances extends Component {
       return (
         <ListItem
           key={lineMember.bandId}
-          style={{ height: 15, borderBottomWidth: 0 }}
+          onPress={() =>
+            this.props.navigation.navigate("BandCard", {
+              bandId: lineMember.bandId
+            })
+          }
+          style={{ height: 25, borderBottomWidth: 0 }}
         >
-          <TouchableHighlight
-            onPress={() =>
-              this.props.navigation.navigate("BandCard", {
-                bandId: lineMember.bandId
-              })
-            }
-          >
+          <Left>
             <Text style={{ fontSize: 14 }}>{`${lineMember.name}: ${format(
               lineMember.dateTimeStart,
               "HH:mm"
             )}-${format(lineMember.dateTimeEnd, "HH:mm")}`}</Text>
-          </TouchableHighlight>
+          </Left>
+          <Right>
+            <Icon name="arrow-forward" />
+          </Right>
         </ListItem>
       );
     });
@@ -61,7 +64,6 @@ class Appearances extends Component {
       </ListItem>,
       <View
         key={`${stageMember.key}-lineswrapper`}
-        style={{ marginBottom: 10 }}
       >
         {this.getAppearanceLines(stageMember.values)}
       </View>

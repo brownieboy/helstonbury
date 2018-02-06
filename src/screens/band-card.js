@@ -44,10 +44,8 @@ class BandCard extends Component {
     tabBarIcon: ({ tintColor }) => <BandsTabIcon tintColor={tintColor} />
   };
 
-  // const getAppearancesForBand = () => bandKey =>
-  //   selectAppearancesByBandNameThenDateTime
-  //     .slice()
-  //     .filter(bandMember => bandMember.bandId === bandKey);
+  getAppearancesForBand = (appearances, bandKey) =>
+    appearances.slice().filter(bandMember => bandMember.bandId === bandKey);
 
   sortAppearancesByDate = appearancesArray =>
     appearancesArray
@@ -91,7 +89,10 @@ class BandCard extends Component {
     // const sortedAppearances = this.sortAppearancesByDate(
     //   bandDetails.appearances
     // );
-    const sortedAppearances = [];
+    const sortedAppearances = this.getAppearancesForBand(
+      appearancesByBandThenDateTime,
+      bandId
+    );
     const bandDetails = bandsAlphabetical.filter(
       bandMember => bandMember.bandId === bandId
     )[0];

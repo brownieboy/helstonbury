@@ -47,11 +47,6 @@ class BandCard extends Component {
   getAppearancesForBand = (appearances, bandKey) =>
     appearances.slice().filter(bandMember => bandMember.bandId === bandKey);
 
-  sortAppearancesByDate = appearancesArray =>
-    appearancesArray
-      .slice()
-      .sort((a, b) => new Date(a.dateTimeStart) - new Date(b.dateTimeStart));
-
   getAppearanceTexts = appearances =>
     appearances.map(appearance => (
       <Text key={`${appearance.dateTimeStart}${appearance.stageId}`}>
@@ -83,19 +78,15 @@ class BandCard extends Component {
   };
 
   render() {
-    // const bandDetails = this.props.navigation.state.params.bandDetails;
     const bandId = this.props.navigation.state.params.bandId;
     const { bandsAlphabetical, appearancesByBandThenDateTime } = this.props; // Basically, the whole state
-    // const sortedAppearances = this.sortAppearancesByDate(
-    //   bandDetails.appearances
-    // );
     const sortedAppearances = this.getAppearancesForBand(
       appearancesByBandThenDateTime,
       bandId
     );
     const bandDetails = bandsAlphabetical.filter(
       bandMember => bandMember.bandId === bandId
-    )[0];
+    )[0]; // Returns an array
 
     return (
       <Container style={styles.container}>

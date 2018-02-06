@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import IconMaterial from "react-native-vector-icons/MaterialIcons";
 import { format } from "date-fns";
 
-import { View } from "react-native";
+import { TouchableHighlight, View } from "react-native";
 
 import {
   Container,
@@ -36,16 +36,16 @@ class Appearances extends Component {
         key={lineMember.bandId}
         style={{ height: 15, borderBottomWidth: 0 }}
       >
-        <Text style={{ fontSize: 14 }}>{`${lineMember.name}: ${format(
-          lineMember.dateTimeStart,
-          "HH:mm"
-        )}-${format(lineMember.dateTimeEnd, "HH:mm")}`}</Text>
+        <TouchableHighlight
+          onPress={() => console.log("tappped on band " + lineMember.bandId)}
+        >
+          <Text style={{ fontSize: 14 }}>{`${lineMember.name}: ${format(
+            lineMember.dateTimeStart,
+            "HH:mm"
+          )}-${format(lineMember.dateTimeEnd, "HH:mm")}`}</Text>
+        </TouchableHighlight>
       </ListItem>
     ));
-
-  // getAppearancesLineLevel = lineData => (
-  //   <ListItem>{this.getAppearanceLines(lineData)}</ListItem>
-  // );
 
   getAppearancesStageLevel = groupedStageData =>
     groupedStageData.map(stageMember => [
@@ -92,10 +92,10 @@ class Appearances extends Component {
       appearancesListByDateTime,
       appearancesGroupedByDayThenStage
     } = this.props;
-    console.log(
-      "appearancesGroupedByDayThenStage=" +
-        JSON.stringify(appearancesGroupedByDayThenStage, null, 4)
-    );
+    // console.log(
+    //   "appearancesGroupedByDayThenStage=" +
+    //     JSON.stringify(appearancesGroupedByDayThenStage, null, 4)
+    // );
     return (
       <Container style={styles.container}>
         <Header>

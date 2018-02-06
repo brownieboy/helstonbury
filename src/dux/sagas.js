@@ -34,7 +34,7 @@ const preloadImages = bandsArray => {
     preloadArray.push({ uri: bandsArray[x].cardFullUrl });
   }
   // console.log("preloadArray=" + JSON.stringify(preloadArray, null, 4));
-  console.log("Preloading...preloadArray=" + JSON.stringify(preloadArray, null, 4));
+  // console.log("Preloading...preloadArray=" + JSON.stringify(preloadArray, null, 4));
   FastImage.preload(preloadArray);
 };
 

@@ -138,6 +138,23 @@
       "stageSortOrder": 50,
       "bandId": "onedirection",
       "name": "One Direction"
+    },    {
+      "dateTimeEnd": "2018-07-22T21:30",
+      "dateTimeStart": "2018-07-22T20:30",
+      "stageId": "main",
+      "stageName": "Main Stage",
+      "stageSortOrder": 10,
+      "bandId": "acdc",
+      "name": "AC/DC"
+    },
+    {
+      "dateTimeEnd": "2018-07-22T22:30",
+      "dateTimeStart": "2018-07-22T21:30",
+      "stageId": "lowerbeer",
+      "stageName": "Lower Beer Stage",
+      "stageSortOrder": 50,
+      "bandId": "onedirection",
+      "name": "One Direction"
     },
     {
       "dateTimeEnd": "2018-07-20T18:30",
@@ -153,6 +170,23 @@
       "name": "Taylor Swift",
       "dateTimeEnd": "2018-07-20T14:30",
       "dateTimeStart": "2018-07-20T13:30",
+      "stageId": "acapella",
+      "stageName": "Acapella Stage",
+      "stageSortOrder": 40
+    },    {
+      "dateTimeEnd": "2018-07-22T18:30",
+      "dateTimeStart": "2018-07-22T17:30",
+      "stageId": "cannon",
+      "stageName": "Cannon Stage",
+      "stageSortOrder": 20,
+      "bandId": "courtney",
+      "name": "Courtney Barnett"
+    },
+    {
+      "bandId": "taylor",
+      "name": "Taylor Swift",
+      "dateTimeEnd": "2018-07-22T14:30",
+      "dateTimeStart": "2018-07-22T13:30",
       "stageId": "acapella",
       "stageName": "Acapella Stage",
       "stageSortOrder": 40

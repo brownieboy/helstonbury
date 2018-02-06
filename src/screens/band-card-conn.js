@@ -7,7 +7,7 @@ import BandCard from "./band-card.js";
 // Dux stuff
 import { selectors as bandSelectors } from "../dux/bandsReducer.js";
 
-const mapDispatchToProps = () => {};
+const mapDispatchToProps = () => ({});
 const mapStateToProps = state => ({
   bandsAlphabeticalProp: bandSelectors.selectAlphabetical(state.bandsState)
 });

@@ -27,17 +27,6 @@ import BandsTabIcon from "../components/bands-tab-icon.js";
 
 import openFacebookLink from "../helper-functions/open-facebook-link.js";
 
-// class BandCard extends Component {
-//   static navigationOptions = {
-//     tabBarIcon: ({ tintColor }) => (
-//       <IconMaterialCommunity
-//         name="guitar-acoustic"
-//         size={30}
-//         style={{ color: tintColor }}
-//       />
-//     )
-//   };
-
 class BandCard extends Component {
   static navigationOptions = {
     tabBarLabel: "Bands List",

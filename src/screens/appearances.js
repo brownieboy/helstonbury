@@ -32,39 +32,34 @@ class Appearances extends Component {
   };
 
   getAppearanceLines = lineData =>
-    lineData.map(lineMember => {
-      // console.log("lineMember=" + JSON.stringify(lineMember, null, 4));
-      return (
-        <ListItem
-          key={lineMember.bandId}
-          onPress={() =>
-            this.props.navigation.navigate("BandCard", {
-              bandId: lineMember.bandId
-            })
-          }
-          style={{ height: 25, borderBottomWidth: 0 }}
-        >
-          <Left>
-            <Text style={{ fontSize: 14 }}>{`${lineMember.name}: ${format(
-              lineMember.dateTimeStart,
-              "HH:mm"
-            )}-${format(lineMember.dateTimeEnd, "HH:mm")}`}</Text>
-          </Left>
-          <Right>
-            <Icon name="arrow-forward" />
-          </Right>
-        </ListItem>
-      );
-    });
+    lineData.map(lineMember => (
+      <ListItem
+        key={lineMember.bandId}
+        onPress={() =>
+          this.props.navigation.navigate("BandCard", {
+            bandId: lineMember.bandId
+          })
+        }
+        style={{ height: 25, borderBottomWidth: 0 }}
+      >
+        <Left>
+          <Text style={{ fontSize: 14 }}>{`${lineMember.name}: ${format(
+            lineMember.dateTimeStart,
+            "HH:mm"
+          )}-${format(lineMember.dateTimeEnd, "HH:mm")}`}</Text>
+        </Left>
+        <Right>
+          <Icon name="arrow-forward" />
+        </Right>
+      </ListItem>
+    ));
 
   getAppearancesStageLevel = groupedStageData =>
     groupedStageData.map(stageMember => [
       <ListItem itemDivider key={stageMember.key}>
         <Text>{stageMember.key}</Text>
       </ListItem>,
-      <View
-        key={`${stageMember.key}-lineswrapper`}
-      >
+      <View key={`${stageMember.key}-lineswrapper`}>
         {this.getAppearanceLines(stageMember.values)}
       </View>
     ]);
@@ -137,7 +132,8 @@ Appearances.propTypes = {
     .isRequired,
   appearancesGroupedByDayThenStage: PropTypes.arrayOf(
     PropTypes.object.isRequired
-  ).isRequired
+  ).isRequired,
+  navigation: PropTypes.object.isRequired
 };
 
 export default Appearances;

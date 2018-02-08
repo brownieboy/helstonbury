@@ -114,9 +114,9 @@ function* loadBandsGen() {
     const bandsDataNormalisedString = yield AsyncStorage.getItem(
       "localPublishedData"
     );
-    // yield console.log(
-    //   "bandsDataNormalisedString=" + bandsDataNormalisedString
-    // );
+    yield console.log(
+      "bandsDataNormalisedString=" + bandsDataNormalisedString
+    );
     const bandsDataNormalised = yield JSON.parse(bandsDataNormalisedString);
     // yield console.log(
     //   "bandsDataNormalised" +

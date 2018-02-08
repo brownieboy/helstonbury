@@ -3,9 +3,11 @@ import { AsyncStorage } from "react-native";
 import { buffers, eventChannel } from "redux-saga";
 import { all, call, fork, put, take, takeLatest } from "redux-saga/effects";
 import FastImage from "react-native-fast-image";
+
+import deepEqual from "deep-equal";
 import firebaseApp from "../api/firebase.js";
 
-import bandsApi from "../api/bandsApi.js";
+// import bandsApi from "../api/bandsApi.js";
 import {
   bandsDuxActions,
   // bandsDuxConstants,
@@ -53,8 +55,19 @@ function* updatedItemSaga() {
     console.log(
       "from FB item=" + JSON.stringify(item, null, 4).substring(0, 200)
     );
-    yield AsyncStorage.setItem("localPublishedData", JSON.stringify(item));
-    yield put({ type: "LOAD_BANDS_NOW" });
+    const existingBandsData = yield JSON.parse(
+      AsyncStorage.getItem("localPublishedData")
+    ) || {};
+    if (!deepEqual(existingBandsData, item.value)) {
+      console.log("local and server don't match, so update...");
+      yield AsyncStorage.setItem(
+        "localPublishedData",
+        JSON.stringify(item.value)
+      );
+      yield put({ type: "LOAD_BANDS_NOW" });
+    } else {
+      console.log("local and server match, don't update update...");
+    }
     // let response = yield AsyncStorage.getItem("localPublishedData");
     // console.log(
     //   "data from storage = " +

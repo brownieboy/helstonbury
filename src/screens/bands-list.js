@@ -154,6 +154,7 @@ class BandsList extends Component {
     // console.log("bandslist render, length=" + this.props.bandsProp.bandsList.length);
     // const { bandsList = [] } = this.props.bandsProp;
     const { bandsAlphabeticalProp = [] } = this.props;
+    console.log("bandsAlphabeticalProp=" + bandsAlphabeticalProp);
     return (
       <Container style={styles.container}>
         <Header>

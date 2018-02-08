@@ -52,22 +52,36 @@ function* updatedItemSaga() {
   );
   while (true) {
     const item = yield take(updateChannel);
-    console.log(
-      "from FB item=" + JSON.stringify(item, null, 4).substring(0, 200)
-    );
-    const existingBandsData = yield JSON.parse(
-      AsyncStorage.getItem("localPublishedData")
-    ) || {};
-    if (!deepEqual(existingBandsData, item.value)) {
-      console.log("local and server don't match, so update...");
-      yield AsyncStorage.setItem(
-        "localPublishedData",
-        JSON.stringify(item.value)
+    // console.log(
+    //   "from FB item=" + JSON.stringify(item, null, 4).substring(0, 200)
+    // );
+    let overwriteLocal = false;
+    try {
+      const existingBandsData = yield JSON.parse(
+        AsyncStorage.getItem("localPublishedData")
       );
-      yield put({ type: "LOAD_BANDS_NOW" });
-    } else {
-      console.log("local and server match, don't update update...");
+      if (!deepEqual(existingBandsData, item.value)) {
+        console.log("local and server don't match, so update...");
+        overwriteLocal = true;
+      } else {
+        console.log("local and server match, don't update..");
+      }
+    } catch (e) {
+      console.log(
+        "Error in parsing local storage.  Overwriting with Firebase.  Error=" +
+          e
+      );
+      overwriteLocal = true;
+    } finally {
+      if (overwriteLocal) {
+        yield AsyncStorage.setItem(
+          "localPublishedData",
+          JSON.stringify(item.value)
+        );
+        yield put({ type: "LOAD_BANDS_NOW" });
+      }
     }
+
     // let response = yield AsyncStorage.getItem("localPublishedData");
     // console.log(
     //   "data from storage = " +
@@ -97,10 +111,17 @@ function* loadBandsGen() {
   ]);
   try {
     // const bandsDataNormalised = yield call(bandsApi.fetchBandsData);
-    const bandsDataNormalisedString = yield AsyncStorage.getItem("localPublishedData");
-    yield console.log("bandsDataNormalisedString=" + bandsDataNormalisedString.substring(0, 200));
-    const bandsDataNormalised = yield JSON.parse(bandsDataNormalisedString).value;
-    yield console.log("bandsDataNormalised" + JSON.stringify(bandsDataNormalised, null, 4).substring(0, 200));
+    const bandsDataNormalisedString = yield AsyncStorage.getItem(
+      "localPublishedData"
+    );
+    // yield console.log(
+    //   "bandsDataNormalisedString=" + bandsDataNormalisedString
+    // );
+    const bandsDataNormalised = yield JSON.parse(bandsDataNormalisedString);
+    // yield console.log(
+    //   "bandsDataNormalised" +
+    //     JSON.stringify(bandsDataNormalised, null, 4)
+    // );
 
     yield all([
       put(

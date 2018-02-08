@@ -1,6 +1,7 @@
 // import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
 import { all, call, put, takeLatest } from "redux-saga/effects";
 import FastImage from "react-native-fast-image";
+import firebaseApp from "../api/firebase.js";
 
 import bandsApi from "../api/bandsApi.js";
 import {
@@ -72,5 +73,18 @@ function* mySaga() {
 }
 
 //  yield takeLatest(loadBandsNow(), loadBandsGen);
+
+const db = firebaseApp.database();
+
+const myRef = db.ref("publishedData");
+console.log("ref = " + myRef);
+myRef.on("value", snapshot => {
+  console.log("publishedData snapshot");
+  console.log(snapshot.val());
+});
+
+// Need to change this to write to async storage
+// Then need to change bandsApi to read from async storage
+// or better still, do it right here in the Saga.
 
 export default mySaga;

@@ -25,7 +25,7 @@ class BandCardWrapper extends Component {
     tabBarIcon: ({ tintColor }) => <BandsTabIcon tintColor={tintColor} />
   };
   render() {
-    return <BandCard {...this.props} />;
+    return <BandCard {...this.props} parentList="Bands" />;
   }
 }
 

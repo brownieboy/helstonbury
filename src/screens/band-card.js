@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Dimensions } from "react-native";
+import { Dimensions, Platform } from "react-native";
 import PropTypes from "prop-types";
 import { format } from "date-fns";
 // import { CachedImage } from "react-native-img-cache";
@@ -15,7 +15,7 @@ import {
   CardItem,
   Text,
   Left,
-  Right,
+  // Right,
   Body
 } from "native-base";
 
@@ -26,7 +26,6 @@ const deviceWidth = Dimensions.get("window").width;
 import openFacebookLink from "../helper-functions/open-facebook-link.js";
 
 class BandCard extends Component {
-
   getAppearancesForBand = (appearances, bandKey) =>
     appearances.slice().filter(bandMember => bandMember.bandId === bandKey);
 
@@ -62,7 +61,11 @@ class BandCard extends Component {
 
   render() {
     const bandId = this.props.navigation.state.params.bandId;
-    const { bandsAlphabetical, appearancesByBandThenDateTime } = this.props; // Basically, the whole state
+    const {
+      bandsAlphabetical,
+      appearancesByBandThenDateTime,
+      parentList
+    } = this.props; // Basically, the whole state
     const sortedAppearances = this.getAppearancesForBand(
       appearancesByBandThenDateTime,
       bandId
@@ -71,18 +74,26 @@ class BandCard extends Component {
       bandMember => bandMember.bandId === bandId
     )[0]; // Returns an array
 
+    let backButtonText = `Back to ${parentList}`;
+    const backButtonTextStyle = { fontSize: 12 };
+    if (Platform.OS === "android") {
+      backButtonTextStyle.color = "white";
+      backButtonTextStyle.fontSize = 10;
+      backButtonText = parentList; // Not enough room for "Back to" on Android
+    }
+
     return (
       <Container style={styles.container}>
         <Header>
           <Left>
             <Button transparent onPress={() => this.props.navigation.goBack()}>
               <Icon name="arrow-back" />
+              <Text style={backButtonTextStyle}>{backButtonText}</Text>
             </Button>
           </Left>
           <Body>
             <Title>Band Info</Title>
           </Body>
-          <Right />
         </Header>
 
         <Content padder>
@@ -130,7 +141,8 @@ BandCard.propTypes = {
   bandsAlphabetical: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   appearancesByBandThenDateTime: PropTypes.arrayOf(PropTypes.object.isRequired)
     .isRequired,
-  navigation: PropTypes.object.isRequired
+  navigation: PropTypes.object.isRequired,
+  parentList: PropTypes.string.isRequired
 };
 
 export default BandCard;

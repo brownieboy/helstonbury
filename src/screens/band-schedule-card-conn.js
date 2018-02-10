@@ -27,7 +27,7 @@ class BandCardWrapper extends Component {
     )
   };
   render() {
-    return <BandCard {...this.props} />;
+    return <BandCard {...this.props} parentList="Schedule" />;
   }
 }
 

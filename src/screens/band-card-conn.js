@@ -1,6 +1,5 @@
 // import { bindActionCreators } from "redux";
 import React, { Component } from "react";
-import IconMaterial from "react-native-vector-icons/MaterialIcons";
 
 import { connect } from "react-redux";
 

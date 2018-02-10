@@ -1,8 +1,11 @@
 // import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import React, { Component } from "react";
+import IconMaterial from "react-native-vector-icons/MaterialIcons";
+
 
 // Components
-import BandCard from "./band-schedule-card.js";
+import BandCard from "./band-card.js";
 
 // Dux stuff
 import { selectors as bandSelectors } from "../dux/bandsReducer.js";
@@ -16,6 +19,18 @@ const mapStateToProps = state => ({
   )
 });
 
-const BandCardConn = connect(mapStateToProps, mapDispatchToProps)(BandCard);
+class BandCardWrapper extends Component {
+  static navigationOptions = {
+    tabBarLabel: "Schedule",
+    tabBarIcon: ({ tintColor }) => (
+      <IconMaterial name="schedule" size={25} style={{ color: tintColor }} />
+    )
+  };
+  render() {
+    return <BandCard {...this.props} />;
+  }
+}
+
+const BandCardConn = connect(mapStateToProps, mapDispatchToProps)(BandCardWrapper);
 
 export default BandCardConn;

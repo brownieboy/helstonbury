@@ -23,15 +23,15 @@ import styles from "../styles/band-card-styles.js";
 
 const deviceWidth = Dimensions.get("window").width;
 // import IconMaterialCommunity from "react-native-vector-icons/MaterialCommunityIcons";
-import BandsTabIcon from "../components/bands-tab-icon.js";
+// import BandsTabIcon from "../components/bands-tab-icon.js";
 
 import openFacebookLink from "../helper-functions/open-facebook-link.js";
 
 class BandCard extends Component {
-  static navigationOptions = {
-    tabBarLabel: "Bands List",
-    tabBarIcon: ({ tintColor }) => <BandsTabIcon tintColor={tintColor} />
-  };
+  // static navigationOptions = {
+  //   tabBarLabel: "Bands List",
+  //   tabBarIcon: ({ tintColor }) => <BandsTabIcon tintColor={tintColor} />
+  // };
 
   getAppearancesForBand = (appearances, bandKey) =>
     appearances.slice().filter(bandMember => bandMember.bandId === bandKey);

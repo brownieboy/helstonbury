@@ -47,25 +47,25 @@ export function createEventChannel(ref) {
 }
 
 function* updatedItemSaga() {
-  console.log("running updatedItemSaga...");
+  // console.log("running updatedItemSaga...");
   const updateChannel = createEventChannel(
     firebaseApp.database().ref("publishedData")
   );
   while (true) {
-    console.log("running updatedItemSaga, inside loop...");
+    // console.log("running updatedItemSaga, inside loop...");
     const item = yield take(updateChannel);
     // console.log(
     //   "from FB item=" + JSON.stringify(item, null, 4).substring(0, 200)
     // );
     let overwriteLocal = false;
     try {
-      console.log("getting local data");
+      // console.log("getting local data");
       const existingBandsDataString = yield AsyncStorage.getItem(
         "localPublishedData"
       );
-      console.log("type of existingBandsData=" + typeof existingBandsDataString);
+      // console.log("type of existingBandsData=" + typeof existingBandsDataString);
       const existingBandsData = JSON.parse(existingBandsDataString);
-      console.log("existingBandsData=" + JSON.stringify(existingBandsData, null, 4).substring(0, 200));
+      // console.log("existingBandsData=" + JSON.stringify(existingBandsData, null, 4).substring(0, 200));
       if (!deepEqual(existingBandsData, item.value)) {
         console.log("local and server don't match, so update...");
         overwriteLocal = true;
@@ -120,18 +120,18 @@ function* loadBandsGen() {
     const bandsDataNormalisedString = yield AsyncStorage.getItem(
       "localPublishedData"
     );
-    console.log(
-      "typeof bandsDataNormalisedString=" + typeof bandsDataNormalisedString
-    );
-    console.log(
-      "bandsDataNormalisedString=" + bandsDataNormalisedString.substring(0, 200)
-    );
+    // console.log(
+    //   "typeof bandsDataNormalisedString=" + typeof bandsDataNormalisedString
+    // );
+    // console.log(
+    //   "bandsDataNormalisedString=" + bandsDataNormalisedString.substring(0, 200)
+    // );
     const bandsDataNormalised = JSON.parse(bandsDataNormalisedString);
-    yield console.log(
-      "bandsDataNormalised" +
-        JSON.stringify(bandsDataNormalised, null, 4).substring(0, 200)
-    );
-    console.log("Data parsed");
+    // yield console.log(
+    //   "bandsDataNormalised" +
+    //     JSON.stringify(bandsDataNormalised, null, 4).substring(0, 200)
+    // );
+    // console.log("Data parsed");
 
     yield all([
       put(
@@ -143,9 +143,7 @@ function* loadBandsGen() {
         )
       )
     ]);
-    console.log("about to preload images");
     preloadImages(bandsDataNormalised.bandsArray);
-    console.log("images preloaded");
   } catch (e) {
     console.log("loadBandsGen error=" + e);
     yield all([

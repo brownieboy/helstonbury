@@ -59,7 +59,7 @@ import BandsTabIcon from "../components/bands-tab-icon.js";
 
 class BandsList extends Component {
   static navigationOptions = {
-    tabBarLabel: "Bands List",
+    tabBarLabel: "Bands",
     tabBarIcon: ({ tintColor }) => <BandsTabIcon tintColor={tintColor} />
   };
 

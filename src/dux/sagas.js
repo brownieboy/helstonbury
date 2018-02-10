@@ -52,7 +52,7 @@ function* updatedItemSaga() {
     firebaseApp.database().ref("publishedData")
   );
   while (true) {
-      console.log("running updatedItemSaga, inside loop...");
+    console.log("running updatedItemSaga, inside loop...");
     const item = yield take(updateChannel);
     // console.log(
     //   "from FB item=" + JSON.stringify(item, null, 4).substring(0, 200)
@@ -60,9 +60,12 @@ function* updatedItemSaga() {
     let overwriteLocal = false;
     try {
       console.log("getting local data");
-      const existingBandsData = yield
-        AsyncStorage.getItem("localPublishedData");
-      console.log("type of existingBandsData=" + typeof existingBandsData);
+      const existingBandsDataString = yield AsyncStorage.getItem(
+        "localPublishedData"
+      );
+      console.log("type of existingBandsData=" + typeof existingBandsDataString);
+      const existingBandsData = JSON.parse(existingBandsDataString);
+      console.log("existingBandsData=" + JSON.stringify(existingBandsData, null, 4).substring(0, 200));
       if (!deepEqual(existingBandsData, item.value)) {
         console.log("local and server don't match, so update...");
         overwriteLocal = true;

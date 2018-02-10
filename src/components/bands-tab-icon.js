@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Icon } from "native-base";
+// import { Icon } from "native-base";
 import IconMaterialCommunity from "react-native-vector-icons/MaterialCommunityIcons";
 
 // tintColor passed in is an object

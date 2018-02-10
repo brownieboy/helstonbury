@@ -36,8 +36,9 @@ class Appearances extends Component {
       <ListItem
         key={lineMember.bandId}
         onPress={() =>
-          this.props.navigation.navigate("BandCard", {
-            bandId: lineMember.bandId
+          this.props.navigation.navigate("BandScheduleCard", {
+            bandId: lineMember.bandId,
+            parentList: "schedule"
           })
         }
         style={{ height: 25, borderBottomWidth: 0 }}

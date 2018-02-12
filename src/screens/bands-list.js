@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 // import { Alert } from "react-native";
 import FastImage from "react-native-fast-image";
 
-// import { Image } from "react-native";
+import { Image } from "react-native";
 
 import {
   Container,
@@ -37,6 +37,7 @@ import {
 // import MainFooterTabNav from "../components/mainfootertabnav.js";
 import styles from "../styles/home-styles.js";
 import BandsTabIcon from "../components/bands-tab-icon.js";
+const defaultThumb = "../../img/RockNRollGuitarist.png";
 
 // import { NavigationActions } from "react-navigation";
 
@@ -116,7 +117,12 @@ class BandsList extends Component {
         />
       );
     }
-    return <Text>Hi</Text>;
+    return (
+      <Image
+        source={require(defaultThumb)}
+        style={{ width: 55, height: 55, borderRadius: 27.5 }}
+      />
+    );
   };
 
   getBandsListItems = bandsList =>

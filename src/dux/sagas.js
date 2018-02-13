@@ -104,8 +104,12 @@ const preloadImages = bandsArray => {
   for (let x = 0; x < arrayLength; x++) {
     // preloadArray.push({ uri: bandsArray[x].thumbFullUrl });
     // preloadArray.push({ uri: bandsArray[x].cardFullUrl });
-    preloadArray.push(bandsArray[x].thumbFullUrl);
-    preloadArray.push(bandsArray[x].cardFullUrl);
+    if (bandsArray[x].thumbFullUrl) {
+      preloadArray.push(bandsArray[x].thumbFullUrl);
+    }
+    if (bandsArray[x].cardFullUrl) {
+      preloadArray.push(bandsArray[x].cardFullUrl);
+    }
   }
   // console.log("preloadArray=" + JSON.stringify(preloadArray, null, 4));
   // console.log("Preloading...preloadArray=" + JSON.stringify(preloadArray, null, 4));

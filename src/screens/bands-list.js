@@ -127,31 +127,29 @@ class BandsList extends Component {
   };
 
   getBandsListItems = bandsList =>
-    bandsList.map(bandMember => {
-      return (
-        <ListItem
-          key={bandMember.bandId}
-          thumbnail
-          onPress={() =>
-            this.props.navigation.navigate("BandCard", {
-              bandId: bandMember.bandId,
-              parentList: "bands"
-            })
-          }
-        >
-          <Left>{this.getThumbNail(bandMember)}</Left>
-          <Body>
-            <Text>{bandMember.name}</Text>
-            <Text numberOfLines={2} note>
-              {bandMember.summary}
-            </Text>
-          </Body>
-          <Right>
-            <Icon name="arrow-forward" />
-          </Right>
-        </ListItem>
-      );
-    });
+    bandsList.map(bandMember => (
+      <ListItem
+        key={bandMember.bandId}
+        thumbnail
+        onPress={() =>
+          this.props.navigation.navigate("BandCard", {
+            bandId: bandMember.bandId,
+            parentList: "bands"
+          })
+        }
+      >
+        <Left>{this.getThumbNail(bandMember)}</Left>
+        <Body>
+          <Text>{bandMember.name}</Text>
+          <Text numberOfLines={2} note>
+            {bandMember.summary}
+          </Text>
+        </Body>
+        <Right>
+          <Icon name="arrow-forward" />
+        </Right>
+      </ListItem>
+    ));
 
   render() {
     // const { navigation } = this.props;

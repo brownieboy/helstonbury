@@ -104,10 +104,10 @@ const preloadImages = bandsArray => {
   for (let x = 0; x < arrayLength; x++) {
     // preloadArray.push({ uri: bandsArray[x].thumbFullUrl });
     // preloadArray.push({ uri: bandsArray[x].cardFullUrl });
-    if (bandsArray[x].thumbFullUrl) {
+    if (bandsArray[x].thumbFullUrl && bandsArray[x].thumbFullUrl !== "") {
       preloadArray.push(bandsArray[x].thumbFullUrl);
     }
-    if (bandsArray[x].cardFullUrl) {
+    if (bandsArray[x].cardFullUrl && bandsArray[x].cardFullUrl !== "") {
       preloadArray.push(bandsArray[x].cardFullUrl);
     }
   }

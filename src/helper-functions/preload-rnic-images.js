@@ -17,7 +17,7 @@ function preloadImage(url) {
             finished = true;
             clearInterval(downloadEndedIntervalId);
 
-            reject(new Error("DownloadFailed"));
+            reject(new Error("Download Failed in SetTimeout"));
           }
         }, 50);
       }
@@ -37,7 +37,7 @@ function preloadImage(url) {
             resolve(localUrl);
           } else {
             // File downloaded, but without content
-            reject(new Error("DownloadFailed"));
+            reject(new Error("DownloadFailed in callback"));
           }
         });
       }

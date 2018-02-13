@@ -3,7 +3,9 @@ import { Dimensions, Platform } from "react-native";
 import PropTypes from "prop-types";
 import { format } from "date-fns";
 // import { CachedImage } from "react-native-img-cache";
-import FastImage from "react-native-fast-image";
+// import FastImage from "react-native-fast-image";
+import { CachedImage } from "react-native-img-cache";
+
 import {
   Container,
   Header,
@@ -109,7 +111,7 @@ class BandCard extends Component {
 
             <CardItem>
               <Body>
-                <FastImage
+                <CachedImage
                   style={{
                     alignSelf: "center",
                     height: 150,

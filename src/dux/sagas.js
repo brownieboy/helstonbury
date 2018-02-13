@@ -3,7 +3,7 @@ import { AsyncStorage } from "react-native";
 import { buffers, eventChannel } from "redux-saga";
 import { all, fork, put, take, takeLatest } from "redux-saga/effects";
 // import FastImage from "react-native-fast-image";
-import { CachedImage } from "react-native-img-cache";
+import { ImageCache } from "react-native-img-cache";
 import deepEqual from "deep-equal";
 import firebaseApp from "../api/firebase.js";
 
@@ -82,6 +82,9 @@ function* updatedItemSaga() {
       overwriteLocal = true;
     } finally {
       if (overwriteLocal) {
+        console.log("Clearing images cache, the whole smash....");
+        ImageCache.get().clear();
+
         yield AsyncStorage.setItem(
           "localPublishedData",
           JSON.stringify(item.value)

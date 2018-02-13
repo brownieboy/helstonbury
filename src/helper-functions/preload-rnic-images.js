@@ -63,7 +63,9 @@ const preloadImages = imageUrlsArray => {
         JSON.stringify(imageUrlsArray, null, 4)
     );
     for (const imageUrl of imageUrlsArray) {
-      preloadImage(imageUrl);
+      preloadImage(imageUrl)
+        .then(console.log("preloadImages then, don nothing..."))
+        .catch(err => console.log("preloadImages catch, error=" + err));
     }
   } else {
     console.log(

@@ -144,18 +144,23 @@ function* loadBandsGen() {
     //     JSON.stringify(bandsDataNormalised, null, 4).substring(0, 200)
     // );
     // console.log("Data parsed");
+    // .filter(bandMember => bandMember.bandId && bandMember.bandId !== "")
+
+    // Filter out any half-completed data that we might have pulled
+    // down from Firebase
+    const bandsArray = bandsDataNormalised.bandsArray.filter(
+      bandMember => bandMember.bandId && bandMember.bandId !== ""
+    );
+    const appearancesArray = bandsDataNormalised.appearancesArray.filter(
+      appearancesMember =>
+        appearancesMember.bandId && appearancesMember.bandId !== ""
+    );
 
     yield all([
-      put(
-        bandsDuxActions.setFetchBandsSucceeded(bandsDataNormalised.bandsArray)
-      ),
-      put(
-        appearancesDuxActions.setFetchAppearancesSucceeded(
-          bandsDataNormalised.appearancesArray
-        )
-      )
+      put(bandsDuxActions.setFetchBandsSucceeded(bandsArray)),
+      put(appearancesDuxActions.setFetchAppearancesSucceeded(appearancesArray))
     ]);
-    preloadImages(bandsDataNormalised.bandsArray);
+    preloadImages(bandsArray);
   } catch (e) {
     console.log("loadBandsGen error=" + e);
     yield all([

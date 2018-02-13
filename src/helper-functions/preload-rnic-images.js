@@ -55,8 +55,20 @@ function preloadImage(url) {
 }
 
 const preloadImages = imageUrlsArray => {
-  for (const imageUrl of imageUrlsArray) {
-    preloadImage(imageUrl);
+  if (imageUrlsArray.length > 0) {
+    console.log(
+      "imageUrlsArray.length=" +
+        imageUrlsArray.length +
+        ", downloading, " +
+        JSON.stringify(imageUrlsArray, null, 4)
+    );
+    for (const imageUrl of imageUrlsArray) {
+      preloadImage(imageUrl);
+    }
+  } else {
+    console.log(
+      "imageUrlsArray.length=" + imageUrlsArray.length + ", not downloading"
+    );
   }
 };
 

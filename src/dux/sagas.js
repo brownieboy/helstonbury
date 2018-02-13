@@ -1,11 +1,13 @@
 // import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
 import { AsyncStorage } from "react-native";
 import { buffers, eventChannel } from "redux-saga";
-import { all, call, fork, put, take, takeLatest } from "redux-saga/effects";
-import FastImage from "react-native-fast-image";
-
+import { all, fork, put, take, takeLatest } from "redux-saga/effects";
+// import FastImage from "react-native-fast-image";
+import { CachedImage } from "react-native-img-cache";
 import deepEqual from "deep-equal";
 import firebaseApp from "../api/firebase.js";
+
+import preloadRNICimages from "../helper-functions/preload-rnic-images.js";
 
 // import bandsApi from "../api/bandsApi.js";
 import {
@@ -100,12 +102,15 @@ const preloadImages = bandsArray => {
   const arrayLength = bandsArray.length;
   const preloadArray = [];
   for (let x = 0; x < arrayLength; x++) {
-    preloadArray.push({ uri: bandsArray[x].thumbFullUrl });
-    preloadArray.push({ uri: bandsArray[x].cardFullUrl });
+    // preloadArray.push({ uri: bandsArray[x].thumbFullUrl });
+    // preloadArray.push({ uri: bandsArray[x].cardFullUrl });
+    preloadArray.push(bandsArray[x].thumbFullUrl);
+    preloadArray.push(bandsArray[x].cardFullUrl);
   }
   // console.log("preloadArray=" + JSON.stringify(preloadArray, null, 4));
   // console.log("Preloading...preloadArray=" + JSON.stringify(preloadArray, null, 4));
-  FastImage.preload(preloadArray);
+  // FastImage.preload(preloadArray);
+  preloadRNICimages(preloadArray);
 };
 
 // worker Saga: will be fired on LOAD_BANDS_NOW actions

@@ -64,7 +64,9 @@ const preloadImages = imageUrlsArray => {
     );
     for (const imageUrl of imageUrlsArray) {
       preloadImage(imageUrl)
-        .then(console.log("preloadImages then, don nothing..."))
+        .then
+        // console.log("preloadImages then, don nothing...")
+        ()
         .catch(err => console.log("preloadImages catch, error=" + err));
     }
   } else {

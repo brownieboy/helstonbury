@@ -3914,9 +3914,9 @@ react-native-fast-image@^2.2.4:
   dependencies:
     prop-types "^15.5.10"
 
-react-native-fetch-blob@^0.10.8:
+"react-native-fetch-blob@github:flatfox-ag/react-native-fetch-blob#exception_fixes":
   version "0.10.8"
-  resolved "https://registry.yarnpkg.com/react-native-fetch-blob/-/react-native-fetch-blob-0.10.8.tgz#4fc256abae0cb5f10e7c41f28c11b3ff330d72a9"
+  resolved "https://codeload.github.com/flatfox-ag/react-native-fetch-blob/tar.gz/a46bf8180d76131eafe84ab44e0436322073820c"
   dependencies:
     base-64 "0.1.0"
     glob "7.0.6"

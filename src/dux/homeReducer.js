@@ -26,7 +26,7 @@ const homeReducer = (
   }
 };
 
-export const loadHOmeNow = () => ({ type: LOAD_HOME_NOW });
+export const loadHomeNow = () => ({ type: LOAD_HOME_NOW });
 // export const fetchHOMESucceeded = () => ({ type: FETCH_HOME_REQUEST });
 
 const setFetchHomeRequest = () => ({

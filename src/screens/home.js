@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Image, View } from "react-native";
 // import { ImageCache } from "react-native-img-cache";
 
@@ -25,7 +26,7 @@ import styles from "../styles/home-styles.js";
 // const launchscreenBg = require("../../../img/mqdefault.jpg");
 const launchscreenLogo = require("../../img/helstonbury_logo.jpg");
 
-import bandsApi from "../api/bandsApi.js";
+// import bandsApi from "../api/bandsApi.js";
 
 class Home extends Component {
   static navigationOptions = {
@@ -35,7 +36,8 @@ class Home extends Component {
     )
   };
   render() {
-    const { navigate } = this.props.navigation;
+    // const { navigate } = this.props.navigation;
+    const { homeText } = this.props.homeProp;
     return (
       <Container>
         <Header>
@@ -60,12 +62,7 @@ class Home extends Component {
             <Image source={launchscreenLogo} style={styles.logo} />
           </View>
           <View style={{ marginTop: 190, marginLeft: 10, marginRight: 10 }}>
-            <Text>
-              Helstonbury 2018 will be held on Friday 20th July through to July
-              22nd. This iPhone app will keep you up to date with the bands
-              performing and their times of appearances. See you at Helstonbury
-              2018!!!
-            </Text>
+            <Text>{homeText}</Text>
           </View>
 
           <View style={{ marginTop: 150 }}>
@@ -82,6 +79,10 @@ class Home extends Component {
     );
   }
 }
+
+Home.propTypes = {
+  homeProp: PropTypes.object.isRequired
+};
 
 export default Home;
 

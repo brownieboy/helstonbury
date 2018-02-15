@@ -150,7 +150,7 @@ function* loadBandsGen() {
     // Filter out any half-completed data that we might have pulled
     // down from Firebase
     //
-    const homeText = bandsDataNormalised.homeText || "Helstonbury...";
+    const homeText = bandsDataNormalised.homePageText || "Helstonbury...";
     const bandsArray = bandsDataNormalised.bandsArray.filter(
       bandMember => bandMember.bandId && bandMember.bandId !== ""
     );

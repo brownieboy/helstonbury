@@ -7,7 +7,7 @@ import { TabNavigator as tabNavigator } from "react-navigation";
 import tabNavStyles from "./styles/tab-navigator-styles.js";
 
 // Screens
-import Home from "./screens/home.js";
+import Home from "./screens/home-conn.js";
 import BandsList from "./screens/bands-list-nav.js";
 import Appearances from "./screens/appearances-nav.js";
 import Stages from "./screens/stages.js";

@@ -14,7 +14,6 @@ const homeReducer = (
     case FETCH_HOME_REQUEST:
       return { ...state, fetchStatus: "loading" };
     case FETCH_HOME_SUCCESS:
-      console.log("home text = " + action.payload);
       return {
         ...state,
         fetchStatus: "",

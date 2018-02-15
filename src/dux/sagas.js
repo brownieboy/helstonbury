@@ -19,6 +19,7 @@ import {
   appearancesDuxActions
   // appearancesDuxConstants
 } from "./appearancesReducer.js";
+import { homeDuxActions } from "./homeReducer.js";
 
 /*
 FastImage.preload([
@@ -134,9 +135,9 @@ function* loadBandsGen() {
     );
     // console.log(
     //   "typeof bandsDataNormalisedString=" + typeof bandsDataNormalisedString
-    // );
+    // );ß
     // console.log(
-    //   "bandsDataNormalisedString=" + bandsDataNormalisedString.substring(0, 200)
+    //   "bandsDataNormalisedString="ß + bandsDataNormalisedString.substring(0, 200)
     // );
     const bandsDataNormalised = JSON.parse(bandsDataNormalisedString);
     // yield console.log(
@@ -148,6 +149,8 @@ function* loadBandsGen() {
 
     // Filter out any half-completed data that we might have pulled
     // down from Firebase
+    //
+    const homeText = bandsDataNormalised.homeText || "Helstonbury...";
     const bandsArray = bandsDataNormalised.bandsArray.filter(
       bandMember => bandMember.bandId && bandMember.bandId !== ""
     );
@@ -158,7 +161,8 @@ function* loadBandsGen() {
 
     yield all([
       put(bandsDuxActions.setFetchBandsSucceeded(bandsArray)),
-      put(appearancesDuxActions.setFetchAppearancesSucceeded(appearancesArray))
+      put(appearancesDuxActions.setFetchAppearancesSucceeded(appearancesArray)),
+      put(homeDuxActions.setFetchHomeSucceeded(homeText))
     ]);
     preloadImages(bandsArray);
   } catch (e) {

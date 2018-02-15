@@ -31,29 +31,40 @@ class Appearances extends Component {
     )
   };
 
-  getAppearanceLines = lineData =>
-    lineData.map(lineMember => (
-      <ListItem
-        key={lineMember.bandId}
-        onPress={() =>
-          this.props.navigation.navigate("BandScheduleCard", {
-            bandId: lineMember.bandId,
-            parentList: "schedule"
-          })
-        }
-        style={{ height: 25, borderBottomWidth: 0 }}
-      >
-        <Left>
-          <Text style={{ fontSize: 14 }}>{`${lineMember.name}: ${format(
-            lineMember.dateTimeStart,
-            "HH:mm"
-          )}-${format(lineMember.dateTimeEnd, "HH:mm")}`}</Text>
-        </Left>
-        <Right>
-          <Icon name="arrow-forward" />
-        </Right>
-      </ListItem>
-    ));
+  //         style={{ height: 30, borderBottomWidth: 0 }}
+
+  getAppearanceLines = lineData => {
+    const itemsLength = lineData.length;
+    return lineData.map((lineMember, index) => {
+      const lineStyle = { height: 40 };
+      console.log("itemsLength=" + itemsLength + ", index=" + index);
+      if (itemsLength === (index + 1)) {
+        lineStyle.borderBottomWidth = 0;
+      }
+      return (
+        <ListItem
+          key={lineMember.bandId}
+          onPress={() =>
+            this.props.navigation.navigate("BandScheduleCard", {
+              bandId: lineMember.bandId,
+              parentList: "schedule"
+            })
+          }
+          style={lineStyle}
+        >
+          <Left>
+            <Text style={{ fontSize: 14 }}>{`${lineMember.name}: ${format(
+              lineMember.dateTimeStart,
+              "HH:mm"
+            )}-${format(lineMember.dateTimeEnd, "HH:mm")}`}</Text>
+          </Left>
+          <Right>
+            <Icon name="arrow-forward" />
+          </Right>
+        </ListItem>
+      );
+    });
+  };
 
   getAppearancesStageLevel = groupedStageData =>
     groupedStageData.map(stageMember => [

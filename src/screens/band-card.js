@@ -61,6 +61,17 @@ class BandCard extends Component {
     return null;
   };
 
+  getCardImage = cardFullUrl => (
+    <CachedImage
+      style={{
+        alignSelf: "center",
+        height: 150,
+        width: deviceWidth / 1.18,
+        marginVertical: 5
+      }}
+      source={{ uri: cardFullUrl }}
+    />
+  );
   render() {
     const bandId = this.props.navigation.state.params.bandId;
     const {
@@ -111,15 +122,9 @@ class BandCard extends Component {
 
             <CardItem>
               <Body>
-                <CachedImage
-                  style={{
-                    alignSelf: "center",
-                    height: 150,
-                    width: deviceWidth / 1.18,
-                    marginVertical: 5
-                  }}
-                  source={{ uri: bandDetails.cardFullUrl }}
-                />
+                {bandDetails.cardFullUrl
+                  ? this.getCardImage(bandDetails.cardFullUrl)
+                  : null}
                 <Text>{bandDetails.blurb}</Text>
               </Body>
             </CardItem>

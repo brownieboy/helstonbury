@@ -193,11 +193,18 @@ function* loadFavouritesGen() {
   }
 }
 
+     // yield AsyncStorage.setItem(
+     //      "localPublishedData",
+     //      JSON.stringify(item.value)
+     //    );
+
 function* toggleFavouriteGen(bandObj) {
   // console.log("toggling favourite " + JSON.stringify(bandObj, null, 4));
   const state = yield select();
-  const newFavourites = state.favouritesState.newFavourites;
-  // console.log("toggling favourite state is " + JSON.stringify(state, null, 4));
+  const newFavourites = state.favouritesState.favourites;
+  console.log("toggling favourite state is " + JSON.stringify(state, null, 4));
+  console.log("newFavourites is "+ newFavourites);
+
   yield AsyncStorage.setItem("localFavourites", JSON.stringify(newFavourites));
 }
 

@@ -28,10 +28,6 @@ const deviceWidth = Dimensions.get("window").width;
 import openFacebookLink from "../helper-functions/open-facebook-link.js";
 
 class BandCard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { favourite: false };
-  }
   getAppearancesForBand = (appearances, bandKey) =>
     appearances.slice().filter(bandMember => bandMember.bandId === bandKey);
 
@@ -82,6 +78,7 @@ class BandCard extends Component {
     const {
       bandsAlphabetical,
       appearancesByBandThenDateTime,
+      favouritesState,
       parentList
     } = this.props; // Basically, the whole state
     const sortedAppearances = this.getAppearancesForBand(
@@ -91,7 +88,8 @@ class BandCard extends Component {
     const bandDetails = bandsAlphabetical.filter(
       bandMember => bandMember.bandId === bandId
     )[0]; // Returns an array
-    const { favourite } = this.state;
+    const favourite =
+      favouritesState.favourites.indexOf(bandDetails.bandId) > -1;
     const { toggleBandFavouriteStatus } = this.props;
 
     let backButtonText = `Back to ${parentList}`;
@@ -163,6 +161,7 @@ BandCard.propTypes = {
   bandsAlphabetical: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   appearancesByBandThenDateTime: PropTypes.arrayOf(PropTypes.object.isRequired)
     .isRequired,
+  favouritesState: PropTypes.object.isRequired,
   navigation: PropTypes.object.isRequired,
   parentList: PropTypes.string.isRequired,
   toggleBandFavouriteStatus: PropTypes.func.isRequired

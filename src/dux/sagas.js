@@ -1,7 +1,7 @@
 // import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
 import { AsyncStorage } from "react-native";
 import { buffers, eventChannel } from "redux-saga";
-import { all, fork, put, take, takeLatest } from "redux-saga/effects";
+import { all, fork, put, select, take, takeLatest } from "redux-saga/effects";
 // import FastImage from "react-native-fast-image";
 import { ImageCache } from "react-native-img-cache";
 import deepEqual from "deep-equal";
@@ -194,14 +194,21 @@ function* loadFavouritesGen() {
 }
 
 function* toggleFavouriteGen(bandObj) {
-  console.log("toggling favourite " + JSON.stringify(bandObj, null, 4));
+  // console.log("toggling favourite " + JSON.stringify(bandObj, null, 4));
+  const state = yield select();
+  const newFavourites = state.favouritesState.newFavourites;
+  // console.log("toggling favourite state is " + JSON.stringify(state, null, 4));
+  yield AsyncStorage.setItem("localFavourites", JSON.stringify(newFavourites));
 }
 
 function* mySaga() {
   // yield takeLatest(bandsDuxConstants.LOAD_BANDS_NOW, loadBandsGen);
   yield takeLatest(loadBandsNow().type, loadBandsGen);
   yield takeLatest(loadFavouritesNow().type, loadFavouritesGen);
-  yield takeLatest(favouritesDuxActions.toggleBandFavouriteStatus().type, toggleFavouriteGen);
+  yield takeLatest(
+    favouritesDuxActions.toggleBandFavouriteStatus().type,
+    toggleFavouriteGen
+  );
   yield fork(updatedItemSaga);
 }
 

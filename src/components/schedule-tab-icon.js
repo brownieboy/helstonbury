@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Platform } from "react-native";
-// import { Icon } from "native-base";
 import IconEvil from "react-native-vector-icons/EvilIcons";
 
 // tintColor passed in is an object

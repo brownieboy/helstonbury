@@ -11,14 +11,14 @@ export default {
     height: null
   },
   logoContainer: {
-    flex: 1,
-    marginTop: deviceHeight / 32,
-    marginBottom: 30
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 20
   },
   logo: {
-    position: "absolute",
-    left: Platform.OS === "android" ? 30 : 40,
-    top: Platform.OS === "android" ? 15 : 40,
+    // position: "absolute",
+    // left: Platform.OS === "android" ? 30 : 40,
+    // top: Platform.OS === "android" ? 15 : 40,
     width: 300,
     height: 150
   },
@@ -28,3 +28,9 @@ export default {
     marginTop: 5
   }
 };
+
+// logoContainer: {
+//   flex: 1,
+//   marginTop: deviceHeight / 32,
+//   marginBottom: 30
+// },

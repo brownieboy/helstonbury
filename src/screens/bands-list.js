@@ -80,8 +80,9 @@ class BandsList extends Component {
 
   componentWillMount() {
     // console.log("BandsList..componentWillMount()");
-    const { loadBandsProp } = this.props;
+    const { loadBandsProp, loadFavouritesNowProp } = this.props;
     loadBandsProp();
+    loadFavouritesNowProp();
   }
 
   // toggleTab = activeTabNo => {
@@ -186,6 +187,7 @@ BandsList.propTypes = {
   // bandsList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   bandsAlphabeticalProp: PropTypes.arrayOf(PropTypes.object).isRequired,
   loadBandsProp: PropTypes.func.isRequired,
+  loadFavouritesNowProp: PropTypes.func.isRequired,
   navigation: PropTypes.object.isRequired
 };
 

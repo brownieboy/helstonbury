@@ -28,7 +28,6 @@ const homeReducer = (
 };
 
 export const loadFavouritesNow = () => ({ type: LOAD_FAVOURITES_NOW });
-// export const fetchFAVOURITESSucceeded = () => ({ type: FETCH_FAVOURITES_REQUEST });
 
 const setFetchFavouritesRequest = () => ({
   type: FETCH_FAVOURITES_REQUEST
@@ -42,7 +41,7 @@ const setFetchFavouritesFailed = errorMessage => ({
   payload: errorMessage
 });
 
-export const homeDuxActions = {
+export const favouritesDuxActions = {
   setFetchFavouritesFailed,
   setFetchFavouritesRequest,
   setFetchFavouritesSucceeded

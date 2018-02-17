@@ -10,9 +10,13 @@ import {
   selectors as bandSelectors
 } from "../dux/bandsReducer.js";
 import { selectors as appearancesSelectors } from "../dux/appearancesReducer.js";
+import { loadFavouritesNow } from "../dux/favouritesReducer.js";
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ loadBandsProp: loadBandsNow }, dispatch);
+  bindActionCreators(
+    { loadBandsProp: loadBandsNow, loadFavouritesNowProp: loadFavouritesNow },
+    dispatch
+  );
 
 const mapStateToProps = state => ({
   // bandsStateProp: state.bandsState,

@@ -22,6 +22,8 @@ import {
 } from "native-base";
 
 import ScheduleTabIcon from "../components/schedule-tab-icon.js";
+import FavouritesListIcon from "../components/favourites-list-icon.js";
+
 import styles from "../styles/band-card-styles.js";
 // import tabNavStyles from "../styles/tab-navigator-styles.js";
 
@@ -31,9 +33,9 @@ class Appearances extends Component {
     tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
   };
 
-
   getAppearanceLines = lineData => {
     const itemsLength = lineData.length;
+    const favourites = this.props.favouritesState.favourites;
     return lineData.map((lineMember, index) => {
       const lineStyle = { height: 40 };
       if (itemsLength === index + 1) {
@@ -56,6 +58,9 @@ class Appearances extends Component {
               "HH:mm"
             )}-${format(lineMember.dateTimeEnd, "HH:mm")}`}</Text>
           </Left>
+          {favourites.indexOf(lineMember.bandId) > -1 ? (
+            <FavouritesListIcon />
+          ) : null}
           <Right>
             <Icon name="arrow-forward" />
           </Right>
@@ -143,6 +148,8 @@ Appearances.propTypes = {
   appearancesGroupedByDayThenStage: PropTypes.arrayOf(
     PropTypes.object.isRequired
   ).isRequired,
+  favouritesState: PropTypes.object.isRequired,
+
   navigation: PropTypes.object.isRequired
 };
 

@@ -125,6 +125,7 @@ const preloadImages = bandsArray => {
 function* loadBandsGen() {
   // yield console.log("loadBands() triggered in sagas.js");ß
   yield all([
+    put(homeDuxActions.setFetchHomeRequest()),
     put(bandsDuxActions.setFetchBandsRequest()),
     put(appearancesDuxActions.setFetchAppearancesRequest())
   ]);
@@ -160,9 +161,9 @@ function* loadBandsGen() {
     );
 
     yield all([
+      put(homeDuxActions.setFetchHomeSucceeded(homeText)),
       put(bandsDuxActions.setFetchBandsSucceeded(bandsArray)),
-      put(appearancesDuxActions.setFetchAppearancesSucceeded(appearancesArray)),
-      put(homeDuxActions.setFetchHomeSucceeded(homeText))
+      put(appearancesDuxActions.setFetchAppearancesSucceeded(appearancesArray))
     ]);
     preloadImages(bandsArray);
   } catch (e) {

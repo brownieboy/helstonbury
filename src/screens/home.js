@@ -13,7 +13,8 @@ import {
   Header,
   Title,
   Body,
-  Right
+  Right,
+  Spinner
   // Footer,
   // FooterTab
 } from "native-base";
@@ -37,7 +38,8 @@ class Home extends Component {
   };
   render() {
     // const { navigate } = this.props.navigation;
-    const { homeText } = this.props.homeProp;
+    // console.log("home props=") + this.props;
+    const { homeText, fetchStatus } = this.props.homeProp;
     return (
       <Container>
         <Header>
@@ -62,10 +64,15 @@ class Home extends Component {
             <Image source={launchscreenLogo} style={styles.logo} />
           </View>
           <View style={{ marginTop: 50, marginLeft: 10, marginRight: 10 }}>
-            <Text>{homeText}</Text>
+            <Text>
+              {fetchStatus === "loading"
+                ? "Getting latest info, please wait..."
+                : homeText}
+            </Text>
+            {fetchStatus === "loading" ? <Spinner /> : null}
           </View>
 
-          <View style={{ marginTop: 150 }}>
+          <View style={{ marginTop: 20 }}>
             <Button
               transparent
               onPress={() => openFacebookLink("382432781776899")}

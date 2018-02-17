@@ -127,7 +127,7 @@ class BandsList extends Component {
     );
   };
 
-  getBandsListItems = bandsList =>
+  getBandsListItems = (bandsList, favouritesState) =>
     bandsList.map(bandMember => (
       <ListItem
         key={bandMember.bandId}
@@ -146,6 +146,13 @@ class BandsList extends Component {
             {bandMember.summary}
           </Text>
         </Body>
+        {favouritesState.favourites.indexOf(bandMember.bandId) > -1 ? (
+          <Icon
+            ios="ios-heart"
+            android="md-heart"
+            style={{ fontSize: 16, color: "red", marginRight: 10 }}
+          />
+        ) : null}
         <Right>
           <Icon name="arrow-forward" />
         </Right>
@@ -160,8 +167,9 @@ class BandsList extends Component {
     // );
     // console.log("bandslist render, length=" + this.props.bandsProp.bandsList.length);
     // const { bandsList = [] } = this.props.bandsProp;
-    const { bandsAlphabeticalProp = [] } = this.props;
+    const { bandsAlphabeticalProp = [], favouritesState } = this.props;
     // console.log("bandsAlphabeticalProp=" + bandsAlphabeticalProp);
+
     return (
       <Container style={styles.container}>
         <Header>
@@ -173,7 +181,9 @@ class BandsList extends Component {
 
         <Content style={{ backgroundColor: "#fff" }}>
           {bandsAlphabeticalProp.length > 0 ? (
-            <List>{this.getBandsListItems(bandsAlphabeticalProp)}</List>
+            <List>
+              {this.getBandsListItems(bandsAlphabeticalProp, favouritesState)}
+            </List>
           ) : (
             <Spinner />
           )}
@@ -186,6 +196,7 @@ class BandsList extends Component {
 BandsList.propTypes = {
   // bandsList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   bandsAlphabeticalProp: PropTypes.arrayOf(PropTypes.object).isRequired,
+  favouritesState: PropTypes.object.isRequired,
   loadBandsProp: PropTypes.func.isRequired,
   loadFavouritesNowProp: PropTypes.func.isRequired,
   navigation: PropTypes.object.isRequired

@@ -20,6 +20,10 @@ import {
   // appearancesDuxConstants
 } from "./appearancesReducer.js";
 import { homeDuxActions } from "./homeReducer.js";
+import {
+  favouritesDuxActions,
+  loadFavouritesNow
+} from "./favouritesReducer.js";
 
 /*
 FastImage.preload([
@@ -138,7 +142,7 @@ function* loadBandsGen() {
     //   "typeof bandsDataNormalisedString=" + typeof bandsDataNormalisedString
     // );ß
     // console.log(
-    //   "bandsDataNormalisedString="ß + bandsDataNormalisedString.substring(0, 200)
+    //   "bandsDataNormalisedString=" + bandsDataNormalisedString.substring(0, 200)
     // );
     const bandsDataNormalised = JSON.parse(bandsDataNormalisedString);
     // yield console.log(
@@ -175,9 +179,24 @@ function* loadBandsGen() {
   }
 }
 
+function* loadFavouritesGen() {
+  console.log("getting favourites");
+  yield put(favouritesDuxActions.setFetchFavouritesRequest());
+  try {
+    // const bandsDataNormalised = yield call(bandsApi.fetchBandsData);
+    const favouritesString = yield AsyncStorage.getItem("localFavourites");
+    const favourites = JSON.parse(favouritesString);
+    yield put(favouritesDuxActions.setFetchFavouritesSucceeded(favourites));
+  } catch (e) {
+    console.log("loadFavouritesGen error=" + e);
+    yield put(favouritesDuxActions.setFetchAppearancesFailed(e));
+  }
+}
+
 function* mySaga() {
   // yield takeLatest(bandsDuxConstants.LOAD_BANDS_NOW, loadBandsGen);
   yield takeLatest(loadBandsNow().type, loadBandsGen);
+  yield takeLatest(loadFavouritesNow().type, loadFavouritesGen);
   yield fork(updatedItemSaga);
 }
 

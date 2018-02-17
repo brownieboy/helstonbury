@@ -111,7 +111,7 @@ class BandCard extends Component {
             </Button>
           </Left>
           <Body>
-            <Title>Band Info</Title>
+            <Title>{bandDetails.name}</Title>
           </Body>
         </Header>
 

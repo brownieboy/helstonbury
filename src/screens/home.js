@@ -51,7 +51,10 @@ class Home extends Component {
               //   bandsApi.clearAsyncStorage();
               // }}
             >
-              <Icon name="menu" />
+              <Icon
+                name="menu"
+                onPress={() => alert("Options page coming soon!")}
+              />
             </Button>
           </Left>
           <Body>

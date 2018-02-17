@@ -193,10 +193,15 @@ function* loadFavouritesGen() {
   }
 }
 
+function* toggleFavouriteGen(bandObj) {
+  console.log("toggling favourite " + JSON.stringify(bandObj, null, 4));
+}
+
 function* mySaga() {
   // yield takeLatest(bandsDuxConstants.LOAD_BANDS_NOW, loadBandsGen);
   yield takeLatest(loadBandsNow().type, loadBandsGen);
   yield takeLatest(loadFavouritesNow().type, loadFavouritesGen);
+  yield takeLatest(favouritesDuxActions.toggleBandFavouriteStatus().type, toggleFavouriteGen);
   yield fork(updatedItemSaga);
 }
 

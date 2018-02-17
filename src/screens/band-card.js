@@ -92,6 +92,7 @@ class BandCard extends Component {
       bandMember => bandMember.bandId === bandId
     )[0]; // Returns an array
     const { favourite } = this.state;
+    const { toggleBandFavouriteStatus } = this.props;
 
     let backButtonText = `Back to ${parentList}`;
     const backButtonTextStyle = { fontSize: 12 };
@@ -144,8 +145,8 @@ class BandCard extends Component {
               <Icon
                 ios={favourite ? "ios-heart" : "ios-heart-outline"}
                 android={favourite ? "md-heart" : "md-heart-outline"}
-                style={{color: "red"}}
-                onPress={() => this.setState({ favourite: !favourite })}
+                style={{ color: "red" }}
+                onPress={() => toggleBandFavouriteStatus(bandDetails.bandId)}
               />
             </CardItem>
             <CardItem style={{ paddingVertical: 0 }}>
@@ -163,7 +164,8 @@ BandCard.propTypes = {
   appearancesByBandThenDateTime: PropTypes.arrayOf(PropTypes.object.isRequired)
     .isRequired,
   navigation: PropTypes.object.isRequired,
-  parentList: PropTypes.string.isRequired
+  parentList: PropTypes.string.isRequired,
+  toggleBandFavouriteStatus: PropTypes.func.isRequired
 };
 
 export default BandCard;

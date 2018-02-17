@@ -20,7 +20,8 @@ const mapStateToProps = state => ({
   ),
   appearancesGroupedByDayThenStage: appearanceSelectors.selectAppearancesGroupedByDayThenStage(
     state.appearancesState
-  )
+  ),
+  favouritesState: state.favouritesState
 });
 
 const AppearancesConn = connect(mapStateToProps, mapDispatchToProps)(

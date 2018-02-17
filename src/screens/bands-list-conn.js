@@ -23,7 +23,8 @@ const mapStateToProps = state => ({
   bandsAlphabeticalProp: bandSelectors.selectAlphabetical(state.bandsState),
   appearancesByBandThenDateTime: appearancesSelectors.selectAppearancesByBandNameThenDateTime(
     state.appearancesState
-  )
+  ),
+  favouritesState: state.favouritesState
 });
 
 const BandsListConn = connect(mapStateToProps, mapDispatchToProps)(BandsList);

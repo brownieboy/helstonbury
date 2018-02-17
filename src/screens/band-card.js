@@ -28,6 +28,10 @@ const deviceWidth = Dimensions.get("window").width;
 import openFacebookLink from "../helper-functions/open-facebook-link.js";
 
 class BandCard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { favourite: false };
+  }
   getAppearancesForBand = (appearances, bandKey) =>
     appearances.slice().filter(bandMember => bandMember.bandId === bandKey);
 
@@ -72,6 +76,7 @@ class BandCard extends Component {
       source={{ uri: cardFullUrl }}
     />
   );
+
   render() {
     const bandId = this.props.navigation.state.params.bandId;
     const {
@@ -86,6 +91,7 @@ class BandCard extends Component {
     const bandDetails = bandsAlphabetical.filter(
       bandMember => bandMember.bandId === bandId
     )[0]; // Returns an array
+    const { favourite } = this.state;
 
     let backButtonText = `Back to ${parentList}`;
     const backButtonTextStyle = { fontSize: 12 };
@@ -133,6 +139,14 @@ class BandCard extends Component {
                 <Text style={{ fontSize: 12 }}>Appearing:</Text>
                 {this.getAppearanceTexts(sortedAppearances)}
               </Body>
+            </CardItem>
+            <CardItem>
+              <Icon
+                ios={favourite ? "ios-heart" : "ios-heart-outline"}
+                android={favourite ? "md-heart" : "md-heart-outline"}
+                style={{color: "red"}}
+                onPress={() => this.setState({ favourite: !favourite })}
+              />
             </CardItem>
             <CardItem style={{ paddingVertical: 0 }}>
               {this.getFaceBookLinkComponent(bandDetails)}

@@ -38,6 +38,8 @@ import {
 // import MainFooterTabNav from "../components/mainfootertabnav.js";
 import styles from "../styles/home-styles.js";
 import BandsTabIcon from "../components/bands-tab-icon.js";
+import FavouritesListIcon from "../components/favourites-list-icon.js";
+
 const defaultThumb = "../../img/RockNRollGuitarist.png";
 
 // import { NavigationActions } from "react-navigation";
@@ -147,11 +149,7 @@ class BandsList extends Component {
           </Text>
         </Body>
         {favouritesState.favourites.indexOf(bandMember.bandId) > -1 ? (
-          <Icon
-            ios="ios-heart"
-            android="md-heart"
-            style={{ fontSize: 16, color: "red", marginRight: 10 }}
-          />
+          <FavouritesListIcon />
         ) : null}
         <Right>
           <Icon name="arrow-forward" />

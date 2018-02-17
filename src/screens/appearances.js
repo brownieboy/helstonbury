@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import IconMaterial from "react-native-vector-icons/MaterialIcons";
+// import IconMaterial from "react-native-vector-icons/MaterialIcons";
+// import Icon from "react-native-vector-icons";
 import { format } from "date-fns";
 
 import { View } from "react-native";
@@ -20,25 +21,22 @@ import {
   Spinner
 } from "native-base";
 
+import ScheduleTabIcon from "../components/schedule-tab-icon.js";
 import styles from "../styles/band-card-styles.js";
 // import tabNavStyles from "../styles/tab-navigator-styles.js";
 
 class Appearances extends Component {
   static navigationOptions = {
     tabBarLabel: "Schedule",
-    tabBarIcon: ({ tintColor }) => (
-      <IconMaterial name="schedule" size={25} style={{ color: tintColor }} />
-    )
+    tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
   };
 
-  //         style={{ height: 30, borderBottomWidth: 0 }}
 
   getAppearanceLines = lineData => {
     const itemsLength = lineData.length;
     return lineData.map((lineMember, index) => {
       const lineStyle = { height: 40 };
-      console.log("itemsLength=" + itemsLength + ", index=" + index);
-      if (itemsLength === (index + 1)) {
+      if (itemsLength === index + 1) {
         lineStyle.borderBottomWidth = 0;
       }
       return (

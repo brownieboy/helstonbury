@@ -21,7 +21,7 @@ const mapStateToProps = state => ({
 
 class BandCardWrapper extends Component {
   static navigationOptions = {
-    tabBarLabel: "Bands List",
+    tabBarLabel: "Bands",
     tabBarIcon: ({ tintColor }) => <BandsTabIcon tintColor={tintColor} />
   };
   render() {

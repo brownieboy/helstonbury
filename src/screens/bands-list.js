@@ -165,7 +165,7 @@ class BandsList extends Component {
       <Container style={styles.container}>
         <Header>
           <Body>
-            <Title>Bands List</Title>
+            <Title>Bands</Title>
           </Body>
           <Right />
         </Header>

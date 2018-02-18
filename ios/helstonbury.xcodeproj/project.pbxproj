@@ -39,6 +39,7 @@
 		2DCD954D1E0B4F2C00145EB5 /* helstonburyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* helstonburyTests.m */; };
 		473ED471151144929EC61F8B /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9B25632CD9C74067AF215792 /* Zocial.ttf */; };
 		492EF03B53E44FDD93E10869 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 71BA3D4F6F6848E6BBDBB7B0 /* Entypo.ttf */; };
+		4A0B86BE20391A18001B6A57 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 008F07F21AC5B25A0029DE68 /* main.jsbundle */; };
 		4AB844732018AB1F005DB899 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		4D358DDAE7664595941FB131 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 268BD45663E146B0AEB0DCC1 /* libRNFetchBlob.a */; };
 		540D0ACC214A4BCA935BE03B /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 821BE968D5AE44C8AE760878 /* Ionicons.ttf */; };
@@ -1199,6 +1200,7 @@
 				540D0ACC214A4BCA935BE03B /* Ionicons.ttf in Resources */,
 				B8484E798B594C9AB16B24BE /* MaterialIcons.ttf in Resources */,
 				7C38B79986414F04B64560BE /* MaterialCommunityIcons.ttf in Resources */,
+				4A0B86BE20391A18001B6A57 /* main.jsbundle in Resources */,
 				86C08D1AE9DA402E95EC2D1C /* Octicons.ttf in Resources */,
 				69072CA1F4F246CBAC2B6C07 /* Roboto_medium.ttf in Resources */,
 				DFC07E7F0560495AA7E0AEA8 /* Roboto.ttf in Resources */,

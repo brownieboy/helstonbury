@@ -143,7 +143,7 @@ class BandCard extends Component {
               <Icon
                 ios={favourite ? "ios-heart" : "ios-heart-outline"}
                 android={favourite ? "md-heart" : "md-heart-outline"}
-                style={{ color: "red" }}
+                style={{ color: favourite ? "red" : "grey" }}
                 onPress={() => toggleBandFavouriteStatus(bandDetails.bandId)}
               />
             </CardItem>

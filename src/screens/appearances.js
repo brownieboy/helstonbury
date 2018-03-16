@@ -43,7 +43,7 @@ class Appearances extends Component {
       }
       return (
         <ListItem
-          key={lineMember.bandId}
+          key={lineMember.id}
           onPress={() =>
             this.props.navigation.navigate("BandScheduleCard", {
               bandId: lineMember.bandId,

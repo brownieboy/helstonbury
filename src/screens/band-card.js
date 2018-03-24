@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Dimensions, Platform } from "react-native";
+import { Dimensions, Platform, View } from "react-native";
 import PropTypes from "prop-types";
 import { format } from "date-fns";
 // import { CachedImage } from "react-native-img-cache";
@@ -23,11 +23,20 @@ import {
 
 import styles from "../styles/band-card-styles.js";
 
-const deviceWidth = Dimensions.get("window").width;
-
 import openFacebookLink from "../helper-functions/open-facebook-link.js";
 
 class BandCard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dimensions: Dimensions.get("window")
+    };
+  }
+
+  handleOnLayout = e => {
+    this.setState({ dimensions: Dimensions.get("window") });
+  };
+
   getAppearancesForBand = (appearances, bandKey) =>
     appearances.slice().filter(bandMember => bandMember.bandId === bandKey);
 
@@ -61,17 +70,22 @@ class BandCard extends Component {
     return null;
   };
 
-  getCardImage = cardFullUrl => (
-    <CachedImage
-      style={{
-        alignSelf: "center",
-        height: 150,
-        width: deviceWidth / 1.18,
-        marginVertical: 5
-      }}
-      source={{ uri: cardFullUrl }}
-    />
-  );
+  getCardImage = cardFullUrl => {
+    const dimensions = this.state.dimensions;
+    const imageHeight = Math.round((dimensions.width * 0.8) * 9 / 16);
+    const imageWidth = dimensions.width * 0.8;
+    return (
+      <CachedImage
+        style={{
+          alignSelf: "center",
+          height: imageHeight,
+          width: imageWidth,
+          marginVertical: 5
+        }}
+        source={{ uri: cardFullUrl }}
+      />
+    );
+  };
 
   render() {
     const bandId = this.props.navigation.state.params.bandId;
@@ -152,6 +166,7 @@ class BandCard extends Component {
             </CardItem>
           </Card>
         </Content>
+        <View onLayout={this.handleOnLayout} />
       </Container>
     );
   }

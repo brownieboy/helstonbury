@@ -19,6 +19,7 @@ class App extends Component {
       SplashScreen.hide();
     }
   }
+
   render() {
     return (
       <Provider store={store}>

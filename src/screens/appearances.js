@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Button, Segment } from "native-base";
 // import IconMaterial from "react-native-vector-icons/MaterialIcons";
 // import Icon from "react-native-vector-icons";
 import { format } from "date-fns";
@@ -122,8 +123,16 @@ class Appearances extends Component {
     return (
       <Container style={styles.container}>
         <Header>
+          <Left />
           <Body>
-            <Title>Schedule</Title>
+            <Segment>
+              <Button first>
+                <Text>by Day</Text>
+              </Button>
+              <Button last active>
+                <Text>by Stage</Text>
+              </Button>
+            </Segment>
           </Body>
           <Right />
         </Header>

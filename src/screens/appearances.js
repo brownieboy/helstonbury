@@ -109,8 +109,12 @@ class Appearances extends Component {
   render() {
     const {
       appearancesListByDateTime,
+      appearancesGroupedByDay,
       appearancesGroupedByDayThenStage
     } = this.props;
+    console.log("appearances..render, appearancesGroupedByDay:");
+    console.log(appearancesGroupedByDay);
+
     // console.log(
     //   "appearancesGroupedByDayThenStage=" +
     //     JSON.stringify(appearancesGroupedByDayThenStage, null, 4)

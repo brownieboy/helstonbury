@@ -6,6 +6,7 @@ import Appearances from "./appearances.js";
 
 // Reducer
 import {
+  getAppearancesGroupedByDay,
   loadAppearances,
   selectors as appearanceSelectors
 } from "../dux/appearancesReducer.js";
@@ -21,7 +22,8 @@ const mapStateToProps = state => ({
   appearancesGroupedByDayThenStage: appearanceSelectors.selectAppearancesGroupedByDayThenStage(
     state.appearancesState
   ),
-  favouritesState: state.favouritesState
+  favouritesState: state.favouritesState,
+  appearancesGroupedByDay: getAppearancesGroupedByDay(state)
 });
 
 const AppearancesConn = connect(mapStateToProps, mapDispatchToProps)(

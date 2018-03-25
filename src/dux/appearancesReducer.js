@@ -5,6 +5,8 @@ import { format } from "date-fns";
 // import { d3 } from "d3-collection";
 import { stringThenDateTimeSort } from "../helper-functions/sorting.js";
 
+// import { getBandInfoForId } from "./bandsReducer.js";
+
 // Action type constants
 const LOAD_APPEARANCES_NOW = "LOAD_APPEARANCES_NOW"; // Imperative, hence "NOW"!
 const FETCH_APPEARANCES_REQUEST = "FETCH_APPEARANCES_REQUEST";
@@ -84,6 +86,72 @@ export const selectors = {
   selectAppearancesByDateTime,
   selectAppearancesByBandNameThenDateTime,
   selectAppearancesGroupedByDayThenStage
+};
+
+// Getters are just functions.
+const getAppearancesByDateTime = appearancesList => {
+  const newAppearances = [...appearancesList];
+  return newAppearances
+    .slice()
+    .sort((a, b) => new Date(a.dateTimeStart) - new Date(b.dateTimeStart));
+};
+
+/*
+export const getAppearancesWithBandAndStageNames = state => {
+  const bandsList = state.bandsState.bandsList;
+  const stagesList = state.stagesState.stagesList;
+  let matchingBand, matchingStage, newAppearance;
+  // const appearancesRaw = selectAppearancesByDateTime(state.appearancesState);
+  const appearancesRaw = getAppearancesByDateTime(
+    state.appearancesState.appearancesList
+  );
+
+
+  // const appearancesRaw = state.appearancesState.appearancesList;
+  const appearancesWithBandNames = appearancesRaw.map(appearance => {
+    matchingBand = getBandInfoForId(bandsList, appearance.bandId);
+    matchingStage = getStageInfoForId(stagesList, appearance.stageId);
+    newAppearance = { ...appearance };
+    if (matchingBand) {
+      newAppearance = {
+        ...newAppearance,
+        bandName: matchingBand.name,
+        name: matchingBand.name,
+        bandThumbFullUrl: matchingBand.thumbFullUrl || null
+      };
+    }
+    if (matchingStage) {
+      newAppearance = {
+        ...newAppearance,
+        stageName: matchingStage.name,
+        stageSortOrder: matchingStage.sortOrder
+      };
+    }
+    return newAppearance;
+  });
+  // console.log(
+  //   "appearancesReducer..getAppearancesWithBandAndStageNames returns:"
+  // );
+  // console.log(appearancesWithBandNames);
+  return appearancesWithBandNames;
+};
+
+*/
+
+export const getAppearancesGroupedByDay = state => {
+  const appearancesList = [
+    ...getAppearancesByDateTime(state.appearancesState.appearancesList)
+  ];
+  const appearancesGrouped = d3
+    .nest()
+    .key(appearance =>
+      format(new Date(appearance.dateTimeStart), "dddd DD/MM/YYYY")
+    )
+    .sortKeys(
+      (a, b) => parseInt(a.split("~")[0], 10) - parseInt(b.split("~")[0], 10)
+    )
+    .entries(appearancesList);
+  return appearancesGrouped;
 };
 
 /*

@@ -5,7 +5,7 @@ import { Button, Segment } from "native-base";
 // import Icon from "react-native-vector-icons";
 import { format } from "date-fns";
 
-import { View } from "react-native";
+import { Platform, View } from "react-native";
 
 import {
   Container,
@@ -35,7 +35,8 @@ class Appearances extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeTab: "byDay"
+      activeTab: "byDay",
+      showOnlyFavourites: false
     };
   }
 
@@ -48,6 +49,11 @@ class Appearances extends Component {
     this.setState({ activeTab });
   };
 
+  handleShowFavouritesPress = () => {
+    const newStatus = !this.state.showOnlyFavourites;
+    this.setState({ showOnlyFavourites: newStatus });
+  };
+
   render() {
     const {
       appearancesListByDateTime,
@@ -56,6 +62,16 @@ class Appearances extends Component {
       favourites,
       navigation
     } = this.props;
+
+    const { showOnlyFavourites } = this.state;
+
+    let heart = "ios-heart";
+    let heartOutline = "ios-heart-outline";
+    if (Platform.OS === "android") {
+      heart = "md-heart";
+      heartOutline = "md-heart-outline";
+    }
+
     // console.log("appearances..render, appearancesGroupedByDay:");
     // console.log(appearancesGroupedByDay);
 
@@ -85,7 +101,14 @@ class Appearances extends Component {
               </Button>
             </Segment>
           </Body>
-          <Right />
+          <Right>
+            <Button transparent>
+              <Icon
+                name={showOnlyFavourites ? heart : heartOutline}
+                onPress={this.handleShowFavouritesPress}
+              />
+            </Button>
+          </Right>
         </Header>
         {this.state.activeTab === "byStage" ? (
           <AppearancesByDayStage

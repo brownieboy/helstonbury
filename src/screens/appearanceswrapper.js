@@ -116,6 +116,7 @@ class Appearances extends Component {
             appearancesGroupedByDayThenStage={appearancesGroupedByDayThenStage}
             navigation={navigation}
             favourites={favourites}
+            showOnlyFavourites={showOnlyFavourites}
           />
         ) : (
           <AppearancesByDay
@@ -123,6 +124,7 @@ class Appearances extends Component {
             appearancesGroupedByDay={appearancesGroupedByDay}
             navigation={navigation}
             favourites={favourites}
+            showOnlyFavourites={showOnlyFavourites}
           />
         )}
       </Container>

@@ -23,6 +23,7 @@ const mapStateToProps = state => ({
     state.appearancesState
   ),
   favouritesState: state.favouritesState,
+  favourites: state.favouritesState.favourites,
   appearancesGroupedByDay: getAppearancesGroupedByDay(state)
 });
 

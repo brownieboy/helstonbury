@@ -11,7 +11,7 @@ import {
   Container,
   Header,
   Icon,
-  Title,
+  // Title,
   Left,
   Content,
   List,
@@ -29,9 +29,20 @@ import styles from "../styles/band-card-styles.js";
 // import tabNavStyles from "../styles/tab-navigator-styles.js";
 
 class Appearances extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeTab: "byDay"
+    };
+  }
+
   static navigationOptions = {
     tabBarLabel: "Schedule",
     tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
+  };
+
+  handleSegmentButtonPress = activeTab => {
+    this.setState({ activeTab });
   };
 
   getAppearanceLines = lineData => {
@@ -126,10 +137,22 @@ class Appearances extends Component {
           <Left />
           <Body>
             <Segment>
-              <Button first>
+              <Button
+                first
+                active={this.state.activeTab === "byDay"}
+                onPress={() => {
+                  this.handleSegmentButtonPress("byDay");
+                }}
+              >
                 <Text>by Day</Text>
               </Button>
-              <Button last active>
+              <Button
+                last
+                active={this.state.activeTab === "byStage"}
+                onPress={() => {
+                  this.handleSegmentButtonPress("byStage");
+                }}
+              >
                 <Text>by Stage</Text>
               </Button>
             </Segment>

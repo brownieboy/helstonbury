@@ -2,7 +2,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 // Components
-import Appearances from "./appearances.js";
+import Appearances from "./appearanceswrapper.js";
 
 // Reducer
 import {

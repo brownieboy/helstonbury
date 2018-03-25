@@ -96,6 +96,11 @@ const getAppearancesByDateTime = appearancesList => {
     .sort((a, b) => new Date(a.dateTimeStart) - new Date(b.dateTimeStart));
 };
 
+const getFavouriteAppearancesByDateTime = (appearancesList, favouritesList) =>
+  getAppearancesByDateTime(appearances).filter(
+    appearance => favouritesList.indexOf(appearance.bandId) >= 0
+  );
+
 /*
 export const getAppearancesWithBandAndStageNames = state => {
   const bandsList = state.bandsState.bandsList;

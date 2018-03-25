@@ -14,6 +14,16 @@ import {
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ loadappearancesProp: loadAppearances }, dispatch);
 
+
+
+/*
+  getAppearanceInfoForId: appearanceId =>
+    getAppearanceInfoForIdAction(
+      state.appearancesState.appearancesList,
+      appearanceId
+    )
+ */
+
 const mapStateToProps = state => ({
   // appearancesProp: state.appearancesState,
   appearancesListByDateTime: appearanceSelectors.selectAppearancesByDateTime(

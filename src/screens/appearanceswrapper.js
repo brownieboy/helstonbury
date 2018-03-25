@@ -53,7 +53,8 @@ class Appearances extends Component {
       appearancesListByDateTime,
       appearancesGroupedByDay,
       appearancesGroupedByDayThenStage,
-      favourites
+      favourites,
+      navigation
     } = this.props;
     // console.log("appearances..render, appearancesGroupedByDay:");
     // console.log(appearancesGroupedByDay);
@@ -90,10 +91,16 @@ class Appearances extends Component {
           <AppearancesByDayStage
             appearancesListByDateTime={appearancesListByDateTime}
             appearancesGroupedByDayThenStage={appearancesGroupedByDayThenStage}
+            navigation={navigation}
             favourites={favourites}
           />
         ) : (
-          <AppearancesByDay />
+          <AppearancesByDay
+            appearancesListByDateTime={appearancesListByDateTime}
+            appearancesGroupedByDay={appearancesGroupedByDay}
+            navigation={navigation}
+            favourites={favourites}
+          />
         )}
       </Container>
     );
@@ -103,10 +110,12 @@ class Appearances extends Component {
 Appearances.propTypes = {
   appearancesListByDateTime: PropTypes.arrayOf(PropTypes.object.isRequired)
     .isRequired,
+  appearancesGroupedByDay: PropTypes.arrayOf(PropTypes.object.isRequired)
+    .isRequired,
   appearancesGroupedByDayThenStage: PropTypes.arrayOf(
     PropTypes.object.isRequired
   ).isRequired,
-  favourites:PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  favourites: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   navigation: PropTypes.object.isRequired
 };
 

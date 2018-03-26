@@ -88,7 +88,25 @@ export const selectors = {
   selectAppearancesGroupedByDayThenStage
 };
 
+/*
+const getAppearancesByDateTime = (appearancesList, bandsToFilterArray = []) => {
+  // const newAppearances = [...appearancesList];
+  const newAppearances = appearancesList.filter(
+    appearance => bandsToFilterArray.indexOf(appearance.bandId) > 0
+  );
+  return newAppearances
+    .slice()
+    .sort((a, b) => new Date(a.dateTimeStart) - new Date(b.dateTimeStart));
+};
+
+*/
+
 // Getters are just functions.
+export const getAppearancesList = state => {
+  const newAppearances = [...state.appearancesState.appearancesList];
+  return newAppearances;
+};
+
 const getAppearancesByDateTime = appearancesList => {
   const newAppearances = [...appearancesList];
   return newAppearances
@@ -96,47 +114,31 @@ const getAppearancesByDateTime = appearancesList => {
     .sort((a, b) => new Date(a.dateTimeStart) - new Date(b.dateTimeStart));
 };
 
-/*
-export const getAppearancesWithBandAndStageNames = state => {
-  const bandsList = state.bandsState.bandsList;
-  const stagesList = state.stagesState.stagesList;
-  let matchingBand, matchingStage, newAppearance;
-  // const appearancesRaw = selectAppearancesByDateTime(state.appearancesState);
-  const appearancesRaw = getAppearancesByDateTime(
-    state.appearancesState.appearancesList
+export const filterAppearancesByBandId = (appearances, bandsToFilterArray) =>
+  appearances.filter(
+    appearance => bandsToFilterArray.indexOf(appearance.bandId) > 0
   );
 
-
-  // const appearancesRaw = state.appearancesState.appearancesList;
-  const appearancesWithBandNames = appearancesRaw.map(appearance => {
-    matchingBand = getBandInfoForId(bandsList, appearance.bandId);
-    matchingStage = getStageInfoForId(stagesList, appearance.stageId);
-    newAppearance = { ...appearance };
-    if (matchingBand) {
-      newAppearance = {
-        ...newAppearance,
-        bandName: matchingBand.name,
-        name: matchingBand.name,
-        bandThumbFullUrl: matchingBand.thumbFullUrl || null
-      };
-    }
-    if (matchingStage) {
-      newAppearance = {
-        ...newAppearance,
-        stageName: matchingStage.name,
-        stageSortOrder: matchingStage.sortOrder
-      };
-    }
-    return newAppearance;
-  });
-  // console.log(
-  //   "appearancesReducer..getAppearancesWithBandAndStageNames returns:"
-  // );
-  // console.log(appearancesWithBandNames);
-  return appearancesWithBandNames;
+const sortAppearancesByDateTime = appearancesList => {
+  const newAppearances = [...appearancesList];
+  return newAppearances
+    .slice()
+    .sort((a, b) => new Date(a.dateTimeStart) - new Date(b.dateTimeStart));
 };
 
-*/
+export const groupAppearancesByDay = appearances => {
+  const appearancesList = [...sortAppearancesByDateTime(appearances)];
+  const appearancesGrouped = d3
+    .nest()
+    .key(appearance =>
+      format(new Date(appearance.dateTimeStart), "dddd DD/MM/YYYY")
+    )
+    .sortKeys(
+      (a, b) => parseInt(a.split("~")[0], 10) - parseInt(b.split("~")[0], 10)
+    )
+    .entries(appearancesList);
+  return appearancesGrouped;
+};
 
 export const getAppearancesGroupedByDay = state => {
   const appearancesList = [

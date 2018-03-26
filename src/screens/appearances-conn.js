@@ -6,7 +6,11 @@ import Appearances from "./appearanceswrapper.js";
 
 // Reducer
 import {
+  getAppearancesList,
+  filterAppearancesByBandId,
+  groupAppearancesByDay,
   getAppearancesGroupedByDay,
+  getAppearancesByDateTime,
   loadAppearances,
   selectors as appearanceSelectors
 } from "../dux/appearancesReducer.js";
@@ -24,7 +28,11 @@ const mapStateToProps = state => ({
   ),
   favouritesState: state.favouritesState,
   favourites: state.favouritesState.favourites,
-  appearancesGroupedByDay: getAppearancesGroupedByDay(state)
+  appearancesGroupedByDay: getAppearancesGroupedByDay(state),
+  appearancesList: getAppearancesList(state),
+  filterAppearancesByBandId: (appearances, bandsToFilterArray) =>
+    filterAppearancesByBandId(appearances, bandsToFilterArray),
+  groupAppearancesByDay: appearances => groupAppearancesByDay(appearances)
 });
 
 const AppearancesConn = connect(mapStateToProps, mapDispatchToProps)(
@@ -32,3 +40,8 @@ const AppearancesConn = connect(mapStateToProps, mapDispatchToProps)(
 );
 
 export default AppearancesConn;
+
+/*
+  getBandInfoForId: bandId =>
+    getBandInfoForId(state.bandsState.bandsList, bandId),
+*/

@@ -54,8 +54,17 @@ class Appearances extends Component {
     this.setState({ showOnlyFavourites: newStatus });
   };
 
+  /*
+            appearancesList={appearancesList}
+            filterAppearancesByBandId={filterAppearancesByBandId}
+            groupAppearancesByDay={groupAppearancesByDay}
+*/
+
   render() {
     const {
+      appearancesList,
+      filterAppearancesByBandId,
+      groupAppearancesByDay,
       appearancesListByDateTime,
       appearancesGroupedByDay,
       appearancesGroupedByDayThenStage,
@@ -125,6 +134,9 @@ class Appearances extends Component {
             navigation={navigation}
             favourites={favourites}
             showOnlyFavourites={showOnlyFavourites}
+            appearancesList={appearancesList}
+            filterAppearancesByBandId={filterAppearancesByBandId}
+            groupAppearancesByDay={groupAppearancesByDay}
           />
         )}
       </Container>

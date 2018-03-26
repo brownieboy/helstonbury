@@ -5,7 +5,9 @@ const FETCH_FAVOURITES_SUCCESS = "FETCH_FAVOURITES_SUCCESS";
 const FETCH_FAVOURITES_FAILURE = "FETCH_FAVOURITES_FAILURE";
 const TOGGLE_BAND_FAVOURITES_STATUS = "TOGGLE_BAND_FAVOURITES_STATUS";
 
-// Reducer
+
+
+// Reducer.  Favourites are a simple array of bandId.
 const homeReducer = (
   state = { fetchStatus: "", fetchError: "", favourites: [] },
   action

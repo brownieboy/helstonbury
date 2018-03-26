@@ -9,6 +9,7 @@ import {
   getAppearancesList,
   filterAppearancesByBandId,
   groupAppearancesByDay,
+  groupAppearancesByDayStage
   getAppearancesGroupedByDay,
   getAppearancesByDateTime,
   loadAppearances,
@@ -42,7 +43,8 @@ const mapStateToProps = state => ({
   appearancesList: getAppearancesList(state),
   filterAppearancesByBandId: (appearances, bandsToFilterArray) =>
     filterAppearancesByBandId(appearances, bandsToFilterArray),
-  groupAppearancesByDay: appearances => groupAppearancesByDay(appearances)
+  groupAppearancesByDay: appearances => groupAppearancesByDay(appearances),
+  groupAppearancesByDayStage: appearances => groupAppearancesByDayStage(appearances)
 });
 
 const AppearancesConn = connect(mapStateToProps, mapDispatchToProps)(

@@ -100,11 +100,34 @@ class AppearancesByDay extends Component {
     });
 
   render() {
-    const { appearancesListByDateTime, appearancesGroupedByDay } = this.props;
+    const {
+      appearancesList,
+      filterAppearancesByBandId,
+      groupAppearancesByDay,
+      appearancesListByDateTime,
+      favourites,
+      getAppearancesByDateTime,
+      showOnlyFavourites
+    } = this.props;
+
+    // console.log("appearances-byday.js, appearances:");
+    // const bandFilterArray = showOnlyFavourites ? favourites : [];
+    // console.log("appearances-byday.js, appearances:");
+    // console.log(appearancesList);
+
+    let appearances = [...appearancesList];
+    if (showOnlyFavourites) {
+      appearances = filterAppearancesByBandId(appearancesList, favourites);
+    }
+    console.log("Filtered (or not) appearances:");
+    console.log(appearances);
+
+    const appearancesGroupedByDay = groupAppearancesByDay(appearances);
+
     return (
       <Content padder>
         <Content style={{ backgroundColor: "#fff" }}>
-          {appearancesListByDateTime.length > 0 ? (
+          {appearances.length > 0 ? (
             <List>
               {this.getAppearancesListDayLevel(appearancesGroupedByDay)}
             </List>

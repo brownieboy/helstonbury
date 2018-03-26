@@ -36,6 +36,14 @@ class Home extends Component {
       <Icon name="home" style={{ color: tintColor }} />
     )
   };
+
+  componentWillMount() {
+    // console.log("BandsList..componentWillMount()");
+    const { loadBandsProp, loadFavouritesNowProp } = this.props;
+    loadBandsProp();
+    loadFavouritesNowProp();
+  }
+
   render() {
     // const { navigate } = this.props.navigation;
     // console.log("home props=") + this.props;
@@ -91,7 +99,9 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-  homeProp: PropTypes.object.isRequired
+  homeProp: PropTypes.object.isRequired,
+  loadFavouritesNowProp: PropTypes.func.isRequired,
+  loadBandsProp: PropTypes.func.isRequired
 };
 
 export default Home;

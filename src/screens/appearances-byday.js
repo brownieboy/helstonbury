@@ -119,8 +119,8 @@ class AppearancesByDay extends Component {
     if (showOnlyFavourites) {
       appearances = filterAppearancesByBandId(appearancesList, favourites);
     }
-    console.log("Filtered (or not) appearances:");
-    console.log(appearances);
+    // console.log("Filtered (or not) appearances:");
+    // console.log(appearances);
 
     const appearancesGroupedByDay = groupAppearancesByDay(appearances);
 

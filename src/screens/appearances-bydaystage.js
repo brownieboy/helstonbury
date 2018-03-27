@@ -45,7 +45,7 @@ class AppearancesByDayStage extends Component {
               lineMember.dateTimeStart,
               "HH:mm"
             )}-${format(lineMember.dateTimeEnd, "HH:mm")}: `}</Text>
-            <Text style={{ fontSize: 16 }}>{lineMember.name}</Text>
+            <Text style={{ fontSize: 16 }}>{lineMember.bandName}</Text>
           </Left>
           {favourites.indexOf(lineMember.bandId) > -1 ? (
             <FavouritesListIcon />

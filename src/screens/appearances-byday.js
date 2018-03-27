@@ -27,7 +27,11 @@ class AppearancesByDay extends Component {
     const itemsLength = lineData.length;
     const favourites = this.props.favourites;
     return lineData.map((lineMember, index) => {
-      const lineStyle = { height: 40 };
+      const lineStyle = {
+        height: 35,
+        justifyContent: "flex-start",
+        margin: 0
+      };
       if (itemsLength === index + 1) {
         lineStyle.borderBottomWidth = 0;
       }
@@ -42,19 +46,24 @@ class AppearancesByDay extends Component {
           }
           style={lineStyle}
         >
-          <Left>
-            {favourites.indexOf(lineMember.bandId) > -1 ? (
-              <FavouritesListIcon />
-            ) : null}
-            <Text style={{ fontSize: 14 }}>{`${format(
-              lineMember.dateTimeStart,
-              "HH:mm"
-            )}-${format(lineMember.dateTimeEnd, "HH:mm")}: `}</Text>
-            <Text style={{ fontSize: 16 }}>{lineMember.bandName}</Text>
-            <Text style={{ fontSize: 10 }}> ({lineMember.stageName})</Text>
+          <Left style={{ flex: 14 }}>
+            <Text style={{ fontSize: 12 }}>
+              {`${format(lineMember.dateTimeStart, "HH:mm")}`}
+            </Text>
+            <Text style={{ fontSize: 14 }}>{lineMember.bandName}</Text>
+            <Text style={{ fontSize: 10 }}>({lineMember.stageName})</Text>
           </Left>
 
-          <Right>
+          <Right style={{ flex: 1 }}>
+            {favourites.indexOf(lineMember.bandId) > -1 ? (
+              <FavouritesListIcon style={{ fontSize: 12, width: 12 }} />
+            ) : (
+              <FavouritesListIcon
+                style={{ fontSize: 12, width: 12, color: "transparent" }}
+              />
+            )}
+          </Right>
+          <Right style={{ flex: 1 }}>
             <Icon name="arrow-forward" />
           </Right>
         </ListItem>
@@ -69,7 +78,7 @@ class AppearancesByDay extends Component {
           {dayMember.key.toUpperCase()}
         </Text>
       </ListItem>,
-      <View key={`${dayMember.key}-stagewrapper`} style={{ marginBottom: 20 }}>
+      <View key={`${dayMember.key}-lineswrapper`} style={{ marginBottom: 5 }}>
         {this.getAppearanceLines(dayMember.values)}
       </View>
     ]);

@@ -25,7 +25,7 @@ class AppearancesByDayStage extends Component {
     const itemsLength = lineData.length;
     const favourites = this.props.favourites;
     return lineData.map((lineMember, index) => {
-      const lineStyle = { height: 40 };
+      const lineStyle = { height: 35 };
       if (itemsLength === index + 1) {
         lineStyle.borderBottomWidth = 0;
       }
@@ -40,17 +40,23 @@ class AppearancesByDayStage extends Component {
           }
           style={lineStyle}
         >
-          <Left>
-            <Text style={{ fontSize: 14 }}>{`${format(
+          <Left style={{ flex: 13 }}>
+            <Text style={{ fontSize: 12 }}>{`${format(
               lineMember.dateTimeStart,
               "HH:mm"
             )}-${format(lineMember.dateTimeEnd, "HH:mm")}: `}</Text>
-            <Text style={{ fontSize: 16 }}>{lineMember.bandName}</Text>
+            <Text style={{ fontSize: 14 }}>{lineMember.bandName}</Text>
           </Left>
-          {favourites.indexOf(lineMember.bandId) > -1 ? (
-            <FavouritesListIcon />
-          ) : null}
-          <Right>
+          <Right style={{ flex: 1 }}>
+            {favourites.indexOf(lineMember.bandId) > -1 ? (
+              <FavouritesListIcon style={{ fontSize: 12, width: 12 }} />
+            ) : (
+              <FavouritesListIcon
+                style={{ fontSize: 12, width: 12, color: "transparent" }}
+              />
+            )}
+          </Right>
+          <Right style={{ flex: 1 }}>
             <Icon name="arrow-forward" />
           </Right>
         </ListItem>

@@ -2,8 +2,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 // Components
-import AppearancesByDay from "./appearances-byday.js";
-import AppearancesByDayStage from "./appearances-bydaystage.js";
+import Appearances from "./appearanceswrapper.js";
 
 // Reducer
 import {
@@ -16,7 +15,19 @@ import {
   selectors as appearanceSelectors
 } from "../dux/appearancesReducer.js";
 
-const getCommonStateObject = state => ({
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ loadappearancesProp: loadAppearances }, dispatch);
+
+/*
+  getAppearanceInfoForId: appearanceId =>
+    getAppearanceInfoForIdAction(
+      state.appearancesState.appearancesList,
+      appearanceId
+    )
+ */
+
+const mapStateToProps = state => ({
+  // appearancesProp: state.appearancesState,
   appearancesListByDateTime: appearanceSelectors.selectAppearancesByDateTime(
     state.appearancesState
   ),
@@ -28,32 +39,17 @@ const getCommonStateObject = state => ({
   appearancesGroupedByDay: getAppearancesGroupedByDay(state),
   appearancesList: getAppearancesList(state),
   filterAppearancesByBandId: (appearances, bandsToFilterArray) =>
-    filterAppearancesByBandId(appearances, bandsToFilterArray)
-});
-
-const mapStateToPropsByDay = state => ({
-  ...getCommonStateObject(state),
-  groupAppearancesByDay: appearances => groupAppearancesByDay(appearances)
-});
-
-const mapStateToPropsByDayStage = state => ({
-  ...getCommonStateObject(state),
+    filterAppearancesByBandId(appearances, bandsToFilterArray),
+  groupAppearancesByDay: appearances => groupAppearancesByDay(appearances),
   groupAppearancesByDayStage: appearances =>
     groupAppearancesByDayStage(appearances)
 });
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ loadappearancesProp: loadAppearances }, dispatch);
+const AppearancesConn = connect(mapStateToProps, mapDispatchToProps)(
+  Appearances
+);
 
-export const AppearancesByDayConn = connect(
-  mapStateToPropsByDay,
-  mapDispatchToProps
-)(AppearancesByDay);
-
-export const AppearancesByDayStageConn = connect(
-  mapStateToPropsByDayStage,
-  mapDispatchToProps
-)(AppearancesByDayStage);
+export default AppearancesConn;
 
 /*
   getBandInfoForId: bandId =>

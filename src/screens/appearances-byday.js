@@ -60,21 +60,9 @@ class AppearancesByDay extends Component {
     });
   };
 
-  /*
-  getAppearancesStageLevel = groupedStageData =>
-    groupedStageData.map(stageMember => [
-      <ListItem itemDivider key={stageMember.key}>
-        <Text>{stageMember.key.split("~")[1]}</Text>
-      </ListItem>,
-      <View key={`${stageMember.key}-lineswrapper`}>
-        {this.getAppearanceLines(stageMember.values)}
-      </View>
-    ]);
-*/
-
   getAppearancesListDayLevel = groupedDayData =>
     groupedDayData.map(dayMember => [
-      <ListItem key={dayMember.key}>
+      <ListItem itemDivider key={dayMember.key}>
         <Text style={{ fontWeight: "bold" }}>
           {dayMember.key.toUpperCase()}
         </Text>
@@ -84,29 +72,12 @@ class AppearancesByDay extends Component {
       </View>
     ]);
 
-  getAppearancesListItems = appearancesList =>
-    appearancesList.map(appearanceMember => {
-      const { dateTimeStart, bandId, name, stageName } = appearanceMember;
-      return (
-        <ListItem key={`${bandId}${dateTimeStart}`}>
-          <Body>
-            <Text>{name}</Text>
-            <Text numberOfLines={1} note>
-              Appear: {`${dateTimeStart || "???"} - ${stageName}`}
-            </Text>
-          </Body>
-        </ListItem>
-      );
-    });
-
   render() {
     const {
       appearancesList,
       filterAppearancesByBandId,
       groupAppearancesByDay,
-      appearancesListByDateTime,
       favourites,
-      getAppearancesByDateTime,
       showOnlyFavourites
     } = this.props;
 
@@ -141,11 +112,12 @@ class AppearancesByDay extends Component {
 }
 
 AppearancesByDay.propTypes = {
-  appearancesListByDateTime: PropTypes.arrayOf(PropTypes.object.isRequired)
-    .isRequired,
-  appearancesGroupedByDay: PropTypes.arrayOf(PropTypes.object.isRequired)
-    .isRequired,
+  appearancesList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  filterAppearancesByBandId: PropTypes.func.isRequired,
+  groupAppearancesByDay: PropTypes.func.isRequired,
   favourites: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  showOnlyFavourites: PropTypes.bool.isRequired,
+
   navigation: PropTypes.object.isRequired
 };
 

@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import { Button, Segment } from "native-base";
 // import IconMaterial from "react-native-vector-icons/MaterialIcons";
 // import Icon from "react-native-vector-icons";
-import { format } from "date-fns";
+// import { format } from "date-fns";
 
-import { Platform, View } from "react-native";
+import { Platform } from "react-native";
 
 import {
   Container,
@@ -13,17 +13,13 @@ import {
   Icon,
   // Title,
   Left,
-  Content,
-  List,
-  ListItem,
   Text,
   Right,
-  Body,
-  Spinner
+  Body
 } from "native-base";
 
 import ScheduleTabIcon from "../components/schedule-tab-icon.js";
-import FavouritesListIcon from "../components/favourites-list-icon.js";
+// import FavouritesListIcon from "../components/favourites-list-icon.js";
 
 import AppearancesByDay from "./appearances-byday.js";
 import AppearancesByDayStage from "./appearances-bydaystage.js";
@@ -54,21 +50,12 @@ class Appearances extends Component {
     this.setState({ showOnlyFavourites: newStatus });
   };
 
-  /*
-            appearancesList={appearancesList}
-            filterAppearancesByBandId={filterAppearancesByBandId}
-            groupAppearancesByDay={groupAppearancesByDay}
-*/
-
   render() {
     const {
       appearancesList,
       filterAppearancesByBandId,
       groupAppearancesByDay,
       groupAppearancesByDayStage,
-      appearancesListByDateTime,
-      appearancesGroupedByDay,
-      appearancesGroupedByDayThenStage,
       favourites,
       navigation
     } = this.props;
@@ -122,8 +109,6 @@ class Appearances extends Component {
         </Header>
         {this.state.activeTab === "byStage" ? (
           <AppearancesByDayStage
-            appearancesListByDateTime={appearancesListByDateTime}
-            appearancesGroupedByDayThenStage={appearancesGroupedByDayThenStage}
             navigation={navigation}
             favourites={favourites}
             showOnlyFavourites={showOnlyFavourites}
@@ -133,8 +118,6 @@ class Appearances extends Component {
           />
         ) : (
           <AppearancesByDay
-            appearancesListByDateTime={appearancesListByDateTime}
-            appearancesGroupedByDay={appearancesGroupedByDay}
             navigation={navigation}
             favourites={favourites}
             showOnlyFavourites={showOnlyFavourites}
@@ -149,13 +132,10 @@ class Appearances extends Component {
 }
 
 Appearances.propTypes = {
-  appearancesListByDateTime: PropTypes.arrayOf(PropTypes.object.isRequired)
-    .isRequired,
-  appearancesGroupedByDay: PropTypes.arrayOf(PropTypes.object.isRequired)
-    .isRequired,
-  appearancesGroupedByDayThenStage: PropTypes.arrayOf(
-    PropTypes.object.isRequired
-  ).isRequired,
+  appearancesList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  filterAppearancesByBandId: PropTypes.func.isRequired,
+  groupAppearancesByDayStage: PropTypes.func.isRequired,
+  groupAppearancesByDay: PropTypes.func.isRequired,
   favourites: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   navigation: PropTypes.object.isRequired
 };

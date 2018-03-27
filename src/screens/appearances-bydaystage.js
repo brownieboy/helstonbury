@@ -41,10 +41,11 @@ class AppearancesByDayStage extends Component {
           style={lineStyle}
         >
           <Left>
-            <Text style={{ fontSize: 14 }}>{`${lineMember.name}: ${format(
+            <Text style={{ fontSize: 14 }}>{`${format(
               lineMember.dateTimeStart,
               "HH:mm"
-            )}-${format(lineMember.dateTimeEnd, "HH:mm")}`}</Text>
+            )}-${format(lineMember.dateTimeEnd, "HH:mm")}: `}</Text>
+            <Text style={{ fontSize: 16 }}>{lineMember.name}</Text>
           </Left>
           {favourites.indexOf(lineMember.bandId) > -1 ? (
             <FavouritesListIcon />
@@ -59,8 +60,10 @@ class AppearancesByDayStage extends Component {
 
   getAppearancesStageLevel = groupedStageData =>
     groupedStageData.map(stageMember => [
-      <ListItem itemDivider key={stageMember.key}>
-        <Text>{stageMember.key.split("~")[1]}</Text>
+      <ListItem key={stageMember.key}>
+        <Text style={{ fontWeight: "bold", fontStyle: "italic", fontSize: 13 }}>
+          {stageMember.key.split("~")[1]}
+        </Text>
       </ListItem>,
       <View key={`${stageMember.key}-lineswrapper`}>
         {this.getAppearanceLines(stageMember.values)}
@@ -69,7 +72,7 @@ class AppearancesByDayStage extends Component {
 
   getAppearancesListDayLevel = groupedDayData =>
     groupedDayData.map(dayMember => [
-      <ListItem key={dayMember.key}>
+      <ListItem itemDivider key={dayMember.key}>
         <Text style={{ fontWeight: "bold" }}>
           {dayMember.key.toUpperCase()}
         </Text>
@@ -79,30 +82,13 @@ class AppearancesByDayStage extends Component {
       </View>
     ]);
 
-  getAppearancesListItems = appearancesList =>
-    appearancesList.map(appearanceMember => {
-      const { dateTimeStart, bandId, name, stageName } = appearanceMember;
-      return (
-        <ListItem key={`${bandId}${dateTimeStart}`}>
-          <Body>
-            <Text>{name}</Text>
-            <Text numberOfLines={1} note>
-              Appear: {`${dateTimeStart || "???"} - ${stageName}`}
-            </Text>
-          </Body>
-        </ListItem>
-      );
-    });
-
   render() {
     const {
       appearancesList,
       filterAppearancesByBandId,
       groupAppearancesByDayStage,
       favourites,
-      showOnlyFavourites,
-      appearancesListByDateTime,
-      appearancesGroupedByDayThenStage
+      showOnlyFavourites
     } = this.props;
 
     let appearances = [...appearancesList];
@@ -133,12 +119,12 @@ class AppearancesByDayStage extends Component {
 }
 
 AppearancesByDayStage.propTypes = {
-  appearancesListByDateTime: PropTypes.arrayOf(PropTypes.object.isRequired)
-    .isRequired,
-  appearancesGroupedByDayThenStage: PropTypes.arrayOf(
-    PropTypes.object.isRequired
-  ).isRequired,
-  favourites: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
+  appearancesList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  filterAppearancesByBandId: PropTypes.func.isRequired,
+  groupAppearancesByDayStage: PropTypes.func.isRequired,
+  favourites: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  showOnlyFavourites: PropTypes.bool.isRequired,
+  navigation: PropTypes.object.isRequired
 };
 
 export default AppearancesByDayStage;

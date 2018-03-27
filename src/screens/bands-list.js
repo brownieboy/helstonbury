@@ -149,7 +149,7 @@ class BandsList extends Component {
           </Text>
         </Body>
         {favouritesState.favourites.indexOf(bandMember.bandId) > -1 ? (
-          <FavouritesListIcon />
+          <FavouritesListIcon style={{ fontSize: 14, width: 14, marginRight: 10 }} />
         ) : null}
         <Right>
           <Icon name="arrow-forward" />

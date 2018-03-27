@@ -62,6 +62,16 @@ class Appearances extends Component {
 
     const { showOnlyFavourites } = this.state;
 
+    const sharedChildProps = {
+      appearancesList,
+      filterAppearancesByBandId,
+      groupAppearancesByDay,
+      groupAppearancesByDayStage,
+      favourites,
+      navigation,
+      showOnlyFavourites
+    };
+
     let heart = "ios-heart";
     let heartOutline = "ios-heart-outline";
     if (Platform.OS === "android") {
@@ -109,20 +119,12 @@ class Appearances extends Component {
         </Header>
         {this.state.activeTab === "byStage" ? (
           <AppearancesByDayStage
-            navigation={navigation}
-            favourites={favourites}
-            showOnlyFavourites={showOnlyFavourites}
-            appearancesList={appearancesList}
-            filterAppearancesByBandId={filterAppearancesByBandId}
+            {...sharedChildProps}
             groupAppearancesByDayStage={groupAppearancesByDayStage}
           />
         ) : (
           <AppearancesByDay
-            navigation={navigation}
-            favourites={favourites}
-            showOnlyFavourites={showOnlyFavourites}
-            appearancesList={appearancesList}
-            filterAppearancesByBandId={filterAppearancesByBandId}
+            {...sharedChildProps}
             groupAppearancesByDay={groupAppearancesByDay}
           />
         )}

@@ -43,6 +43,9 @@ class AppearancesByDay extends Component {
           style={lineStyle}
         >
           <Left>
+            {favourites.indexOf(lineMember.bandId) > -1 ? (
+              <FavouritesListIcon />
+            ) : null}
             <Text style={{ fontSize: 14 }}>{`${format(
               lineMember.dateTimeStart,
               "HH:mm"
@@ -50,9 +53,7 @@ class AppearancesByDay extends Component {
             <Text style={{ fontSize: 16 }}>{lineMember.bandName}</Text>
             <Text style={{ fontSize: 10 }}> ({lineMember.stageName})</Text>
           </Left>
-          {favourites.indexOf(lineMember.bandId) > -1 ? (
-            <FavouritesListIcon />
-          ) : null}
+
           <Right>
             <Icon name="arrow-forward" />
           </Right>

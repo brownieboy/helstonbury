@@ -7,7 +7,7 @@ const FavouritesListIcon = () => (
   <Icon
     ios="ios-heart"
     android="md-heart"
-    style={{ fontSize: 16, color: "red", marginRight: 10 }}
+    style={{ ...this.props.style, color: "red" }}
   />
 );
 

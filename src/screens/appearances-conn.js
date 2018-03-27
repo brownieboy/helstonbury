@@ -11,7 +11,6 @@ import {
   groupAppearancesByDay,
   groupAppearancesByDayStage,
   getAppearancesGroupedByDay,
-  getAppearancesByDateTime,
   loadAppearances,
   selectors as appearanceSelectors
 } from "../dux/appearancesReducer.js";

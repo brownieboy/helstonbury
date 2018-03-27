@@ -65,6 +65,7 @@ class Appearances extends Component {
       appearancesList,
       filterAppearancesByBandId,
       groupAppearancesByDay,
+      groupAppearancesByDayStage,
       appearancesListByDateTime,
       appearancesGroupedByDay,
       appearancesGroupedByDayThenStage,
@@ -126,6 +127,9 @@ class Appearances extends Component {
             navigation={navigation}
             favourites={favourites}
             showOnlyFavourites={showOnlyFavourites}
+            appearancesList={appearancesList}
+            filterAppearancesByBandId={filterAppearancesByBandId}
+            groupAppearancesByDayStage={groupAppearancesByDayStage}
           />
         ) : (
           <AppearancesByDay

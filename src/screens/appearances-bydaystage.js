@@ -96,17 +96,32 @@ class AppearancesByDayStage extends Component {
 
   render() {
     const {
+      appearancesList,
+      filterAppearancesByBandId,
+      groupAppearancesByDayStage,
+      favourites,
+      showOnlyFavourites,
       appearancesListByDateTime,
       appearancesGroupedByDayThenStage
     } = this.props;
+
+    let appearances = [...appearancesList];
+    if (showOnlyFavourites) {
+      appearances = filterAppearancesByBandId(appearancesList, favourites);
+    }
+    // console.log("Filtered (or not) appearances:");
+    // console.log(appearances);
+
+    const appearancesGroupedByDayStage = groupAppearancesByDayStage(
+      appearances
+    );
+
     return (
       <Content padder>
         <Content style={{ backgroundColor: "#fff" }}>
-          {appearancesListByDateTime.length > 0 ? (
+          {appearances.length > 0 ? (
             <List>
-              {this.getAppearancesListDayLevel(
-                appearancesGroupedByDayThenStage
-              )}
+              {this.getAppearancesListDayLevel(appearancesGroupedByDayStage)}
             </List>
           ) : (
             <Spinner />

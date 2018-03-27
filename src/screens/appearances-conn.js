@@ -9,7 +9,7 @@ import {
   getAppearancesList,
   filterAppearancesByBandId,
   groupAppearancesByDay,
-  groupAppearancesByDayStage
+  groupAppearancesByDayStage,
   getAppearancesGroupedByDay,
   getAppearancesByDateTime,
   loadAppearances,
@@ -18,8 +18,6 @@ import {
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ loadappearancesProp: loadAppearances }, dispatch);
-
-
 
 /*
   getAppearanceInfoForId: appearanceId =>
@@ -44,7 +42,8 @@ const mapStateToProps = state => ({
   filterAppearancesByBandId: (appearances, bandsToFilterArray) =>
     filterAppearancesByBandId(appearances, bandsToFilterArray),
   groupAppearancesByDay: appearances => groupAppearancesByDay(appearances),
-  groupAppearancesByDayStage: appearances => groupAppearancesByDayStage(appearances)
+  groupAppearancesByDayStage: appearances =>
+    groupAppearancesByDayStage(appearances)
 });
 
 const AppearancesConn = connect(mapStateToProps, mapDispatchToProps)(

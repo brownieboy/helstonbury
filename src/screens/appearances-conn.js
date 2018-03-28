@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import AppearancesByDay from "./appearances-byday.js";
 import AppearancesByDayStage from "./appearances-bydaystage.js";
 
-// Reducer
 import {
   getAppearancesList,
   filterAppearancesByBandId,
@@ -15,6 +14,11 @@ import {
   loadAppearances,
   selectors as appearanceSelectors
 } from "../dux/appearancesReducer.js";
+
+import {
+  getShowOnlyFavourites,
+  setShowOnlyFavourites
+} from "../dux/uiReducer.js";
 
 const getCommonStateObject = state => ({
   appearancesListByDateTime: appearanceSelectors.selectAppearancesByDateTime(
@@ -26,6 +30,7 @@ const getCommonStateObject = state => ({
   favouritesState: state.favouritesState,
   favourites: state.favouritesState.favourites,
   appearancesGroupedByDay: getAppearancesGroupedByDay(state),
+  showOnlyFavourites: getShowOnlyFavourites(state),
   appearancesList: getAppearancesList(state),
   filterAppearancesByBandId: (appearances, bandsToFilterArray) =>
     filterAppearancesByBandId(appearances, bandsToFilterArray)
@@ -43,7 +48,10 @@ const mapStateToPropsByDayStage = state => ({
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ loadappearancesProp: loadAppearances }, dispatch);
+  bindActionCreators(
+    { loadappearancesProp: loadAppearances, setShowOnlyFavourites },
+    dispatch
+  );
 
 export const AppearancesByDayConn = connect(
   mapStateToPropsByDay,
@@ -55,7 +63,3 @@ export const AppearancesByDayStageConn = connect(
   mapDispatchToProps
 )(AppearancesByDayStage);
 
-/*
-  getBandInfoForId: bandId =>
-    getBandInfoForId(state.bandsState.bandsList, bandId),
-*/

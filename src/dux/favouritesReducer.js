@@ -26,7 +26,7 @@ const homeReducer = (
       return { ...state, fetchStatus: "failure", fetchError: action.payload };
     case TOGGLE_BAND_FAVOURITES_STATUS:
       index = state.favourites.indexOf(action.payload);
-      console.log("TOGGLE_BAND_FAVOURITES_STATUS index=" + index);
+      // console.log("TOGGLE_BAND_FAVOURITES_STATUS index=" + index);
       if (index > -1) {
         return {
           // If the band is in the favourites list then remove it.

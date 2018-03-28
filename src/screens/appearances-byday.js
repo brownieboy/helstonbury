@@ -30,16 +30,11 @@ class AppearancesByDay extends Component {
     tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      showOnlyFavourites: false
-    };
-  }
-
   handleShowFavouritesPress = () => {
-    const newStatus = !this.state.showOnlyFavourites;
-    this.setState({ showOnlyFavourites: newStatus });
+    // const newStatus = !this.state.showOnlyFavourites;
+    // this.setState({ showOnlyFavourites: newStatus });
+    const { showOnlyFavourites, setShowOnlyFavourites } = this.props;
+    setShowOnlyFavourites(!showOnlyFavourites);
   };
 
   getFavouritesButton = showOnlyFavourites => {
@@ -121,41 +116,16 @@ class AppearancesByDay extends Component {
       filterAppearancesByBandId,
       groupAppearancesByDay,
       favourites,
-      navigation
+      navigation,
+      showOnlyFavourites
     } = this.props;
-
-    const { showOnlyFavourites } = this.state;
-
-    // console.log("appearances-byday.js, appearances:");
-    // const bandFilterArray = showOnlyFavourites ? favourites : [];
-    // console.log("appearances-byday.js, appearances:");
-    // console.log(appearancesList);
 
     let appearances = [...appearancesList];
     if (showOnlyFavourites) {
       appearances = filterAppearancesByBandId(appearancesList, favourites);
     }
-    // console.log("Filtered (or not) appearances:");
-    // console.log(appearances);
 
     const appearancesGroupedByDay = groupAppearancesByDay(appearances);
-
-    /*
-      <Content padder>
-        <Content style={{ backgroundColor: "#fff" }}>
-          {appearances.length > 0 ? (
-            <List>
-              {this.getAppearancesListDayLevel(appearancesGroupedByDay)}
-            </List>
-          ) : (
-            <Spinner />
-          )}
-        </Content>
-      </Content>
-
-this.props.navigation.navigate("AppearancesDayStageNav")
-
-*/
 
     return (
       <Container>
@@ -193,7 +163,9 @@ AppearancesByDay.propTypes = {
   filterAppearancesByBandId: PropTypes.func.isRequired,
   groupAppearancesByDay: PropTypes.func.isRequired,
   favourites: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  navigation: PropTypes.object.isRequired
+  navigation: PropTypes.object.isRequired,
+  showOnlyFavourites: PropTypes.bool.isRequired,
+  setShowOnlyFavourites: PropTypes.func.isRequired
 };
 
 export default AppearancesByDay;

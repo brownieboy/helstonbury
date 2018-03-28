@@ -28,16 +28,9 @@ class AppearancesByDayStage extends Component {
     tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      showOnlyFavourites: false
-    };
-  }
-
   handleShowFavouritesPress = () => {
-    const newStatus = !this.state.showOnlyFavourites;
-    this.setState({ showOnlyFavourites: newStatus });
+    const { showOnlyFavourites, setShowOnlyFavourites } = this.props;
+    setShowOnlyFavourites(!showOnlyFavourites);
   };
 
   getFavouritesButton = showOnlyFavourites => {
@@ -126,16 +119,14 @@ class AppearancesByDayStage extends Component {
       filterAppearancesByBandId,
       groupAppearancesByDayStage,
       favourites,
-      navigation
+      navigation,
+      showOnlyFavourites
     } = this.props;
 
-    const { showOnlyFavourites } = this.state;
     let appearances = [...appearancesList];
     if (showOnlyFavourites) {
       appearances = filterAppearancesByBandId(appearancesList, favourites);
     }
-    // console.log("Filtered (or not) appearances:");
-    // console.log(appearances);
 
     const appearancesGroupedByDayStage = groupAppearancesByDayStage(
       appearances
@@ -144,7 +135,9 @@ class AppearancesByDayStage extends Component {
     return (
       <Container>
         <Header>
-          <Left><Title>by Stage</Title></Left>
+          <Left>
+            <Title>by Stage</Title>
+          </Left>
 
           <Body>
             <Button
@@ -176,7 +169,9 @@ AppearancesByDayStage.propTypes = {
   filterAppearancesByBandId: PropTypes.func.isRequired,
   groupAppearancesByDayStage: PropTypes.func.isRequired,
   favourites: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  navigation: PropTypes.object.isRequired
+  navigation: PropTypes.object.isRequired,
+  showOnlyFavourites: PropTypes.bool.isRequired,
+  setShowOnlyFavourites: PropTypes.func.isRequired
 };
 
 export default AppearancesByDayStage;

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import { StackNavigator as stackNavigator } from "react-navigation";
 import { TabNavigator as tabNavigator } from "react-navigation";
 // import { Root } from "native-base";
 
@@ -9,15 +8,8 @@ import tabNavStyles from "./styles/tab-navigator-styles.js";
 // Screens
 import Home from "./screens/home-conn.js";
 import BandsList from "./screens/bands-list-nav.js";
-// import Appearances from "./screens/appearances-nav.js";
 import Appearances from "./screens/appearances-day-stage-nav.js";
 import Stages from "./screens/stages.js";
-
-const mainData = {
-  bandsList: [],
-  appearancesList: [],
-  stagesList: []
-};
 
 const AppNavigator = tabNavigator(
   {
@@ -53,7 +45,7 @@ class HomeNav extends Component {
     //     </Root>
     //   );
     // }
-    return <AppNavigator screenProps={{ mainData }} />;
+    return <AppNavigator />;
   }
 }
 

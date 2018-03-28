@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { View } from "react-native";
+import { Platform, View } from "react-native";
 import { format } from "date-fns";
 
 import {
@@ -26,6 +26,35 @@ class AppearancesByDayStage extends Component {
   static navigationOptions = {
     tabBarLabel: "by Stage",
     tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      showOnlyFavourites: false
+    };
+  }
+
+  handleShowFavouritesPress = () => {
+    const newStatus = !this.state.showOnlyFavourites;
+    this.setState({ showOnlyFavourites: newStatus });
+  };
+
+  getFavouritesButton = showOnlyFavourites => {
+    let heart = "ios-heart";
+    let heartOutline = "ios-heart-outline";
+    if (Platform.OS === "android") {
+      heart = "md-heart";
+      heartOutline = "md-heart-outline";
+    }
+    return (
+      <Button transparent>
+        <Icon
+          name={showOnlyFavourites ? heart : heartOutline}
+          onPress={this.handleShowFavouritesPress}
+        />
+      </Button>
+    );
   };
 
   getAppearanceLines = lineData => {
@@ -101,10 +130,10 @@ class AppearancesByDayStage extends Component {
       filterAppearancesByBandId,
       groupAppearancesByDayStage,
       favourites,
-      showOnlyFavourites,
       navigation
     } = this.props;
 
+    const { showOnlyFavourites } = this.state;
     let appearances = [...appearancesList];
     if (showOnlyFavourites) {
       appearances = filterAppearancesByBandId(appearancesList, favourites);
@@ -128,9 +157,10 @@ class AppearancesByDayStage extends Component {
               transparent
               onPress={() => navigation.navigate("AppearancesByDay")}
             >
-              <Text>Switch to by Day</Text>
+              <Text>by Day</Text>
             </Button>
           </Right>
+          <Right>{this.getFavouritesButton(showOnlyFavourites)}</Right>
         </Header>
 
         <Content style={{ backgroundColor: "#fff" }}>
@@ -152,7 +182,6 @@ AppearancesByDayStage.propTypes = {
   filterAppearancesByBandId: PropTypes.func.isRequired,
   groupAppearancesByDayStage: PropTypes.func.isRequired,
   favourites: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  showOnlyFavourites: PropTypes.bool.isRequired,
   navigation: PropTypes.object.isRequired
 };
 

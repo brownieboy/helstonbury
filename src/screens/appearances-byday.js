@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Platform, View } from "react-native";
-import { Button } from "native-base";
 import { format } from "date-fns";
 
 import {
+  Button,
   Container,
   Header,
   Icon,
@@ -174,9 +174,10 @@ this.props.navigation.navigate("AppearancesDayStageNav")
               transparent
               onPress={() => navigation.navigate("AppearancesByDayStage")}
             >
-              <Text>Switch to by Stage</Text>
+              <Text>by Stage</Text>
             </Button>
           </Right>
+          <Right>{this.getFavouritesButton(showOnlyFavourites)}</Right>
         </Header>
 
         <Content style={{ backgroundColor: "#fff" }}>

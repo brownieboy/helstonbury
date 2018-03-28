@@ -28,8 +28,7 @@ const getCommonStateObject = state => ({
   appearancesGroupedByDay: getAppearancesGroupedByDay(state),
   appearancesList: getAppearancesList(state),
   filterAppearancesByBandId: (appearances, bandsToFilterArray) =>
-    filterAppearancesByBandId(appearances, bandsToFilterArray),
-  showOnlyFavourites: false // Change this.  Get from local state
+    filterAppearancesByBandId(appearances, bandsToFilterArray)
 });
 
 const mapStateToPropsByDay = state => ({

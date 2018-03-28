@@ -85,12 +85,8 @@ class AppearancesByDayStage extends Component {
           </Left>
           <Right style={{ flex: 1 }}>
             {favourites.indexOf(lineMember.bandId) > -1 ? (
-              <FavouritesListIcon style={{ fontSize: 12, width: 12 }} />
-            ) : (
-              <FavouritesListIcon
-                style={{ fontSize: 12, width: 12, color: "transparent" }}
-              />
-            )}
+              <FavouritesListIcon style={{ fontSize: 14, width: 14 }} />
+            ) : null}
           </Right>
           <Right style={{ flex: 1 }}>
             <Icon name="arrow-forward" />
@@ -148,18 +144,16 @@ class AppearancesByDayStage extends Component {
     return (
       <Container>
         <Header>
-          <Left />
+          <Left><Title>by Stage</Title></Left>
+
           <Body>
-            <Title>by Stage</Title>
-          </Body>
-          <Right>
             <Button
               transparent
               onPress={() => navigation.navigate("AppearancesByDay")}
             >
               <Text>by Day</Text>
             </Button>
-          </Right>
+          </Body>
           <Right>{this.getFavouritesButton(showOnlyFavourites)}</Right>
         </Header>
 

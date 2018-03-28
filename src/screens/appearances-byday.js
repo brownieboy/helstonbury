@@ -16,7 +16,6 @@ import {
   Text,
   Right,
   Body,
-  Segment,
   Spinner
 } from "native-base";
 
@@ -93,12 +92,8 @@ class AppearancesByDay extends Component {
 
           <Right style={{ flex: 1 }}>
             {favourites.indexOf(lineMember.bandId) > -1 ? (
-              <FavouritesListIcon style={{ fontSize: 12, width: 12 }} />
-            ) : (
-              <FavouritesListIcon
-                style={{ fontSize: 12, width: 12, color: "transparent" }}
-              />
-            )}
+              <FavouritesListIcon style={{ fontSize: 14, width: 14 }} />
+            ) : null}
           </Right>
           <Right style={{ flex: 1 }}>
             <Icon name="arrow-forward" />
@@ -165,18 +160,17 @@ this.props.navigation.navigate("AppearancesDayStageNav")
     return (
       <Container>
         <Header>
-          <Left />
-          <Body>
+          <Left>
             <Title>by Day</Title>
-          </Body>
-          <Right>
+          </Left>
+          <Body>
             <Button
               transparent
               onPress={() => navigation.navigate("AppearancesByDayStage")}
             >
               <Text>by Stage</Text>
             </Button>
-          </Right>
+          </Body>
           <Right>{this.getFavouritesButton(showOnlyFavourites)}</Right>
         </Header>
 

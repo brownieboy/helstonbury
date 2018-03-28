@@ -27,7 +27,7 @@ import ScheduleTabIcon from "../components/schedule-tab-icon.js";
 class AppearancesByDay extends Component {
   static navigationOptions = {
     tabBarLabel: "by Day",
-    tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
+    tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />,
   };
 
   constructor(props) {

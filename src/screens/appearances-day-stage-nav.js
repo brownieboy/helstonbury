@@ -83,11 +83,15 @@ const AppearancesDayStageNavigator = tabNavigator(
   },
   {
     // animationEnabled: true,
+    navigationOptions: {
+      tabBarVisible: false
+    },
     headerMode: "none",
     initialRouteName: "AppearancesByDay",
     tabBarPosition: "top",
     showIcon: false,
     tabBarOptions: {
+      visible: false,
       iconStyle: {
         display: "none"
       },

@@ -23,10 +23,10 @@ import ScheduleTabIcon from "../components/schedule-tab-icon.js";
 
 class AppearancesByDayStage extends Component {
 
-  static navigationOptions = {
-    tabBarLabel: "by Stage",
-    tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
-  };
+  // static navigationOptions = {
+  //   tabBarLabel: "by Stage",
+  //   tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
+  // };
 
   getAppearanceLines = lineData => {
     const itemsLength = lineData.length;

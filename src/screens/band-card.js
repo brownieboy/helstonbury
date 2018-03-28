@@ -17,7 +17,7 @@ import {
   CardItem,
   Text,
   Left,
-  // Right,
+  Right,
   Body
 } from "native-base";
 
@@ -173,6 +173,14 @@ class BandCard extends Component {
                   <Text note>{bandDetails.summary}</Text>
                 </Body>
               </Left>
+              <Right>
+                <Icon
+                  ios={favourite ? "ios-heart" : "ios-heart-outline"}
+                  android={favourite ? "md-heart" : "md-heart-outline"}
+                  style={{ color: favourite ? "red" : "grey" }}
+                  onPress={() => toggleBandFavouriteStatus(bandDetails.bandId)}
+                />
+              </Right>
             </CardItem>
 
             <CardItem>
@@ -188,14 +196,6 @@ class BandCard extends Component {
                 <Text style={{ fontSize: 12 }}>Appearing:</Text>
                 {this.getAppearanceTexts(sortedAppearances)}
               </Body>
-            </CardItem>
-            <CardItem>
-              <Icon
-                ios={favourite ? "ios-heart" : "ios-heart-outline"}
-                android={favourite ? "md-heart" : "md-heart-outline"}
-                style={{ color: favourite ? "red" : "grey" }}
-                onPress={() => toggleBandFavouriteStatus(bandDetails.bandId)}
-              />
             </CardItem>
             <CardItem style={{ paddingVertical: 0 }}>
               {this.getFaceBookLinkComponent(bandDetails)}

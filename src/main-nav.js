@@ -33,6 +33,7 @@ const AppNavigator = tabNavigator(
     }
   },
   {
+    // animationEnabled: true,
     initialRouteName: "Home",
     tabBarPosition: "bottom",
     tabBarOptions: {
@@ -44,7 +45,6 @@ const AppNavigator = tabNavigator(
 );
 
 class HomeNav extends Component {
-
   render() {
     // if (this.state.loading) {
     //   return (

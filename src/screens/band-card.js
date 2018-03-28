@@ -32,6 +32,13 @@ import ScheduleTabIcon from "../components/schedule-tab-icon.js";
       title: params ? params.otherParam : 'A Nested Details Screen',
     }
   };
+
+lass ScreenB extends React.Component {
+  static navigationOptions = {
+    header: () => null,  //this will hide the Stack navigator's header (TabA_StackNavigator)
+    tabBarVisible: false //this will hide the TabBar navigator's header (LoggedIn_TabNavigator)
+  }
+
 */
 
 import openFacebookLink from "../helper-functions/open-facebook-link.js";
@@ -44,7 +51,8 @@ class BandCard extends Component {
 
     return {
       tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />,
-      title: params && params.parentList ? params.parentList : "Prev"
+      title: params && params.parentList ? params.parentList : "Prev",
+      tabBarVisible: false
     };
   };
 

@@ -1,14 +1,15 @@
-import React, { Component } from "react";
+// import React, { Component } from "react";
 import {
   TabNavigator as tabNavigator,
   StackNavigator as stackNavigator
 } from "react-navigation";
-import { Content, Text } from "native-base";
+// import { Content, Text } from "native-base";
+import { Platform } from "react-native";
 
 // import AppearancesConn from "./appearances-conn.js";
 // import BandCard from "./band-schedule-card-conn.js";
 
-import ScheduleTabIcon from "../components/schedule-tab-icon.js";
+// import ScheduleTabIcon from "../components/schedule-tab-icon.js";
 import {
   AppearancesByDayConn,
   AppearancesByDayStageConn
@@ -50,7 +51,8 @@ const AppearancesDayNav = stackNavigator(
   },
   {
     initialRouteName: "Appearances",
-    headerMode: "none"
+    headerMode: "none",
+    showIcon: false
   }
 );
 
@@ -65,7 +67,8 @@ const AppearancesDayStageNav = stackNavigator(
   },
   {
     initialRouteName: "Appearances",
-    headerMode: "none"
+    headerMode: "none",
+    showIcon: false
   }
 );
 
@@ -79,9 +82,20 @@ const AppearancesDayStageNavigator = tabNavigator(
     }
   },
   {
+    // animationEnabled: true,
+    headerMode: "none",
     initialRouteName: "AppearancesByDay",
     tabBarPosition: "top",
-    headerMode: "none"
+    showIcon: false,
+    tabBarOptions: {
+      iconStyle: {
+        display: "none"
+      },
+      style: {
+        marginTop: Platform.OS === "ios" ? 20 : 0,
+        marginBottom: 0
+      }
+    }
   }
 );
 

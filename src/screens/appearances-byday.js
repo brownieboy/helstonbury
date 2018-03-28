@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { View } from "react-native";
+import { Platform, View } from "react-native";
+import { Button } from "native-base";
 import { format } from "date-fns";
 
 import {
@@ -27,6 +28,35 @@ class AppearancesByDay extends Component {
   static navigationOptions = {
     tabBarLabel: "by Day",
     tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      showOnlyFavourites: false
+    };
+  }
+
+  handleShowFavouritesPress = () => {
+    const newStatus = !this.state.showOnlyFavourites;
+    this.setState({ showOnlyFavourites: newStatus });
+  };
+
+  getFavouritesButton = showOnlyFavourites => {
+    let heart = "ios-heart";
+    let heartOutline = "ios-heart-outline";
+    if (Platform.OS === "android") {
+      heart = "md-heart";
+      heartOutline = "md-heart-outline";
+    }
+    return (
+      <Button transparent>
+        <Icon
+          name={showOnlyFavourites ? heart : heartOutline}
+          onPress={this.handleShowFavouritesPress}
+        />
+      </Button>
+    );
   };
 
   getAppearanceLines = lineData => {
@@ -83,6 +113,7 @@ class AppearancesByDay extends Component {
         <Text style={{ fontWeight: "bold" }}>
           {dayMember.key.toUpperCase()}
         </Text>
+        {this.getFavouritesButton()}
       </ListItem>,
       <View key={`${dayMember.key}-lineswrapper`} style={{ marginBottom: 5 }}>
         {this.getAppearanceLines(dayMember.values)}
@@ -94,9 +125,10 @@ class AppearancesByDay extends Component {
       appearancesList,
       filterAppearancesByBandId,
       groupAppearancesByDay,
-      favourites,
-      showOnlyFavourites
+      favourites
     } = this.props;
+
+    const { showOnlyFavourites } = this.state;
 
     // console.log("appearances-byday.js, appearances:");
     // const bandFilterArray = showOnlyFavourites ? favourites : [];
@@ -133,8 +165,6 @@ AppearancesByDay.propTypes = {
   filterAppearancesByBandId: PropTypes.func.isRequired,
   groupAppearancesByDay: PropTypes.func.isRequired,
   favourites: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  showOnlyFavourites: PropTypes.bool.isRequired,
-
   navigation: PropTypes.object.isRequired
 };
 

@@ -5,10 +5,10 @@ import { Button } from "native-base";
 import { format } from "date-fns";
 
 import {
-  // Container,
-  // Header,
+  Container,
+  Header,
   Icon,
-  // Title,
+  Title,
   Left,
   Content,
   List,
@@ -27,7 +27,7 @@ import ScheduleTabIcon from "../components/schedule-tab-icon.js";
 class AppearancesByDay extends Component {
   static navigationOptions = {
     tabBarLabel: "by Day",
-    tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />,
+    tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
   };
 
   constructor(props) {
@@ -113,7 +113,6 @@ class AppearancesByDay extends Component {
         <Text style={{ fontWeight: "bold" }}>
           {dayMember.key.toUpperCase()}
         </Text>
-        {this.getFavouritesButton()}
       </ListItem>,
       <View key={`${dayMember.key}-lineswrapper`} style={{ marginBottom: 5 }}>
         {this.getAppearanceLines(dayMember.values)}
@@ -144,7 +143,7 @@ class AppearancesByDay extends Component {
 
     const appearancesGroupedByDay = groupAppearancesByDay(appearances);
 
-    return (
+    /*
       <Content padder>
         <Content style={{ backgroundColor: "#fff" }}>
           {appearances.length > 0 ? (
@@ -156,6 +155,27 @@ class AppearancesByDay extends Component {
           )}
         </Content>
       </Content>
+*/
+
+    return (
+      <Container>
+        <Header>
+          <Body>
+            <Title>Me Schdule</Title>
+          </Body>
+          <Right />
+        </Header>
+
+        <Content style={{ backgroundColor: "#fff" }}>
+          {appearances.length > 0 ? (
+            <List>
+              {this.getAppearancesListDayLevel(appearancesGroupedByDay)}
+            </List>
+          ) : (
+            <Spinner />
+          )}
+        </Content>
+      </Container>
     );
   }
 }

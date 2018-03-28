@@ -5,8 +5,6 @@ const FETCH_FAVOURITES_SUCCESS = "FETCH_FAVOURITES_SUCCESS";
 const FETCH_FAVOURITES_FAILURE = "FETCH_FAVOURITES_FAILURE";
 const TOGGLE_BAND_FAVOURITES_STATUS = "TOGGLE_BAND_FAVOURITES_STATUS";
 
-
-
 // Reducer.  Favourites are a simple array of bandId.
 const homeReducer = (
   state = { fetchStatus: "", fetchError: "", favourites: [] },
@@ -53,10 +51,26 @@ export const loadFavouritesNow = () => ({ type: LOAD_FAVOURITES_NOW });
 const setFetchFavouritesRequest = () => ({
   type: FETCH_FAVOURITES_REQUEST
 });
+
 const setFetchFavouritesSucceeded = favourites => ({
   type: FETCH_FAVOURITES_SUCCESS,
   payload: favourites || []
 });
+
+const setFetchFavouritesSucceededScrubBandIds = (favourites, bandsList) => {
+  // Filter our all favourites for which no band currentl exist, otherwise
+  // we'll clog up with faves from previous years.
+  const newFaves = favourites.filter(
+    fave => bandsList.findIndex(bandMember => bandMember.id === fave) >= 0
+  );
+  console.log("newFaves:");
+  console.log(newFaves);
+  return {
+    type: FETCH_FAVOURITES_SUCCESS,
+    payload: newFaves || []
+  };
+};
+
 const setFetchFavouritesFailed = errorMessage => ({
   type: FETCH_FAVOURITES_FAILURE,
   payload: errorMessage
@@ -71,6 +85,7 @@ export const favouritesDuxActions = {
   setFetchFavouritesFailed,
   setFetchFavouritesRequest,
   setFetchFavouritesSucceeded,
+  setFetchFavouritesSucceededScrubBandIds,
   toggleBandFavouriteStatus
 };
 

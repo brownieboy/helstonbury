@@ -186,17 +186,24 @@ function* loadFavouritesGen() {
     // const bandsDataNormalised = yield call(bandsApi.fetchBandsData);
     const favouritesString = yield AsyncStorage.getItem("localFavourites");
     const favourites = JSON.parse(favouritesString);
-    yield put(favouritesDuxActions.setFetchFavouritesSucceeded(favourites));
+    const state = yield select();
+
+    yield put(
+      favouritesDuxActions.setFetchFavouritesSucceededScrubBandIds(
+        favourites,
+        state.bandsState.bandsList
+      )
+    );
   } catch (e) {
     console.log("loadFavouritesGen error=" + e);
     yield put(favouritesDuxActions.setFetchAppearancesFailed(e));
   }
 }
 
-     // yield AsyncStorage.setItem(
-     //      "localPublishedData",
-     //      JSON.stringify(item.value)
-     //    );
+// yield AsyncStorage.setItem(
+//      "localPublishedData",
+//      JSON.stringify(item.value)
+//    );
 
 function* toggleFavouriteGen(bandObj) {
   // console.log("toggling favourite " + JSON.stringify(bandObj, null, 4));

@@ -132,6 +132,10 @@ export const bandsDuxActions = {
 //   FETCH_BANDS_FAILURE
 // };
 
+// Getters don't use redux-select
+// export const getBandInfoForId = (bandsList, bandId) =>
+//  (bandsList ? bandsList.find(bandMember => bandMember.id === bandId) : null);
+
 export default bandsReducer;
 
 // A thunk must return a function, hence the double () => dispatch =>

@@ -21,18 +21,18 @@ const mapStateToProps = state => ({
   favouritesState: state.favouritesState
 });
 
-class BandCardWrapper extends Component {
-  static navigationOptions = {
-    tabBarLabel: "Schedule",
-    tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
-  };
-  render() {
-    return <BandCard {...this.props} parentList="Schedule" />;
-  }
-}
+// class BandCardWrapper extends Component {
+//   static navigationOptions = {
+//     tabBarLabel: "Schedule",
+//     tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
+//   };
+//   render() {
+//     return <BandCard {...this.props} />;
+//   }
+// }
 
 const BandCardConn = connect(mapStateToProps, mapDispatchToProps)(
-  BandCardWrapper
+  BandCard
 );
 
 export default BandCardConn;

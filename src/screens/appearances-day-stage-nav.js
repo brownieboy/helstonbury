@@ -80,6 +80,7 @@ const AppearancesDayStageNavigator = tabNavigator(
   },
   {
     initialRouteName: "AppearancesByDay",
+    tabBarPosition: "top",
     headerMode: "none"
   }
 );

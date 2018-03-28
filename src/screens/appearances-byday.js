@@ -19,10 +19,16 @@ import {
 } from "native-base";
 
 import FavouritesListIcon from "../components/favourites-list-icon.js";
+import ScheduleTabIcon from "../components/schedule-tab-icon.js";
 
 // ${lineMember.name}:
 
 class AppearancesByDay extends Component {
+  static navigationOptions = {
+    tabBarLabel: "by Day",
+    tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
+  };
+
   getAppearanceLines = lineData => {
     const itemsLength = lineData.length;
     const favourites = this.props.favourites;
@@ -41,7 +47,7 @@ class AppearancesByDay extends Component {
           onPress={() =>
             this.props.navigation.navigate("BandScheduleCard", {
               bandId: lineMember.bandId,
-              parentList: "schedule"
+              parentList: "by Day"
             })
           }
           style={lineStyle}

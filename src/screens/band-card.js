@@ -22,10 +22,37 @@ import {
 } from "native-base";
 
 import styles from "../styles/band-card-styles.js";
+import ScheduleTabIcon from "../components/schedule-tab-icon.js";
+
+/*
+  static navigationOptions = ({ navigation }) => {
+    const { params } = navigation.state;
+    
+    return {
+      title: params ? params.otherParam : 'A Nested Details Screen',
+    }
+  };
+*/
 
 import openFacebookLink from "../helper-functions/open-facebook-link.js";
 
 class BandCard extends Component {
+  static navigationOptions = ({ navigation }) => {
+    const { params } = navigation.state;
+    console.log("BandCard params:");
+    console.log(params);
+
+    return {
+      tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />,
+      title: params && params.parentList ? params.parentList : "Prev"
+    };
+  };
+
+  // static navigationOptions = {
+  //   tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />,
+  //   title: "tossers"
+  // };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -72,7 +99,7 @@ class BandCard extends Component {
 
   getCardImage = cardFullUrl => {
     const dimensions = this.state.dimensions;
-    const imageHeight = Math.round((dimensions.width * 0.8) * 9 / 16);
+    const imageHeight = Math.round(dimensions.width * 0.8 * 9 / 16);
     const imageWidth = dimensions.width * 0.8;
     return (
       <CachedImage
@@ -88,13 +115,13 @@ class BandCard extends Component {
   };
 
   render() {
-    const bandId = this.props.navigation.state.params.bandId;
+    const { bandId, parentList } = this.props.navigation.state.params;
     const {
       bandsAlphabetical,
       appearancesByBandThenDateTime,
-      favouritesState,
-      parentList
-    } = this.props; // Basically, the whole state
+      favouritesState
+      // parentList
+    } = this.props; // Basically, the whole state∂
     const sortedAppearances = this.getAppearancesForBand(
       appearancesByBandThenDateTime,
       bandId
@@ -114,6 +141,7 @@ class BandCard extends Component {
       backButtonText = parentList; // Not enough room for "Back to" on Android
     }
 
+    console.log("backButtonText=" + backButtonText);
     return (
       <Container style={styles.container}>
         <Header>
@@ -178,7 +206,7 @@ BandCard.propTypes = {
     .isRequired,
   favouritesState: PropTypes.object.isRequired,
   navigation: PropTypes.object.isRequired,
-  parentList: PropTypes.string.isRequired,
+  // parentList: PropTypes.string.isRequired,
   toggleBandFavouriteStatus: PropTypes.func.isRequired
 };
 

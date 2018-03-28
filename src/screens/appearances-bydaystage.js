@@ -4,10 +4,11 @@ import { View } from "react-native";
 import { format } from "date-fns";
 
 import {
-  // Container,
-  // Header,
+  Button,
+  Container,
+  Header,
   Icon,
-  // Title,
+  Title,
   Left,
   Content,
   List,
@@ -22,11 +23,10 @@ import FavouritesListIcon from "../components/favourites-list-icon.js";
 import ScheduleTabIcon from "../components/schedule-tab-icon.js";
 
 class AppearancesByDayStage extends Component {
-
-  // static navigationOptions = {
-  //   tabBarLabel: "by Stage",
-  //   tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
-  // };
+  static navigationOptions = {
+    tabBarLabel: "by Stage",
+    tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
+  };
 
   getAppearanceLines = lineData => {
     const itemsLength = lineData.length;
@@ -101,7 +101,8 @@ class AppearancesByDayStage extends Component {
       filterAppearancesByBandId,
       groupAppearancesByDayStage,
       favourites,
-      showOnlyFavourites
+      showOnlyFavourites,
+      navigation
     } = this.props;
 
     let appearances = [...appearancesList];
@@ -116,7 +117,22 @@ class AppearancesByDayStage extends Component {
     );
 
     return (
-      <Content padder>
+      <Container>
+        <Header>
+          <Left />
+          <Body>
+            <Title>by Stage</Title>
+          </Body>
+          <Right>
+            <Button
+              transparent
+              onPress={() => navigation.navigate("AppearancesByDay")}
+            >
+              <Text>Switch to by Day</Text>
+            </Button>
+          </Right>
+        </Header>
+
         <Content style={{ backgroundColor: "#fff" }}>
           {appearances.length > 0 ? (
             <List>
@@ -126,7 +142,7 @@ class AppearancesByDayStage extends Component {
             <Spinner />
           )}
         </Content>
-      </Content>
+      </Container>
     );
   }
 }

@@ -16,6 +16,7 @@ import {
   Text,
   Right,
   Body,
+  Segment,
   Spinner
 } from "native-base";
 
@@ -124,7 +125,8 @@ class AppearancesByDay extends Component {
       appearancesList,
       filterAppearancesByBandId,
       groupAppearancesByDay,
-      favourites
+      favourites,
+      navigation
     } = this.props;
 
     const { showOnlyFavourites } = this.state;
@@ -155,15 +157,26 @@ class AppearancesByDay extends Component {
           )}
         </Content>
       </Content>
+
+this.props.navigation.navigate("AppearancesDayStageNav")
+
 */
 
     return (
       <Container>
         <Header>
+          <Left />
           <Body>
-            <Title>Me Schdule</Title>
+            <Title>by Day</Title>
           </Body>
-          <Right />
+          <Right>
+            <Button
+              transparent
+              onPress={() => navigation.navigate("AppearancesByDayStage")}
+            >
+              <Text>Switch to by Stage</Text>
+            </Button>
+          </Right>
         </Header>
 
         <Content style={{ backgroundColor: "#fff" }}>

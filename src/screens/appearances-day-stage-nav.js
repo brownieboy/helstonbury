@@ -50,6 +50,9 @@ const AppearancesDayNav = stackNavigator(
     }
   },
   {
+    // navigationOptions: {
+    //   tabBarVisible: false
+    // },
     initialRouteName: "Appearances",
     headerMode: "none",
     showIcon: false
@@ -66,6 +69,9 @@ const AppearancesDayStageNav = stackNavigator(
     }
   },
   {
+    // navigationOptions: {
+    //   tabBarVisible: false
+    // },
     initialRouteName: "Appearances",
     headerMode: "none",
     showIcon: false
@@ -83,9 +89,9 @@ const AppearancesDayStageNavigator = tabNavigator(
   },
   {
     // animationEnabled: true,
-    navigationOptions: {
-      tabBarVisible: false
-    },
+    // navigationOptions: {
+    //   tabBarVisible: false
+    // },
     headerMode: "none",
     initialRouteName: "AppearancesByDay",
     tabBarPosition: "top",
@@ -97,7 +103,8 @@ const AppearancesDayStageNavigator = tabNavigator(
       },
       style: {
         marginTop: Platform.OS === "ios" ? 20 : 0,
-        marginBottom: 0
+        marginBottom: 0,
+        display: "none"
       }
     }
   }

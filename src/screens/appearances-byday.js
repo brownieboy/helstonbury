@@ -16,6 +16,7 @@ import {
   Text,
   Right,
   Body,
+  Segment,
   Spinner
 } from "native-base";
 
@@ -30,11 +31,16 @@ class AppearancesByDay extends Component {
     tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      showOnlyFavourites: false
+    };
+  }
+
   handleShowFavouritesPress = () => {
-    // const newStatus = !this.state.showOnlyFavourites;
-    // this.setState({ showOnlyFavourites: newStatus });
-    const { showOnlyFavourites, setShowOnlyFavourites } = this.props;
-    setShowOnlyFavourites(!showOnlyFavourites);
+    const newStatus = !this.state.showOnlyFavourites;
+    this.setState({ showOnlyFavourites: newStatus });
   };
 
   getFavouritesButton = showOnlyFavourites => {
@@ -87,8 +93,12 @@ class AppearancesByDay extends Component {
 
           <Right style={{ flex: 1 }}>
             {favourites.indexOf(lineMember.bandId) > -1 ? (
-              <FavouritesListIcon style={{ fontSize: 14, width: 14 }} />
-            ) : null}
+              <FavouritesListIcon style={{ fontSize: 12, width: 12 }} />
+            ) : (
+              <FavouritesListIcon
+                style={{ fontSize: 12, width: 12, color: "transparent" }}
+              />
+            )}
           </Right>
           <Right style={{ flex: 1 }}>
             <Icon name="arrow-forward" />
@@ -116,16 +126,41 @@ class AppearancesByDay extends Component {
       filterAppearancesByBandId,
       groupAppearancesByDay,
       favourites,
-      navigation,
-      showOnlyFavourites
+      navigation
     } = this.props;
+
+    const { showOnlyFavourites } = this.state;
+
+    // console.log("appearances-byday.js, appearances:");
+    // const bandFilterArray = showOnlyFavourites ? favourites : [];
+    // console.log("appearances-byday.js, appearances:");
+    // console.log(appearancesList);
 
     let appearances = [...appearancesList];
     if (showOnlyFavourites) {
       appearances = filterAppearancesByBandId(appearancesList, favourites);
     }
+    // console.log("Filtered (or not) appearances:");
+    // console.log(appearances);
 
     const appearancesGroupedByDay = groupAppearancesByDay(appearances);
+
+    /*
+      <Content padder>
+        <Content style={{ backgroundColor: "#fff" }}>
+          {appearances.length > 0 ? (
+            <List>
+              {this.getAppearancesListDayLevel(appearancesGroupedByDay)}
+            </List>
+          ) : (
+            <Spinner />
+          )}
+        </Content>
+      </Content>
+
+this.props.navigation.navigate("AppearancesDayStageNav")
+
+*/
 
     return (
       <Container>
@@ -138,7 +173,7 @@ class AppearancesByDay extends Component {
               transparent
               onPress={() => navigation.navigate("AppearancesByDayStage")}
             >
-              <Text>by Stage</Text>
+              <Title>Show by Stage</Title>
             </Button>
           </Body>
           <Right>{this.getFavouritesButton(showOnlyFavourites)}</Right>
@@ -163,9 +198,7 @@ AppearancesByDay.propTypes = {
   filterAppearancesByBandId: PropTypes.func.isRequired,
   groupAppearancesByDay: PropTypes.func.isRequired,
   favourites: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  navigation: PropTypes.object.isRequired,
-  showOnlyFavourites: PropTypes.bool.isRequired,
-  setShowOnlyFavourites: PropTypes.func.isRequired
+  navigation: PropTypes.object.isRequired
 };
 
 export default AppearancesByDay;

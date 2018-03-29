@@ -135,17 +135,17 @@ class AppearancesByDayStage extends Component {
     return (
       <Container>
         <Header>
-          <Left>
-            <Title>by Stage</Title>
-          </Left>
-
-          <Body>
+          <Left style={{ width: 200 }}>
             <Button
               transparent
               onPress={() => navigation.navigate("AppearancesByDay")}
             >
-              <Text>by Day</Text>
+              <Title>Show by Day</Title>
             </Button>
+          </Left>
+
+          <Body>
+            <Title>by Stage</Title>
           </Body>
           <Right>{this.getFavouritesButton(showOnlyFavourites)}</Right>
         </Header>

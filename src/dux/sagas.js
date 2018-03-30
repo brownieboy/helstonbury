@@ -185,7 +185,9 @@ function* loadFavouritesGen() {
   try {
     // const bandsDataNormalised = yield call(bandsApi.fetchBandsData);
     const favouritesString = yield AsyncStorage.getItem("localFavourites");
-    const favourites = JSON.parse(favouritesString);
+    console.log("favouritesString=" + favouritesString);
+
+    const favourites = favouritesString ? JSON.parse(favouritesString) : [];
     const state = yield select();
 
     yield put(
@@ -196,7 +198,7 @@ function* loadFavouritesGen() {
     );
   } catch (e) {
     console.log("loadFavouritesGen error=" + e);
-    yield put(favouritesDuxActions.setFetchAppearancesFailed(e));
+    yield put(favouritesDuxActions.setFetchFavouritesFailed(e));
   }
 }
 

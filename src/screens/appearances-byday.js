@@ -177,6 +177,9 @@ this.props.navigation.navigate("AppearancesDayStageNav")
             </Button>
           </Body>
           <Right>{this.getFavouritesButton(showOnlyFavourites)}</Right>
+          <Right>
+            <Icon ios="ios-options" android="md-options" />
+          </Right>
         </Header>
 
         <Content style={{ backgroundColor: "#fff" }}>

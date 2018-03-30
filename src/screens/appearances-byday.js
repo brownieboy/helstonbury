@@ -183,7 +183,7 @@ this.props.navigation.navigate("AppearancesDayStageNav")
         </Header>
 
         <Content style={{ backgroundColor: "#fff" }}>
-          {appearances.length > 0 ? (
+          {appearancesList.length > 0 ? (
             <List>
               {this.getAppearancesListDayLevel(appearancesGroupedByDay)}
             </List>

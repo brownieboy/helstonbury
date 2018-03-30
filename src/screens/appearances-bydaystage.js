@@ -151,7 +151,7 @@ class AppearancesByDayStage extends Component {
         </Header>
 
         <Content style={{ backgroundColor: "#fff" }}>
-          {appearances.length > 0 ? (
+          {appearancesList.length > 0 ? (
             <List>
               {this.getAppearancesListDayLevel(appearancesGroupedByDayStage)}
             </List>

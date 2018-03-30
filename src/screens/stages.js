@@ -11,13 +11,15 @@ import {
 } from "native-base";
 
 import styles from "../styles/band-card-styles.js";
-import tabNavStyles from "../styles/tab-navigator-styles.js";
+// import tabNavStyles from "../styles/tab-navigator-styles.js";
+import IconMaterialEntypo from "react-native-vector-icons/Entypo";
+
 
 class Stages extends Component {
   static navigationOptions = {
     tabBarLabel: "Stages",
     tabBarIcon: ({ tintColor }) => (
-      <Icon ios="ios-map" android="md-map" style={{ color: tintColor }} />
+      <IconMaterialEntypo name="modern-mic" size={25} style={{ color: tintColor }} />
     )
   };
 

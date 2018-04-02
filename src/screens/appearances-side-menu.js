@@ -40,10 +40,18 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "300",
     paddingTop: 5
+  },
+  itemSelected: {
+    fontSize: 14,
+    fontWeight: "300",
+    paddingTop: 5,
+    color: "lightgray"
   }
 });
 
 export default function Menu({
+  currentAppearancesView,
+  navigation,
   onItemSelected,
   handleShowFavouritesPress,
   showOnlyFavourites
@@ -54,13 +62,27 @@ export default function Menu({
         <Image style={styles.avatar} source={{ uri }} />
         <Text style={styles.name}>Your name</Text>
       </View>
-
       <Text onPress={() => onItemSelected("About")} style={styles.item}>
         About
       </Text>
-
       <Text onPress={() => onItemSelected("Contacts")} style={styles.item}>
         Contacts
+      </Text>
+      <Text
+        onPress={() => navigation.navigate("AppearancesByDay")}
+        style={
+          currentAppearancesView !== "day" ? styles.item : styles.itemSelected
+        }
+      >
+        Show by Day
+      </Text>
+      <Text
+        onPress={() => navigation.navigate("AppearancesByDayStage")}
+        style={
+          currentAppearancesView !== "stage" ? styles.item : styles.itemSelected
+        }
+      >
+        Show by Stage
       </Text>
       <FavouritesButton
         selected={showOnlyFavourites}
@@ -71,7 +93,9 @@ export default function Menu({
 }
 
 Menu.propTypes = {
+  currentAppearancesView: PropTypes.string.isRequired,
   showOnlyFavourites: PropTypes.bool.isRequired,
   handleShowFavouritesPress: PropTypes.func.isRequired,
+  navigation: PropTypes.object.isRequired,
   onItemSelected: PropTypes.func.isRequired
 };

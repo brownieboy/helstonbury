@@ -165,8 +165,10 @@ this.props.navigation.navigate("AppearancesDayStageNav")
 
     const menu = (
       <Menu
+        currentAppearancesView="day"
         onItemSelected={this.onMenuItemSelected}
         handleShowFavouritesPress={this.handleShowFavouritesPress}
+        navigation={navigation}
         showOnlyFavourites={showOnlyFavourites}
       />
     );

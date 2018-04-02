@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Platform, View } from "react-native";
 import { format } from "date-fns";
+import SideMenu from "react-native-side-menu";
 
 import {
   Button,
@@ -34,9 +35,17 @@ class AppearancesByDay extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showOnlyFavourites: false
+      showOnlyFavourites: false,
+      sideMenuOption: false
     };
   }
+
+/*
+    this.state = {
+      isOpen: false,
+      selectedItem: 'About',
+    };
+ */
 
   handleShowFavouritesPress = () => {
     const newStatus = !this.state.showOnlyFavourites;

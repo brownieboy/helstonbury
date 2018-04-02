@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Text } from "native-base";
 
 import { Platform } from "react-native";
 import { Button, Icon } from "native-base";
@@ -13,7 +14,9 @@ const FavouritesButton = ({ selected, handlePress }) => {
   }
   return (
     <Button transparent>
-      <Icon name={selected ? heart : heartOutline} onPress={handlePress} />
+      <Icon name={selected ? heart : heartOutline} onPress={handlePress}>
+        <Text> Show only favourites</Text>
+      </Icon>
     </Button>
   );
 };

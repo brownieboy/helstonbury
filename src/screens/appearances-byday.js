@@ -58,8 +58,10 @@ class AppearancesByDay extends Component {
 
   handleShowFavouritesPress = () => {
     const newStatus = !this.state.showOnlyFavourites;
-    this.setState({ showOnlyFavourites: newStatus });
-  };  getAppearanceLines = lineData => {
+    this.setState({ showOnlyFavourites: newStatus, sideMenuOpen: false });
+  };
+
+  getAppearanceLines = lineData => {
     const itemsLength = lineData.length;
     const favourites = this.props.favourites;
     return lineData.map((lineMember, index) => {

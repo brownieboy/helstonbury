@@ -11,13 +11,14 @@ import {
 
 const window = Dimensions.get("window");
 const uri = "https://pickaface.net/gallery/avatar/Opi51c74d0125fd4.png";
+import FavouritesButton from "../components/favourites-button.js";
 
 const styles = StyleSheet.create({
   menu: {
     flex: 1,
     width: window.width,
     height: window.height,
-    backgroundColor: "gray",
+    backgroundColor: "white",
     padding: 20
   },
   avatarContainer: {
@@ -42,7 +43,11 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function Menu({ onItemSelected }) {
+export default function Menu({
+  onItemSelected,
+  handleShowFavouritesPress,
+  showOnlyFavourites
+}) {
   return (
     <ScrollView scrollsToTop={false} style={styles.menu}>
       <View style={styles.avatarContainer}>
@@ -57,10 +62,16 @@ export default function Menu({ onItemSelected }) {
       <Text onPress={() => onItemSelected("Contacts")} style={styles.item}>
         Contacts
       </Text>
+      <FavouritesButton
+        selected={showOnlyFavourites}
+        handlePress={handleShowFavouritesPress}
+      />
     </ScrollView>
   );
 }
 
 Menu.propTypes = {
+  showOnlyFavourites: PropTypes.bool.isRequired,
+  handleShowFavouritesPress: PropTypes.func.isRequired,
   onItemSelected: PropTypes.func.isRequired
 };

@@ -59,26 +59,7 @@ class AppearancesByDay extends Component {
   handleShowFavouritesPress = () => {
     const newStatus = !this.state.showOnlyFavourites;
     this.setState({ showOnlyFavourites: newStatus });
-  };
-
-  getFavouritesButton = showOnlyFavourites => {
-    let heart = "ios-heart";
-    let heartOutline = "ios-heart-outline";
-    if (Platform.OS === "android") {
-      heart = "md-heart";
-      heartOutline = "md-heart-outline";
-    }
-    return (
-      <Button transparent>
-        <Icon
-          name={showOnlyFavourites ? heart : heartOutline}
-          onPress={this.handleShowFavouritesPress}
-        />
-      </Button>
-    );
-  };
-
-  getAppearanceLines = lineData => {
+  };  getAppearanceLines = lineData => {
     const itemsLength = lineData.length;
     const favourites = this.props.favourites;
     return lineData.map((lineMember, index) => {
@@ -180,7 +161,13 @@ this.props.navigation.navigate("AppearancesDayStageNav")
 
 */
 
-    const menu = <Menu onItemSelected={this.onMenuItemSelected} />;
+    const menu = (
+      <Menu
+        onItemSelected={this.onMenuItemSelected}
+        handleShowFavouritesPress={this.handleShowFavouritesPress}
+        showOnlyFavourites={showOnlyFavourites}
+      />
+    );
 
     return (
       <SideMenu
@@ -202,7 +189,6 @@ this.props.navigation.navigate("AppearancesDayStageNav")
                 <Title>Show by Stage</Title>
               </Button>
             </Body>
-            <Right>{this.getFavouritesButton(showOnlyFavourites)}</Right>
             <Right>
               <Icon
                 ios="ios-options"

@@ -185,6 +185,7 @@ this.props.navigation.navigate("AppearancesDayStageNav")
     return (
       <SideMenu
         menu={menu}
+        menuPosition="right"
         isOpen={sideMenuOpen}
         onChange={isOpen => this.updateMenuState(isOpen)}
       >
@@ -203,7 +204,11 @@ this.props.navigation.navigate("AppearancesDayStageNav")
             </Body>
             <Right>{this.getFavouritesButton(showOnlyFavourites)}</Right>
             <Right>
-              <Icon ios="ios-options" android="md-options" />
+              <Icon
+                ios="ios-options"
+                android="md-options"
+                onPress={this.toggleSideMenu}
+              />
             </Right>
           </Header>
 

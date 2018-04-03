@@ -63,8 +63,8 @@ const setFetchFavouritesSucceededScrubBandIds = (favourites, bandsList) => {
   const newFaves = favourites.filter(
     fave => bandsList.findIndex(bandMember => bandMember.id === fave) >= 0
   );
-  console.log("newFaves:");
-  console.log(newFaves);
+  // console.log("newFaves:");
+  // console.log(newFaves);
   return {
     type: FETCH_FAVOURITES_SUCCESS,
     payload: newFaves || []

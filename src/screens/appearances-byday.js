@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Platform, View } from "react-native";
+import { View } from "react-native";
 import { format } from "date-fns";
 import SideMenu from "react-native-side-menu";
 
@@ -23,7 +23,7 @@ import {
 
 import FavouritesListIcon from "../components/favourites-list-icon.js";
 import ScheduleTabIcon from "../components/schedule-tab-icon.js";
-import Menu from "./appearances-side-menu.js";
+import Menu from "../components/appearances-side-menu.js";
 
 // ${lineMember.name}:
 
@@ -36,7 +36,6 @@ class AppearancesByDay extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showOnlyFavourites: false,
       sideMenuOpen: false
     };
   }
@@ -56,9 +55,15 @@ class AppearancesByDay extends Component {
       sideMenuOpen: false
     });
 
+  // handleShowFavouritesPress = () => {
+  //   const newStatus = !this.state.showOnlyFavourites;
+  //   this.setState({ showOnlyFavourites: newStatus, sideMenuOpen: false });
+  // };
+
   handleShowFavouritesPress = () => {
-    const newStatus = !this.state.showOnlyFavourites;
-    this.setState({ showOnlyFavourites: newStatus, sideMenuOpen: false });
+    const { showOnlyFavourites, setShowOnlyFavourites } = this.props;
+    setShowOnlyFavourites(!showOnlyFavourites);
+    this.setState({ sideMenuOpen: false });
   };
 
   getAppearanceLines = lineData => {
@@ -127,10 +132,11 @@ class AppearancesByDay extends Component {
       filterAppearancesByBandId,
       groupAppearancesByDay,
       favourites,
-      navigation
+      navigation,
+      showOnlyFavourites
     } = this.props;
 
-    const { sideMenuOpen, showOnlyFavourites } = this.state;
+    const { sideMenuOpen } = this.state;
 
     // console.log("appearances-byday.js, appearances:");
     // const bandFilterArray = showOnlyFavourites ? favourites : [];
@@ -222,7 +228,9 @@ AppearancesByDay.propTypes = {
   filterAppearancesByBandId: PropTypes.func.isRequired,
   groupAppearancesByDay: PropTypes.func.isRequired,
   favourites: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  navigation: PropTypes.object.isRequired
+  navigation: PropTypes.object.isRequired,
+  setShowOnlyFavourites: PropTypes.func.isRequired,
+  showOnlyFavourites: PropTypes.bool.isRequired
 };
 
 export default AppearancesByDay;

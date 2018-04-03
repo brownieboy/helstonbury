@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Platform, View } from "react-native";
 import { format } from "date-fns";
+import SideMenu from "react-native-side-menu";
 
 import {
   Button,

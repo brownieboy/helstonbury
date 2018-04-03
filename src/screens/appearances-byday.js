@@ -189,16 +189,8 @@ this.props.navigation.navigate("AppearancesDayStageNav")
         <Container>
           <Header>
             <Left>
-              <Title>by Day</Title>
+              <Title>Schedule by Day</Title>
             </Left>
-            <Body>
-              <Button
-                transparent
-                onPress={() => navigation.navigate("AppearancesByDayStage")}
-              >
-                <Title>Show by Stage</Title>
-              </Button>
-            </Body>
             <Right>
               <Icon
                 ios="ios-options"

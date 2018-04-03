@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import {
   Container,
   Header,
-  Icon,
   Title,
   Content,
   Text,
@@ -12,15 +11,13 @@ import {
 
 import styles from "../styles/band-card-styles.js";
 // import tabNavStyles from "../styles/tab-navigator-styles.js";
-import IconMaterialEntypo from "react-native-vector-icons/Entypo";
-
+// import IconMaterialEntypo from "react-native-vector-icons/Entypo";
+import StageTabIcon from "../components/stages-tab-icon.js";
 
 class Stages extends Component {
   static navigationOptions = {
     tabBarLabel: "Stages",
-    tabBarIcon: ({ tintColor }) => (
-      <IconMaterialEntypo name="modern-mic" size={25} style={{ color: tintColor }} />
-    )
+    tabBarIcon: ({ tintColor }) => <StageTabIcon tintColor={tintColor} />
   };
 
   render() {

@@ -16,12 +16,12 @@ import {
   ListItem,
   Text,
   Right,
-  Body,
   Spinner
 } from "native-base";
 
 import FavouritesListIcon from "../components/favourites-list-icon.js";
 import ScheduleTabIcon from "../components/schedule-tab-icon.js";
+import Menu from "../components/appearances-side-menu.js";
 
 class AppearancesByDayStage extends Component {
   static navigationOptions = {
@@ -29,9 +29,34 @@ class AppearancesByDayStage extends Component {
     tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      sideMenuOpen: false
+    };
+  }
+
+  toggleSideMenu = () => {
+    this.setState({
+      sideMenuOpen: !this.state.sideMenuOpen
+    });
+  };
+
+  updateMenuState = sideMenuOpen => {
+    this.setState({ sideMenuOpen });
+  };
+
+  onMenuItemSelected = item =>
+    this.setState({
+      sideMenuOpen: false
+    });
+
   handleShowFavouritesPress = () => {
     const { showOnlyFavourites, setShowOnlyFavourites } = this.props;
     setShowOnlyFavourites(!showOnlyFavourites);
+    this.setState({
+      sideMenuOpen: false
+    });
   };
 
   getFavouritesButton = showOnlyFavourites => {
@@ -124,6 +149,8 @@ class AppearancesByDayStage extends Component {
       showOnlyFavourites
     } = this.props;
 
+    const { sideMenuOpen } = this.state;
+
     let appearances = [...appearancesList];
     if (showOnlyFavourites) {
       appearances = filterAppearancesByBandId(appearancesList, favourites);
@@ -133,34 +160,48 @@ class AppearancesByDayStage extends Component {
       appearances
     );
 
+    const menu = (
+      <Menu
+        currentAppearancesView="stage"
+        onItemSelected={this.onMenuItemSelected}
+        handleShowFavouritesPress={this.handleShowFavouritesPress}
+        navigation={navigation}
+        showOnlyFavourites={showOnlyFavourites}
+      />
+    );
+
     return (
-      <Container>
-        <Header>
-          <Left style={{ width: 200 }}>
-            <Button
-              transparent
-              onPress={() => navigation.navigate("AppearancesByDay")}
-            >
-              <Title>Show by Day</Title>
-            </Button>
-          </Left>
+      <SideMenu
+        menu={menu}
+        menuPosition="right"
+        isOpen={sideMenuOpen}
+        onChange={isOpen => this.updateMenuState(isOpen)}
+      >
+        <Container>
+          <Header>
+            <Left>
+              <Title>Schedule by Stage</Title>
+            </Left>
+            <Right>
+              <Icon
+                ios="ios-options"
+                android="md-options"
+                onPress={this.toggleSideMenu}
+              />
+            </Right>
+          </Header>
 
-          <Body>
-            <Title>by Stage</Title>
-          </Body>
-          <Right>{this.getFavouritesButton(showOnlyFavourites)}</Right>
-        </Header>
-
-        <Content style={{ backgroundColor: "#fff" }}>
-          {appearancesList.length > 0 ? (
-            <List>
-              {this.getAppearancesListDayLevel(appearancesGroupedByDayStage)}
-            </List>
-          ) : (
-            <Spinner />
-          )}
-        </Content>
-      </Container>
+          <Content style={{ backgroundColor: "#fff" }}>
+            {appearancesList.length > 0 ? (
+              <List>
+                {this.getAppearancesListDayLevel(appearancesGroupedByDayStage)}
+              </List>
+            ) : (
+              <Spinner />
+            )}
+          </Content>
+        </Container>
+      </SideMenu>
     );
   }
 }

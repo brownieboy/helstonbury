@@ -8,9 +8,14 @@ import {
   Image,
   Text
 } from "react-native";
+import { Button, Icon } from "native-base";
+
+import ScheduleTabIcon from "./schedule-tab-icon.js";
+import StageTabIcon from "./stages-tab-icon.js";
 
 const window = Dimensions.get("window");
-const uri = "https://pickaface.net/gallery/avatar/Opi51c74d0125fd4.png";
+// const uri = "https://pickaface.net/gallery/avatar/Opi51c74d0125fd4.png";
+const uri = "../../img/helstonbury-icon.png";
 import FavouritesButton from "../components/favourites-button.js";
 
 const styles = StyleSheet.create({
@@ -59,31 +64,49 @@ export default function Menu({
   return (
     <ScrollView scrollsToTop={false} style={styles.menu}>
       <View style={styles.avatarContainer}>
-        <Image style={styles.avatar} source={{ uri }} />
-        <Text style={styles.name}>Your name</Text>
+        <Image style={styles.avatar} source={require(uri)} />
+        <Text style={styles.name}>Helstonbury Schedule</Text>
       </View>
-      <Text onPress={() => onItemSelected("About")} style={styles.item}>
-        About
-      </Text>
-      <Text onPress={() => onItemSelected("Contacts")} style={styles.item}>
-        Contacts
-      </Text>
-      <Text
-        onPress={() => navigation.navigate("AppearancesByDay")}
-        style={
-          currentAppearancesView !== "day" ? styles.item : styles.itemSelected
-        }
+
+      <Button
+        transparent
+        onPress={() => {
+          onItemSelected();
+          navigation.navigate("AppearancesByDay");
+        }}
       >
-        Show by Day
-      </Text>
-      <Text
-        onPress={() => navigation.navigate("AppearancesByDayStage")}
-        style={
-          currentAppearancesView !== "stage" ? styles.item : styles.itemSelected
-        }
+        <StageTabIcon
+          tintColor={currentAppearancesView === "stage" ? "blue" : "gray"}
+        />
+        <Text
+          style={
+            currentAppearancesView !== "day" ? styles.item : styles.itemSelected
+          }
+        >
+          Show by Day
+        </Text>
+      </Button>
+      <Button
+        transparent
+        onPress={() => {
+          onItemSelected();
+          navigation.navigate("AppearancesByDayStage");
+        }}
       >
-        Show by Stage
-      </Text>
+        <ScheduleTabIcon
+          tintColor={currentAppearancesView === "day" ? "blue" : "gray"}
+        />
+        <Text
+          style={
+            currentAppearancesView !== "stage"
+              ? styles.item
+              : styles.itemSelected
+          }
+        >
+          Show by Stage
+        </Text>
+      </Button>
+
       <FavouritesButton
         selected={showOnlyFavourites}
         handlePress={handleShowFavouritesPress}

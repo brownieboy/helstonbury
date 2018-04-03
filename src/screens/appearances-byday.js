@@ -51,9 +51,11 @@ class AppearancesByDay extends Component {
   };
 
   onMenuItemSelected = item =>
-    this.setState({
-      sideMenuOpen: false
-    });
+    setTimeout(() => {
+      this.setState({
+        sideMenuOpen: false
+      });
+    }, 500);
 
   // handleShowFavouritesPress = () => {
   //   const newStatus = !this.state.showOnlyFavourites;
@@ -63,7 +65,6 @@ class AppearancesByDay extends Component {
   handleShowFavouritesPress = () => {
     const { showOnlyFavourites, setShowOnlyFavourites } = this.props;
     setShowOnlyFavourites(!showOnlyFavourites);
-    this.setState({ sideMenuOpen: false });
   };
 
   getAppearanceLines = lineData => {

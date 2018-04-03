@@ -129,7 +129,14 @@ export default function Menu({
             <Radio selected />
           </Right>
         </ListItem>
-        <ListItem icon last onPress={handleShowFavouritesPress}>
+        <ListItem
+          icon
+          last
+          onPress={() => {
+            handleShowFavouritesPress();
+            onItemSelected("favourites");
+          }}
+        >
           <Left>
             <Button style={{ backgroundColor: "#5855D6" }}>
               <Icon

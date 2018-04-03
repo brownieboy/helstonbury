@@ -47,16 +47,15 @@ class AppearancesByDayStage extends Component {
   };
 
   onMenuItemSelected = item =>
-    this.setState({
-      sideMenuOpen: false
-    });
+    setTimeout(() => {
+      this.setState({
+        sideMenuOpen: false
+      });
+    }, 300);
 
   handleShowFavouritesPress = () => {
     const { showOnlyFavourites, setShowOnlyFavourites } = this.props;
     setShowOnlyFavourites(!showOnlyFavourites);
-    this.setState({
-      sideMenuOpen: false
-    });
   };
 
   getFavouritesButton = showOnlyFavourites => {

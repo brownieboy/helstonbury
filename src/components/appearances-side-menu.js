@@ -98,9 +98,21 @@ export default function Menu({
           </Body>
           <Right />
         </ListItem>
-        <ListItem icon>
+        <ListItem
+          icon
+          onPress={() => {
+            navigation.navigate("AppearancesByDay");
+            onItemSelected("byStage");
+          }}
+        >
           <Left>
-            <Button style={{ backgroundColor: "#007AFF" }}>
+            <Button
+              onPress={() => {
+                navigation.navigate("AppearancesByDay");
+                onItemSelected("byStage");
+              }}
+              style={{ backgroundColor: "#007AFF" }}
+            >
               <Icon active name="calendar" />
             </Button>
           </Left>
@@ -108,12 +120,24 @@ export default function Menu({
             <Text>By Day</Text>
           </Body>
           <Right>
-            <Radio selected />
+            <Radio selected={currentAppearancesView === "day"} />
           </Right>
         </ListItem>
-        <ListItem icon>
+        <ListItem
+          icon
+          onPress={() => {
+            navigation.navigate("AppearancesByDayStage");
+            onItemSelected("byStage");
+          }}
+        >
           <Left>
-            <Button style={{ backgroundColor: "#007AFF" }}>
+            <Button
+              onPress={() => {
+                navigation.navigate("AppearancesByDayStage");
+                onItemSelected("byStage");
+              }}
+              style={{ backgroundColor: "#007AFF" }}
+            >
               <IconMaterialEntypo
                 active
                 name="modern-mic"
@@ -126,7 +150,7 @@ export default function Menu({
             <Text>By Stage</Text>
           </Body>
           <Right>
-            <Radio selected />
+            <Radio selected={currentAppearancesView === "stage"} />
           </Right>
         </ListItem>
         <ListItem
@@ -143,6 +167,10 @@ export default function Menu({
                 active
                 ios={showOnlyFavourites ? "ios-heart-outline" : "ios-heart"}
                 android={showOnlyFavourites ? "md-heart-outline" : "md-heart"}
+                onPress={() => {
+                  handleShowFavouritesPress();
+                  onItemSelected("favourites");
+                }}
               />
             </Button>
           </Left>

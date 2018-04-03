@@ -55,7 +55,7 @@ class AppearancesByDay extends Component {
       this.setState({
         sideMenuOpen: false
       });
-    }, 500);
+    }, 300);
 
   // handleShowFavouritesPress = () => {
   //   const newStatus = !this.state.showOnlyFavourites;

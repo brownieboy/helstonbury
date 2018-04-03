@@ -2,13 +2,33 @@ import React from "react";
 import PropTypes from "prop-types";
 import {
   Dimensions,
+  Platform,
   StyleSheet,
   ScrollView,
   View,
-  Image,
-  Text
+  Image
 } from "react-native";
-import { Button, Icon } from "native-base";
+import {
+  Container,
+  Header,
+  Title,
+  Content,
+  Button,
+  Icon,
+  ListItem,
+  Text,
+  Badge,
+  Left,
+  Right,
+  Body,
+  Switch,
+  Radio,
+  Picker,
+  Separator,
+  Thumbnail
+} from "native-base";
+
+import IconMaterialEntypo from "react-native-vector-icons/Entypo";
 
 import ScheduleTabIcon from "./schedule-tab-icon.js";
 import StageTabIcon from "./stages-tab-icon.js";
@@ -62,6 +82,76 @@ export default function Menu({
   showOnlyFavourites
 }) {
   return (
+    <Container
+      style={{
+        backgroundColor: "#FFF",
+        marginTop: 20
+      }}
+    >
+      <Content padder>
+        <ListItem avatar>
+          <Left>
+            <Thumbnail source={require(uri)} />
+          </Left>
+          <Body>
+            <Title>Schedule</Title>
+          </Body>
+          <Right />
+        </ListItem>
+        <ListItem icon>
+          <Left>
+            <Button style={{ backgroundColor: "#007AFF" }}>
+              <Icon active name="calendar" />
+            </Button>
+          </Left>
+          <Body>
+            <Text>By Day</Text>
+          </Body>
+          <Right>
+            <Radio selected />
+          </Right>
+        </ListItem>
+        <ListItem icon>
+          <Left>
+            <Button style={{ backgroundColor: "#007AFF" }}>
+              <IconMaterialEntypo
+                active
+                name="modern-mic"
+                size={20}
+                style={{ color: "white" }}
+              />
+            </Button>
+          </Left>
+          <Body>
+            <Text>By Stage</Text>
+          </Body>
+          <Right>
+            <Radio selected />
+          </Right>
+        </ListItem>
+        <ListItem icon last onPress={handleShowFavouritesPress}>
+          <Left>
+            <Button style={{ backgroundColor: "#5855D6" }}>
+              <Icon
+                active
+                ios={showOnlyFavourites ? "ios-heart-outline" : "ios-heart"}
+                android={showOnlyFavourites ? "md-heart-outline" : "md-heart"}
+              />
+            </Button>
+          </Left>
+          <Body>
+            <Text>Favourites only</Text>
+          </Body>
+          <Right>
+            <Text>Yes</Text>
+          </Right>
+        </ListItem>
+      </Content>
+    </Container>
+  );
+}
+
+/*
     <ScrollView scrollsToTop={false} style={styles.menu}>
       <View style={styles.avatarContainer}>
         <Image style={styles.avatar} source={require(uri)} />
@@ -112,8 +202,7 @@ export default function Menu({
         handlePress={handleShowFavouritesPress}
       />
     </ScrollView>
-  );
-}
+ */
 
 Menu.propTypes = {
   currentAppearancesView: PropTypes.string.isRequired,

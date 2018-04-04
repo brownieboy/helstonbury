@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import {
   Dimensions,
@@ -30,160 +30,142 @@ import {
 
 import IconMaterialEntypo from "react-native-vector-icons/Entypo";
 
-import ScheduleTabIcon from "./schedule-tab-icon.js";
-import StageTabIcon from "./stages-tab-icon.js";
-
 const window = Dimensions.get("window");
 // const uri = "https://pickaface.net/gallery/avatar/Opi51c74d0125fd4.png";
 const uri = "../../img/helstonbury-icon.png";
-import FavouritesButton from "../components/favourites-button.js";
 
-const styles = StyleSheet.create({
-  menu: {
-    flex: 1,
-    width: window.width,
-    height: window.height,
-    backgroundColor: "white",
-    padding: 20
-  },
-  avatarContainer: {
-    marginBottom: 20,
-    marginTop: 20
-  },
-  avatar: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    flex: 1
-  },
-  name: {
-    position: "absolute",
-    left: 70,
-    top: 20
-  },
-  item: {
-    fontSize: 14,
-    fontWeight: "300",
-    paddingTop: 5
-  },
-  itemSelected: {
-    fontSize: 14,
-    fontWeight: "300",
-    paddingTop: 5,
-    color: "lightgray"
-  }
-});
-
-export default function Menu({
+/*
+{
   currentAppearancesView,
   navigation,
   onItemSelected,
   handleShowFavouritesPress,
   showOnlyFavourites
-}) {
-  return (
-    <Container
-      style={{
-        backgroundColor: "#FFF",
-        marginTop: 20
-      }}
-    >
-      <Content padder>
-        <ListItem avatar>
-          <Left>
-            <Thumbnail source={require(uri)} />
-          </Left>
-          <Body>
-            <Title>Schedule</Title>
-          </Body>
-          <Right />
-        </ListItem>
-        <ListItem
-          icon
-          onPress={() => {
-            navigation.navigate("AppearancesByDay");
-            onItemSelected("byStage");
-          }}
-        >
-          <Left>
-            <Button
-              onPress={() => {
-                navigation.navigate("AppearancesByDay");
-                onItemSelected("byStage");
-              }}
-              style={{ backgroundColor: "#007AFF" }}
-            >
-              <Icon active name="calendar" />
-            </Button>
-          </Left>
-          <Body>
-            <Text>By Day</Text>
-          </Body>
-          <Right>
-            <Radio selected={currentAppearancesView === "day"} />
-          </Right>
-        </ListItem>
-        <ListItem
-          icon
-          onPress={() => {
-            navigation.navigate("AppearancesByDayStage");
-            onItemSelected("byStage");
-          }}
-        >
-          <Left>
-            <Button
-              onPress={() => {
-                navigation.navigate("AppearancesByDayStage");
-                onItemSelected("byStage");
-              }}
-              style={{ backgroundColor: "#007AFF" }}
-            >
-              <IconMaterialEntypo
-                active
-                name="modern-mic"
-                size={20}
-                style={{ color: "white" }}
-              />
-            </Button>
-          </Left>
-          <Body>
-            <Text>By Stage</Text>
-          </Body>
-          <Right>
-            <Radio selected={currentAppearancesView === "stage"} />
-          </Right>
-        </ListItem>
-        <ListItem
-          icon
-          last
-          onPress={() => {
-            handleShowFavouritesPress();
-            onItemSelected("favourites");
-          }}
-        >
-          <Left>
-            <Button style={{ backgroundColor: "#5855D6" }}>
-              <Icon
-                active
-                ios={showOnlyFavourites ? "ios-heart-outline" : "ios-heart"}
-                android={showOnlyFavourites ? "md-heart-outline" : "md-heart"}
-                onPress={() => {
-                  handleShowFavouritesPress();
-                  onItemSelected("favourites");
-                }}
-              />
-            </Button>
-          </Left>
-          <Body>
-            <Text>Favourites only</Text>
-          </Body>
-          <Right>
-            <Text>Yes</Text>
-          </Right>
-        </ListItem>
-      </Content>
-    </Container>
-  );
+}
+ */
+
+class AppearancesMenu extends Component {
+  constructor(props) {
+    super(props);
+    const { currentAppearancesView, showOnlyFavourites } = this.props;
+
+    this.state = {
+      currentAppearancesView,
+      showOnlyFavourites
+    };
+  }
+
+  handleDayStagePress = dayStage => {
+    console.log("handleDayStagePress, dayStage=" + dayStage);
+    const { handleSetAppearancesView, navigation, onItemSelected } = this.props;
+    const navigateTo =
+      dayStage === "stage" ? "AppearancesByDayStage" : "AppearancesByDay";
+    // this.setState({ currentAppearancesView: dayStage });
+    handleSetAppearancesView(dayStage);
+    setTimeout(() => {
+      navigation.navigate(navigateTo);
+      onItemSelected(dayStage);
+    }, 300);
+  };
+
+  render() {
+    const {
+      currentAppearancesView,
+      onItemSelected,
+      handleShowFavouritesPress
+    } = this.props;
+
+    const { showOnlyFavourites } = this.state;
+    console.log(
+      "menu.render..currentAppearancesView = " + currentAppearancesView
+    );
+
+    return (
+      <Container
+        style={{
+          backgroundColor: "#FFF",
+          marginTop: 20
+        }}
+      >
+        <Content padder>
+          <ListItem avatar>
+            <Left>
+              <Thumbnail source={require(uri)} />
+            </Left>
+            <Body>
+              <Title>Schedule</Title>
+            </Body>
+            <Right />
+          </ListItem>
+          <ListItem icon onPress={() => this.handleDayStagePress("day")}>
+            <Left>
+              <Button
+                onPress={() => this.handleDayStagePress("day")}
+                style={{ backgroundColor: "#007AFF" }}
+              >
+                <Icon active name="calendar" />
+              </Button>
+            </Left>
+            <Body>
+              <Text>By Day</Text>
+            </Body>
+            <Right>
+              <Radio selected={currentAppearancesView === "day"} />
+            </Right>
+          </ListItem>
+          <ListItem icon onPress={() => this.handleDayStagePress("stage")}>
+            <Left>
+              <Button
+                onPress={() => this.handleDayStagePress("stage")}
+                style={{ backgroundColor: "#007AFF" }}
+              >
+                <IconMaterialEntypo
+                  active
+                  name="modern-mic"
+                  size={20}
+                  style={{ color: "white" }}
+                />
+              </Button>
+            </Left>
+            <Body>
+              <Text>By Stage</Text>
+            </Body>
+            <Right>
+              <Radio selected={currentAppearancesView === "stage"} />
+            </Right>
+          </ListItem>
+          <ListItem
+            icon
+            last
+            onPress={() => {
+              handleShowFavouritesPress();
+              onItemSelected("favourites");
+            }}
+          >
+            <Left>
+              <Button style={{ backgroundColor: "#5855D6" }}>
+                <Icon
+                  active
+                  ios={showOnlyFavourites ? "ios-heart-outline" : "ios-heart"}
+                  android={showOnlyFavourites ? "md-heart-outline" : "md-heart"}
+                  onPress={() => {
+                    handleShowFavouritesPress();
+                    onItemSelected("favourites");
+                  }}
+                />
+              </Button>
+            </Left>
+            <Body>
+              <Text>Favourites only</Text>
+            </Body>
+            <Right>
+              <Text>Yes</Text>
+            </Right>
+          </ListItem>
+        </Content>
+      </Container>
+    );
+  }
 }
 
 /*
@@ -239,10 +221,12 @@ export default function Menu({
     </ScrollView>
  */
 
-Menu.propTypes = {
+AppearancesMenu.propTypes = {
   currentAppearancesView: PropTypes.string.isRequired,
   showOnlyFavourites: PropTypes.bool.isRequired,
   handleShowFavouritesPress: PropTypes.func.isRequired,
   navigation: PropTypes.object.isRequired,
   onItemSelected: PropTypes.func.isRequired
 };
+
+export default AppearancesMenu;

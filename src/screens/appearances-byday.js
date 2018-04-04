@@ -51,11 +51,9 @@ class AppearancesByDay extends Component {
   };
 
   onMenuItemSelected = item =>
-    setTimeout(() => {
-      this.setState({
-        sideMenuOpen: false
-      });
-    }, 300);
+    this.setState({
+      sideMenuOpen: false
+    });
 
   // handleShowFavouritesPress = () => {
   //   const newStatus = !this.state.showOnlyFavourites;
@@ -130,10 +128,12 @@ class AppearancesByDay extends Component {
   render() {
     const {
       appearancesList,
+      appearancesView,
       filterAppearancesByBandId,
       groupAppearancesByDay,
       favourites,
       navigation,
+      setShowAppearancesView,
       showOnlyFavourites
     } = this.props;
 
@@ -172,7 +172,8 @@ this.props.navigation.navigate("AppearancesDayStageNav")
 
     const menu = (
       <Menu
-        currentAppearancesView="day"
+        currentAppearancesView={appearancesView}
+        handleSetAppearancesView={setShowAppearancesView}
         onItemSelected={this.onMenuItemSelected}
         handleShowFavouritesPress={this.handleShowFavouritesPress}
         navigation={navigation}

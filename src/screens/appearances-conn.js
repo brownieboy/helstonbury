@@ -17,7 +17,9 @@ import {
 
 import {
   getShowOnlyFavourites,
-  setShowOnlyFavourites
+  setShowOnlyFavourites,
+  getAppearancesView,
+  setShowAppearancesView
 } from "../dux/uiReducer.js";
 
 const getCommonStateObject = state => ({
@@ -31,6 +33,7 @@ const getCommonStateObject = state => ({
   favourites: state.favouritesState.favourites,
   appearancesGroupedByDay: getAppearancesGroupedByDay(state),
   showOnlyFavourites: getShowOnlyFavourites(state),
+  appearancesView: getAppearancesView(state),
   appearancesList: getAppearancesList(state),
   filterAppearancesByBandId: (appearances, bandsToFilterArray) =>
     filterAppearancesByBandId(appearances, bandsToFilterArray)
@@ -49,7 +52,11 @@ const mapStateToPropsByDayStage = state => ({
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
-    { loadappearancesProp: loadAppearances, setShowOnlyFavourites },
+    {
+      loadappearancesProp: loadAppearances,
+      setShowOnlyFavourites,
+      setShowAppearancesView
+    },
     dispatch
   );
 
@@ -62,4 +69,3 @@ export const AppearancesByDayStageConn = connect(
   mapStateToPropsByDayStage,
   mapDispatchToProps
 )(AppearancesByDayStage);
-

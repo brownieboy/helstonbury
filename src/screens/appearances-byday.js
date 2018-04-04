@@ -41,19 +41,20 @@ class AppearancesByDay extends Component {
   }
 
   toggleSideMenu = () => {
-    this.setState({
-      sideMenuOpen: !this.state.sideMenuOpen
-    });
+    const {
+      appearancesSideMenuVisible,
+      setShowAppearancesSideMenu
+    } = this.props;
+    setShowAppearancesSideMenu(!appearancesSideMenuVisible);
+  };
+
+  closeSideMenu = () => {
+    this.props.setShowAppearancesSideMenu(false);
   };
 
   updateMenuState = sideMenuOpen => {
     this.setState({ sideMenuOpen });
   };
-
-  onMenuItemSelected = item =>
-    this.setState({
-      sideMenuOpen: false
-    });
 
   // handleShowFavouritesPress = () => {
   //   const newStatus = !this.state.showOnlyFavourites;
@@ -129,6 +130,7 @@ class AppearancesByDay extends Component {
     const {
       appearancesList,
       appearancesView,
+      appearancesSideMenuVisible,
       filterAppearancesByBandId,
       groupAppearancesByDay,
       favourites,
@@ -173,9 +175,9 @@ this.props.navigation.navigate("AppearancesDayStageNav")
 
     const menu = (
       <Menu
+        closeSideMenu={this.closeSideMenu}
         currentAppearancesView={appearancesView}
         handleSetAppearancesView={setShowAppearancesView}
-        onItemSelected={this.onMenuItemSelected}
         setShowOnlyFavourites={setShowOnlyFavourites}
         navigation={navigation}
         showOnlyFavourites={showOnlyFavourites}
@@ -186,8 +188,8 @@ this.props.navigation.navigate("AppearancesDayStageNav")
       <SideMenu
         menu={menu}
         menuPosition="right"
-        isOpen={sideMenuOpen}
-        onChange={isOpen => this.updateMenuState(isOpen)}
+        isOpen={appearancesSideMenuVisible}
+        onChange={isOpen => setShowAppearancesView(isOpen)}
       >
         <Container>
           <Header>
@@ -219,12 +221,15 @@ this.props.navigation.navigate("AppearancesDayStageNav")
 }
 
 AppearancesByDay.propTypes = {
+  appearancesView: PropTypes.string.isRequired,
+  appearancesSideMenuVisible: PropTypes.bool.isRequired,
   appearancesList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   filterAppearancesByBandId: PropTypes.func.isRequired,
   groupAppearancesByDay: PropTypes.func.isRequired,
   favourites: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   navigation: PropTypes.object.isRequired,
   setShowOnlyFavourites: PropTypes.func.isRequired,
+  setShowAppearancesSideMenu: PropTypes.func.isRequired,
   showOnlyFavourites: PropTypes.bool.isRequired
 };
 

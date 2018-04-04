@@ -70,10 +70,7 @@ class AppearancesMenu extends Component {
       dayStage === "stage" ? "AppearancesByDayStage" : "AppearancesByDay";
     // this.setState({ currentAppearancesView: dayStage });
     handleSetAppearancesView(dayStage);
-    setTimeout(() => {
-      navigation.navigate(navigateTo);
-      onItemSelected(dayStage);
-    }, 300);
+    navigation.navigate(navigateTo);
   };
 
   toggleShowFavourites = () => {
@@ -83,14 +80,12 @@ class AppearancesMenu extends Component {
       showOnlyFavourites
     } = this.props;
     setShowOnlyFavourites(!showOnlyFavourites);
-    setTimeout(() => {
-      onItemSelected("favourites");
-    }, 300);
   };
 
   render() {
     const {
       currentAppearancesView,
+      closeSideMenu,
       // onItemSelected,
       // handleShowFavouritesPress,
       showOnlyFavourites
@@ -184,6 +179,15 @@ class AppearancesMenu extends Component {
               />
             </Right>
           </ListItem>
+          <ListItem>
+            <Left />
+            <Body>
+              <Button>
+                <Text>Close</Text>
+              </Button>
+            </Body>
+            <Right />
+          </ListItem>
         </Content>
       </Container>
     );
@@ -249,7 +253,7 @@ AppearancesMenu.propTypes = {
   showOnlyFavourites: PropTypes.bool.isRequired,
   setShowOnlyFavourites: PropTypes.func.isRequired,
   navigation: PropTypes.object.isRequired,
-  onItemSelected: PropTypes.func.isRequired
+  closeSideMenu: PropTypes.func.isRequired
 };
 
 export default AppearancesMenu;

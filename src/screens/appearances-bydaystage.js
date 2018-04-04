@@ -38,19 +38,20 @@ class AppearancesByDayStage extends Component {
   }
 
   toggleSideMenu = () => {
-    this.setState({
-      sideMenuOpen: !this.state.sideMenuOpen
-    });
+    const {
+      appearancesSideMenuVisible,
+      setShowAppearancesSideMenu
+    } = this.props;
+    setShowAppearancesSideMenu(!appearancesSideMenuVisible);
+  };
+
+  closeSideMenu = () => {
+    this.props.setShowAppearancesSideMenu(false);
   };
 
   updateMenuState = sideMenuOpen => {
     this.setState({ sideMenuOpen });
   };
-
-  onMenuItemSelected = item =>
-    this.setState({
-      sideMenuOpen: false
-    });
 
   handleShowFavouritesPress = () => {
     const { showOnlyFavourites, setShowOnlyFavourites } = this.props;
@@ -141,6 +142,7 @@ class AppearancesByDayStage extends Component {
     const {
       appearancesList,
       appearancesView,
+      appearancesSideMenuVisible,
       filterAppearancesByBandId,
       groupAppearancesByDayStage,
       favourites,
@@ -163,9 +165,9 @@ class AppearancesByDayStage extends Component {
 
     const menu = (
       <Menu
+        closeSideMenu={this.closeSideMenu}
         currentAppearancesView={appearancesView}
         handleSetAppearancesView={setShowAppearancesView}
-        onItemSelected={this.onMenuItemSelected}
         setShowOnlyFavourites={setShowOnlyFavourites}
         navigation={navigation}
         showOnlyFavourites={showOnlyFavourites}
@@ -209,6 +211,8 @@ class AppearancesByDayStage extends Component {
 }
 
 AppearancesByDayStage.propTypes = {
+  appearancesView: PropTypes.string.isRequired,
+  appearancesSideMenuVisible: PropTypes.bool.isRequired,
   appearancesList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   filterAppearancesByBandId: PropTypes.func.isRequired,
   groupAppearancesByDayStage: PropTypes.func.isRequired,

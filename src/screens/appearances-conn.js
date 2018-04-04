@@ -19,7 +19,9 @@ import {
   getShowOnlyFavourites,
   setShowOnlyFavourites,
   getAppearancesView,
-  setShowAppearancesView
+  setShowAppearancesView,
+  getAppearancesSideMenuVisible,
+  setShowAppearancesSideMenu
 } from "../dux/uiReducer.js";
 
 const getCommonStateObject = state => ({
@@ -35,6 +37,7 @@ const getCommonStateObject = state => ({
   showOnlyFavourites: getShowOnlyFavourites(state),
   appearancesView: getAppearancesView(state),
   appearancesList: getAppearancesList(state),
+  appearancesSideMenuVisible: getAppearancesSideMenuVisible(state),
   filterAppearancesByBandId: (appearances, bandsToFilterArray) =>
     filterAppearancesByBandId(appearances, bandsToFilterArray)
 });
@@ -55,7 +58,8 @@ const mapDispatchToProps = dispatch =>
     {
       loadappearancesProp: loadAppearances,
       setShowOnlyFavourites,
-      setShowAppearancesView
+      setShowAppearancesView,
+      setShowAppearancesSideMenu
     },
     dispatch
   );

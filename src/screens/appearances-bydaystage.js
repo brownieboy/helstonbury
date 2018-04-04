@@ -149,6 +149,7 @@ class AppearancesByDayStage extends Component {
       navigation,
       setShowAppearancesView,
       setShowOnlyFavourites,
+      setShowAppearancesSideMenu,
       showOnlyFavourites
     } = this.props;
 
@@ -178,8 +179,8 @@ class AppearancesByDayStage extends Component {
       <SideMenu
         menu={menu}
         menuPosition="right"
-        isOpen={sideMenuOpen}
-        onChange={isOpen => this.updateMenuState(isOpen)}
+        isOpen={appearancesSideMenuVisible}
+        onChange={isOpen => setShowAppearancesSideMenu(isOpen)}
       >
         <Container>
           <Header>

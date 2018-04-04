@@ -182,7 +182,7 @@ class AppearancesMenu extends Component {
           <ListItem>
             <Left />
             <Body>
-              <Button>
+              <Button onPress={closeSideMenu}>
                 <Text>Close</Text>
               </Button>
             </Body>

@@ -5,6 +5,7 @@ import { format } from "date-fns";
 import SideMenu from "react-native-side-menu";
 
 import {
+  Body,
   Button,
   Container,
   Header,
@@ -180,9 +181,9 @@ class AppearancesByDayStage extends Component {
       >
         <Container>
           <Header>
-            <Left>
+            <Body>
               <Title>Schedule by Stage</Title>
-            </Left>
+            </Body>
             <Right>
               <Icon
                 ios="ios-options"

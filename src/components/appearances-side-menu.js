@@ -30,7 +30,7 @@ import {
 
 import IconMaterialEntypo from "react-native-vector-icons/Entypo";
 
-const window = Dimensions.get("window");
+// const window = Dimensions.get("window");
 // const uri = "https://pickaface.net/gallery/avatar/Opi51c74d0125fd4.png";
 const uri = "../../img/helstonbury-icon.png";
 
@@ -69,7 +69,11 @@ class AppearancesMenu extends Component {
   };
 
   toggleShowFavourites = () => {
-    const { onItemSelected, setShowOnlyFavourites, showOnlyFavourites } = this.props;
+    const {
+      onItemSelected,
+      setShowOnlyFavourites,
+      showOnlyFavourites
+    } = this.props;
     setShowOnlyFavourites(!showOnlyFavourites);
     setTimeout(() => {
       onItemSelected("favourites");
@@ -79,8 +83,8 @@ class AppearancesMenu extends Component {
   render() {
     const {
       currentAppearancesView,
-      onItemSelected,
-      handleShowFavouritesPress,
+      // onItemSelected,
+      // handleShowFavouritesPress,
       showOnlyFavourites
     } = this.props;
 
@@ -165,7 +169,11 @@ class AppearancesMenu extends Component {
               <Text>Favourites only</Text>
             </Body>
             <Right>
-              <Text>{showOnlyFavourites ? "Yes" : "No"}</Text>
+              <Switch
+                value={showOnlyFavourites}
+                onChange={this.toggleShowFavourites}
+                onTintColor="#50B948"
+              />
             </Right>
           </ListItem>
         </Content>
@@ -229,6 +237,7 @@ class AppearancesMenu extends Component {
 
 AppearancesMenu.propTypes = {
   currentAppearancesView: PropTypes.string.isRequired,
+  handleSetAppearancesView: PropTypes.func.isRequired,
   showOnlyFavourites: PropTypes.bool.isRequired,
   setShowOnlyFavourites: PropTypes.func.isRequired,
   navigation: PropTypes.object.isRequired,

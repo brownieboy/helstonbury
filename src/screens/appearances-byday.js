@@ -191,9 +191,9 @@ this.props.navigation.navigate("AppearancesDayStageNav")
       >
         <Container>
           <Header>
-            <Left>
+            <Body>
               <Title>Schedule by Day</Title>
-            </Left>
+            </Body>
             <Right>
               <Icon
                 ios="ios-options"

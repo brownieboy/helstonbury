@@ -27,6 +27,7 @@ const AppNavigator = tabNavigator(
   {
     // animationEnabled: true,
     initialRouteName: "Home",
+    lazy: false,
     tabBarPosition: "bottom",
     tabBarOptions: {
       showIcon: true,

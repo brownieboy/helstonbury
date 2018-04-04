@@ -34,6 +34,14 @@ import IconMaterialEntypo from "react-native-vector-icons/Entypo";
 // const uri = "https://pickaface.net/gallery/avatar/Opi51c74d0125fd4.png";
 const uri = "../../img/helstonbury-icon.png";
 
+const styles = {
+  menuItems: {
+    text: {
+      fontSize: 12
+    }
+  }
+};
+
 /*
 {
   currentAppearancesView,
@@ -120,7 +128,7 @@ class AppearancesMenu extends Component {
               </Button>
             </Left>
             <Body>
-              <Text>By Day</Text>
+              <Text style={styles.menuItems.text}>By Day</Text>
             </Body>
             <Right>
               <Radio
@@ -144,7 +152,7 @@ class AppearancesMenu extends Component {
               </Button>
             </Left>
             <Body>
-              <Text>By Stage</Text>
+              <Text style={styles.menuItems.text}>By Stage</Text>
             </Body>
             <Right>
               <Radio
@@ -166,7 +174,7 @@ class AppearancesMenu extends Component {
               </Button>
             </Left>
             <Body>
-              <Text>Favourites only</Text>
+              <Text style={styles.menuItems.text}>Favourites only</Text>
             </Body>
             <Right>
               <Switch

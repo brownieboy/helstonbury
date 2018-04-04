@@ -145,6 +145,7 @@ class AppearancesByDayStage extends Component {
       favourites,
       navigation,
       setShowAppearancesView,
+      setShowOnlyFavourites,
       showOnlyFavourites
     } = this.props;
 
@@ -164,7 +165,7 @@ class AppearancesByDayStage extends Component {
         currentAppearancesView={appearancesView}
         handleSetAppearancesView={setShowAppearancesView}
         onItemSelected={this.onMenuItemSelected}
-        handleShowFavouritesPress={this.handleShowFavouritesPress}
+        setShowOnlyFavourites={setShowOnlyFavourites}
         navigation={navigation}
         showOnlyFavourites={showOnlyFavourites}
       />

@@ -56,7 +56,7 @@ class AppearancesMenu extends Component {
   }
 
   handleDayStagePress = dayStage => {
-    console.log("handleDayStagePress, dayStage=" + dayStage);
+    // console.log("handleDayStagePress, dayStage=" + dayStage);
     const { handleSetAppearancesView, navigation, onItemSelected } = this.props;
     const navigateTo =
       dayStage === "stage" ? "AppearancesByDayStage" : "AppearancesByDay";
@@ -68,17 +68,26 @@ class AppearancesMenu extends Component {
     }, 300);
   };
 
+  toggleShowFavourites = () => {
+    const { onItemSelected, setShowOnlyFavourites, showOnlyFavourites } = this.props;
+    setShowOnlyFavourites(!showOnlyFavourites);
+    setTimeout(() => {
+      onItemSelected("favourites");
+    }, 300);
+  };
+
   render() {
     const {
       currentAppearancesView,
       onItemSelected,
-      handleShowFavouritesPress
+      handleShowFavouritesPress,
+      showOnlyFavourites
     } = this.props;
 
-    const { showOnlyFavourites } = this.state;
-    console.log(
-      "menu.render..currentAppearancesView = " + currentAppearancesView
-    );
+    // const { showOnlyFavourites } = this.state;
+    // console.log(
+    //   "menu.render..currentAppearancesView = " + currentAppearancesView
+    // );
 
     return (
       <Container
@@ -110,7 +119,10 @@ class AppearancesMenu extends Component {
               <Text>By Day</Text>
             </Body>
             <Right>
-              <Radio selected={currentAppearancesView === "day"} />
+              <Radio
+                onPress={() => this.handleDayStagePress("day")}
+                selected={currentAppearancesView === "day"}
+              />
             </Right>
           </ListItem>
           <ListItem icon onPress={() => this.handleDayStagePress("stage")}>
@@ -131,27 +143,21 @@ class AppearancesMenu extends Component {
               <Text>By Stage</Text>
             </Body>
             <Right>
-              <Radio selected={currentAppearancesView === "stage"} />
+              <Radio
+                onPress={() => this.handleDayStagePress("stage")}
+                selected={currentAppearancesView === "stage"}
+              />
             </Right>
           </ListItem>
-          <ListItem
-            icon
-            last
-            onPress={() => {
-              handleShowFavouritesPress();
-              onItemSelected("favourites");
-            }}
-          >
+          <ListItem icon last onPress={this.toggleShowFavourites}>
             <Left>
-              <Button style={{ backgroundColor: "#5855D6" }}>
+              <Button style={{ backgroundColor: "white" }}>
                 <Icon
                   active
-                  ios={showOnlyFavourites ? "ios-heart-outline" : "ios-heart"}
-                  android={showOnlyFavourites ? "md-heart-outline" : "md-heart"}
-                  onPress={() => {
-                    handleShowFavouritesPress();
-                    onItemSelected("favourites");
-                  }}
+                  ios={showOnlyFavourites ? "ios-heart" : "ios-heart-outline"}
+                  android={showOnlyFavourites ? "md-heart" : "md-heart-outline"}
+                  style={{ color: "red" }}
+                  onPress={this.toggleShowFavourites}
                 />
               </Button>
             </Left>
@@ -159,7 +165,7 @@ class AppearancesMenu extends Component {
               <Text>Favourites only</Text>
             </Body>
             <Right>
-              <Text>Yes</Text>
+              <Text>{showOnlyFavourites ? "Yes" : "No"}</Text>
             </Right>
           </ListItem>
         </Content>
@@ -224,7 +230,7 @@ class AppearancesMenu extends Component {
 AppearancesMenu.propTypes = {
   currentAppearancesView: PropTypes.string.isRequired,
   showOnlyFavourites: PropTypes.bool.isRequired,
-  handleShowFavouritesPress: PropTypes.func.isRequired,
+  setShowOnlyFavourites: PropTypes.func.isRequired,
   navigation: PropTypes.object.isRequired,
   onItemSelected: PropTypes.func.isRequired
 };

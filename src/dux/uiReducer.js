@@ -23,6 +23,7 @@ export const setShowOnlyFavourites = show => ({
   payload: show
 });
 
+
 export const setShowAppearancesView = view => ({
   type: SET_APPEARANCES_VIEW,
   payload: view

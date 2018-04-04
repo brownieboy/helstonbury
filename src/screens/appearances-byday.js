@@ -136,6 +136,7 @@ class AppearancesByDay extends Component {
       favourites,
       navigation,
       setShowAppearancesView,
+      setShowAppearancesSideMenu,
       setShowOnlyFavourites,
       showOnlyFavourites
     } = this.props;
@@ -189,7 +190,7 @@ this.props.navigation.navigate("AppearancesDayStageNav")
         menu={menu}
         menuPosition="right"
         isOpen={appearancesSideMenuVisible}
-        onChange={isOpen => setShowAppearancesView(isOpen)}
+        onChange={isOpen => setShowAppearancesSideMenu(isOpen)}
       >
         <Container>
           <Header>

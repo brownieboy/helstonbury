@@ -102,6 +102,8 @@ const getAppearancesByDateTime = (appearancesList, bandsToFilterArray = []) => {
 */
 
 // Getters are just functions.
+export const fetchStatus = state => state.fetchStatus;
+
 export const getAppearancesList = state => {
   const newAppearances = [...state.appearancesState.appearancesList];
   return newAppearances;

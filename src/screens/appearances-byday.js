@@ -132,6 +132,7 @@ class AppearancesByDay extends Component {
       appearancesList,
       appearancesView,
       appearancesSideMenuVisible,
+      fetchStatus,
       filterAppearancesByBandId,
       groupAppearancesByDay,
       favourites,
@@ -216,12 +217,13 @@ this.props.navigation.navigate("AppearancesDayStageNav")
           </Header>
 
           <Content style={{ backgroundColor: "#fff" }}>
+            {fetchStatus === "fetching" && <Spinner />}
             {appearancesList.length > 0 ? (
               <List>
                 {this.getAppearancesListDayLevel(appearancesGroupedByDay)}
               </List>
             ) : (
-              <Spinner />
+              <Text>Nothing to see</Text>
             )}
           </Content>
         </Container>
@@ -234,6 +236,7 @@ AppearancesByDay.propTypes = {
   appearancesView: PropTypes.string.isRequired,
   appearancesSideMenuVisible: PropTypes.bool.isRequired,
   appearancesList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  fetchStatus: PropTypes.string.isRequired,
   filterAppearancesByBandId: PropTypes.func.isRequired,
   groupAppearancesByDay: PropTypes.func.isRequired,
   favourites: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,

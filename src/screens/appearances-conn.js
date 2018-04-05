@@ -11,6 +11,7 @@ import {
   groupAppearancesByDay,
   groupAppearancesByDayStage,
   getAppearancesGroupedByDay,
+  getFetchStatus,
   loadAppearances,
   selectors as appearanceSelectors
 } from "../dux/appearancesReducer.js";
@@ -33,6 +34,7 @@ const getCommonStateObject = state => ({
   ),
   favouritesState: state.favouritesState,
   favourites: state.favouritesState.favourites,
+  fetchStatus: getFetchStatus(state),s
   appearancesGroupedByDay: getAppearancesGroupedByDay(state),
   showOnlyFavourites: getShowOnlyFavourites(state),
   appearancesView: getAppearancesView(state),

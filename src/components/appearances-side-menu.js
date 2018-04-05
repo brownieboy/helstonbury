@@ -1,30 +1,26 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import {
-  Dimensions,
-  Platform,
-  StyleSheet,
-  ScrollView,
-  View,
-  Image
-} from "react-native";
+// import {
+//   Dimensions,
+//   Platform,
+//   StyleSheet,
+//   ScrollView,
+//   View,
+//   Image
+// } from "react-native";
 import {
   Container,
-  Header,
   Title,
   Content,
   Button,
   Icon,
   ListItem,
   Text,
-  Badge,
   Left,
   Right,
   Body,
   Switch,
   Radio,
-  Picker,
-  Separator,
   Thumbnail
 } from "native-base";
 
@@ -95,6 +91,7 @@ class AppearancesMenu extends Component {
     // console.log(
     //   "menu.render..currentAppearancesView = " + currentAppearancesView
     // );
+    //              <Thumbnail source={require(uri)} />
 
     return (
       <Container
@@ -104,14 +101,11 @@ class AppearancesMenu extends Component {
         }}
       >
         <Content padder>
-          <ListItem avatar>
+          <ListItem icon>
             <Left>
-              <Thumbnail source={require(uri)} />
+              <Icon name="settings" />
+              <Text>Schedule Options</Text>
             </Left>
-            <Body>
-              <Title>Schedule</Title>
-            </Body>
-            <Right />
           </ListItem>
           <ListItem icon onPress={() => this.handleDayStagePress("day")}>
             <Left>

@@ -33,12 +33,12 @@ class AppearancesByDay extends Component {
     tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      sideMenuOpen: false
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     sideMenuOpen: false
+  //   };
+  // }
 
   toggleSideMenu = () => {
     const {
@@ -52,9 +52,9 @@ class AppearancesByDay extends Component {
     this.props.setShowAppearancesSideMenu(false);
   };
 
-  updateMenuState = sideMenuOpen => {
-    this.setState({ sideMenuOpen });
-  };
+  // updateMenuState = sideMenuOpen => {
+  //   this.setState({ sideMenuOpen });
+  // };
 
   // handleShowFavouritesPress = () => {
   //   const newStatus = !this.state.showOnlyFavourites;
@@ -141,7 +141,9 @@ class AppearancesByDay extends Component {
       showOnlyFavourites
     } = this.props;
 
-    const { sideMenuOpen } = this.state;
+    // console.log("AppearancesByDay render()");
+
+    // const { sideMenuOpen } = this.state;
 
     // console.log("appearances-byday.js, appearances:");
     // const bandFilterArray = showOnlyFavourites ? favourites : [];
@@ -231,6 +233,7 @@ AppearancesByDay.propTypes = {
   navigation: PropTypes.object.isRequired,
   setShowOnlyFavourites: PropTypes.func.isRequired,
   setShowAppearancesSideMenu: PropTypes.func.isRequired,
+  setShowAppearancesView: PropTypes.func.isRequired,
   showOnlyFavourites: PropTypes.bool.isRequired
 };
 

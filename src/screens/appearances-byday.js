@@ -24,6 +24,7 @@ import {
 import FavouritesListIcon from "../components/favourites-list-icon.js";
 import ScheduleTabIcon from "../components/schedule-tab-icon.js";
 import Menu from "../components/appearances-side-menu.js";
+import HelstonburyAvatar from "../components/helstonbury-avatar.js";
 
 // ${lineMember.name}:
 
@@ -199,6 +200,9 @@ this.props.navigation.navigate("AppearancesDayStageNav")
       >
         <Container>
           <Header>
+            <Left>
+              <HelstonburyAvatar />
+            </Left>
             <Body>
               <Title>Schedule by Day</Title>
             </Body>

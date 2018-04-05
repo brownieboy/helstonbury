@@ -41,6 +41,7 @@ import BandsTabIcon from "../components/bands-tab-icon.js";
 import FavouritesListIcon from "../components/favourites-list-icon.js";
 
 const defaultThumb = "../../img/RockNRollGuitarist.png";
+import HelstonburyAvatar from "../components/helstonbury-avatar.js";
 
 // import { NavigationActions } from "react-navigation";
 
@@ -149,7 +150,9 @@ class BandsList extends Component {
           </Text>
         </Body>
         {favouritesState.favourites.indexOf(bandMember.bandId) > -1 ? (
-          <FavouritesListIcon style={{ fontSize: 14, width: 14, marginRight: 10 }} />
+          <FavouritesListIcon
+            style={{ fontSize: 14, width: 14, marginRight: 10 }}
+          />
         ) : null}
         <Right>
           <Icon name="arrow-forward" />
@@ -171,6 +174,9 @@ class BandsList extends Component {
     return (
       <Container style={styles.container}>
         <Header>
+          <Left>
+            <HelstonburyAvatar />
+          </Left>
           <Body>
             <Title>Bands</Title>
           </Body>

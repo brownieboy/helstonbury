@@ -23,6 +23,7 @@ import {
 import FavouritesListIcon from "../components/favourites-list-icon.js";
 import ScheduleTabIcon from "../components/schedule-tab-icon.js";
 import Menu from "../components/appearances-side-menu.js";
+import HelstonburyAvatar from "../components/helstonbury-avatar.js";
 
 class AppearancesByDayStage extends Component {
   static navigationOptions = {
@@ -187,6 +188,9 @@ class AppearancesByDayStage extends Component {
       >
         <Container>
           <Header>
+            <Left>
+              <HelstonburyAvatar />
+            </Left>
             <Body>
               <Title>Schedule by Stage</Title>
             </Body>

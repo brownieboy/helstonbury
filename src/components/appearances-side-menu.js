@@ -28,7 +28,7 @@ import IconMaterialEntypo from "react-native-vector-icons/Entypo";
 
 // const window = Dimensions.get("window");
 // const uri = "https://pickaface.net/gallery/avatar/Opi51c74d0125fd4.png";
-const uri = "../../img/helstonbury-icon.png";
+// const uri = "../../img/helstonbury-icon.png";
 
 const styles = {
   menuItems: {

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {
   Container,
+  Left,
   Header,
   Title,
   Content,
@@ -13,6 +14,7 @@ import styles from "../styles/band-card-styles.js";
 // import tabNavStyles from "../styles/tab-navigator-styles.js";
 // import IconMaterialEntypo from "react-native-vector-icons/Entypo";
 import StageTabIcon from "../components/stages-tab-icon.js";
+import HelstonburyAvatar from "../components/helstonbury-avatar.js";
 
 class Stages extends Component {
   static navigationOptions = {
@@ -24,6 +26,9 @@ class Stages extends Component {
     return (
       <Container style={styles.container}>
         <Header>
+          <Left>
+            <HelstonburyAvatar />
+          </Left>
           <Body>
             <Title>Stages</Title>
           </Body>

@@ -180,7 +180,10 @@ class AppearancesByDayStage extends Component {
         menu={menu}
         menuPosition="right"
         isOpen={appearancesSideMenuVisible}
-        onChange={isOpen => setShowAppearancesSideMenu(isOpen)}
+        onChange={isOpen =>
+          isOpen === appearancesSideMenuVisible &&
+          setShowAppearancesSideMenu(isOpen)
+        }
       >
         <Container>
           <Header>

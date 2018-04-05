@@ -30,12 +30,12 @@ class AppearancesByDayStage extends Component {
     tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      sideMenuOpen: false
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     sideMenuOpen: false
+  //   };
+  // }
 
   toggleSideMenu = () => {
     const {
@@ -49,9 +49,9 @@ class AppearancesByDayStage extends Component {
     this.props.setShowAppearancesSideMenu(false);
   };
 
-  updateMenuState = sideMenuOpen => {
-    this.setState({ sideMenuOpen });
-  };
+  // updateMenuState = sideMenuOpen => {
+  //   this.setState({ sideMenuOpen });
+  // };
 
   handleShowFavouritesPress = () => {
     const { showOnlyFavourites, setShowOnlyFavourites } = this.props;
@@ -153,7 +153,7 @@ class AppearancesByDayStage extends Component {
       showOnlyFavourites
     } = this.props;
 
-    const { sideMenuOpen } = this.state;
+    // const { sideMenuOpen } = this.state;
 
     let appearances = [...appearancesList];
     if (showOnlyFavourites) {
@@ -180,7 +180,10 @@ class AppearancesByDayStage extends Component {
         menu={menu}
         menuPosition="right"
         isOpen={appearancesSideMenuVisible}
-        onChange={isOpen => setShowAppearancesSideMenu(isOpen)}
+        onChange={isOpen =>
+          isOpen === appearancesSideMenuVisible &&
+          setShowAppearancesSideMenu(isOpen)
+        }
       >
         <Container>
           <Header>
@@ -220,6 +223,7 @@ AppearancesByDayStage.propTypes = {
   favourites: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   navigation: PropTypes.object.isRequired,
   showOnlyFavourites: PropTypes.bool.isRequired,
+  setShowAppearancesView: PropTypes.func.isRequired,
   setShowOnlyFavourites: PropTypes.func.isRequired
 };
 

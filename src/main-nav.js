@@ -9,7 +9,7 @@ import tabNavStyles from "./styles/tab-navigator-styles.js";
 import Home from "./screens/home-conn.js";
 import BandsList from "./screens/bands-list-nav.js";
 // import Appearances from "./screens/appearances-day-stage-nav.js";
-import Appearances from "./screens/appearances-conn.js";
+import Appearances from "./screens/appearances-nav.js";
 import Stages from "./screens/stages.js";
 
 const AppNavigator = tabNavigator(

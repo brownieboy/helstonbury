@@ -6,19 +6,22 @@ import { Button, Segment } from "native-base";
 // import { format } from "date-fns";
 
 import { Platform } from "react-native";
+import SideMenu from "react-native-side-menu";
 
 import {
   Container,
   Header,
   Icon,
-  // Title,
+  Title,
   Left,
   Text,
   Right,
   Body
 } from "native-base";
 
+import Menu from "../components/appearances-side-menu.js";
 import ScheduleTabIcon from "../components/schedule-tab-icon.js";
+import HelstonburyAvatar from "../components/helstonbury-avatar.js";
 // import FavouritesListIcon from "../components/favourites-list-icon.js";
 
 import AppearancesByDay from "./appearances-byday.js";
@@ -50,6 +53,10 @@ class Appearances extends Component {
     this.setState({ showOnlyFavourites: newStatus });
   };
 
+  closeSideMenu = () => {
+    this.props.setShowAppearancesSideMenu(false);
+  };
+
   render() {
     const {
       appearancesList,
@@ -58,6 +65,7 @@ class Appearances extends Component {
       fetchStatus,
       filterAppearancesByBandId,
       groupAppearancesByDay,
+      groupAppearancesByDayStage,
       favourites,
       navigation,
       setShowAppearancesView,
@@ -91,56 +99,59 @@ class Appearances extends Component {
       heartOutline = "md-heart-outline";
     }
 
+    const menu = (
+      <Menu
+        closeSideMenu={this.closeSideMenu}
+        currentAppearancesView={appearancesView}
+        handleSetAppearancesView={setShowAppearancesView}
+        setShowOnlyFavourites={setShowOnlyFavourites}
+        navigation={navigation}
+        showOnlyFavourites={showOnlyFavourites}
+      />
+    );
+
     // console.log("appearances..render, appearancesGroupedByDay:");
     // console.log(appearancesGroupedByDay);
 
     return (
-      <Container style={styles.container}>
-        <Header>
-          <Left />
-          <Body>
-            <Segment>
-              <Button
-                first
-                active={this.state.activeTab === "byDay"}
-                onPress={() => {
-                  this.handleSegmentButtonPress("byDay");
-                }}
-              >
-                <Text>by Day</Text>
-              </Button>
-              <Button
-                last
-                active={this.state.activeTab === "byStage"}
-                onPress={() => {
-                  this.handleSegmentButtonPress("byStage");
-                }}
-              >
-                <Text>by Stage</Text>
-              </Button>
-            </Segment>
-          </Body>
-          <Right>
-            <Button transparent>
+      <SideMenu
+        menu={menu}
+        menuPosition="right"
+        isOpen={appearancesSideMenuVisible}
+        onChange={isOpen =>
+          isOpen === appearancesSideMenuVisible &&
+          setShowAppearancesSideMenu(isOpen)
+        }
+      >
+        <Container style={styles.container}>
+          <Header>
+            <Left>
+              <HelstonburyAvatar />
+            </Left>
+            <Body>
+              <Title>Schedule by Day</Title>
+            </Body>
+            <Right>
               <Icon
-                name={showOnlyFavourites ? heart : heartOutline}
-                onPress={this.handleShowFavouritesPress}
+                ios="ios-options"
+                android="md-options"
+                onPress={this.toggleSideMenu}
               />
-            </Button>
-          </Right>
-        </Header>
-        {this.state.activeTab === "byStage" ? (
-          <AppearancesByDayStage
-            {...sharedChildProps}
-            groupAppearancesByDayStage={groupAppearancesByDayStage}
-          />
-        ) : (
-          <AppearancesByDay
-            {...sharedChildProps}
-            groupAppearancesByDay={groupAppearancesByDay}
-          />
-        )}
-      </Container>
+            </Right>
+          </Header>
+          {this.state.activeTab === "byStage" ? (
+            <AppearancesByDayStage
+              {...sharedChildProps}
+              groupAppearancesByDayStage={groupAppearancesByDayStage}
+            />
+          ) : (
+            <AppearancesByDay
+              {...sharedChildProps}
+              groupAppearancesByDay={groupAppearancesByDay}
+            />
+          )}
+        </Container>
+      </SideMenu>
     );
   }
 }

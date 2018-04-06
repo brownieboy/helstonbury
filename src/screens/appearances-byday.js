@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { View } from "react-native";
 import { format } from "date-fns";
-import SideMenu from "react-native-side-menu";
 
 import {
   Button,
@@ -23,8 +22,6 @@ import {
 
 import FavouritesListIcon from "../components/favourites-list-icon.js";
 import ScheduleTabIcon from "../components/schedule-tab-icon.js";
-import Menu from "../components/appearances-side-menu.js";
-import HelstonburyAvatar from "../components/helstonbury-avatar.js";
 
 // ${lineMember.name}:
 
@@ -82,12 +79,12 @@ class AppearancesByDay extends Component {
       return (
         <ListItem
           key={lineMember.id}
-          onPress={() =>
+          onPress={() => {
             this.props.navigation.navigate("BandScheduleCard", {
               bandId: lineMember.bandId,
               parentList: "by Day"
-            })
-          }
+            });
+          }}
           style={lineStyle}
         >
           <Left style={{ flex: 14 }}>
@@ -178,55 +175,16 @@ this.props.navigation.navigate("AppearancesDayStageNav")
 
 */
 
-    const menu = (
-      <Menu
-        closeSideMenu={this.closeSideMenu}
-        currentAppearancesView={appearancesView}
-        handleSetAppearancesView={setShowAppearancesView}
-        setShowOnlyFavourites={setShowOnlyFavourites}
-        navigation={navigation}
-        showOnlyFavourites={showOnlyFavourites}
-      />
-    );
-
     return (
-      <SideMenu
-        menu={menu}
-        menuPosition="right"
-        isOpen={appearancesSideMenuVisible}
-        onChange={isOpen =>
-          isOpen === appearancesSideMenuVisible &&
-          setShowAppearancesSideMenu(isOpen)
-        }
-      >
-        <Container>
-          <Header>
-            <Left>
-              <HelstonburyAvatar />
-            </Left>
-            <Body>
-              <Title>Schedule by Day</Title>
-            </Body>
-            <Right>
-              <Icon
-                ios="ios-options"
-                android="md-options"
-                onPress={this.toggleSideMenu}
-              />
-            </Right>
-          </Header>
-
-          <Content style={{ backgroundColor: "#fff" }}>
-            {appearances.length > 0 ? (
-              <List>
-                {this.getAppearancesListDayLevel(appearancesGroupedByDay)}
-              </List>
-            ) : (
-              <Text>Nothing to see</Text>
-            )}
-          </Content>
-        </Container>
-      </SideMenu>
+      <Content style={{ backgroundColor: "#fff" }}>
+        {appearances.length > 0 ? (
+          <List>
+            {this.getAppearancesListDayLevel(appearancesGroupedByDay)}
+          </List>
+        ) : (
+          <Text>Nothing to see</Text>
+        )}
+      </Content>
     );
   }
 }

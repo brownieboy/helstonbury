@@ -21,49 +21,10 @@ import {
 } from "native-base";
 
 import FavouritesListIcon from "../components/favourites-list-icon.js";
-import ScheduleTabIcon from "../components/schedule-tab-icon.js";
 
 // ${lineMember.name}:
 
 class AppearancesByDay extends Component {
-  static navigationOptions = {
-    tabBarLabel: "by Day",
-    tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
-  };
-
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     sideMenuOpen: false
-  //   };
-  // }
-
-  toggleSideMenu = () => {
-    const {
-      appearancesSideMenuVisible,
-      setShowAppearancesSideMenu
-    } = this.props;
-    setShowAppearancesSideMenu(!appearancesSideMenuVisible);
-  };
-
-  closeSideMenu = () => {
-    this.props.setShowAppearancesSideMenu(false);
-  };
-
-  // updateMenuState = sideMenuOpen => {
-  //   this.setState({ sideMenuOpen });
-  // };
-
-  // handleShowFavouritesPress = () => {
-  //   const newStatus = !this.state.showOnlyFavourites;
-  //   this.setState({ showOnlyFavourites: newStatus, sideMenuOpen: false });
-  // };
-
-  handleShowFavouritesPress = () => {
-    const { showOnlyFavourites, setShowOnlyFavourites } = this.props;
-    setShowOnlyFavourites(!showOnlyFavourites);
-  };
-
   getAppearanceLines = lineData => {
     const itemsLength = lineData.length;
     const favourites = this.props.favourites;
@@ -127,16 +88,10 @@ class AppearancesByDay extends Component {
   render() {
     const {
       appearancesList,
-      appearancesView,
-      appearancesSideMenuVisible,
       fetchStatus,
       filterAppearancesByBandId,
       groupAppearancesByDay,
       favourites,
-      navigation,
-      setShowAppearancesView,
-      setShowAppearancesSideMenu,
-      setShowOnlyFavourites,
       showOnlyFavourites
     } = this.props;
 
@@ -158,31 +113,18 @@ class AppearancesByDay extends Component {
 
     const appearancesGroupedByDay = groupAppearancesByDay(appearances);
 
-    /*
-      <Content padder>
-        <Content style={{ backgroundColor: "#fff" }}>
-          {appearances.length > 0 ? (
-            <List>
-              {this.getAppearancesListDayLevel(appearancesGroupedByDay)}
-            </List>
-          ) : (
-            <Spinner />
-          )}
-        </Content>
-      </Content>
-
-this.props.navigation.navigate("AppearancesDayStageNav")
-
-*/
-
     return (
       <Content style={{ backgroundColor: "#fff" }}>
+        {fetchStatus === "fetching" && <Spinner />}
         {appearances.length > 0 ? (
           <List>
             {this.getAppearancesListDayLevel(appearancesGroupedByDay)}
           </List>
         ) : (
-          <Text>Nothing to see</Text>
+          <Text>
+            No appearances to display.{showOnlyFavourites &&
+              "  (You might try turning off the the Favourites Only setting)"}
+          </Text>
         )}
       </Content>
     );
@@ -203,10 +145,10 @@ AppearancesByDay.propTypes = {
   groupAppearancesByDay: PropTypes.func.isRequired,
   favourites: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   navigation: PropTypes.object.isRequired,
-  setShowOnlyFavourites: PropTypes.func.isRequired,
-  setShowAppearancesSideMenu: PropTypes.func.isRequired,
-  setShowAppearancesView: PropTypes.func.isRequired,
-  showOnlyFavourites: PropTypes.bool.isRequired
+  // setShowOnlyFavourites: PropTypes.func.isRequired,
+  // setShowAppearancesSideMenu: PropTypes.func.isRequired,
+  // setShowAppearancesView: PropTypes.func.isRequired,
+  // showOnlyFavourites: PropTypes.bool.isRequired
 };
 
 export default AppearancesByDay;

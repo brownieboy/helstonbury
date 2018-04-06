@@ -25,6 +25,7 @@ import {
 } from "native-base";
 
 import IconMaterialEntypo from "react-native-vector-icons/Entypo";
+import ScheduleTabIcon from "../components/schedule-tab-icon.js";
 
 // const window = Dimensions.get("window");
 // const uri = "https://pickaface.net/gallery/avatar/Opi51c74d0125fd4.png";
@@ -49,6 +50,11 @@ const styles = {
  */
 
 class AppearancesMenu extends Component {
+  static navigationOptions = {
+    tabBarLabel: "by Day",
+    tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
+  };
+
   constructor(props) {
     super(props);
     const { currentAppearancesView, showOnlyFavourites } = this.props;
@@ -61,11 +67,15 @@ class AppearancesMenu extends Component {
 
   handleDayStagePress = dayStage => {
     // console.log("handleDayStagePress, dayStage=" + dayStage);
-    const { handleSetAppearancesView, navigation, onItemSelected } = this.props;
+    const {
+      handleSetActiveAppearanceScreen,
+      navigation,
+      onItemSelected
+    } = this.props;
     const navigateTo =
       dayStage === "stage" ? "AppearancesByDayStage" : "AppearancesByDay";
     // this.setState({ currentAppearancesView: dayStage });
-    handleSetAppearancesView(dayStage);
+    handleSetActiveAppearanceScreen(dayStage);
     navigation.navigate(navigateTo);
   };
 
@@ -80,7 +90,7 @@ class AppearancesMenu extends Component {
 
   render() {
     const {
-      currentAppearancesView,
+      activeAppearancesScreen,
       closeSideMenu,
       // onItemSelected,
       // handleShowFavouritesPress,
@@ -122,7 +132,7 @@ class AppearancesMenu extends Component {
             <Right>
               <Radio
                 onPress={() => this.handleDayStagePress("day")}
-                selected={currentAppearancesView === "day"}
+                selected={activeAppearancesScreen === "day"}
               />
             </Right>
           </ListItem>
@@ -146,7 +156,7 @@ class AppearancesMenu extends Component {
             <Right>
               <Radio
                 onPress={() => this.handleDayStagePress("stage")}
-                selected={currentAppearancesView === "stage"}
+                selected={activeAppearancesScreen === "stage"}
               />
             </Right>
           </ListItem>
@@ -242,8 +252,8 @@ class AppearancesMenu extends Component {
  */
 
 AppearancesMenu.propTypes = {
-  currentAppearancesView: PropTypes.string.isRequired,
-  handleSetAppearancesView: PropTypes.func.isRequired,
+  activeAppearancesScreen: PropTypes.string.isRequired,
+  handleSetActiveAppearanceScreen: PropTypes.func.isRequired,
   showOnlyFavourites: PropTypes.bool.isRequired,
   setShowOnlyFavourites: PropTypes.func.isRequired,
   navigation: PropTypes.object.isRequired,

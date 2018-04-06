@@ -34,8 +34,9 @@ class Appearances extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeTab: "byDay",
-      showOnlyFavourites: false
+      activeAppearancesScreen: "day",
+      showOnlyFavourites: false,
+      appearancesSideMenuVisible: false
     };
   }
 
@@ -44,8 +45,8 @@ class Appearances extends Component {
     tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
   };
 
-  handleSegmentButtonPress = activeTab => {
-    this.setState({ activeTab });
+  handleSetActiveAppearanceScreen = activeAppearancesScreen => {
+    this.setState({ activeAppearancesScreen });
   };
 
   handleShowFavouritesPress = () => {
@@ -54,28 +55,32 @@ class Appearances extends Component {
   };
 
   closeSideMenu = () => {
-    this.props.setShowAppearancesSideMenu(false);
+    this.setState({ appearancesSideMenuVisible: false });
+  };
+
+  toggleSideMenu = () => {
+    const { appearancesSideMenuVisible } = this.state;
+    this.setState({ appearancesSideMenuVisible: !appearancesSideMenuVisible });
   };
 
   render() {
     const {
       appearancesList,
       appearancesView,
-      appearancesSideMenuVisible,
       fetchStatus,
       filterAppearancesByBandId,
       groupAppearancesByDay,
       groupAppearancesByDayStage,
       favourites,
-      navigation,
-      setShowAppearancesView,
-      setShowAppearancesSideMenu,
-      setShowOnlyFavourites,
-      showOnlyFavourites
+      navigation
     } = this.props;
 
-    const { activeTab } = this.state;
-    console.log("activeTab=" + activeTab);
+    const {
+      activeAppearancesScreen,
+      appearancesSideMenuVisible,
+      showOnlyFavourites
+    } = this.state;
+    console.log("activeAppearancesScreen=" + activeAppearancesScreen);
 
     const sharedChildProps = {
       appearancesList,
@@ -86,9 +91,6 @@ class Appearances extends Component {
       groupAppearancesByDay,
       favourites,
       navigation,
-      setShowAppearancesView,
-      setShowAppearancesSideMenu,
-      setShowOnlyFavourites,
       showOnlyFavourites
     };
 
@@ -102,9 +104,9 @@ class Appearances extends Component {
     const menu = (
       <Menu
         closeSideMenu={this.closeSideMenu}
-        currentAppearancesView={appearancesView}
-        handleSetAppearancesView={setShowAppearancesView}
-        setShowOnlyFavourites={setShowOnlyFavourites}
+        activeAppearancesScreen={activeAppearancesScreen}
+        handleSetActiveAppearanceScreen={this.handleSetActiveAppearanceScreen}
+        setShowOnlyFavourites={this.handleShowFavouritesPress}
         navigation={navigation}
         showOnlyFavourites={showOnlyFavourites}
       />
@@ -129,7 +131,7 @@ class Appearances extends Component {
               <HelstonburyAvatar />
             </Left>
             <Body>
-              <Title>Schedule by Day</Title>
+              <Title>by {activeAppearancesScreen}</Title>
             </Body>
             <Right>
               <Icon
@@ -139,7 +141,7 @@ class Appearances extends Component {
               />
             </Right>
           </Header>
-          {this.state.activeTab === "byStage" ? (
+          {this.state.activeAppearancesScreen === "stage" ? (
             <AppearancesByDayStage
               {...sharedChildProps}
               groupAppearancesByDayStage={groupAppearancesByDayStage}

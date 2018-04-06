@@ -21,23 +21,8 @@ import {
 } from "native-base";
 
 import FavouritesListIcon from "../components/favourites-list-icon.js";
-import ScheduleTabIcon from "../components/schedule-tab-icon.js";
-import Menu from "../components/appearances-side-menu.js";
-import HelstonburyAvatar from "../components/helstonbury-avatar.js";
 
 class AppearancesByDayStage extends Component {
-  static navigationOptions = {
-    tabBarLabel: "by Stage",
-    tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
-  };
-
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     sideMenuOpen: false
-  //   };
-  // }
-
   toggleSideMenu = () => {
     const {
       appearancesSideMenuVisible,
@@ -142,16 +127,10 @@ class AppearancesByDayStage extends Component {
   render() {
     const {
       appearancesList,
-      appearancesView,
-      appearancesSideMenuVisible,
       fetchStatus,
       filterAppearancesByBandId,
       groupAppearancesByDayStage,
       favourites,
-      navigation,
-      setShowAppearancesView,
-      setShowOnlyFavourites,
-      setShowAppearancesSideMenu,
       showOnlyFavourites
     } = this.props;
 
@@ -166,55 +145,20 @@ class AppearancesByDayStage extends Component {
       appearances
     );
 
-    const menu = (
-      <Menu
-        closeSideMenu={this.closeSideMenu}
-        currentAppearancesView={appearancesView}
-        handleSetAppearancesView={setShowAppearancesView}
-        setShowOnlyFavourites={setShowOnlyFavourites}
-        navigation={navigation}
-        showOnlyFavourites={showOnlyFavourites}
-      />
-    );
-
     return (
-      <SideMenu
-        menu={menu}
-        menuPosition="right"
-        isOpen={appearancesSideMenuVisible}
-        onChange={isOpen =>
-          isOpen === appearancesSideMenuVisible &&
-          setShowAppearancesSideMenu(isOpen)
-        }
-      >
-        <Container>
-          <Header>
-            <Left>
-              <HelstonburyAvatar />
-            </Left>
-            <Body>
-              <Title>Schedule by Stage</Title>
-            </Body>
-            <Right>
-              <Icon
-                ios="ios-options"
-                android="md-options"
-                onPress={this.toggleSideMenu}
-              />
-            </Right>
-          </Header>
-
-          <Content style={{ backgroundColor: "#fff" }}>
-            {appearancesList.length > 0 ? (
-              <List>
-                {this.getAppearancesListDayLevel(appearancesGroupedByDayStage)}
-              </List>
-            ) : (
-              <Spinner />
-            )}
-          </Content>
-        </Container>
-      </SideMenu>
+      <Content style={{ backgroundColor: "#fff" }}>
+        {fetchStatus === "fetching" && <Spinner />}
+        {appearances.length > 0 ? (
+          <List>
+            {this.getAppearancesListDayLevel(appearancesGroupedByDayStage)}
+          </List>
+        ) : (
+          <Text>
+            No appearances to display.{showOnlyFavourites &&
+              "  (You might try turning off the the Favourites Only setting)"}
+          </Text>
+        )}
+      </Content>
     );
   }
 }
@@ -223,14 +167,14 @@ AppearancesByDayStage.propTypes = {
   appearancesView: PropTypes.string.isRequired,
   appearancesSideMenuVisible: PropTypes.bool.isRequired,
   appearancesList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-    fetchStatus: PropTypes.string.isRequired,
+  fetchStatus: PropTypes.string.isRequired,
   filterAppearancesByBandId: PropTypes.func.isRequired,
   groupAppearancesByDayStage: PropTypes.func.isRequired,
   favourites: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  navigation: PropTypes.object.isRequired,
-  showOnlyFavourites: PropTypes.bool.isRequired,
-  setShowAppearancesView: PropTypes.func.isRequired,
-  setShowOnlyFavourites: PropTypes.func.isRequired
+  navigation: PropTypes.object.isRequired
+  // showOnlyFavourites: PropTypes.bool.isRequired,
+  // setShowAppearancesView: PropTypes.func.isRequired,
+  // setShowOnlyFavourites: PropTypes.func.isRequired
 };
 
 export default AppearancesByDayStage;

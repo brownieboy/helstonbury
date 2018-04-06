@@ -217,8 +217,7 @@ this.props.navigation.navigate("AppearancesDayStageNav")
           </Header>
 
           <Content style={{ backgroundColor: "#fff" }}>
-            {fetchStatus === "fetching" && <Spinner />}
-            {appearancesList.length > 0 ? (
+            {appearances.length > 0 ? (
               <List>
                 {this.getAppearancesListDayLevel(appearancesGroupedByDay)}
               </List>
@@ -231,6 +230,11 @@ this.props.navigation.navigate("AppearancesDayStageNav")
     );
   }
 }
+
+/*
+            {fetchStatus === "fetching" && <Spinner />}
+
+*/
 
 AppearancesByDay.propTypes = {
   appearancesView: PropTypes.string.isRequired,

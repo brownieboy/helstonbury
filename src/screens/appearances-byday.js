@@ -96,7 +96,7 @@ class AppearancesByDay extends Component {
     } = this.props;
 
     console.log("AppearancesByDay render()");
-
+// 
     // const { sideMenuOpen } = this.state;
 
     // console.log("appearances-byday.js, appearances:");
@@ -137,15 +137,15 @@ class AppearancesByDay extends Component {
 */
 
 AppearancesByDay.propTypes = {
-  appearancesView: PropTypes.string.isRequired,
-  appearancesSideMenuVisible: PropTypes.bool.isRequired,
+  // appearancesView: PropTypes.string.isRequired,
+  // appearancesSideMenuVisible: PropTypes.bool.isRequired,
   appearancesList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   fetchStatus: PropTypes.string.isRequired,
   filterAppearancesByBandId: PropTypes.func.isRequired,
   groupAppearancesByDay: PropTypes.func.isRequired,
   favourites: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   navigation: PropTypes.object.isRequired,
-  setShowOnlyFavourites: PropTypes.func.isRequired,
+  // setShowOnlyFavourites: PropTypes.func.isRequired,
   // setShowAppearancesSideMenu: PropTypes.func.isRequired,
   // setShowAppearancesView: PropTypes.func.isRequired,
   // showOnlyFavourites: PropTypes.bool.isRequired

@@ -38,7 +38,7 @@ const mapStateToProps = state => ({
   // appearancesGroupedByDay: getAppearancesGroupedByDay(state),
   // showOnlyFavourites: getShowOnlyFavourites(state),
   // appearancesView: getAppearancesView(state),
-  // appearancesList: getAppearancesList(state),
+  appearancesList: getAppearancesList(state),
   // appearancesSideMenuVisible: getAppearancesSideMenuVisible(state),
   filterAppearancesByBandId: (appearances, bandsToFilterArray) =>
     filterAppearancesByBandId(appearances, bandsToFilterArray),

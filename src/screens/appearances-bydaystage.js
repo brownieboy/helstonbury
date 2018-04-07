@@ -23,7 +23,7 @@ import {
 import FavouritesListIcon from "../components/favourites-list-icon.js";
 
 class AppearancesByDayStage extends Component {
-  
+
   getFavouritesButton = showOnlyFavourites => {
     let heart = "ios-heart";
     let heartOutline = "ios-heart-outline";
@@ -144,15 +144,15 @@ class AppearancesByDayStage extends Component {
 }
 
 AppearancesByDayStage.propTypes = {
-  appearancesView: PropTypes.string.isRequired,
+  // appearancesView: PropTypes.string.isRequired,
   appearancesSideMenuVisible: PropTypes.bool.isRequired,
   appearancesList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   fetchStatus: PropTypes.string.isRequired,
   filterAppearancesByBandId: PropTypes.func.isRequired,
   groupAppearancesByDayStage: PropTypes.func.isRequired,
   favourites: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  navigation: PropTypes.object.isRequired
-  showOnlyFavourites: PropTypes.bool.isRequired,
+  navigation: PropTypes.object.isRequired,
+  // showOnlyFavourites: PropTypes.bool.isRequired,
   // setShowAppearancesView: PropTypes.func.isRequired,
   // setShowOnlyFavourites: PropTypes.func.isRequired
 };

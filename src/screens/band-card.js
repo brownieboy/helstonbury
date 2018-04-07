@@ -148,7 +148,6 @@ class BandCard extends Component {
       backButtonTextStyle.fontSize = 10;
       backButtonText = parentList; // Not enough room for "Back to" on Android
     }
-
     console.log("backButtonText=" + backButtonText);
     return (
       <Container style={styles.container}>
@@ -177,7 +176,7 @@ class BandCard extends Component {
                 <Icon
                   ios={favourite ? "ios-heart" : "ios-heart-outline"}
                   android={favourite ? "md-heart" : "md-heart-outline"}
-                  style={{ color: favourite ? "red" : "grey" }}
+                  style={{ fontSize: 40, color: favourite ? "red" : "grey" }}
                   onPress={() => toggleBandFavouriteStatus(bandDetails.bandId)}
                 />
               </Right>

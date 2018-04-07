@@ -59,8 +59,8 @@ class Stages extends Component {
 
         <Content padder>
           <Text>
-            Contact For more information please contact Paul Turton email
-            helstonbury@hotmail.com paulturton@live.com tel: 07970569005
+            Contact For more information please contact Paul Turton via any of
+            the contact methods listed below.
           </Text>
 
           <List>
@@ -72,7 +72,7 @@ class Stages extends Component {
                 <TouchableOpacity
                   onPress={() =>
                     email(
-                      ["mike_brown@hotmail.com", "brownieboy@gmail.com"],
+                      ["helstonbury@hotmail.com"],
                       null,
                       null,
                       "Helstonbury",
@@ -80,38 +80,59 @@ class Stages extends Component {
                     )
                   }
                 >
-                  <Text style={touchStyles.text}>brownieboy@gmail.com</Text>
+                  <Text style={touchStyles.text}>helstonbury@hotmail.com</Text>
                 </TouchableOpacity>
               </Body>
               <Right>
                 <Icon name="mail" />
               </Right>
             </ListItem>
-          </List>
-
-          <List>
+            <ListItem icon>
+              <Left style={touchStyles.labelText}>
+                <Text>Email:</Text>
+              </Left>
+              <Body>
+                <TouchableOpacity
+                  onPress={() =>
+                    email(
+                      ["paulturton@live.com"],
+                      null,
+                      null,
+                      "Helstonbury",
+                      ""
+                    )
+                  }
+                >
+                  <Text style={touchStyles.text}>paulturton@live.com</Text>
+                </TouchableOpacity>
+              </Body>
+              <Right>
+                <Icon name="mail" />
+              </Right>
+            </ListItem>
             <ListItem icon>
               <Left style={touchStyles.labelText}>
                 <Text>Call:</Text>
               </Left>
               <Body>
-                <TouchableOpacity onPress={() => phonecall("0123456789", true)}>
-                  <Text style={touchStyles.text}>0123456789</Text>
+                <TouchableOpacity
+                  onPress={() => phonecall("07970569005", true)}
+                >
+                  <Text style={touchStyles.text}>07970 569005</Text>
                 </TouchableOpacity>
               </Body>
               <Right>
                 <Icon name="call" />
               </Right>
             </ListItem>
-          </List>
-          <List>
+
             <ListItem icon>
               <Left style={touchStyles.labelText}>
                 <Text>Text:</Text>
               </Left>
               <Body>
-                <TouchableOpacity onPress={() => text("0123456789", true)}>
-                  <Text style={touchStyles.text}>0123456789</Text>
+                <TouchableOpacity onPress={() => text("07970569005", true)}>
+                  <Text style={touchStyles.text}>07970 569005</Text>
                 </TouchableOpacity>
               </Body>
               <Right>

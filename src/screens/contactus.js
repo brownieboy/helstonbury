@@ -25,17 +25,21 @@ import HelstonburyAvatar from "../components/helstonbury-avatar.js";
 const touchStyles = StyleSheet.create({
   text: {
     color: "blue",
-    textDecorationLine: "underline"
+    textDecorationLine: "underline",
+    fontSize: 14
+  },
+  label: {
+    width: 70
   },
   labelText: {
-    width: 80
+    width: 70,
+    fontSize: 12
   },
   icon: {
-    color: "blue"
+    color: "blue",
+    fontSize: 30
   }
 });
-
-const iconSize = 40;
 
 class Stages extends Component {
   static navigationOptions = {
@@ -70,8 +74,8 @@ class Stages extends Component {
 
           <List>
             <ListItem icon>
-              <Left style={touchStyles.labelText}>
-                <Text>Email:</Text>
+              <Left style={touchStyles.label}>
+                <Text style={touchStyles.labelText}>Email:</Text>
               </Left>
               <Body>
                 <TouchableOpacity
@@ -89,12 +93,12 @@ class Stages extends Component {
                 </TouchableOpacity>
               </Body>
               <Right>
-                <Icon name="mail" />
+                <Icon name="mail" style={touchStyles.icon} />
               </Right>
             </ListItem>
             <ListItem icon>
-              <Left style={touchStyles.labelText}>
-                <Text>Email:</Text>
+              <Left style={touchStyles.label}>
+                <Text style={touchStyles.labelText}>Email:</Text>
               </Left>
               <Body>
                 <TouchableOpacity
@@ -112,12 +116,12 @@ class Stages extends Component {
                 </TouchableOpacity>
               </Body>
               <Right>
-                <Icon style={touchStyles.icon} size={iconSize} name="mail" />
+                <Icon style={touchStyles.icon} name="mail" />
               </Right>
             </ListItem>
             <ListItem icon>
-              <Left style={touchStyles.labelText}>
-                <Text>Call:</Text>
+              <Left style={touchStyles.label}>
+                <Text style={touchStyles.labelText}>Call:</Text>
               </Left>
               <Body>
                 <TouchableOpacity
@@ -127,13 +131,13 @@ class Stages extends Component {
                 </TouchableOpacity>
               </Body>
               <Right>
-                <Icon style={touchStyles.icon} size={iconSize} name="call" />
+                <Icon style={touchStyles.icon} name="call" />
               </Right>
             </ListItem>
 
             <ListItem icon>
-              <Left style={touchStyles.labelText}>
-                <Text>Text:</Text>
+              <Left style={touchStyles.label}>
+                <Text style={touchStyles.labelText}>Text:</Text>
               </Left>
               <Body>
                 <TouchableOpacity onPress={() => text("07970569005", true)}>
@@ -141,7 +145,7 @@ class Stages extends Component {
                 </TouchableOpacity>
               </Body>
               <Right>
-                <Icon style={touchStyles.icon} size={iconSize} name="text" />
+                <Icon style={touchStyles.icon} name="text" />
               </Right>
             </ListItem>
           </List>

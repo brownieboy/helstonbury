@@ -23,27 +23,7 @@ import {
 import FavouritesListIcon from "../components/favourites-list-icon.js";
 
 class AppearancesByDayStage extends Component {
-  toggleSideMenu = () => {
-    const {
-      appearancesSideMenuVisible,
-      setShowAppearancesSideMenu
-    } = this.props;
-    setShowAppearancesSideMenu(!appearancesSideMenuVisible);
-  };
-
-  closeSideMenu = () => {
-    this.props.setShowAppearancesSideMenu(false);
-  };
-
-  // updateMenuState = sideMenuOpen => {
-  //   this.setState({ sideMenuOpen });
-  // };
-
-  handleShowFavouritesPress = () => {
-    const { showOnlyFavourites, setShowOnlyFavourites } = this.props;
-    setShowOnlyFavourites(!showOnlyFavourites);
-  };
-
+  
   getFavouritesButton = showOnlyFavourites => {
     let heart = "ios-heart";
     let heartOutline = "ios-heart-outline";
@@ -131,7 +111,7 @@ class AppearancesByDayStage extends Component {
       filterAppearancesByBandId,
       groupAppearancesByDayStage,
       favourites,
-      showOnlyFavourites
+      showOnlyFavourites,
     } = this.props;
 
     // const { sideMenuOpen } = this.state;
@@ -172,7 +152,7 @@ AppearancesByDayStage.propTypes = {
   groupAppearancesByDayStage: PropTypes.func.isRequired,
   favourites: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   navigation: PropTypes.object.isRequired
-  // showOnlyFavourites: PropTypes.bool.isRequired,
+  showOnlyFavourites: PropTypes.bool.isRequired,
   // setShowAppearancesView: PropTypes.func.isRequired,
   // setShowOnlyFavourites: PropTypes.func.isRequired
 };

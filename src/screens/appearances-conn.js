@@ -16,14 +16,14 @@ import {
   selectors as appearanceSelectors
 } from "../dux/appearancesReducer.js";
 
-import {
-  getShowOnlyFavourites,
-  setShowOnlyFavourites,
-  getAppearancesView,
-  setShowAppearancesView,
-  getAppearancesSideMenuVisible,
-  setShowAppearancesSideMenu
-} from "../dux/uiReducer.js";
+// import {
+//   getShowOnlyFavourites,
+//   setShowOnlyFavourites,
+//   getAppearancesView,
+//   setShowAppearancesView,
+//   getAppearancesSideMenuVisible,
+//   setShowAppearancesSideMenu
+// } from "../dux/uiReducer.js";
 
 const mapStateToProps = state => ({
   appearancesListByDateTime: appearanceSelectors.selectAppearancesByDateTime(
@@ -35,11 +35,11 @@ const mapStateToProps = state => ({
   favouritesState: state.favouritesState,
   favourites: state.favouritesState.favourites,
   fetchStatus: getFetchStatus(state),
-  appearancesGroupedByDay: getAppearancesGroupedByDay(state),
-  showOnlyFavourites: getShowOnlyFavourites(state),
-  appearancesView: getAppearancesView(state),
-  appearancesList: getAppearancesList(state),
-  appearancesSideMenuVisible: getAppearancesSideMenuVisible(state),
+  // appearancesGroupedByDay: getAppearancesGroupedByDay(state),
+  // showOnlyFavourites: getShowOnlyFavourites(state),
+  // appearancesView: getAppearancesView(state),
+  // appearancesList: getAppearancesList(state),
+  // appearancesSideMenuVisible: getAppearancesSideMenuVisible(state),
   filterAppearancesByBandId: (appearances, bandsToFilterArray) =>
     filterAppearancesByBandId(appearances, bandsToFilterArray),
   groupAppearancesByDay: appearances => groupAppearancesByDay(appearances),
@@ -50,10 +50,10 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      loadappearancesProp: loadAppearances,
-      setShowOnlyFavourites,
-      setShowAppearancesView,
-      setShowAppearancesSideMenu
+      loadappearancesProp: loadAppearances
+      // setShowOnlyFavourites,
+      // setShowAppearancesView,
+      // setShowAppearancesSideMenu
     },
     dispatch
   );

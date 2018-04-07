@@ -145,7 +145,7 @@ AppearancesByDay.propTypes = {
   groupAppearancesByDay: PropTypes.func.isRequired,
   favourites: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   navigation: PropTypes.object.isRequired,
-  // setShowOnlyFavourites: PropTypes.func.isRequired,
+  setShowOnlyFavourites: PropTypes.func.isRequired,
   // setShowAppearancesSideMenu: PropTypes.func.isRequired,
   // setShowAppearancesView: PropTypes.func.isRequired,
   // showOnlyFavourites: PropTypes.bool.isRequired

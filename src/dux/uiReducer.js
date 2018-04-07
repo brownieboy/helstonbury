@@ -1,3 +1,8 @@
+
+// Better/quicker to use a setState for this if possible, which is
+// what I've done, so this file not actually used.  I'll leave
+// it here for future reference.
+
 const SET_SHOW_FAVOURITES = "SET_SHOW_FAVOURITES";
 const SET_APPEARANCES_VIEW = "SET_APPEARANCES_VIEW";
 const SET_SHOW_APPEARANCES_SIDE_MENU = "SET_SHOW_APPEARANCES_SIDE_MENU";

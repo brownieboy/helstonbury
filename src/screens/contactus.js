@@ -11,6 +11,10 @@ import {
   Body
 } from "native-base";
 
+import { TouchableOpacity, View } from "react-native";
+
+import { email, text, web, phonecall } from "react-native-communications";
+
 import styles from "../styles/band-card-styles.js";
 // import tabNavStyles from "../styles/tab-navigator-styles.js";
 // import IconMaterialEntypo from "react-native-vector-icons/Entypo";
@@ -42,7 +46,34 @@ class Stages extends Component {
         </Header>
 
         <Content padder>
-          <Text>Contact info, phone, email etc.</Text>
+          <Text>
+            Contact For more information please contact Paul Turton email
+            helstonbury@hotmail.com paulturton@live.com tel: 07970569005
+          </Text>
+          <TouchableOpacity
+            onPress={() =>
+              email(
+                ["mike_brown@hotmail.com", "brownieboy@gmail.com"],
+                null,
+                null,
+                "Helstonbury",
+                ""
+              )
+            }
+          >
+            <Text style={styles.text}>Email Helstonbury</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => phonecall("0123456789", true)}>
+            <View>
+              <Icon name="text" />
+              <Text style={styles.text}> Call 0123456789</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => text("0123456789", true)}>
+            <View>
+              <Text>Text 0123456789</Text>
+            </View>
+          </TouchableOpacity>
         </Content>
       </Container>
     );

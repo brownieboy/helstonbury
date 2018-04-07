@@ -13,6 +13,8 @@ import {
   ListItem
 } from "native-base";
 
+import openMap from "react-native-open-maps";
+
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 
 import { email, text, web, phonecall } from "react-native-communications";
@@ -54,6 +56,8 @@ class Stages extends Component {
   };
 
   render() {
+    // 50.100415, -5.276919
+
     return (
       <Container style={styles.container}>
         <Header>
@@ -71,7 +75,13 @@ class Stages extends Component {
             Contact For more information please contact Paul Turton via any of
             the contact methods listed below.
           </Text>
-
+          <TouchableOpacity
+            onPress={() =>
+              openMap({ latitude: 50.100415, longitude: -5.276919, provider: "google", name: "Blue Anchor, Helston" })
+            }
+          >
+            <Text style={touchStyles.text}>Open in Google Maps</Text>
+          </TouchableOpacity>
           <List>
             <ListItem icon>
               <Left style={touchStyles.label}>

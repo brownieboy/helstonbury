@@ -8,17 +8,29 @@ import {
   Text,
   Right,
   Icon,
-  Body
+  Body,
+  List,
+  ListItem
 } from "native-base";
 
-import { TouchableOpacity, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 
 import { email, text, web, phonecall } from "react-native-communications";
 
 import styles from "../styles/band-card-styles.js";
-// import tabNavStyles from "../styles/tab-navigator-styles.js";
+// import tabNavStyles from "../styles/tab-navigator-touchStyles.js";
 // import IconMaterialEntypo from "react-native-vector-icons/Entypo";
 import HelstonburyAvatar from "../components/helstonbury-avatar.js";
+
+const touchStyles = StyleSheet.create({
+  text: {
+    color: "blue",
+    textDecorationLine: "underline"
+  },
+  labelText: {
+    width: 80
+  }
+});
 
 class Stages extends Component {
   static navigationOptions = {
@@ -50,30 +62,63 @@ class Stages extends Component {
             Contact For more information please contact Paul Turton email
             helstonbury@hotmail.com paulturton@live.com tel: 07970569005
           </Text>
-          <TouchableOpacity
-            onPress={() =>
-              email(
-                ["mike_brown@hotmail.com", "brownieboy@gmail.com"],
-                null,
-                null,
-                "Helstonbury",
-                ""
-              )
-            }
-          >
-            <Text style={styles.text}>Email Helstonbury</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => phonecall("0123456789", true)}>
-            <View>
-              <Icon name="text" />
-              <Text style={styles.text}> Call 0123456789</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => text("0123456789", true)}>
-            <View>
-              <Text>Text 0123456789</Text>
-            </View>
-          </TouchableOpacity>
+
+          <List>
+            <ListItem icon>
+              <Left style={touchStyles.labelText}>
+                <Text>Email:</Text>
+              </Left>
+              <Body>
+                <TouchableOpacity
+                  onPress={() =>
+                    email(
+                      ["mike_brown@hotmail.com", "brownieboy@gmail.com"],
+                      null,
+                      null,
+                      "Helstonbury",
+                      ""
+                    )
+                  }
+                >
+                  <Text style={touchStyles.text}>brownieboy@gmail.com</Text>
+                </TouchableOpacity>
+              </Body>
+              <Right>
+                <Icon name="mail" />
+              </Right>
+            </ListItem>
+          </List>
+
+          <List>
+            <ListItem icon>
+              <Left style={touchStyles.labelText}>
+                <Text>Call:</Text>
+              </Left>
+              <Body>
+                <TouchableOpacity onPress={() => phonecall("0123456789", true)}>
+                  <Text style={touchStyles.text}>0123456789</Text>
+                </TouchableOpacity>
+              </Body>
+              <Right>
+                <Icon name="call" />
+              </Right>
+            </ListItem>
+          </List>
+          <List>
+            <ListItem icon>
+              <Left style={touchStyles.labelText}>
+                <Text>Text:</Text>
+              </Left>
+              <Body>
+                <TouchableOpacity onPress={() => text("0123456789", true)}>
+                  <Text style={touchStyles.text}>0123456789</Text>
+                </TouchableOpacity>
+              </Body>
+              <Right>
+                <Icon name="text" />
+              </Right>
+            </ListItem>
+          </List>
         </Content>
       </Container>
     );

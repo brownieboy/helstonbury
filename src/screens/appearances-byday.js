@@ -148,7 +148,7 @@ AppearancesByDay.propTypes = {
   // setShowOnlyFavourites: PropTypes.func.isRequired,
   // setShowAppearancesSideMenu: PropTypes.func.isRequired,
   // setShowAppearancesView: PropTypes.func.isRequired,
-  // showOnlyFavourites: PropTypes.bool.isRequired
+  showOnlyFavourites: PropTypes.bool.isRequired
 };
 
 export default AppearancesByDay;

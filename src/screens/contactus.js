@@ -7,19 +7,25 @@ import {
   Content,
   Text,
   Right,
+  Icon,
   Body
 } from "native-base";
 
 import styles from "../styles/band-card-styles.js";
 // import tabNavStyles from "../styles/tab-navigator-styles.js";
 // import IconMaterialEntypo from "react-native-vector-icons/Entypo";
-import StageTabIcon from "../components/stages-tab-icon.js";
 import HelstonburyAvatar from "../components/helstonbury-avatar.js";
 
 class Stages extends Component {
   static navigationOptions = {
-    tabBarLabel: "Stages",
-    tabBarIcon: ({ tintColor }) => <StageTabIcon tintColor={tintColor} />
+    tabBarLabel: "Home",
+    tabBarIcon: ({ tintColor }) => (
+      <Icon
+        android="md-information-circle"
+        ios="ios-information-circle-outline"
+        style={{ color: tintColor }}
+      />
+    )
   };
 
   render() {
@@ -30,13 +36,13 @@ class Stages extends Component {
             <HelstonburyAvatar />
           </Left>
           <Body>
-            <Title>Stages</Title>
+            <Title>About Helstonbury</Title>
           </Body>
           <Right />
         </Header>
 
         <Content padder>
-          <Text>Stages info goes here. Some kind of tappable map.</Text>
+          <Text>Contact info, phone, email etc.</Text>
         </Content>
       </Container>
     );

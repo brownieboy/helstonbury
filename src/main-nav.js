@@ -11,6 +11,7 @@ import BandsList from "./screens/bands-list-nav.js";
 // import Appearances from "./screens/appearances-day-stage-nav.js";
 import Appearances from "./screens/appearances-nav.js";
 import Stages from "./screens/stages.js";
+import ContactUs from "./screens/contactus.js";
 
 const AppNavigator = tabNavigator(
   {
@@ -23,6 +24,9 @@ const AppNavigator = tabNavigator(
     Appearances: { screen: Appearances },
     Stages: {
       screen: Stages
+    },
+    ContactUs: {
+      screen: ContactUs
     }
   },
   {

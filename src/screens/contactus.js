@@ -29,8 +29,13 @@ const touchStyles = StyleSheet.create({
   },
   labelText: {
     width: 80
+  },
+  icon: {
+    color: "blue"
   }
 });
+
+const iconSize = 40;
 
 class Stages extends Component {
   static navigationOptions = {
@@ -84,7 +89,7 @@ class Stages extends Component {
                 </TouchableOpacity>
               </Body>
               <Right>
-                <Icon name="mail" />
+                <Icon style={touchStyles.icon} size={iconSize} name="mail" />
               </Right>
             </ListItem>
           </List>
@@ -100,7 +105,7 @@ class Stages extends Component {
                 </TouchableOpacity>
               </Body>
               <Right>
-                <Icon name="call" />
+                <Icon style={touchStyles.icon} size={iconSize} name="call" />
               </Right>
             </ListItem>
           </List>
@@ -115,7 +120,7 @@ class Stages extends Component {
                 </TouchableOpacity>
               </Body>
               <Right>
-                <Icon name="text" />
+                <Icon style={touchStyles.icon} size={iconSize} name="text" />
               </Right>
             </ListItem>
           </List>

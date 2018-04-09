@@ -20,6 +20,7 @@ import {
   // appearancesDuxConstants
 } from "./appearancesReducer.js";
 import { homeDuxActions } from "./homeReducer.js";
+import { stagesDuxActions } from "./stagesReducer.js";
 import {
   favouritesDuxActions,
   loadFavouritesNow
@@ -125,9 +126,10 @@ const preloadImages = bandsArray => {
   preloadRNICimages(preloadArray);
 };
 
-// worker Saga: will be fired on LOAD_BANDS_NOW actions
+// worker Saga: will be fired on LOAD_BANDS_NOW actions, and gets all
+// data, not just bands
 function* loadBandsGen() {
-  // yield console.log("loadBands() triggered in sagas.js");ß
+  // yield console.log("loadBands() triggered in sagas.js");
   yield all([
     put(homeDuxActions.setFetchHomeRequest()),
     put(bandsDuxActions.setFetchBandsRequest()),
@@ -138,12 +140,7 @@ function* loadBandsGen() {
     const bandsDataNormalisedString = yield AsyncStorage.getItem(
       "localPublishedData"
     );
-    // console.log(
-    //   "typeof bandsDataNormalisedString=" + typeof bandsDataNormalisedString
-    // );ß
-    // console.log(
-    //   "bandsDataNormalisedString=" + bandsDataNormalisedString.substring(0, 200)
-    // );
+
     const bandsDataNormalised = JSON.parse(bandsDataNormalisedString);
     // yield console.log(
     //   "bandsDataNormalised" +
@@ -163,11 +160,13 @@ function* loadBandsGen() {
       appearancesMember =>
         appearancesMember.bandId && appearancesMember.bandId !== ""
     );
+    const stagesArray = bandsDataNormalised.stagesArray;
 
     yield all([
       put(homeDuxActions.setFetchHomeSucceeded(homeText)),
       put(bandsDuxActions.setFetchBandsSucceeded(bandsArray)),
-      put(appearancesDuxActions.setFetchAppearancesSucceeded(appearancesArray))
+      put(appearancesDuxActions.setFetchAppearancesSucceeded(appearancesArray)),
+      put(stagesDuxActions.setFetchStagesSucceeded(stagesArray))
     ]);
     preloadImages(bandsArray);
   } catch (e) {

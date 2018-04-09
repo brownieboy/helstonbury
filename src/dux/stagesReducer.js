@@ -30,7 +30,7 @@ const stagesReducer = (
 };
 
 // Sort/filter functions for selectors
-const selectStages = state => state.stagesList;
+const selectStages = state => state.stagesState.stagesList;
 
 const selectAlphabetical = createSelector([selectStages], stagesList =>
   stringSort(stagesList.slice(), "name")

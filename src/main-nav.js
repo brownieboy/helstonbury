@@ -10,7 +10,7 @@ import Home from "./screens/home-conn.js";
 import BandsList from "./screens/bands-list-nav.js";
 // import Appearances from "./screens/appearances-day-stage-nav.js";
 import Appearances from "./screens/appearances-nav.js";
-import Stages from "./screens/stages.js";
+import StagesList from "./screens/stages-list-nav.js";
 import ContactUs from "./screens/contactus.js";
 
 const AppNavigator = tabNavigator(
@@ -23,7 +23,7 @@ const AppNavigator = tabNavigator(
     },
     Appearances: { screen: Appearances },
     Stages: {
-      screen: Stages
+      screen: StagesList
     },
     ContactUs: {
       screen: ContactUs

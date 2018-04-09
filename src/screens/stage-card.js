@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 
 import {
   Button,
+  Card,
+  CardItem,
   Container,
   Icon,
   Left,
@@ -50,7 +52,20 @@ class StageCard extends Component {
         </Header>
 
         <Content padder>
-          <Text>Stages info goes here. Some kind of tappable map.</Text>
+          <Card style={styles.mb}>
+            <CardItem bordered>
+              <Left>
+                <Body>
+                  <Text>{stageDetails.name}</Text>
+                </Body>
+              </Left>
+            </CardItem>
+            <CardItem>
+              <Body>
+                <Text>{stageDetails.blurb}</Text>
+              </Body>
+            </CardItem>
+          </Card>
         </Content>
       </Container>
     );

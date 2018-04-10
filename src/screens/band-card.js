@@ -169,7 +169,7 @@ class BandCard extends Component {
                     color: favourite ? "red" : "grey"
                   }}
                   onPress={() => {
-                    this.setState({ favouritesFontSize: 50 });
+                    this.setState({ favouritesFontSize: favourite ? 35 : 50 });
                     toggleBandFavouriteStatus(bandDetails.bandId);
                   }}
                 />

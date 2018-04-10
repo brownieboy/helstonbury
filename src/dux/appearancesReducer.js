@@ -146,7 +146,10 @@ export const groupAppearancesByDay = appearances => {
   const appearancesGrouped = d3
     .nest()
     .key(appearance =>
-      format(new Date(appearance.dateTimeStart), "dddd DD/MM/YYYY")
+      format(
+        new Date(appearance.dateTimeStart.split("T")[0]),
+        "dddd DD/MM/YYYY"
+      )
     )
     .sortKeys(
       (a, b) => parseInt(a.split("~")[0], 10) - parseInt(b.split("~")[0], 10)
@@ -160,7 +163,7 @@ export const groupAppearancesByDayStage = appearances => {
   const appearancesGrouped = d3
     .nest()
     .key(appearance =>
-      format(new Date(appearance.dateTimeStart), "dddd DD/MM/YYYY")
+      format(new Date(appearance.dateTimeStart.split("T")[0]), "dddd DD/MM/YYYY")
     )
     .key(appearance => `${appearance.stageSortOrder}~${appearance.stageName}`)
     .sortKeys(

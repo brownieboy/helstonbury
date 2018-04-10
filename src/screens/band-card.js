@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Dimensions, Platform, View } from "react-native";
+import * as Animatable from "react-native-animatable";
+
 import PropTypes from "prop-types";
 import { format } from "date-fns";
 // import { CachedImage } from "react-native-img-cache";
@@ -23,25 +25,9 @@ import {
 
 import styles from "../styles/band-card-styles.js";
 import ScheduleTabIcon from "../components/schedule-tab-icon.js";
-
-/*
-  static navigationOptions = ({ navigation }) => {
-    const { params } = navigation.state;
-    
-    return {
-      title: params ? params.otherParam : 'A Nested Details Screen',
-    }
-  };
-
-lass ScreenB extends React.Component {
-  static navigationOptions = {
-    header: () => null,  //this will hide the Stack navigator's header (TabA_StackNavigator)
-    tabBarVisible: false //this will hide the TabBar navigator's header (LoggedIn_TabNavigator)
-  }
-
-*/
-
 import openFacebookLink from "../helper-functions/open-facebook-link.js";
+
+const AnimatableIcon = Animatable.createAnimatableComponent(Icon);
 
 class BandCard extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -64,7 +50,8 @@ class BandCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dimensions: Dimensions.get("window")
+      dimensions: Dimensions.get("window"),
+      favouritesFontSize: 30
     };
   }
 
@@ -173,11 +160,18 @@ class BandCard extends Component {
                 </Body>
               </Left>
               <Right>
-                <Icon
+                <AnimatableIcon
                   ios={favourite ? "ios-heart" : "ios-heart-outline"}
                   android={favourite ? "md-heart" : "md-heart-outline"}
-                  style={{ fontSize: 40, color: favourite ? "red" : "grey" }}
-                  onPress={() => toggleBandFavouriteStatus(bandDetails.bandId)}
+                  transition="fontSize"
+                  style={{
+                    fontSize: this.state.favouritesFontSize,
+                    color: favourite ? "red" : "grey"
+                  }}
+                  onPress={() => {
+                    this.setState({ favouritesFontSize: 50 });
+                    toggleBandFavouriteStatus(bandDetails.bandId);
+                  }}
                 />
               </Right>
             </CardItem>

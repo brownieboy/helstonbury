@@ -27,6 +27,22 @@ import styles from "../styles/band-card-styles.js";
 import ScheduleTabIcon from "../components/schedule-tab-icon.js";
 import openFacebookLink from "../helper-functions/open-facebook-link.js";
 
+const pulseBig = {
+  0: {
+    scale: 1
+  },
+  0.5: {
+    scale: 1.3
+  },
+  1: {
+    scale: 1
+  }
+};
+
+Animatable.initializeRegistryWithDefinitions({
+  pulseBig
+});
+
 const AnimatableIcon = Animatable.createAnimatableComponent(Icon);
 
 class BandCard extends Component {
@@ -106,11 +122,11 @@ class BandCard extends Component {
   handleFaveViewRef = ref => (this.faveView = ref);
   pulse = () =>
     this.faveView
-      .pulse()
+      .pulseBig()
       .then(() =>
         this.faveView
-          .pulse()
-          .then(() => this.faveView.pulse().then(() => this.faveView.pulse()))
+          .pulseBig()
+          .then(() => this.faveView.pulseBig().then(() => this.faveView.pulseBig()))
       );
 
   render() {

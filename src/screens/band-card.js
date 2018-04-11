@@ -32,8 +32,8 @@ const AnimatableIcon = Animatable.createAnimatableComponent(Icon);
 class BandCard extends Component {
   static navigationOptions = ({ navigation }) => {
     const { params } = navigation.state;
-    console.log("BandCard params:");
-    console.log(params);
+    // console.log("BandCard params:");
+    // console.log(params);
 
     return {
       tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />,
@@ -42,16 +42,10 @@ class BandCard extends Component {
     };
   };
 
-  // static navigationOptions = {
-  //   tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />,
-  //   title: "tossers"
-  // };
-
   constructor(props) {
     super(props);
     this.state = {
-      dimensions: Dimensions.get("window"),
-      favouritesFontSize: 30
+      dimensions: Dimensions.get("window")
     };
   }
 
@@ -153,23 +147,22 @@ class BandCard extends Component {
         <Content padder>
           <Card style={styles.mb}>
             <CardItem bordered>
-              <Left>
-                <Body>
-                  <Text>{bandDetails.name}</Text>
-                  <Text note>{bandDetails.summary}</Text>
-                </Body>
-              </Left>
+              <Body style={{ flexDirection: "column" }}>
+                <Text>{bandDetails.name}</Text>
+                <Text note>{bandDetails.summary}</Text>
+              </Body>
               <Right>
                 <AnimatableIcon
                   ios={favourite ? "ios-heart" : "ios-heart-outline"}
                   android={favourite ? "md-heart" : "md-heart-outline"}
-                  transition="fontSize"
+                  animation={favourite ? "pulse" : null}
+                  iterationCount="infinite"
                   style={{
-                    fontSize: this.state.favouritesFontSize,
+                    fontSize: favourite ? 50 : 35,
                     color: favourite ? "red" : "grey"
                   }}
                   onPress={() => {
-                    this.setState({ favouritesFontSize: favourite ? 35 : 50 });
+                    // this.setState({ favouritesFontSize: favourite ? 35 : 50 });
                     toggleBandFavouriteStatus(bandDetails.bandId);
                   }}
                 />

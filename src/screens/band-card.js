@@ -103,6 +103,16 @@ class BandCard extends Component {
     );
   };
 
+  handleFaveViewRef = ref => (this.faveView = ref);
+  pulse = () =>
+    this.faveView
+      .pulse()
+      .then(() =>
+        this.faveView
+          .pulse()
+          .then(() => this.faveView.pulse().then(() => this.faveView.pulse()))
+      );
+
   render() {
     const { bandId, parentList } = this.props.navigation.state.params;
     const {
@@ -129,7 +139,7 @@ class BandCard extends Component {
       backButtonTextStyle.fontSize = 10;
       backButtonText = parentList; // Not enough room for "Back to" on Android
     }
-    console.log("backButtonText=" + backButtonText);
+
     return (
       <Container style={styles.container}>
         <Header>
@@ -153,16 +163,22 @@ class BandCard extends Component {
               </Body>
               <Right>
                 <AnimatableIcon
+                  ref={this.handleFaveViewRef}
                   ios={favourite ? "ios-heart" : "ios-heart-outline"}
                   android={favourite ? "md-heart" : "md-heart-outline"}
-                  animation={favourite ? "pulse" : null}
-                  iterationCount="infinite"
+                  transition="fontSize"
+                  onAnimationEnd={() => console.log("animation end")}
                   style={{
                     fontSize: favourite ? 50 : 35,
                     color: favourite ? "red" : "grey"
                   }}
                   onPress={() => {
                     // this.setState({ favouritesFontSize: favourite ? 35 : 50 });
+                    if (!favourite) {
+                      setTimeout(() => {
+                        this.pulse();
+                      }, 700);
+                    }
                     toggleBandFavouriteStatus(bandDetails.bandId);
                   }}
                 />

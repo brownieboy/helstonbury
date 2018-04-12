@@ -119,15 +119,14 @@ class BandCard extends Component {
     );
   };
 
-  handleFaveViewRef = ref => (this.faveView = ref);
   pulse = () =>
     this.faveView
       .pulseBig()
-      .then(() =>
-        this.faveView
-          .pulseBig()
-          .then(() => this.faveView.pulseBig().then(() => this.faveView.pulseBig()))
-      );
+      .then(() => this.faveView.pulseBig())
+      .then(() => this.faveView.pulseBig())
+      .then(() => this.faveView.pulseBig())
+      .then(() => this.faveView.pulseBig())
+      .catch(e => console.log(`error: ${e}`));
 
   render() {
     const { bandId, parentList } = this.props.navigation.state.params;

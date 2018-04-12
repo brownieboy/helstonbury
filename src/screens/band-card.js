@@ -120,10 +120,10 @@ class BandCard extends Component {
   };
 
   handleFaveViewRef = ref => (this.faveView = ref);
+
   pulse = () =>
     this.faveView
       .pulseBig()
-      .then(() => this.faveView.pulseBig())
       .then(() => this.faveView.pulseBig())
       .then(() => this.faveView.pulseBig())
       .then(() => this.faveView.pulseBig())
@@ -193,7 +193,7 @@ class BandCard extends Component {
                     if (!favourite) {
                       setTimeout(() => {
                         this.pulse();
-                      }, 700);
+                      }, 500);
                     }
                     toggleBandFavouriteStatus(bandDetails.bandId);
                   }}

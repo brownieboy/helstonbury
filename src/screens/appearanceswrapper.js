@@ -30,6 +30,9 @@ import AppearancesByDayStage from "./appearances-bydaystage.js";
 import styles from "../styles/band-card-styles.js";
 // import tabNavStyles from "../styles/tab-navigator-styles.js";
 
+const optionsButtonStyles =
+  Platform.OS === "android" ? { color: "white" } : null;
+
 class Appearances extends Component {
   constructor(props) {
     super(props);
@@ -137,6 +140,7 @@ class Appearances extends Component {
               <Icon
                 ios="ios-options"
                 android="md-options"
+                style={optionsButtonStyles}
                 onPress={this.toggleSideMenu}
               />
             </Right>

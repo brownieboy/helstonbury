@@ -113,8 +113,8 @@ class AppearancesMenu extends Component {
         <Content padder>
           <ListItem icon>
             <Left>
-              <Icon name="settings" />
-              <Text>Schedule Options</Text>
+              <Icon name="settings" style={{fontSize: 15}} />
+              <Text>Show Schedule</Text>
             </Left>
           </ListItem>
           <ListItem icon onPress={() => this.handleDayStagePress("day")}>

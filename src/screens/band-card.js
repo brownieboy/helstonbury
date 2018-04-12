@@ -119,6 +119,7 @@ class BandCard extends Component {
     );
   };
 
+  handleFaveViewRef = ref => (this.faveView = ref);
   pulse = () =>
     this.faveView
       .pulseBig()

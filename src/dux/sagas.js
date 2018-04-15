@@ -20,6 +20,7 @@ import {
   // appearancesDuxConstants
 } from "./appearancesReducer.js";
 import { homeDuxActions } from "./homeReducer.js";
+import { contactUsDuxActions } from "./contactUsReducer.js";
 import { stagesDuxActions } from "./stagesReducer.js";
 import {
   favouritesDuxActions,
@@ -133,7 +134,8 @@ function* loadBandsGen() {
   yield all([
     put(homeDuxActions.setFetchHomeRequest()),
     put(bandsDuxActions.setFetchBandsRequest()),
-    put(appearancesDuxActions.setFetchAppearancesRequest())
+    put(appearancesDuxActions.setFetchAppearancesRequest()),
+    put(appearancesDuxActions.setFetchContactUsRequest())
   ]);
   try {
     // const bandsDataNormalised = yield call(bandsApi.fetchBandsData);

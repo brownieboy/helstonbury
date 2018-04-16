@@ -4,9 +4,27 @@ const FETCH_CONTACTUS_REQUEST = "FETCH_CONTACTUS_REQUEST";
 const FETCH_CONTACTUS_SUCCESS = "FETCH_CONTACTUS_SUCCESS";
 const FETCH_CONTACTUS_FAILURE = "FETCH_CONTACTUS_FAILURE";
 
+
+const defaultState = {
+  fetchStatus: "",
+  fetchError: "",
+  saveError: {},
+  contactUs: {
+    startBlurb: "",
+    email1: "",
+    email2: "",
+    mobile: "",
+    gettingThereBlurb: "",
+    mapLinkText: "",
+    venueAddress: "",
+    venueEmail: "",
+    venuePhone: ""
+  }
+};
+
 // Reducer
 const contactUsReducer = (
-  state = { fetchStatus: "", fetchError: "", contactUs: {} },
+  state = defaultState,
   action
 ) => {
   switch (action.type) {

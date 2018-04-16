@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import {
   Container,
   Left,
@@ -43,7 +44,7 @@ const touchStyles = StyleSheet.create({
   }
 });
 
-class Stages extends Component {
+class ContactUs extends Component {
   static navigationOptions = {
     tabBarLabel: "Home",
     tabBarIcon: ({ tintColor }) => (
@@ -57,7 +58,17 @@ class Stages extends Component {
 
   render() {
     // 50.100415, -5.276919
-
+    const {
+      startBlurb,
+      email1,
+      email2,
+      mobile,
+      gettingThereBlurb,
+      mapLinkText,
+      venueAddress,
+      venuePhone,
+      venueEmail
+    } = this.props;
     return (
       <Container style={styles.container}>
         <Header>
@@ -77,7 +88,12 @@ class Stages extends Component {
           </Text>
           <TouchableOpacity
             onPress={() =>
-              openMap({ latitude: 50.100415, longitude: -5.276919, provider: "google", name: "Blue Anchor, Helston" })
+              openMap({
+                latitude: 50.100415,
+                longitude: -5.276919,
+                provider: "google",
+                name: "Blue Anchor, Helston"
+              })
             }
           >
             <Text style={touchStyles.text}>Open in Google Maps</Text>
@@ -165,4 +181,4 @@ class Stages extends Component {
   }
 }
 
-export default Stages;
+export default ContactUs;

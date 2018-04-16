@@ -135,7 +135,7 @@ function* loadBandsGen() {
     put(homeDuxActions.setFetchHomeRequest()),
     put(bandsDuxActions.setFetchBandsRequest()),
     put(appearancesDuxActions.setFetchAppearancesRequest()),
-    put(appearancesDuxActions.setFetchContactUsRequest())
+    put(contactUsDuxActions.setFetchContactUsRequest())
   ]);
   try {
     // const bandsDataNormalised = yield call(bandsApi.fetchBandsData);

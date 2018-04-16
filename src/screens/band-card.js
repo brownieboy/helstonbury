@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Dimensions, Platform, View } from "react-native";
+import { Dimensions, Platform, TouchableOpacity, View } from "react-native";
 import * as Animatable from "react-native-animatable";
 
 import PropTypes from "prop-types";
@@ -104,24 +104,29 @@ class BandCard extends Component {
   };
 
   getCardImage = (cardFullUrl, fullScreen = false) => {
+    console.log("getCardImage, fullScreen = " + fullScreen);
     const dimensions = this.state.dimensions;
     const imageHeight = fullScreen
       ? dimensions.width
       : Math.round(dimensions.width * 0.8 * 9 / 16);
     const imageWidth = fullScreen ? dimensions.width : dimensions.width * 0.8;
     return (
-      <CachedImage
-        style={{
-          alignSelf: "center",
-          height: imageHeight,
-          width: imageWidth,
-          marginVertical: 5
+      <TouchableOpacity
+        onPress={() => {
+          console.log("CachedImage pressed");
+          this.setState({ fullScreenPhotoCard: !fullScreen });
         }}
-        source={{ uri: cardFullUrl }}
-        onPress={() =>
-          this.setState({ fullScreenPhotoCard: !fullScreenPhotoCard })
-        }
-      />
+      >
+        <CachedImage
+          style={{
+            alignSelf: "center",
+            height: imageHeight,
+            width: imageWidth,
+            marginVertical: 5
+          }}
+          source={{ uri: cardFullUrl }}
+        />
+      </TouchableOpacity>
     );
   };
 

@@ -156,6 +156,34 @@ class ContactUs extends Component {
               </Right>
             </ListItem>
           </List>
+
+          <Text>{gettingThereBlurb}</Text>
+          <List>
+            <ListItem icon>
+              <Left style={touchStyles.label}>
+                <Text style={touchStyles.labelText}>Address:</Text>
+              </Left>
+              <Body>
+                <Text style={touchStyles.text}>{venueAddress}</Text>
+              </Body>
+              <Right>
+                <Icon style={touchStyles.icon} name="mail" />
+              </Right>
+            </ListItem>
+            <ListItem icon>
+              <Left style={touchStyles.label}>
+                <Text style={touchStyles.labelText}>Phone:</Text>
+              </Left>
+              <Body>
+                <TouchableOpacity onPress={() => phonecall(venuePhone, true)}>
+                  <Text style={touchStyles.text}>{venuePhone}</Text>
+                </TouchableOpacity>
+              </Body>
+              <Right>
+                <Icon style={touchStyles.icon} name="call" />
+              </Right>
+            </ListItem>
+          </List>
         </Content>
       </Container>
     );

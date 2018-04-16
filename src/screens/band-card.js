@@ -61,7 +61,8 @@ class BandCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dimensions: Dimensions.get("window")
+      dimensions: Dimensions.get("window"),
+      fullScreenPhotoCard: false
     };
   }
 
@@ -102,10 +103,12 @@ class BandCard extends Component {
     return null;
   };
 
-  getCardImage = cardFullUrl => {
+  getCardImage = (cardFullUrl, fullScreen = false) => {
     const dimensions = this.state.dimensions;
-    const imageHeight = Math.round(dimensions.width * 0.8 * 9 / 16);
-    const imageWidth = dimensions.width * 0.8;
+    const imageHeight = fullScreen
+      ? dimensions.width
+      : Math.round(dimensions.width * 0.8 * 9 / 16);
+    const imageWidth = fullScreen ? dimensions.width : dimensions.width * 0.8;
     return (
       <CachedImage
         style={{
@@ -115,6 +118,9 @@ class BandCard extends Component {
           marginVertical: 5
         }}
         source={{ uri: cardFullUrl }}
+        onPress={() =>
+          this.setState({ fullScreenPhotoCard: !fullScreenPhotoCard })
+        }
       />
     );
   };
@@ -136,7 +142,8 @@ class BandCard extends Component {
       appearancesByBandThenDateTime,
       favouritesState
       // parentList
-    } = this.props; // Basically, the whole state∂
+    } = this.props; // Basically, the whole state
+    const { fullScreenPhotoCard } = this.state;
     const sortedAppearances = this.getAppearancesForBand(
       appearancesByBandThenDateTime,
       bandId
@@ -204,7 +211,10 @@ class BandCard extends Component {
             <CardItem>
               <Body>
                 {bandDetails.cardFullUrl
-                  ? this.getCardImage(bandDetails.cardFullUrl)
+                  ? this.getCardImage(
+                      bandDetails.cardFullUrl,
+                      fullScreenPhotoCard
+                    )
                   : null}
                 <Text>{bandDetails.blurb}</Text>
               </Body>

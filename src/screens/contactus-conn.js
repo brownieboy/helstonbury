@@ -6,10 +6,7 @@ import ContactUsForm from "../screens/contactus.js";
 
 const getCommonStateObject = state => ({
   fetchStatus: state.contactUsState.fetchStatus,
-  fetchError: state.contactUsState.fetchError,
-  saveStatus: state.contactUsState.saveStatus,
-  saveError: state.contactUsState.saveError,
-  isLoggedIn: state.firebaseLoginState.loggedIn
+  fetchError: state.contactUsState.fetchError
 });
 
 // So we're connecting the same form to Redux, but with different props

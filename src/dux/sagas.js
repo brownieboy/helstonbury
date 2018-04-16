@@ -162,13 +162,16 @@ function* loadBandsGen() {
       appearancesMember =>
         appearancesMember.bandId && appearancesMember.bandId !== ""
     );
-    const stagesArray = bandsDataNormalised.stagesArray;
+    const stagesArray = bandsDataNormalised.stagesArray || [];
+    console.log("contactsPage fetched");
+    const contactsPage = bandsDataNormalised.contactsPage || {};
 
     yield all([
       put(homeDuxActions.setFetchHomeSucceeded(homeText)),
       put(bandsDuxActions.setFetchBandsSucceeded(bandsArray)),
       put(appearancesDuxActions.setFetchAppearancesSucceeded(appearancesArray)),
-      put(stagesDuxActions.setFetchStagesSucceeded(stagesArray))
+      put(stagesDuxActions.setFetchStagesSucceeded(stagesArray)),
+      put(contactUsDuxActions.setFetchContactUsSucceeded(contactsPage))
     ]);
     preloadImages(bandsArray);
   } catch (e) {

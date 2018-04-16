@@ -82,10 +82,7 @@ class ContactUs extends Component {
         </Header>
 
         <Content padder>
-          <Text>
-            Contact For more information please contact Paul Turton via any of
-            the contact methods listed below.
-          </Text>
+          <Text>{startBlurb}</Text>
           <TouchableOpacity
             onPress={() =>
               openMap({
@@ -96,7 +93,9 @@ class ContactUs extends Component {
               })
             }
           >
-            <Text style={touchStyles.text}>Open in Google Maps</Text>
+            <Text style={touchStyles.text}>
+              {mapLinkText !== "" ? mapLinkText : "Open in Google Maps"}
+            </Text>
           </TouchableOpacity>
           <List>
             <ListItem icon>
@@ -105,17 +104,9 @@ class ContactUs extends Component {
               </Left>
               <Body>
                 <TouchableOpacity
-                  onPress={() =>
-                    email(
-                      ["helstonbury@hotmail.com"],
-                      null,
-                      null,
-                      "Helstonbury",
-                      ""
-                    )
-                  }
+                  onPress={() => email([email1], null, null, "Helstonbury", "")}
                 >
-                  <Text style={touchStyles.text}>helstonbury@hotmail.com</Text>
+                  <Text style={touchStyles.text}>{email1}</Text>
                 </TouchableOpacity>
               </Body>
               <Right>
@@ -128,17 +119,9 @@ class ContactUs extends Component {
               </Left>
               <Body>
                 <TouchableOpacity
-                  onPress={() =>
-                    email(
-                      ["paulturton@live.com"],
-                      null,
-                      null,
-                      "Helstonbury",
-                      ""
-                    )
-                  }
+                  onPress={() => email([email2], null, null, "Helstonbury", "")}
                 >
-                  <Text style={touchStyles.text}>paulturton@live.com</Text>
+                  <Text style={touchStyles.text}>{email1}</Text>
                 </TouchableOpacity>
               </Body>
               <Right>
@@ -147,13 +130,11 @@ class ContactUs extends Component {
             </ListItem>
             <ListItem icon>
               <Left style={touchStyles.label}>
-                <Text style={touchStyles.labelText}>Call:</Text>
+                <Text style={touchStyles.labelText}>Mobile:</Text>
               </Left>
               <Body>
-                <TouchableOpacity
-                  onPress={() => phonecall("07970569005", true)}
-                >
-                  <Text style={touchStyles.text}>07970 569005</Text>
+                <TouchableOpacity onPress={() => phonecall(mobile, true)}>
+                  <Text style={touchStyles.text}>{mobile}</Text>
                 </TouchableOpacity>
               </Body>
               <Right>
@@ -166,8 +147,8 @@ class ContactUs extends Component {
                 <Text style={touchStyles.labelText}>Text:</Text>
               </Left>
               <Body>
-                <TouchableOpacity onPress={() => text("07970569005", true)}>
-                  <Text style={touchStyles.text}>07970 569005</Text>
+                <TouchableOpacity onPress={() => text(mobile, true)}>
+                  <Text style={touchStyles.text}>{mobile}</Text>
                 </TouchableOpacity>
               </Body>
               <Right>

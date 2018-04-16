@@ -163,7 +163,6 @@ function* loadBandsGen() {
         appearancesMember.bandId && appearancesMember.bandId !== ""
     );
     const stagesArray = bandsDataNormalised.stagesArray || [];
-    console.log("contactsPage fetched");
     const contactsPage = bandsDataNormalised.contactsPage || {};
 
     yield all([

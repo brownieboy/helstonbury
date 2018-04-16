@@ -20,6 +20,7 @@ import {
   // appearancesDuxConstants
 } from "./appearancesReducer.js";
 import { homeDuxActions } from "./homeReducer.js";
+import { contactUsDuxActions } from "./contactUsReducer.js";
 import { stagesDuxActions } from "./stagesReducer.js";
 import {
   favouritesDuxActions,
@@ -133,7 +134,8 @@ function* loadBandsGen() {
   yield all([
     put(homeDuxActions.setFetchHomeRequest()),
     put(bandsDuxActions.setFetchBandsRequest()),
-    put(appearancesDuxActions.setFetchAppearancesRequest())
+    put(appearancesDuxActions.setFetchAppearancesRequest()),
+    put(contactUsDuxActions.setFetchContactUsRequest())
   ]);
   try {
     // const bandsDataNormalised = yield call(bandsApi.fetchBandsData);
@@ -160,13 +162,15 @@ function* loadBandsGen() {
       appearancesMember =>
         appearancesMember.bandId && appearancesMember.bandId !== ""
     );
-    const stagesArray = bandsDataNormalised.stagesArray;
+    const stagesArray = bandsDataNormalised.stagesArray || [];
+    const contactsPage = bandsDataNormalised.contactsPage || {};
 
     yield all([
       put(homeDuxActions.setFetchHomeSucceeded(homeText)),
       put(bandsDuxActions.setFetchBandsSucceeded(bandsArray)),
       put(appearancesDuxActions.setFetchAppearancesSucceeded(appearancesArray)),
-      put(stagesDuxActions.setFetchStagesSucceeded(stagesArray))
+      put(stagesDuxActions.setFetchStagesSucceeded(stagesArray)),
+      put(contactUsDuxActions.setFetchContactUsSucceeded(contactsPage))
     ]);
     preloadImages(bandsArray);
   } catch (e) {

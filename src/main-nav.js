@@ -11,7 +11,7 @@ import BandsList from "./screens/bands-list-nav.js";
 // import Appearances from "./screens/appearances-day-stage-nav.js";
 import Appearances from "./screens/appearances-nav.js";
 import StagesList from "./screens/stages-list-nav.js";
-import ContactUs from "./screens/contactus.js";
+import ContactUs from "./screens/contactus-conn.js";
 
 const AppNavigator = tabNavigator(
   {

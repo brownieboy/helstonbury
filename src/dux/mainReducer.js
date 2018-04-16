@@ -5,6 +5,7 @@ import bandsReducer from "./bandsReducer";
 import appearancesReducer from "./appearancesReducer.js";
 import favouritesReducer from "./favouritesReducer.js";
 import stagesReducer from "./stagesReducer.js";
+import contactUsReducer from "./contactUsReducer.js";
 // import uiReducer from "./uiReducer.js";
 
 const mainReducer = combineReducers({
@@ -12,7 +13,8 @@ const mainReducer = combineReducers({
   bandsState: bandsReducer,
   homeState: homeReducer,
   favouritesState: favouritesReducer,
-  stagesState: stagesReducer
+  stagesState: stagesReducer,
+  contactUsState: contactUsReducer
   // uiState: uiReducer
 });
 

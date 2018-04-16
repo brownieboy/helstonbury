@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import {
   Container,
   Left,
@@ -43,7 +44,7 @@ const touchStyles = StyleSheet.create({
   }
 });
 
-class Stages extends Component {
+class ContactUs extends Component {
   static navigationOptions = {
     tabBarLabel: "Home",
     tabBarIcon: ({ tintColor }) => (
@@ -57,7 +58,17 @@ class Stages extends Component {
 
   render() {
     // 50.100415, -5.276919
-
+    const {
+      startBlurb,
+      email1,
+      email2,
+      mobile,
+      gettingThereBlurb,
+      mapLinkText,
+      venueAddress,
+      venuePhone,
+      venueEmail
+    } = this.props;
     return (
       <Container style={styles.container}>
         <Header>
@@ -71,16 +82,20 @@ class Stages extends Component {
         </Header>
 
         <Content padder>
-          <Text>
-            Contact For more information please contact Paul Turton via any of
-            the contact methods listed below.
-          </Text>
+          <Text>{startBlurb}</Text>
           <TouchableOpacity
             onPress={() =>
-              openMap({ latitude: 50.100415, longitude: -5.276919, provider: "google", name: "Blue Anchor, Helston" })
+              openMap({
+                latitude: 50.100415,
+                longitude: -5.276919,
+                provider: "google",
+                name: "Blue Anchor, Helston"
+              })
             }
           >
-            <Text style={touchStyles.text}>Open in Google Maps</Text>
+            <Text style={touchStyles.text}>
+              {mapLinkText !== "" ? mapLinkText : "Open in Google Maps"}
+            </Text>
           </TouchableOpacity>
           <List>
             <ListItem icon>
@@ -89,17 +104,9 @@ class Stages extends Component {
               </Left>
               <Body>
                 <TouchableOpacity
-                  onPress={() =>
-                    email(
-                      ["helstonbury@hotmail.com"],
-                      null,
-                      null,
-                      "Helstonbury",
-                      ""
-                    )
-                  }
+                  onPress={() => email([email1], null, null, "Helstonbury", "")}
                 >
-                  <Text style={touchStyles.text}>helstonbury@hotmail.com</Text>
+                  <Text style={touchStyles.text}>{email1}</Text>
                 </TouchableOpacity>
               </Body>
               <Right>
@@ -112,17 +119,9 @@ class Stages extends Component {
               </Left>
               <Body>
                 <TouchableOpacity
-                  onPress={() =>
-                    email(
-                      ["paulturton@live.com"],
-                      null,
-                      null,
-                      "Helstonbury",
-                      ""
-                    )
-                  }
+                  onPress={() => email([email2], null, null, "Helstonbury", "")}
                 >
-                  <Text style={touchStyles.text}>paulturton@live.com</Text>
+                  <Text style={touchStyles.text}>{email1}</Text>
                 </TouchableOpacity>
               </Body>
               <Right>
@@ -131,13 +130,11 @@ class Stages extends Component {
             </ListItem>
             <ListItem icon>
               <Left style={touchStyles.label}>
-                <Text style={touchStyles.labelText}>Call:</Text>
+                <Text style={touchStyles.labelText}>Mobile:</Text>
               </Left>
               <Body>
-                <TouchableOpacity
-                  onPress={() => phonecall("07970569005", true)}
-                >
-                  <Text style={touchStyles.text}>07970 569005</Text>
+                <TouchableOpacity onPress={() => phonecall(mobile, true)}>
+                  <Text style={touchStyles.text}>{mobile}</Text>
                 </TouchableOpacity>
               </Body>
               <Right>
@@ -150,12 +147,40 @@ class Stages extends Component {
                 <Text style={touchStyles.labelText}>Text:</Text>
               </Left>
               <Body>
-                <TouchableOpacity onPress={() => text("07970569005", true)}>
-                  <Text style={touchStyles.text}>07970 569005</Text>
+                <TouchableOpacity onPress={() => text(mobile, true)}>
+                  <Text style={touchStyles.text}>{mobile}</Text>
                 </TouchableOpacity>
               </Body>
               <Right>
                 <Icon style={touchStyles.icon} name="text" />
+              </Right>
+            </ListItem>
+          </List>
+
+          <Text>{gettingThereBlurb}</Text>
+          <List>
+            <ListItem icon>
+              <Left style={touchStyles.label}>
+                <Text style={touchStyles.labelText}>Address:</Text>
+              </Left>
+              <Body>
+                <Text style={touchStyles.text}>{venueAddress}</Text>
+              </Body>
+              <Right>
+                <Icon style={touchStyles.icon} name="mail" />
+              </Right>
+            </ListItem>
+            <ListItem icon>
+              <Left style={touchStyles.label}>
+                <Text style={touchStyles.labelText}>Phone:</Text>
+              </Left>
+              <Body>
+                <TouchableOpacity onPress={() => phonecall(venuePhone, true)}>
+                  <Text style={touchStyles.text}>{venuePhone}</Text>
+                </TouchableOpacity>
+              </Body>
+              <Right>
+                <Icon style={touchStyles.icon} name="call" />
               </Right>
             </ListItem>
           </List>
@@ -165,4 +190,16 @@ class Stages extends Component {
   }
 }
 
-export default Stages;
+ContactUs.propTypes = {
+  startBlurb: PropTypes.string.isRequired,
+  email1: PropTypes.string.isRequired,
+  email2: PropTypes.string.isRequired,
+  mobile: PropTypes.string.isRequired,
+  gettingThereBlurb: PropTypes.string.isRequired,
+  mapLinkText: PropTypes.string.isRequired,
+  venueAddress: PropTypes.string.isRequired,
+  venuePhone: PropTypes.string.isRequired,
+  venueEmail: PropTypes.string.isRequired
+};
+
+export default ContactUs;

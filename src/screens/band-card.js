@@ -103,30 +103,30 @@ class BandCard extends Component {
     return null;
   };
 
+  // <TouchableOpacity
+  //   onPress={() => {
+  //     console.log("CachedImage pressed");
+  //     this.setState({ fullScreenPhotoCard: !fullScreen });
+  //   }}
+  // >
+
   getCardImage = (cardFullUrl, fullScreen = false) => {
-    console.log("getCardImage, fullScreen = " + fullScreen);
+    // console.log("getCardImage, fullScreen = " + fullScreen);
     const dimensions = this.state.dimensions;
     const imageHeight = fullScreen
       ? dimensions.width
       : Math.round(dimensions.width * 0.8 * 9 / 16);
     const imageWidth = fullScreen ? dimensions.width : dimensions.width * 0.8;
     return (
-      <TouchableOpacity
-        onPress={() => {
-          console.log("CachedImage pressed");
-          this.setState({ fullScreenPhotoCard: !fullScreen });
+      <CachedImage
+        style={{
+          alignSelf: "center",
+          height: imageHeight,
+          width: imageWidth,
+          marginVertical: 5
         }}
-      >
-        <CachedImage
-          style={{
-            alignSelf: "center",
-            height: imageHeight,
-            width: imageWidth,
-            marginVertical: 5
-          }}
-          source={{ uri: cardFullUrl }}
-        />
-      </TouchableOpacity>
+        source={{ uri: cardFullUrl }}
+      />
     );
   };
 
@@ -184,12 +184,12 @@ class BandCard extends Component {
 
         <Content padder>
           <Card style={styles.mb}>
-            <CardItem bordered>
-              <Body style={{ flexDirection: "column" }}>
+            <CardItem bordered style={{ minHeight: 75 }}>
+              <Body style={{ flexGrow: 5 }}>
                 <Text>{bandDetails.name}</Text>
                 <Text note>{bandDetails.summary}</Text>
               </Body>
-              <Right>
+              <Right style={{ flexGrow: 1 }}>
                 <AnimatableIcon
                   ref={this.handleFaveViewRef}
                   ios={favourite ? "ios-heart" : "ios-heart-outline"}

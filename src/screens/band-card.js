@@ -73,6 +73,15 @@ class BandCard extends Component {
   getAppearancesForBand = (appearances, bandKey) =>
     appearances.slice().filter(bandMember => bandMember.bandId === bandKey);
 
+  // <TouchableOpacity
+  //   key={`${appearance.dateTimeStart}${appearance.stageId}`}
+  //   onPress={() =>
+  //     this.props.navigation.navigate("StageCard", {
+  //       stageId: appearance.stageId,
+  //       parentList: "band"
+  //     })
+  //   }
+  // >
   getAppearanceTexts = appearances =>
     appearances.map(appearance => (
       <Text key={`${appearance.dateTimeStart}${appearance.stageId}`}>
@@ -82,6 +91,12 @@ class BandCard extends Component {
         )} at ${format(appearance.dateTimeStart, "HH:mm")}`}
       </Text>
     ));
+
+  // onPress={() =>
+  //   this.props.navigation.navigate("StageCard", {
+  //     stageId: stageMember.id,
+  //     parentList: "stages"
+  //   })
 
   getFaceBookLinkComponent = bandDetails => {
     const { facebookId, facebookPageName } = bandDetails;

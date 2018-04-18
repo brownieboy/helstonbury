@@ -32,7 +32,7 @@ const pulseBig = {
     scale: 1
   },
   0.5: {
-    scale: 1.3
+    scale: 1.2
   },
   1: {
     scale: 1
@@ -159,9 +159,24 @@ class BandCard extends Component {
   pulse = () =>
     this.faveView
       .pulseBig()
-      .then(() => (this.cancelHeartAnimation ? new Error("promise cancelled") : this.faveView.pulseBig()))
-      .then(() => (this.cancelHeartAnimation ? new Error("promise cancelled") : this.faveView.pulseBig()))
-      .then(() => (this.cancelHeartAnimation ? new Error("promise cancelled") : this.faveView.pulseBig()))
+      .then(
+        () =>
+          this.cancelHeartAnimation
+            ? new Error("promise cancelled")
+            : this.faveView.pulseBig()
+      )
+      .then(
+        () =>
+          this.cancelHeartAnimation
+            ? new Error("promise cancelled")
+            : this.faveView.pulseBig()
+      )
+      .then(
+        () =>
+          this.cancelHeartAnimation
+            ? new Error("promise cancelled")
+            : this.faveView.pulseBig()
+      )
       .catch(e => console.log(`error: ${e}`));
 
   render() {
@@ -208,37 +223,46 @@ class BandCard extends Component {
 
         <Content padder>
           <Card style={styles.mb}>
-            <CardItem bordered style={{ minHeight: 75 }}>
-              <Body style={{ flexGrow: 5 }}>
+            <CardItem
+              bordered
+              style={{
+                borderWidth: 1,
+                alignItems: "flex-start",
+                justifyContent: "space-between"
+              }}
+            >
+              <Body style={{ flexGrow: 7 }}>
                 <Text>{bandDetails.name}</Text>
                 <Text note>{bandDetails.summary}</Text>
               </Body>
-              <Right style={{ flexGrow: 1 }}>
-                <AnimatableIcon
-                  ref={this.handleFaveViewRef}
-                  ios={favourite ? "ios-heart" : "ios-heart-outline"}
-                  android={favourite ? "md-heart" : "md-heart-outline"}
-                  transition="fontSize"
-                  onAnimationEnd={() => console.log("animation end")}
-                  style={{
-                    fontSize: favourite ? 50 : 35,
-                    color: favourite ? "red" : "grey"
-                  }}
-                  onPress={() => {
-                    // this.setState({ favouritesFontSize: favourite ? 35 : 50 });
-                    if (!favourite) {
-                      this.cancelHeartAnimation = false;
-                      setTimeout(() => {
-                        this.pulse();
-                      }, 500);
-                    } else {
-                      console.log("setting this.cancelHeartAnimation = true");
-                      this.cancelHeartAnimation = true;
-                    }
-                    toggleBandFavouriteStatus(bandDetails.bandId);
-                  }}
-                />
-              </Right>
+              <AnimatableIcon
+                ref={this.handleFaveViewRef}
+                ios={favourite ? "ios-heart" : "ios-heart-outline"}
+                android={favourite ? "md-heart" : "md-heart-outline"}
+                onAnimationEnd={() => console.log("animation end")}
+                style={{
+                  fontSize: 35,
+                  color: favourite ? "red" : "grey",
+                  margin: 0,
+                  flexGrow: 1,
+                  borderWidth: 1,
+                  padding: 0,
+                  maxWidth: 40
+                }}
+                onPress={() => {
+                  // this.setState({ favouritesFontSize: favourite ? 35 : 50 });
+                  if (!favourite) {
+                    this.cancelHeartAnimation = false;
+                    // setTimeout(() => {
+                    this.pulse();
+                    // }, 300);
+                  } else {
+                    console.log("setting this.cancelHeartAnimation = true");
+                    this.cancelHeartAnimation = true;
+                  }
+                  toggleBandFavouriteStatus(bandDetails.bandId);
+                }}
+              />
             </CardItem>
 
             <CardItem>

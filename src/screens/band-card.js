@@ -45,7 +45,7 @@ Animatable.initializeRegistryWithDefinitions({
 
 const AnimatableIcon = Animatable.createAnimatableComponent(Icon);
 
-class BandCard extends Component {
+/*
   static navigationOptions = ({ navigation }) => {
     const { params } = navigation.state;
     // console.log("BandCard params:");
@@ -57,6 +57,14 @@ class BandCard extends Component {
       tabBarVisible: false
     };
   };
+*/
+
+class BandCard extends Component {
+  static navigationOptions = {
+    tabBarLabel: "Bands",
+    tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
+  };
+
 
   constructor(props) {
     super(props);

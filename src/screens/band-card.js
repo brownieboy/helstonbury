@@ -60,11 +60,12 @@ const AnimatableIcon = Animatable.createAnimatableComponent(Icon);
 */
 
 class BandCard extends Component {
+  cancelHeartAnimation = false;
+
   static navigationOptions = {
     tabBarLabel: "Bands",
     tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
   };
-
 
   constructor(props) {
     super(props);
@@ -158,9 +159,9 @@ class BandCard extends Component {
   pulse = () =>
     this.faveView
       .pulseBig()
-      .then(() => this.faveView.pulseBig())
-      .then(() => this.faveView.pulseBig())
-      .then(() => this.faveView.pulseBig())
+      .then(() => (this.cancelHeartAnimation ? new Error("promise cancelled") : this.faveView.pulseBig()))
+      .then(() => (this.cancelHeartAnimation ? new Error("promise cancelled") : this.faveView.pulseBig()))
+      .then(() => (this.cancelHeartAnimation ? new Error("promise cancelled") : this.faveView.pulseBig()))
       .catch(e => console.log(`error: ${e}`));
 
   render() {
@@ -226,9 +227,13 @@ class BandCard extends Component {
                   onPress={() => {
                     // this.setState({ favouritesFontSize: favourite ? 35 : 50 });
                     if (!favourite) {
+                      this.cancelHeartAnimation = false;
                       setTimeout(() => {
                         this.pulse();
                       }, 500);
+                    } else {
+                      console.log("setting this.cancelHeartAnimation = true");
+                      this.cancelHeartAnimation = true;
                     }
                     toggleBandFavouriteStatus(bandDetails.bandId);
                   }}

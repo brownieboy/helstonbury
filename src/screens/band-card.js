@@ -227,42 +227,48 @@ class BandCard extends Component {
               bordered
               style={{
                 borderWidth: 1,
-                alignItems: "flex-start",
-                justifyContent: "space-between"
+                alignItems: "center"
               }}
             >
               <Body style={{ flexGrow: 7 }}>
                 <Text>{bandDetails.name}</Text>
                 <Text note>{bandDetails.summary}</Text>
               </Body>
-              <AnimatableIcon
-                ref={this.handleFaveViewRef}
-                ios={favourite ? "ios-heart" : "ios-heart-outline"}
-                android={favourite ? "md-heart" : "md-heart-outline"}
-                onAnimationEnd={() => console.log("animation end")}
+              <Right
                 style={{
-                  fontSize: 35,
-                  color: favourite ? "red" : "grey",
-                  margin: 0,
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "center",
                   flexGrow: 1,
-                  borderWidth: 1,
-                  padding: 0,
-                  maxWidth: 40
+                  width: 40,
+                  height: 40
                 }}
-                onPress={() => {
-                  // this.setState({ favouritesFontSize: favourite ? 35 : 50 });
-                  if (!favourite) {
-                    this.cancelHeartAnimation = false;
-                    // setTimeout(() => {
-                    this.pulse();
-                    // }, 300);
-                  } else {
-                    console.log("setting this.cancelHeartAnimation = true");
-                    this.cancelHeartAnimation = true;
-                  }
-                  toggleBandFavouriteStatus(bandDetails.bandId);
-                }}
-              />
+              >
+                <AnimatableIcon
+                  ref={this.handleFaveViewRef}
+                  ios={favourite ? "ios-heart" : "ios-heart-outline"}
+                  android={favourite ? "md-heart" : "md-heart-outline"}
+                  onAnimationEnd={() => console.log("animation end")}
+                  transition="fontSize"
+                  style={{
+                    fontSize: favourite ? 40 : 35,
+                    color: favourite ? "red" : "grey"
+                  }}
+                  onPress={() => {
+                    // this.setState({ favouritesFontSize: favourite ? 35 : 50 });
+                    if (!favourite) {
+                      this.cancelHeartAnimation = false;
+                      setTimeout(() => {
+                        this.pulse();
+                      }, 250);
+                    } else {
+                      console.log("setting this.cancelHeartAnimation = true");
+                      this.cancelHeartAnimation = true;
+                    }
+                    toggleBandFavouriteStatus(bandDetails.bandId);
+                  }}
+                />
+              </Right>
             </CardItem>
 
             <CardItem>

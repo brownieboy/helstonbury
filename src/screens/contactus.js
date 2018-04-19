@@ -31,6 +31,9 @@ const touchStyles = StyleSheet.create({
     textDecorationLine: "underline",
     fontSize: 14
   },
+  textNoLink: {
+    fontSize: 14
+  },
   label: {
     width: 70
   },
@@ -83,20 +86,7 @@ class ContactUs extends Component {
 
         <Content padder>
           <Text>{startBlurb}</Text>
-          <TouchableOpacity
-            onPress={() =>
-              openMap({
-                latitude: 50.100415,
-                longitude: -5.276919,
-                provider: "google",
-                name: "Blue Anchor, Helston"
-              })
-            }
-          >
-            <Text style={touchStyles.text}>
-              {mapLinkText !== "" ? mapLinkText : "Open in Google Maps"}
-            </Text>
-          </TouchableOpacity>
+
           <List>
             <ListItem icon>
               <Left style={touchStyles.label}>
@@ -164,12 +154,11 @@ class ContactUs extends Component {
                 <Text style={touchStyles.labelText}>Address:</Text>
               </Left>
               <Body>
-                <Text style={touchStyles.text}>{venueAddress}</Text>
+                <Text style={touchStyles.textNoLink}>{venueAddress}</Text>
               </Body>
-              <Right>
-                <Icon style={touchStyles.icon} name="mail" />
-              </Right>
+              <Right />
             </ListItem>
+
             <ListItem icon>
               <Left style={touchStyles.label}>
                 <Text style={touchStyles.labelText}>Phone:</Text>
@@ -181,6 +170,31 @@ class ContactUs extends Component {
               </Body>
               <Right>
                 <Icon style={touchStyles.icon} name="call" />
+              </Right>
+            </ListItem>
+
+            <ListItem icon>
+              <Left style={touchStyles.label}>
+                <Text style={touchStyles.labelText}>Map:</Text>
+              </Left>
+              <Body>
+                <TouchableOpacity
+                  onPress={() =>
+                    openMap({
+                      latitude: 50.100415,
+                      longitude: -5.276919,
+                      provider: "google",
+                      name: "Blue Anchor, Helston"
+                    })
+                  }
+                >
+                  <Text style={touchStyles.text}>
+                    {mapLinkText !== "" ? mapLinkText : "Open in Google Maps"}
+                  </Text>
+                </TouchableOpacity>
+              </Body>
+              <Right>
+                <Icon style={touchStyles.icon} name="map" />
               </Right>
             </ListItem>
           </List>

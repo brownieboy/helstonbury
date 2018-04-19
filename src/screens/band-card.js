@@ -250,17 +250,18 @@ class BandCard extends Component {
                   android={favourite ? "md-heart" : "md-heart-outline"}
                   onAnimationEnd={() => console.log("animation end")}
                   transition="fontSize"
+                  duration={1000}
                   style={{
-                    fontSize: favourite ? 40 : 35,
+                    fontSize: favourite ? 42 : 32,
                     color: favourite ? "red" : "grey"
                   }}
                   onPress={() => {
                     // this.setState({ favouritesFontSize: favourite ? 35 : 50 });
                     if (!favourite) {
                       this.cancelHeartAnimation = false;
-                      setTimeout(() => {
-                        this.pulse();
-                      }, 250);
+setTimeout(() => {
+  this.pulse();
+}, 1000);
                     } else {
                       console.log("setting this.cancelHeartAnimation = true");
                       this.cancelHeartAnimation = true;

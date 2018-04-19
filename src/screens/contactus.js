@@ -35,7 +35,7 @@ const touchStyles = StyleSheet.create({
     fontSize: 14
   },
   label: {
-    width: 70
+    width: 75
   },
   labelText: {
     width: 70,
@@ -45,6 +45,14 @@ const touchStyles = StyleSheet.create({
     color: "blue",
     fontSize: 30
   }
+});
+
+const otherTextStyles = StyleSheet.create({
+  title: {
+    fontSize: 20,
+    fontWeight: "bold"
+  },
+  info: { fontSize: 14 }
 });
 
 class ContactUs extends Component {
@@ -85,7 +93,8 @@ class ContactUs extends Component {
         </Header>
 
         <Content padder>
-          <Text>{startBlurb}</Text>
+          <Text style={otherTextStyles.title}>Organsition</Text>
+          <Text style={otherTextStyles.info}>{startBlurb}</Text>
 
           <List>
             <ListItem icon>
@@ -100,7 +109,11 @@ class ContactUs extends Component {
                 </TouchableOpacity>
               </Body>
               <Right>
-                <Icon name="mail" style={touchStyles.icon} />
+                <TouchableOpacity
+                  onPress={() => email([email1], null, null, "Helstonbury", "")}
+                >
+                  <Icon name="mail" style={touchStyles.icon} />
+                </TouchableOpacity>
               </Right>
             </ListItem>
             <ListItem icon>
@@ -111,11 +124,15 @@ class ContactUs extends Component {
                 <TouchableOpacity
                   onPress={() => email([email2], null, null, "Helstonbury", "")}
                 >
-                  <Text style={touchStyles.text}>{email1}</Text>
+                  <Text style={touchStyles.text}>{email2}</Text>
                 </TouchableOpacity>
               </Body>
               <Right>
-                <Icon style={touchStyles.icon} name="mail" />
+                <TouchableOpacity
+                  onPress={() => email([email2], null, null, "Helstonbury", "")}
+                >
+                  <Icon style={touchStyles.icon} name="mail" />
+                </TouchableOpacity>
               </Right>
             </ListItem>
             <ListItem icon>
@@ -128,37 +145,29 @@ class ContactUs extends Component {
                 </TouchableOpacity>
               </Body>
               <Right>
-                <Icon style={touchStyles.icon} name="call" />
-              </Right>
-            </ListItem>
-
-            <ListItem icon>
-              <Left style={touchStyles.label}>
-                <Text style={touchStyles.labelText}>Text:</Text>
-              </Left>
-              <Body>
-                <TouchableOpacity onPress={() => text(mobile, true)}>
-                  <Text style={touchStyles.text}>{mobile}</Text>
+                <TouchableOpacity onPress={() => phonecall(mobile, true)}>
+                  <Icon style={touchStyles.icon} name="call" />
                 </TouchableOpacity>
-              </Body>
-              <Right>
-                <Icon style={touchStyles.icon} name="text" />
+                <TouchableOpacity onPress={() => text(mobile, true)}>
+                  <Icon style={touchStyles.icon} name="text" />
+                </TouchableOpacity>
               </Right>
             </ListItem>
           </List>
 
-          <Text>{gettingThereBlurb}</Text>
-          <List>
-            <ListItem icon>
-              <Left style={touchStyles.label}>
+          <Text style={[otherTextStyles.title, { marginTop: 30 }]}>
+            Location
+          </Text>
+          <Text style={otherTextStyles.info}>{gettingThereBlurb}</Text>
+          <List style={{ marginTop: -20 }}>
+            <ListItem>
+              <Left style={[touchStyles.label, { flexGrow: 1 }]}>
                 <Text style={touchStyles.labelText}>Address:</Text>
               </Left>
-              <Body>
-                <Text style={touchStyles.textNoLink}>{venueAddress}</Text>
+              <Body style={{ flexGrow: 4 }}>
+                <Text style={otherTextStyles.info}>{venueAddress}</Text>
               </Body>
-              <Right />
             </ListItem>
-
             <ListItem icon>
               <Left style={touchStyles.label}>
                 <Text style={touchStyles.labelText}>Phone:</Text>
@@ -169,7 +178,9 @@ class ContactUs extends Component {
                 </TouchableOpacity>
               </Body>
               <Right>
-                <Icon style={touchStyles.icon} name="call" />
+                <TouchableOpacity onPress={() => phonecall(venuePhone, true)}>
+                  <Icon style={touchStyles.icon} name="call" />
+                </TouchableOpacity>
               </Right>
             </ListItem>
 
@@ -194,15 +205,43 @@ class ContactUs extends Component {
                 </TouchableOpacity>
               </Body>
               <Right>
-                <Icon style={touchStyles.icon} name="map" />
+                <TouchableOpacity
+                  onPress={() =>
+                    openMap({
+                      latitude: 50.100415,
+                      longitude: -5.276919,
+                      provider: "google",
+                      name: "Blue Anchor, Helston"
+                    })
+                  }
+                >
+                  <Icon style={touchStyles.icon} name="map" />
+                </TouchableOpacity>
               </Right>
             </ListItem>
           </List>
+          <Text style={{ marginTop: 30 }} />
         </Content>
       </Container>
     );
   }
 }
+
+/*
+            <ListItem icon>
+              <Left style={touchStyles.label}>
+                <Text style={touchStyles.labelText}>Text:</Text>
+              </Left>
+              <Body>
+                <TouchableOpacity onPress={() => text(mobile, true)}>
+                  <Text style={touchStyles.text}>{mobile}</Text>
+                </TouchableOpacity>
+              </Body>
+              <Right>
+                <Icon style={touchStyles.icon} name="text" />
+              </Right>
+            </ListItem>
+*/
 
 ContactUs.propTypes = {
   startBlurb: PropTypes.string.isRequired,

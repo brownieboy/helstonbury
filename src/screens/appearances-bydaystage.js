@@ -21,6 +21,7 @@ import {
 } from "native-base";
 
 import FavouritesListIcon from "../components/favourites-list-icon.js";
+import NoAppearancesToDisplayMessage from "../components/no-appearances-todisplay-message.js";
 
 class AppearancesByDayStage extends Component {
 
@@ -132,12 +133,7 @@ class AppearancesByDayStage extends Component {
           <List>
             {this.getAppearancesListDayLevel(appearancesGroupedByDayStage)}
           </List>
-        ) : (
-          <Text>
-            No appearances to display.{showOnlyFavourites &&
-              "  (You might try turning off the the Favourites Only setting)"}
-          </Text>
-        )}
+        ) :           <NoAppearancesToDisplayMessage showOnlyFavourites={showOnlyFavourites} />}
       </Content>
     );
   }

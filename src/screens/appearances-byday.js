@@ -21,6 +21,7 @@ import {
 } from "native-base";
 
 import FavouritesListIcon from "../components/favourites-list-icon.js";
+import NoAppearancesToDisplayMessage from "../components/no-appearances-todisplay-message.js";
 
 // ${lineMember.name}:
 
@@ -96,7 +97,7 @@ class AppearancesByDay extends Component {
     } = this.props;
 
     console.log("AppearancesByDay render()");
-// 
+    //
     // const { sideMenuOpen } = this.state;
 
     // console.log("appearances-byday.js, appearances:");
@@ -121,10 +122,7 @@ class AppearancesByDay extends Component {
             {this.getAppearancesListDayLevel(appearancesGroupedByDay)}
           </List>
         ) : (
-          <Text>
-            No appearances to display.{showOnlyFavourites &&
-              "  (You might try turning off the the Favourites Only setting)"}
-          </Text>
+          <NoAppearancesToDisplayMessage showOnlyFavourites={showOnlyFavourites} />
         )}
       </Content>
     );

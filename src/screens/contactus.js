@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import {
   Container,
+  H1,
+  H2,
+  H3,
   Left,
   Header,
   Title,
@@ -28,7 +31,7 @@ import HelstonburyAvatar from "../components/helstonbury-avatar.js";
 const touchStyles = StyleSheet.create({
   text: {
     color: "blue",
-    textDecorationLine: "underline",
+    // textDecorationLine: "underline",
     fontSize: 14
   },
   textNoLink: {
@@ -48,10 +51,6 @@ const touchStyles = StyleSheet.create({
 });
 
 const otherTextStyles = StyleSheet.create({
-  title: {
-    fontSize: 20,
-    fontWeight: "bold"
-  },
   info: { fontSize: 14 }
 });
 
@@ -93,7 +92,7 @@ class ContactUs extends Component {
         </Header>
 
         <Content padder>
-          <Text style={otherTextStyles.title}>Organsition</Text>
+          <H2 style={{ marginBottom: 10 }}>Organsition</H2>
           <Text style={otherTextStyles.info}>{startBlurb}</Text>
 
           <List>
@@ -155,33 +154,18 @@ class ContactUs extends Component {
             </ListItem>
           </List>
 
-          <Text style={[otherTextStyles.title, { marginTop: 30 }]}>
-            Location
-          </Text>
+          <H2 style={{ marginTop: 30, marginBottom: 10 }}>Location</H2>
           <Text style={otherTextStyles.info}>{gettingThereBlurb}</Text>
           <List style={{ marginTop: -20 }}>
             <ListItem>
-              <Left style={[touchStyles.label, { flexGrow: 1 }]}>
+              <Left
+                style={[touchStyles.label, { flexGrow: 1, marginLeft: -10 }]}
+              >
                 <Text style={touchStyles.labelText}>Address:</Text>
               </Left>
-              <Body style={{ flexGrow: 4 }}>
+              <Body style={{ flexGrow: 3 }}>
                 <Text style={otherTextStyles.info}>{venueAddress}</Text>
               </Body>
-            </ListItem>
-            <ListItem icon>
-              <Left style={touchStyles.label}>
-                <Text style={touchStyles.labelText}>Phone:</Text>
-              </Left>
-              <Body>
-                <TouchableOpacity onPress={() => phonecall(venuePhone, true)}>
-                  <Text style={touchStyles.text}>{venuePhone}</Text>
-                </TouchableOpacity>
-              </Body>
-              <Right>
-                <TouchableOpacity onPress={() => phonecall(venuePhone, true)}>
-                  <Icon style={touchStyles.icon} name="call" />
-                </TouchableOpacity>
-              </Right>
             </ListItem>
 
             <ListItem icon>
@@ -216,6 +200,22 @@ class ContactUs extends Component {
                   }
                 >
                   <Icon style={touchStyles.icon} name="map" />
+                </TouchableOpacity>
+              </Right>
+            </ListItem>
+
+            <ListItem icon>
+              <Left style={touchStyles.label}>
+                <Text style={touchStyles.labelText}>Phone:</Text>
+              </Left>
+              <Body>
+                <TouchableOpacity onPress={() => phonecall(venuePhone, true)}>
+                  <Text style={touchStyles.text}>{venuePhone}</Text>
+                </TouchableOpacity>
+              </Body>
+              <Right>
+                <TouchableOpacity onPress={() => phonecall(venuePhone, true)}>
+                  <Icon style={touchStyles.icon} name="call" />
                 </TouchableOpacity>
               </Right>
             </ListItem>

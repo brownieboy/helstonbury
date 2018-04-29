@@ -14,7 +14,6 @@ import {
   Icon,
   Title,
   Left,
-  Text,
   Right,
   Body
 } from "native-base";

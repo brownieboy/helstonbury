@@ -2,6 +2,7 @@
     "parser": "babel-eslint",
     "env":
     {
+        "node": true,
         "browser": true,
         "es6": true
     },
@@ -29,9 +30,10 @@
             }
         ],
         "no-invalid-this": "off",
+        "no-unused-vars": "warn",
         "react-native/no-unused-styles": 2,
         "react-native/split-platform-components": 2,
-        "react-native/no-inline-styles": 2,
-        "react-native/no-color-literals": 2
+        "react-native/no-inline-styles": "warn",
+        "react-native/no-color-literals": "warn"
     }
 }

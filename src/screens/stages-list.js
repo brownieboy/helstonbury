@@ -110,7 +110,9 @@ class StagesList extends Component {
           height: size,
           width: size,
           borderRadius: 5,
-          margin: 10
+          margin: 10,
+          alignItems: "center",
+          justifyContent: "center"
         }}
         onPress={() =>
           this.props.navigation.navigate("StageCard", {

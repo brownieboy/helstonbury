@@ -19,7 +19,7 @@
         ],
         "class-methods-use-this": "off",
         "generator-star-spacing": "off",
-        "indent": [2, 2, {"SwitchCase": 1}],
+        "indent": ["warn", 2, {"SwitchCase": 1}],
         "require-jsdoc": "off",
         "lines-around-comment": "off",
         "newline-after-var": "off",
@@ -29,9 +29,10 @@
                 "allowParens": true
             }
         ],
+        "no-console": "warn",
         "no-invalid-this": "off",
         "no-unused-vars": "warn",
-        "react-native/no-unused-styles": 2,
+        "react-native/no-unused-styles": "warn",
         "react-native/split-platform-components": 2,
         "react-native/no-inline-styles": "warn",
         "react-native/no-color-literals": "warn"

@@ -20,7 +20,7 @@ import {
 } from "native-base";
 
 // import MainFooterTabNav from "../components/mainfootertabnav.js";
-import openFacebookLink from "../helper-functions/open-facebook-link.js";
+// import openFacebookLink from "../helper-functions/open-facebook-link.js";
 import styles from "../styles/home-styles.js";
 // import tabNavStyles from "../styles/tab-navigator-styles.js";
 
@@ -82,7 +82,13 @@ class Home extends Component {
             </Text>
             {fetchStatus === "loading" ? <Spinner /> : null}
           </View>
+        </Content>
+      </Container>
+    );
+  }
+}
 
+/*
           <View style={{ marginTop: 20 }}>
             <Button
               transparent
@@ -92,11 +98,7 @@ class Home extends Component {
               <Text>Helstonbury Facebook Page</Text>
             </Button>
           </View>
-        </Content>
-      </Container>
-    );
-  }
-}
+ */
 
 Home.propTypes = {
   homeProp: PropTypes.object.isRequired,

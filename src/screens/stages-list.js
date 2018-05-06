@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-// import { CachedImage } from "react-native-img-cache";
+import { CachedImage } from "react-native-img-cache";
 
-import { Image } from "react-native";
+import { Dimensions, Image, TouchableOpacity, View } from "react-native";
 
 import {
   Container,
@@ -37,6 +37,8 @@ import StagesTabIcon from "../components/stages-tab-icon.js";
 const defaultThumb = "../../img/RockNRollGuitarist.png";
 import HelstonburyAvatar from "../components/helstonbury-avatar.js";
 
+const paddingValue = 8;
+
 class StagesList extends Component {
   static navigationOptions = {
     tabBarLabel: "Stages",
@@ -45,9 +47,14 @@ class StagesList extends Component {
 
   componentWillMount() {
     // console.log("StagesList..componentWillMount()");
-    const { loadStagesProp, loadFavouritesNowProp } = this.props;
+    // const { loadStagesProp, loadFavouritesNowProp } = this.props;
     // loadStagesProp();
     // loadFavouritesNowProp();
+  }
+
+  _calculateItemSize() {
+    const { width } = Dimensions.get("window");
+    return (width - paddingValue * 6) / 2;
   }
 
   getThumbNail = stageMemberObj => {
@@ -67,7 +74,8 @@ class StagesList extends Component {
     );
   };
 
-  getStagesListItems = (stagesList, favouritesState) =>
+  /*
+  getStagesListItems = stagesList =>
     stagesList.map(stageMember => (
       <ListItem
         key={stageMember.id}
@@ -91,6 +99,30 @@ class StagesList extends Component {
         </Right>
       </ListItem>
     ));
+*/
+
+  getStagesListItems = (stagesList, size) =>
+    stagesList.map(stageMember => (
+      <TouchableOpacity
+        key={stageMember.id}
+        style={{
+          backgroundColor: "#fff",
+          height: size,
+          width: size,
+          borderRadius: 5,
+          margin: 10
+        }}
+        onPress={() =>
+          this.props.navigation.navigate("StageCard", {
+            stageId: stageMember.id,
+            parentList: "stages"
+          })
+        }
+      >
+        {this.getThumbNail(stageMember)}
+        <Text>{stageMember.name}</Text>
+      </TouchableOpacity>
+    ));
 
   render() {
     // const { navigation } = this.props;
@@ -102,6 +134,7 @@ class StagesList extends Component {
     // const { stagesList = [] } = this.props.stagesProp;
     const { stagesList } = this.props;
     // console.log("stagesAlphabeticalProp=" + stagesAlphabeticalProp);
+    const size = this._calculateItemSize();
 
     return (
       <Container style={styles.container}>
@@ -115,11 +148,16 @@ class StagesList extends Component {
           <Right />
         </Header>
 
-        <Content style={{ backgroundColor: "#fff" }}>
+        <Content>
           {stagesList.length > 0 ? (
-            <List>
-              {this.getStagesListItems(stagesList)}
-            </List>
+            <View
+              style={{
+                flexDirection: "row",
+                flexWrap: "wrap"
+              }}
+            >
+              {this.getStagesListItems(stagesList, size)}
+            </View>
           ) : (
             <Spinner />
           )}
@@ -136,5 +174,3 @@ StagesList.propTypes = {
 };
 
 export default StagesList;
-
-

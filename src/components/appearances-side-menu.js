@@ -113,7 +113,7 @@ class AppearancesMenu extends Component {
         <Content padder>
           <ListItem icon>
             <Left>
-              <Icon name="settings" style={{fontSize: 15}} />
+              <Icon name="settings" style={{ fontSize: 15 }} />
               <Text>Show Schedule</Text>
             </Left>
           </ListItem>
@@ -167,7 +167,7 @@ class AppearancesMenu extends Component {
                   active
                   ios={showOnlyFavourites ? "ios-heart" : "ios-heart-outline"}
                   android={showOnlyFavourites ? "md-heart" : "md-heart-outline"}
-                  style={{ color: "red" }}
+                  style={{ color: showOnlyFavourites ? "red" : "grey" }}
                   onPress={this.toggleShowFavourites}
                 />
               </Button>

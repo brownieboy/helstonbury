@@ -122,10 +122,10 @@ class Appearances extends Component {
         menu={menu}
         menuPosition="right"
         isOpen={appearancesSideMenuVisible}
-        onChange={isOpen =>
-          isOpen === appearancesSideMenuVisible &&
-          setShowAppearancesSideMenu(isOpen)
-        }
+        // onChange={isOpen =>
+        //   isOpen === appearancesSideMenuVisible &&
+        //   setShowAppearancesSideMenu(isOpen)
+        // }
       >
         <Container style={styles.container}>
           <Header>
@@ -133,7 +133,7 @@ class Appearances extends Component {
               <HelstonburyAvatar />
             </Left>
             <Body>
-              <Title>by {activeAppearancesScreen}</Title>
+              <Title>Scheduleby {activeAppearancesScreen}</Title>
             </Body>
             <Right>
               <Icon

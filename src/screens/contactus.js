@@ -27,6 +27,7 @@ import styles from "../styles/band-card-styles.js";
 // import tabNavStyles from "../styles/tab-navigator-touchStyles.js";
 // import IconMaterialEntypo from "react-native-vector-icons/Entypo";
 import HelstonburyAvatar from "../components/helstonbury-avatar.js";
+import openFacebookLink from "../helper-functions/open-facebook-link.js";
 
 const touchStyles = StyleSheet.create({
   text: {
@@ -149,6 +150,25 @@ class ContactUs extends Component {
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => text(mobile, true)}>
                   <Icon style={touchStyles.icon} name="text" />
+                </TouchableOpacity>
+              </Right>
+            </ListItem>
+            <ListItem icon>
+              <Left style={touchStyles.label}>
+                <Text style={touchStyles.labelText}>Facebook:</Text>
+              </Left>
+              <Body>
+                <TouchableOpacity
+                  onPress={() => openFacebookLink("382432781776899")}
+                >
+                  <Text style={touchStyles.text}>Helstonbury Facebook</Text>
+                </TouchableOpacity>
+              </Body>
+              <Right>
+                <TouchableOpacity
+                  onPress={() => openFacebookLink("382432781776899")}
+                >
+                  <Icon style={touchStyles.icon} name="logo-facebook" />
                 </TouchableOpacity>
               </Right>
             </ListItem>

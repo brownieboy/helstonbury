@@ -69,7 +69,7 @@ class StagesList extends Component {
     return (
       <Image
         source={require(defaultThumb)}
-        style={{ width: 55, height: 55, borderRadius: 27.5 }}
+        style={{ width: "60%", height: "60%" }}
       />
     );
   };

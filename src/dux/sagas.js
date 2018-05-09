@@ -108,6 +108,7 @@ function* updatedItemSaga() {
   }
 }
 
+/*
 const preloadImages = bandsArray => {
   const arrayLength = bandsArray.length;
   const preloadArray = [];
@@ -119,6 +120,26 @@ const preloadImages = bandsArray => {
     }
     if (bandsArray[x].cardFullUrl && bandsArray[x].cardFullUrl !== "") {
       preloadArray.push(bandsArray[x].cardFullUrl);
+    }
+  }
+  // console.log("preloadArray=" + JSON.stringify(preloadArray, null, 4));
+  // console.log("Preloading...preloadArray=" + JSON.stringify(preloadArray, null, 4));
+  // FastImage.preload(preloadArray);
+  preloadRNICimages(preloadArray);
+};
+*/
+
+const preloadImages = itemsArray => {
+  const arrayLength = itemsArray.length;
+  const preloadArray = [];
+  for (let x = 0; x < arrayLength; x++) {
+    // preloadArray.push({ uri: itemsArray[x].thumbFullUrl });
+    // preloadArray.push({ uri: itemsArray[x].cardFullUrl });
+    if (itemsArray[x].thumbFullUrl && itemsArray[x].thumbFullUrl !== "") {
+      preloadArray.push(itemsArray[x].thumbFullUrl);
+    }
+    if (itemsArray[x].cardFullUrl && itemsArray[x].cardFullUrl !== "") {
+      preloadArray.push(itemsArray[x].cardFullUrl);
     }
   }
   // console.log("preloadArray=" + JSON.stringify(preloadArray, null, 4));
@@ -172,7 +193,7 @@ function* loadBandsGen() {
       put(stagesDuxActions.setFetchStagesSucceeded(stagesArray)),
       put(contactUsDuxActions.setFetchContactUsSucceeded(contactsPage))
     ]);
-    preloadImages(bandsArray);
+    preloadImages([...bandsArray, ...stagesArray]);
   } catch (e) {
     console.log("loadBandsGen error=" + e);
     yield all([

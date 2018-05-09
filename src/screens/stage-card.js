@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Dimensions, View } from "react-native";
+import { CachedImage } from "react-native-img-cache";
 
 import {
   Button,
@@ -16,7 +18,7 @@ import {
   Body
 } from "native-base";
 
-import styles from "../styles/band-card-styles.js";
+import styles from "../styles/band-card-styles.js";  // Yes, styles shared with band card
 // import tabNavStyles from "../styles/tab-navigator-styles.js";
 // import IconMaterialEntypo from "react-native-vector-icons/Entypo";
 import StageTabIcon from "../components/stages-tab-icon.js";
@@ -27,10 +29,43 @@ class StageCard extends Component {
     tabBarIcon: ({ tintColor }) => <StageTabIcon tintColor={tintColor} />
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      dimensions: Dimensions.get("window"),
+      fullScreenPhotoCard: false
+    };
+  }
+
+  handleOnLayout = e => {
+    this.setState({ dimensions: Dimensions.get("window") });
+  };
+
+  getCardImage = (cardFullUrl, fullScreen = false) => {
+    // console.log("getCardImage, fullScreen = " + fullScreen);
+    const dimensions = this.state.dimensions;
+    const imageHeight = fullScreen
+      ? dimensions.width
+      : Math.round(dimensions.width * 0.8 * 9 / 16);
+    const imageWidth = fullScreen ? dimensions.width : dimensions.width * 0.8;
+    return (
+      <CachedImage
+        style={{
+          alignSelf: "center",
+          height: imageHeight,
+          width: imageWidth,
+          marginVertical: 5
+        }}
+        source={{ uri: cardFullUrl }}
+      />
+    );
+  };
+
   render() {
     const backButtonTextStyle = { fontSize: 12 };
     const { stageId, parentList } = this.props.navigation.state.params;
     const { stagesList } = this.props;
+    const { fullScreenPhotoCard } = this.state;
     const backButtonText = `Back to ${parentList}`;
 
     const stageDetails = stagesList.filter(
@@ -62,11 +97,18 @@ class StageCard extends Component {
             </CardItem>
             <CardItem>
               <Body>
+                {stageDetails.cardFullUrl
+                  ? this.getCardImage(
+                      stageDetails.cardFullUrl,
+                      fullScreenPhotoCard
+                    )
+                  : null}
                 <Text>{stageDetails.blurb}</Text>
               </Body>
             </CardItem>
           </Card>
         </Content>
+        <View onLayout={this.handleOnLayout} />
       </Container>
     );
   }

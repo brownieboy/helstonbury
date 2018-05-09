@@ -23,7 +23,7 @@ import {
 // import openFacebookLink from "../helper-functions/open-facebook-link.js";
 import styles from "../styles/home-styles.js";
 // import tabNavStyles from "../styles/tab-navigator-styles.js";
-
+import HelstonburyAvatar from "../components/helstonbury-avatar.js";
 // const launchscreenBg = require("../../../img/mqdefault.jpg");
 const launchscreenLogo = require("../../img/helstonbury_logo.jpg");
 
@@ -44,14 +44,7 @@ class Home extends Component {
     loadFavouritesNowProp();
   }
 
-  render() {
-    // const { navigate } = this.props.navigation;
-    // console.log("home props=") + this.props;
-    const { homeText, fetchStatus } = this.props.homeProp;
-    return (
-      <Container>
-        <Header>
-          <Left>
+  /*
             <Button
               transparent
               // onPress={() => {
@@ -64,6 +57,17 @@ class Home extends Component {
                 onPress={() => alert("Options page coming soon!")}
               />
             </Button>
+ */
+
+  render() {
+    // const { navigate } = this.props.navigation;
+    // console.log("home props=") + this.props;
+    const { homeText, fetchStatus } = this.props.homeProp;
+    return (
+      <Container>
+        <Header>
+          <Left>
+            <HelstonburyAvatar />
           </Left>
           <Body>
             <Title>Helstonbury</Title>

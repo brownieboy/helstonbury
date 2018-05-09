@@ -75,16 +75,20 @@ class AppearancesByDay extends Component {
   };
 
   getAppearancesListDayLevel = groupedDayData =>
-    groupedDayData.map(dayMember => [
-      <ListItem itemDivider key={dayMember.key}>
-        <Text style={{ fontWeight: "bold" }}>
-          {dayMember.key.toUpperCase()}
-        </Text>
-      </ListItem>,
-      <View key={`${dayMember.key}-lineswrapper`} style={{ marginBottom: 5 }}>
-        {this.getAppearanceLines(dayMember.values)}
-      </View>
-    ]);
+    groupedDayData.map(dayMember => {
+      console.log("dayMember:");
+      console.log(dayMember);
+      return [
+        <ListItem itemDivider key={dayMember.key}>
+          <Text style={{ fontWeight: "bold" }}>
+            {dayMember.key}
+          </Text>
+        </ListItem>,
+        <View key={`${dayMember.key}-lineswrapper`} style={{ marginBottom: 5 }}>
+          {this.getAppearanceLines(dayMember.values)}
+        </View>
+      ];
+    });
 
   render() {
     const {
@@ -122,7 +126,9 @@ class AppearancesByDay extends Component {
             {this.getAppearancesListDayLevel(appearancesGroupedByDay)}
           </List>
         ) : (
-          <NoAppearancesToDisplayMessage showOnlyFavourites={showOnlyFavourites} />
+          <NoAppearancesToDisplayMessage
+            showOnlyFavourites={showOnlyFavourites}
+          />
         )}
       </Content>
     );

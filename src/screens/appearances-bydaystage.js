@@ -97,7 +97,7 @@ class AppearancesByDayStage extends Component {
     groupedDayData.map(dayMember => [
       <ListItem itemDivider key={dayMember.key}>
         <Text style={{ fontWeight: "bold" }}>
-          {dayMember.key.toUpperCase()}
+          {dayMember.key}
         </Text>
       </ListItem>,
       <View key={`${dayMember.key}-stagewrapper`} style={{ marginBottom: 20 }}>

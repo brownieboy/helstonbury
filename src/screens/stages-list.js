@@ -62,7 +62,7 @@ class StagesList extends Component {
       return (
         <CachedImage
           source={{ uri: stageMemberObj.thumbFullUrl }}
-          style={{ width: 55, height: 55, borderRadius: 27.5 }}
+          style={{ width: "60%", height: "60%" }}
         />
       );
     }

@@ -83,13 +83,13 @@ class ContactUs extends Component {
     return (
       <Container style={styles.container}>
         <Header>
-          <Left>
+          <Left style={{ flex: 1 }}>
             <HelstonburyAvatar />
           </Left>
-          <Body>
+          <Body style={{ flex: 6 }}>
             <Title>About Helstonbury</Title>
           </Body>
-          <Right />
+          <Right style={{ flex: 1 }} />
         </Header>
 
         <Content padder>

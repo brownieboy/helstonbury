@@ -8,15 +8,7 @@ import { Button, Segment } from "native-base";
 import { Platform } from "react-native";
 import SideMenu from "react-native-side-menu";
 
-import {
-  Container,
-  Header,
-  Icon,
-  Title,
-  Left,
-  Right,
-  Body
-} from "native-base";
+import { Container, Header, Icon, Title, Left, Right, Body } from "native-base";
 
 import Menu from "../components/appearances-side-menu.js";
 import ScheduleTabIcon from "../components/schedule-tab-icon.js";
@@ -82,7 +74,7 @@ class Appearances extends Component {
       appearancesSideMenuVisible,
       showOnlyFavourites
     } = this.state;
-    console.log("activeAppearancesScreen=" + activeAppearancesScreen);
+    // console.log("activeAppearancesScreen=" + activeAppearancesScreen);
 
     const sharedChildProps = {
       appearancesList,
@@ -96,8 +88,8 @@ class Appearances extends Component {
       showOnlyFavourites
     };
 
-    let heart = "ios-heart";
-    let heartOutline = "ios-heart-outline";
+    // let heart = "ios-heart";
+    // let heartOutline = "ios-heart-outline";
     if (Platform.OS === "android") {
       heart = "md-heart";
       heartOutline = "md-heart-outline";
@@ -129,13 +121,13 @@ class Appearances extends Component {
       >
         <Container style={styles.container}>
           <Header>
-            <Left>
+            <Left style={{ flex: 1 }}>
               <HelstonburyAvatar />
             </Left>
-            <Body>
-              <Title>Scheduleby {activeAppearancesScreen}</Title>
+            <Body style={{ flex: 6 }}>
+              <Title>Schedule by {activeAppearancesScreen}</Title>
             </Body>
-            <Right>
+            <Right style={{ flex: 1 }}>
               <Icon
                 ios="ios-options"
                 android="md-options"

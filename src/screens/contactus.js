@@ -19,7 +19,7 @@ import {
 
 import openMap from "react-native-open-maps";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { Platform, StyleSheet, TouchableOpacity, View } from "react-native";
 
 import { email, text, web, phonecall } from "react-native-communications";
 
@@ -179,17 +179,16 @@ class ContactUs extends Component {
                 <Text style={touchStyles.labelText}>Web:</Text>
               </Left>
               <Body>
-                <TouchableOpacity
-                  onPress={() => web(helstonburyWebSite)}
-                >
+                <TouchableOpacity onPress={() => web(helstonburyWebSite)}>
                   <Text style={touchStyles.text}>www.helstonbury.com</Text>
                 </TouchableOpacity>
               </Body>
               <Right>
-                <TouchableOpacity
-                  onPress={() => web(helstonburyWebSite)}
-                >
-                  <IconFontAwesome style={touchStyles.icon} ios="safari" android="chrome" />
+                <TouchableOpacity onPress={() => web(helstonburyWebSite)}>
+                  <IconFontAwesome
+                    style={[touchStyles.icon, { fontSize: 25 }]}
+                    name={Platform.OS === "ios" ? "safari" : "chrome"}
+                  />
                 </TouchableOpacity>
               </Right>
             </ListItem>

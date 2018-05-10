@@ -18,7 +18,7 @@ import {
 } from "native-base";
 
 import openMap from "react-native-open-maps";
-
+import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 
 import { email, text, web, phonecall } from "react-native-communications";
@@ -76,6 +76,7 @@ class ContactUs extends Component {
       mobile,
       gettingThereBlurb,
       mapLinkText,
+      helstonburyWebSite = "http://www.http://www.helstonbury.com",
       venueAddress,
       venuePhone,
       venueEmail
@@ -169,6 +170,26 @@ class ContactUs extends Component {
                   onPress={() => openFacebookLink("382432781776899")}
                 >
                   <Icon style={touchStyles.icon} name="logo-facebook" />
+                </TouchableOpacity>
+              </Right>
+            </ListItem>
+
+            <ListItem icon>
+              <Left style={touchStyles.label}>
+                <Text style={touchStyles.labelText}>Web:</Text>
+              </Left>
+              <Body>
+                <TouchableOpacity
+                  onPress={() => web(helstonburyWebSite)}
+                >
+                  <Text style={touchStyles.text}>www.helstonbury.com</Text>
+                </TouchableOpacity>
+              </Body>
+              <Right>
+                <TouchableOpacity
+                  onPress={() => web(helstonburyWebSite)}
+                >
+                  <IconFontAwesome style={touchStyles.icon} ios="safari" android="chrome" />
                 </TouchableOpacity>
               </Right>
             </ListItem>
@@ -266,7 +287,8 @@ class ContactUs extends Component {
 ContactUs.propTypes = {
   startBlurb: PropTypes.string.isRequired,
   email1: PropTypes.string.isRequired,
-  email2: PropTypes.string.isRequired,
+  email2: PropTypes.string,
+  helstonburyWebSite: PropTypes.string,
   mobile: PropTypes.string.isRequired,
   gettingThereBlurb: PropTypes.string.isRequired,
   mapLinkText: PropTypes.string.isRequired,

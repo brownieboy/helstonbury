@@ -3,6 +3,10 @@ package com.helstonbury;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
+import com.RNFetchBlob.RNFetchBlobPackage;
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
+import com.RNFetchBlob.RNFetchBlobPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
@@ -27,6 +31,10 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new SplashScreenReactPackage(),
+            new RNFetchBlobPackage(),
+            new SplashScreenReactPackage(),
+            new RNFetchBlobPackage(),
             new VectorIconsPackage(),
             new SplashScreenReactPackage(),
             new RNFetchBlobPackage()

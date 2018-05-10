@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Dimensions, Platform, TouchableOpacity, View } from "react-native";
 import * as Animatable from "react-native-animatable";
+import ParsedText from "react-native-parsed-text";
 
 import PropTypes from "prop-types";
 import { format } from "date-fns";
@@ -26,6 +27,7 @@ import {
 import styles from "../styles/band-card-styles.js";
 import ScheduleTabIcon from "../components/schedule-tab-icon.js";
 import openFacebookLink from "../helper-functions/open-facebook-link.js";
+import { parsedTextArray } from "../helper-functions/text-links.js";
 
 const pulseBig = {
   0: {
@@ -280,7 +282,12 @@ class BandCard extends Component {
                       fullScreenPhotoCard
                     )
                   : null}
-                <Text>{bandDetails.blurb}</Text>
+                <ParsedText
+                  parse={parsedTextArray}
+                  childrenProps={{ allowFontScaling: false }}
+                >
+                  {bandDetails.blurb}
+                </ParsedText>
               </Body>
             </CardItem>
             <CardItem>

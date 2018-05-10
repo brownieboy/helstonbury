@@ -20,8 +20,7 @@ import {
   // FooterTab
 } from "native-base";
 
-import { email, text, web, phonecall } from "react-native-communications";
-
+import { parsedTextArray } from "../helper-functions/text-links.js";
 
 // import MainFooterTabNav from "../components/mainfootertabnav.js";
 // import openFacebookLink from "../helper-functions/open-facebook-link.js";
@@ -83,11 +82,15 @@ class Home extends Component {
             <Image source={launchscreenLogo} style={styles.logo} />
           </View>
           <View style={{ marginTop: 50, marginLeft: 10, marginRight: 10 }}>
-            <Text>
+            <ParsedText
+              parse={parsedTextArray}
+              childrenProps={{ allowFontScaling: false }}
+            >
               {fetchStatus === "loading"
                 ? "Getting latest info, please wait..."
                 : homeText}
-            </Text>
+            </ParsedText>
+
             {fetchStatus === "loading" ? <Spinner /> : null}
           </View>
         </Content>

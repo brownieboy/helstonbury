@@ -16,7 +16,7 @@ import {
   List,
   ListItem
 } from "native-base";
-
+import ParsedText from "react-native-parsed-text";
 import openMap from "react-native-open-maps";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 import { Platform, StyleSheet, TouchableOpacity, View } from "react-native";
@@ -28,6 +28,7 @@ import styles from "../styles/band-card-styles.js";
 // import IconMaterialEntypo from "react-native-vector-icons/Entypo";
 import HelstonburyAvatar from "../components/helstonbury-avatar.js";
 import openFacebookLink from "../helper-functions/open-facebook-link.js";
+import { parsedTextArray } from "../helper-functions/text-links.js";
 
 const touchStyles = StyleSheet.create({
   text: {
@@ -76,7 +77,7 @@ class ContactUs extends Component {
       mobile,
       gettingThereBlurb,
       mapLinkText,
-      helstonburyWebSite = "http://www.http://www.helstonbury.com",
+      helstonburyWebSite = "http://www.helstonbury.com",
       helsonburyFacebookId = "382432781776899",
       venueAddress,
       venuePhone,
@@ -96,7 +97,12 @@ class ContactUs extends Component {
 
         <Content padder>
           <H2 style={{ marginBottom: 10 }}>Organsition</H2>
-          <Text style={otherTextStyles.info}>{startBlurb}</Text>
+          <ParsedText
+            parse={parsedTextArray}
+            childrenProps={{ allowFontScaling: false }}
+          >
+            {startBlurb}
+          </ParsedText>
 
           <List>
             <ListItem icon>
@@ -196,7 +202,12 @@ class ContactUs extends Component {
           </List>
 
           <H2 style={{ marginTop: 30, marginBottom: 10 }}>Location</H2>
-          <Text style={otherTextStyles.info}>{gettingThereBlurb}</Text>
+          <ParsedText
+            parse={parsedTextArray}
+            childrenProps={{ allowFontScaling: false }}
+          >
+            {gettingThereBlurb}
+          </ParsedText>
           <List style={{ marginTop: -20 }}>
             <ListItem>
               <Left

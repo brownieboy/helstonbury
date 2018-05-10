@@ -18,7 +18,7 @@ import {
   Body
 } from "native-base";
 
-import styles from "../styles/band-card-styles.js";  // Yes, styles shared with band card
+import styles from "../styles/band-card-styles.js"; // Yes, styles shared with band card
 // import tabNavStyles from "../styles/tab-navigator-styles.js";
 // import IconMaterialEntypo from "react-native-vector-icons/Entypo";
 import StageTabIcon from "../components/stages-tab-icon.js";
@@ -92,6 +92,7 @@ class StageCard extends Component {
               <Left>
                 <Body>
                   <Text>{stageDetails.name}</Text>
+                  <Text note>{stageDetails.summary}</Text>
                 </Body>
               </Left>
             </CardItem>

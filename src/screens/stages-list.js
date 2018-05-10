@@ -123,6 +123,7 @@ class StagesList extends Component {
       >
         {this.getThumbNail(stageMember)}
         <Text>{stageMember.name}</Text>
+        <Text style={{ fontSize: 10 }}>{stageMember.summary}</Text>
       </TouchableOpacity>
     ));
 

@@ -20,6 +20,9 @@ import {
   // FooterTab
 } from "native-base";
 
+import { email, text, web, phonecall } from "react-native-communications";
+
+
 // import MainFooterTabNav from "../components/mainfootertabnav.js";
 // import openFacebookLink from "../helper-functions/open-facebook-link.js";
 import styles from "../styles/home-styles.js";

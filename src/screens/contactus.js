@@ -30,6 +30,7 @@ import HelstonburyAvatar from "../components/helstonbury-avatar.js";
 import openFacebookLink from "../helper-functions/open-facebook-link.js";
 import { parsedTextArray } from "../helper-functions/text-links.js";
 
+import { rnViewStyles } from "../styles/general-styles.js";
 const touchStyles = StyleSheet.create({
   text: {
     color: "blue",
@@ -97,12 +98,14 @@ class ContactUs extends Component {
 
         <Content padder>
           <H2 style={{ marginBottom: 10 }}>Organsition</H2>
-          <ParsedText
-            parse={parsedTextArray}
-            childrenProps={{ allowFontScaling: false }}
-          >
-            {startBlurb}
-          </ParsedText>
+          <View style={rnViewStyles.parsedTextViewWrapper}>
+            <ParsedText
+              parse={parsedTextArray}
+              childrenProps={{ allowFontScaling: false }}
+            >
+              {startBlurb}
+            </ParsedText>
+          </View>
 
           <List>
             <ListItem icon>
@@ -202,12 +205,14 @@ class ContactUs extends Component {
           </List>
 
           <H2 style={{ marginTop: 30, marginBottom: 10 }}>Location</H2>
-          <ParsedText
-            parse={parsedTextArray}
-            childrenProps={{ allowFontScaling: false }}
-          >
-            {gettingThereBlurb}
-          </ParsedText>
+          <View style={rnViewStyles.parsedTextViewWrapper}>
+            <ParsedText
+              parse={parsedTextArray}
+              childrenProps={{ allowFontScaling: false }}
+            >
+              {gettingThereBlurb}
+            </ParsedText>
+          </View>
           <List style={{ marginTop: -20 }}>
             <ListItem>
               <Left

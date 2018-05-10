@@ -77,6 +77,7 @@ class ContactUs extends Component {
       gettingThereBlurb,
       mapLinkText,
       helstonburyWebSite = "http://www.http://www.helstonbury.com",
+      helsonburyFacebookId = "382432781776899",
       venueAddress,
       venuePhone,
       venueEmail
@@ -160,14 +161,14 @@ class ContactUs extends Component {
               </Left>
               <Body>
                 <TouchableOpacity
-                  onPress={() => openFacebookLink("382432781776899")}
+                  onPress={() => openFacebookLink(helsonburyFacebookId)}
                 >
                   <Text style={touchStyles.text}>Helstonbury Facebook</Text>
                 </TouchableOpacity>
               </Body>
               <Right>
                 <TouchableOpacity
-                  onPress={() => openFacebookLink("382432781776899")}
+                  onPress={() => openFacebookLink(helsonburyFacebookId)}
                 >
                   <Icon style={touchStyles.icon} name="logo-facebook" />
                 </TouchableOpacity>
@@ -288,6 +289,7 @@ ContactUs.propTypes = {
   email1: PropTypes.string.isRequired,
   email2: PropTypes.string,
   helstonburyWebSite: PropTypes.string,
+  helsonburyFacebookId: PropTypes.string,
   mobile: PropTypes.string.isRequired,
   gettingThereBlurb: PropTypes.string.isRequired,
   mapLinkText: PropTypes.string.isRequired,

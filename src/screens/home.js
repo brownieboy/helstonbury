@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Image, View } from "react-native";
+import ParsedText from "react-native-parsed-text";
 // import { ImageCache } from "react-native-img-cache";
 
 import {

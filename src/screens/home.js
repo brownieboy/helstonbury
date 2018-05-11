@@ -90,8 +90,15 @@ class Home extends Component {
                 ? "Getting latest info, please wait..."
                 : homeText}
             </ParsedText>
-
             {fetchStatus === "loading" ? <Spinner /> : null}
+
+            <ParsedText
+              parse={parsedTextArray}
+              childrenProps={{ allowFontScaling: false }}
+            >
+              Here is some test with some markdown including *bold* and _italic_
+              and then some more *bold*
+            </ParsedText>
           </View>
         </Content>
       </Container>
@@ -100,7 +107,11 @@ class Home extends Component {
 }
 
 /*
-          <View style={{ marginTop: 20 }}>
+
+ 
+
+
+           <View style={{ marginTop: 20 }}>
             <Button
               transparent
               onPress={() => openFacebookLink("382432781776899")}

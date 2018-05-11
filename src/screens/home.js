@@ -91,16 +91,6 @@ class Home extends Component {
                 : homeText}
             </ParsedText>
             {fetchStatus === "loading" ? <Spinner /> : null}
-
-            <ParsedText
-              parse={parsedTextArray}
-              childrenProps={{ allowFontScaling: false }}
-            >
-              Here is some test with some markdown including *bold* and _italic_
-              and then some more *bold* and then yet more _italic_.  Then here's a list
-              * point 1
-              * point 2
-            </ParsedText>
           </View>
         </Content>
       </Container>
@@ -110,7 +100,15 @@ class Home extends Component {
 
 /*
 
- 
+             <ParsedText
+              parse={parsedTextArray}
+              childrenProps={{ allowFontScaling: false }}
+            >
+              Here is some test with some markdown including *bold* and _italic_
+              and then some more *bold* and then yet more _italic_.  Then here's a list
+              * point 1
+              * point 2
+            </ParsedText>
 
 
            <View style={{ marginTop: 20 }}>

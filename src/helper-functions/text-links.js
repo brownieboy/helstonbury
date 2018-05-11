@@ -27,14 +27,24 @@ renderText(matchingString, matches) {
 }
  */
 
+
+
+// const renderUnorderedListItem = (matchingString, matches) => {
+//   console.log("renderUnorderedListItem");
+
+//   const pattern = /\* (.+)\n/;
+//   const match = matchingString.match(pattern);
+//   return `lll${match[0].replace(/\*(.*)\*/, "$1")}lll`;
+// };
+
 const renderBoldText = (matchingString, matches) => {
-  const pattern = /\*(.+)\*/;
+  const pattern = /\*(.*?)\*/;
   const match = matchingString.match(pattern);
   return `${match[0].replace(/\*(.*)\*/, "$1")}`;
 };
 
 const renderItalicText = (matchingString, matches) => {
-  const pattern = /_(.+)_/;
+  const pattern = /_(.*?)_/;
   const match = matchingString.match(pattern);
   return `${match[0].replace(/_(.*)_/, "$1")}`;
 };
@@ -51,16 +61,25 @@ export const parsedTextArray = [
     onPress: emailAddress => email(emailAddress)
   },
   {
-    // pattern: /\*(.*?)\*/,
-    pattern: /\*[A-z0-9]+\*/,
+    // Bold (matching asterisks)
+    pattern: /\*(.*?)\*/,
+    // pattern: /\*[A-z0-9]+\*/,
     style: markdownStyles.bold,
     renderText: renderBoldText
   },
   {
-    pattern: /_[A-z0-9]+_/,
+    // Italic (matching underscores)
+    // pattern: /_[A-z0-9]+_/,
+    pattern: /_(.*?)_/,
     style: markdownStyles.italic,
     renderText: renderItalicText
   }
+  // { // underorder list
+  //   // pattern: /\*(.*?)\*/,
+  //   pattern: /^\/S(.*?)\n/,
+  //   style: markdownStyles.bold,
+  //   renderText: renderUnorderedListItem
+  // }
 ];
 
 /*

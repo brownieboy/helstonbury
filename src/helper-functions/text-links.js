@@ -10,6 +10,9 @@ export const touchStyles = StyleSheet.create({
 export const markdownStyles = StyleSheet.create({
   bold: {
     fontWeight: "bold"
+  },
+  italic: {
+    fontStyle: "italic"
   }
 });
 
@@ -27,9 +30,13 @@ renderText(matchingString, matches) {
 const renderBoldText = (matchingString, matches) => {
   const pattern = /\*(.+)\*/;
   const match = matchingString.match(pattern);
-  console.log("matches:");
-  console.log(matches);
-  return `^^${match[0]}^^`;
+  return `${match[0].replace(/\*(.*)\*/, "$1")}`;
+};
+
+const renderItalicText = (matchingString, matches) => {
+  const pattern = /_(.+)_/;
+  const match = matchingString.match(pattern);
+  return `${match[0].replace(/_(.*)_/, "$1")}`;
 };
 
 export const parsedTextArray = [
@@ -44,9 +51,15 @@ export const parsedTextArray = [
     onPress: emailAddress => email(emailAddress)
   },
   {
-    pattern: /\*(.+)\*/,
+    // pattern: /\*(.*?)\*/,
+    pattern: /\*[A-z0-9]+\*/,
     style: markdownStyles.bold,
     renderText: renderBoldText
+  },
+  {
+    pattern: /_[A-z0-9]+_/,
+    style: markdownStyles.italic,
+    renderText: renderItalicText
   }
 ];
 

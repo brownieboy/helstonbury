@@ -13,6 +13,9 @@ export const markdownStyles = StyleSheet.create({
   },
   italic: {
     fontStyle: "italic"
+  },
+  strikethrough: {
+    textDecorationLine: "line-through"
   }
 });
 
@@ -26,8 +29,6 @@ renderText(matchingString, matches) {
   return `^^${match[1]}^^`;
 }
  */
-
-
 
 // const renderUnorderedListItem = (matchingString, matches) => {
 //   console.log("renderUnorderedListItem");
@@ -47,6 +48,12 @@ const renderItalicText = (matchingString, matches) => {
   const pattern = /_(.*?)_/;
   const match = matchingString.match(pattern);
   return `${match[0].replace(/_(.*)_/, "$1")}`;
+};
+
+const renderStrikethroughText = (matchingString, matches) => {
+  const pattern = /-(.*?)-/;
+  const match = matchingString.match(pattern);
+  return `${match[0].replace(/-(.*)-/, "$1")}`;
 };
 
 export const parsedTextArray = [
@@ -73,6 +80,13 @@ export const parsedTextArray = [
     pattern: /_(.*?)_/,
     style: markdownStyles.italic,
     renderText: renderItalicText
+  },
+  {
+    // strikethrough (matching dashes)
+    // pattern: /_[A-z0-9]+_/,
+    pattern: /\-(.*?)\-/,
+    style: markdownStyles.strikethrough,
+    renderText: renderStrikethroughText
   }
   // { // underorder list
   //   // pattern: /\*(.*?)\*/,

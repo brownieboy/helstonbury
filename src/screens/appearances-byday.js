@@ -97,9 +97,9 @@ class AppearancesByDay extends Component {
 
           <Right
             style={{
-                flexGrow: 0,
-                flexShrink: 0,
-                flexBasis: 10,
+              flexGrow: 0,
+              flexShrink: 0,
+              flexBasis: 10
               // borderColor: "purple",
               // borderWidth: 1
             }}
@@ -114,9 +114,9 @@ class AppearancesByDay extends Component {
           </Right>
           <Right
             style={{
-                flexGrow: 0,
-                flexShrink: 0,
-                flexBasis: 12,
+              flexGrow: 0,
+              flexShrink: 0,
+              flexBasis: 12
               // borderColor: "red",
               //  borderWidth: 1
             }}

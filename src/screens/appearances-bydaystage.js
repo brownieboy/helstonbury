@@ -24,7 +24,6 @@ import FavouritesListIcon from "../components/favourites-list-icon.js";
 import NoAppearancesToDisplayMessage from "../components/no-appearances-todisplay-message.js";
 
 class AppearancesByDayStage extends Component {
-
   getFavouritesButton = showOnlyFavourites => {
     let heart = "ios-heart";
     let heartOutline = "ios-heart-outline";
@@ -61,19 +60,38 @@ class AppearancesByDayStage extends Component {
           }
           style={lineStyle}
         >
-          <Left style={{ flex: 13 }}>
-            <Text style={{ fontSize: 12 }}>{`${format(
-              lineMember.dateTimeStart,
+          <Left style={{ flex: 23 }}>
+            <Text
+              style={{
+                fontSize: 12,
+                flexGrow: 0,
+                flexShrink: 0,
+                flexBasis: 80
+              }}
+            >{`${format(lineMember.dateTimeStart, "HH:mm")}-${format(
+              lineMember.dateTimeEnd,
               "HH:mm"
-            )}-${format(lineMember.dateTimeEnd, "HH:mm")}: `}</Text>
-            <Text style={{ fontSize: 14 }}>{lineMember.bandName}</Text>
+            )}: `}</Text>
+            <Text style={{ fontSize: 14, flex: 8 }}>{lineMember.bandName}</Text>
           </Left>
-          <Right style={{ flex: 1 }}>
+          <Right
+            style={{
+              flexGrow: 0,
+              flexShrink: 0,
+              flexBasis: 10
+            }}
+          >
             {favourites.indexOf(lineMember.bandId) > -1 ? (
               <FavouritesListIcon style={{ fontSize: 14, width: 14 }} />
             ) : null}
           </Right>
-          <Right style={{ flex: 1 }}>
+          <Right
+            style={{
+              flexGrow: 0,
+              flexShrink: 0,
+              flexBasis: 12
+            }}
+          >
             <Icon name="arrow-forward" />
           </Right>
         </ListItem>
@@ -96,9 +114,7 @@ class AppearancesByDayStage extends Component {
   getAppearancesListDayLevel = groupedDayData =>
     groupedDayData.map(dayMember => [
       <ListItem itemDivider key={dayMember.key}>
-        <Text style={{ fontWeight: "bold" }}>
-          {dayMember.key}
-        </Text>
+        <Text style={{ fontWeight: "bold" }}>{dayMember.key}</Text>
       </ListItem>,
       <View key={`${dayMember.key}-stagewrapper`} style={{ marginBottom: 20 }}>
         {this.getAppearancesStageLevel(dayMember.values)}
@@ -133,7 +149,11 @@ class AppearancesByDayStage extends Component {
           <List>
             {this.getAppearancesListDayLevel(appearancesGroupedByDayStage)}
           </List>
-        ) :           <NoAppearancesToDisplayMessage showOnlyFavourites={showOnlyFavourites} />}
+        ) : (
+          <NoAppearancesToDisplayMessage
+            showOnlyFavourites={showOnlyFavourites}
+          />
+        )}
       </Content>
     );
   }

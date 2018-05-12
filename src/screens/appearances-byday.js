@@ -31,10 +31,12 @@ class AppearancesByDay extends Component {
     const favourites = this.props.favourites;
     return lineData.map((lineMember, index) => {
       const lineStyle = {
-        justifyContent: "flex-start",
+        justifyContent: "space-between",
         margin: 0,
-        borderWidth: 1,
-        borderColor: "black"
+        padding: 0,
+        height: 35
+        // borderWidth: 1,
+        // borderColor: "black"
       };
       if (itemsLength === index + 1) {
         lineStyle.borderBottomWidth = 0;
@@ -50,19 +52,58 @@ class AppearancesByDay extends Component {
           }}
           style={lineStyle}
         >
-          <Left style={{ flex: 14, borderColor: "red", borderWidth: 1 }}>
-            <Text style={{ fontSize: 12, flex: 1 }}>
-              {`${format(lineMember.dateTimeStart, "HH:mm")}`}
+          <Left
+            style={{
+              flex: 20
+              // borderColor: "red",
+              //  borderWidth: 1
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 12,
+                flexGrow: 0,
+                flexShrink: 0,
+                flexBasis: 40
+                // borderColor: "green",
+                // borderWidth: 1
+              }}
+            >
+              {`${format(lineMember.dateTimeStart, "HH:mm")}:`}
             </Text>
-            <Text style={{ fontSize: 14, flexWrap: "wrap", flex: 3 }}>
+            <Text
+              style={{
+                fontSize: 14,
+                flexWrap: "wrap",
+                flex: 13
+                // borderColor: "blue",
+                // borderWidth: 1
+              }}
+            >
               {lineMember.bandName}
             </Text>
-            <Text style={{ fontSize: 10, flexWrap: "wrap", flex: 2 }}>
+            <Text
+              style={{
+                fontSize: 10,
+                flexWrap: "wrap",
+                flex: 7
+                // borderColor: "orange",
+                // borderWidth: 1,
+              }}
+            >
               ({lineMember.stageName})
             </Text>
           </Left>
 
-          <Right style={{ flex: 1 }}>
+          <Right
+            style={{
+                flexGrow: 0,
+                flexShrink: 0,
+                flexBasis: 10,
+              // borderColor: "purple",
+              // borderWidth: 1
+            }}
+          >
             {favourites.indexOf(lineMember.bandId) > -1 ? (
               <FavouritesListIcon style={{ fontSize: 12, width: 12 }} />
             ) : (
@@ -71,7 +112,15 @@ class AppearancesByDay extends Component {
               />
             )}
           </Right>
-          <Right style={{ flex: 1 }}>
+          <Right
+            style={{
+                flexGrow: 0,
+                flexShrink: 0,
+                flexBasis: 12,
+              // borderColor: "red",
+              //  borderWidth: 1
+            }}
+          >
             <Icon name="arrow-forward" />
           </Right>
         </ListItem>

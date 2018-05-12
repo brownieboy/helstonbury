@@ -31,9 +31,10 @@ class AppearancesByDay extends Component {
     const favourites = this.props.favourites;
     return lineData.map((lineMember, index) => {
       const lineStyle = {
-        height: 35,
         justifyContent: "flex-start",
-        margin: 0
+        margin: 0,
+        borderWidth: 1,
+        borderColor: "black"
       };
       if (itemsLength === index + 1) {
         lineStyle.borderBottomWidth = 0;
@@ -49,12 +50,16 @@ class AppearancesByDay extends Component {
           }}
           style={lineStyle}
         >
-          <Left style={{ flex: 14 }}>
-            <Text style={{ fontSize: 12 }}>
+          <Left style={{ flex: 14, borderColor: "red", borderWidth: 1 }}>
+            <Text style={{ fontSize: 12, flex: 1 }}>
               {`${format(lineMember.dateTimeStart, "HH:mm")}`}
             </Text>
-            <Text style={{ fontSize: 14 }}>{lineMember.bandName}</Text>
-            <Text style={{ fontSize: 10 }}>({lineMember.stageName})</Text>
+            <Text style={{ fontSize: 14, flexWrap: "wrap", flex: 3 }}>
+              {lineMember.bandName}
+            </Text>
+            <Text style={{ fontSize: 10, flexWrap: "wrap", flex: 2 }}>
+              ({lineMember.stageName})
+            </Text>
           </Left>
 
           <Right style={{ flex: 1 }}>
@@ -80,9 +85,7 @@ class AppearancesByDay extends Component {
       console.log(dayMember);
       return [
         <ListItem itemDivider key={dayMember.key}>
-          <Text style={{ fontWeight: "bold" }}>
-            {dayMember.key}
-          </Text>
+          <Text style={{ fontWeight: "bold" }}>{dayMember.key}</Text>
         </ListItem>,
         <View key={`${dayMember.key}-lineswrapper`} style={{ marginBottom: 5 }}>
           {this.getAppearanceLines(dayMember.values)}

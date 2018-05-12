@@ -31,10 +31,10 @@ class AppearancesByDay extends Component {
     const favourites = this.props.favourites;
     return lineData.map((lineMember, index) => {
       const lineStyle = {
-        justifyContent: "space-between",
-        margin: 0,
-        padding: 0,
-        height: 35
+        // justifyContent: "space-around",
+        // height: 35,
+        // alignContent: "flex-start",
+        // alignItems: "flex-start",
         // borderWidth: 1,
         // borderColor: "black"
       };
@@ -43,6 +43,7 @@ class AppearancesByDay extends Component {
       }
       return (
         <ListItem
+          auto
           key={lineMember.id}
           onPress={() => {
             this.props.navigation.navigate("BandScheduleCard", {
@@ -54,9 +55,12 @@ class AppearancesByDay extends Component {
         >
           <Left
             style={{
-              flex: 20
+              marginTop: -10,
+              marginBottom: -10,
+              flex: 20,
+              margin: 0
               // borderColor: "red",
-              //  borderWidth: 1
+              // borderWidth: 1
             }}
           >
             <Text
@@ -97,9 +101,12 @@ class AppearancesByDay extends Component {
 
           <Right
             style={{
+              marginTop: -10,
+              marginBottom: -10,
               flexGrow: 0,
               flexShrink: 0,
-              flexBasis: 10
+              flexBasis: 10,
+              margin: 0
               // borderColor: "purple",
               // borderWidth: 1
             }}
@@ -114,11 +121,14 @@ class AppearancesByDay extends Component {
           </Right>
           <Right
             style={{
+              marginTop: -10,
+              marginBottom: -10,
               flexGrow: 0,
               flexShrink: 0,
-              flexBasis: 12
-              // borderColor: "red",
-              //  borderWidth: 1
+              flexBasis: 16,
+              margin: 0
+// borderColor: "red",
+// borderWidth: 1
             }}
           >
             <Icon name="arrow-forward" />

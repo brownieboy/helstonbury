@@ -45,7 +45,9 @@ class AppearancesByDayStage extends Component {
     const itemsLength = lineData.length;
     const favourites = this.props.favourites;
     return lineData.map((lineMember, index) => {
-      const lineStyle = { height: 35 };
+      const lineStyle = {
+        // height: 35
+      };
       if (itemsLength === index + 1) {
         lineStyle.borderBottomWidth = 0;
       }
@@ -60,7 +62,13 @@ class AppearancesByDayStage extends Component {
           }
           style={lineStyle}
         >
-          <Left style={{ flex: 23 }}>
+          <Left
+            style={{
+              flex: 23,
+              marginTop: -10,
+              marginBottom: -10
+            }}
+          >
             <Text
               style={{
                 fontSize: 12,
@@ -76,6 +84,8 @@ class AppearancesByDayStage extends Component {
           </Left>
           <Right
             style={{
+              marginTop: -10,
+              marginBottom: -10,
               flexGrow: 0,
               flexShrink: 0,
               flexBasis: 10
@@ -87,9 +97,11 @@ class AppearancesByDayStage extends Component {
           </Right>
           <Right
             style={{
+              marginTop: -10,
+              marginBottom: -10,
               flexGrow: 0,
               flexShrink: 0,
-              flexBasis: 12
+              flexBasis: 16
             }}
           >
             <Icon name="arrow-forward" />

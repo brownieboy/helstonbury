@@ -117,10 +117,18 @@ class AppearancesMenu extends Component {
       >
         <Content padder>
           <ListItem icon>
-            <Left>
-              <Icon name="settings" style={{ fontSize: 15 }} />
-              <Text>Schedule Display</Text>
-            </Left>
+            <Body
+              style={{
+                alignItems: "center",
+                flexDirection: "row",
+                justifyContent: "flex-start"
+              }}
+            >
+              <Icon name="settings" style={{ fontSize: 17, marginRight: 10 }} />
+              <Text style={{ fontSize: 14, fontWeight: "bold" }}>
+                Schedule Options
+              </Text>
+            </Body>
           </ListItem>
           <ListItem icon onPress={() => this.handleDayStagePress("day")}>
             <Left>
@@ -132,7 +140,7 @@ class AppearancesMenu extends Component {
               </Button>
             </Left>
             <Body>
-              <Text style={styles.menuItems.text}>By Times (flat)</Text>
+              <Text style={styles.menuItems.text}>Times by Day</Text>
             </Body>
             <Right>
               <Radio
@@ -156,7 +164,7 @@ class AppearancesMenu extends Component {
               </Button>
             </Left>
             <Body>
-              <Text style={styles.menuItems.text}>Grouped by Stage</Text>
+              <Text style={styles.menuItems.text}>Times by Day/Stage</Text>
             </Body>
             <Right>
               <Radio

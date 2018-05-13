@@ -95,7 +95,10 @@ class BandCard extends Component {
   // >
   getAppearanceTexts = appearances =>
     appearances.map(appearance => (
-      <Text key={`${appearance.dateTimeStart}${appearance.stageId}`}>
+      <Text
+        key={`${appearance.dateTimeStart}${appearance.stageId}`}
+        style={{ fontSize: 14 }}
+      >
         {`${appearance.stageName}, ${format(
           appearance.dateTimeStart,
           "dddd"
@@ -212,7 +215,7 @@ class BandCard extends Component {
       backButtonTextStyle.fontSize = 10;
       // backButtonText = parentList; // Not enough room for "Back to" on Android
     } else {
-      backButtonText = `Back to ${backButtonText}`
+      backButtonText = `Back to ${backButtonText}`;
     }
 
     return (
@@ -289,6 +292,7 @@ class BandCard extends Component {
                     )
                   : null}
                 <ParsedText
+                  style={{ marginTop: 10 }}
                   parse={parsedTextArray}
                   childrenProps={{ allowFontScaling: false }}
                 >
@@ -298,7 +302,9 @@ class BandCard extends Component {
             </CardItem>
             <CardItem>
               <Body>
-                <Text style={{ fontSize: 12 }}>Appearing:</Text>
+                <Text style={{ fontSize: 12, fontStyle: "italic" }}>
+                  Appearing:
+                </Text>
                 {this.getAppearanceTexts(sortedAppearances)}
               </Body>
             </CardItem>

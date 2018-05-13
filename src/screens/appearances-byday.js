@@ -95,7 +95,7 @@ class AppearancesByDay extends Component {
                 // borderWidth: 1,
               }}
             >
-              ({lineMember.stageName})
+              {lineMember.stageName}
             </Text>
           </Left>
 

@@ -201,12 +201,18 @@ class BandCard extends Component {
       favouritesState.favourites.indexOf(bandDetails.bandId) > -1;
     const { toggleBandFavouriteStatus } = this.props;
 
-    let backButtonText = `Back to ${parentList}`;
+    let backButtonText =
+      parentList.toLowerCase() === "by day" ||
+      parentList.toLowerCase() === "by stage"
+        ? "schedule"
+        : parentList;
     const backButtonTextStyle = { fontSize: 12 };
     if (Platform.OS === "android") {
       backButtonTextStyle.color = "white";
       backButtonTextStyle.fontSize = 10;
-      backButtonText = parentList; // Not enough room for "Back to" on Android
+      // backButtonText = parentList; // Not enough room for "Back to" on Android
+    } else {
+      backButtonText = `Back to ${backButtonText}`
     }
 
     return (

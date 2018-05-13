@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-// import {
-//   Dimensions,
-//   Platform,
-//   StyleSheet,
-//   ScrollView,
-//   View,
-//   Image
-// } from "react-native";
+import {
+  //   Dimensions,
+  Platform
+  //   StyleSheet,
+  //   ScrollView,
+  //   View,
+  //   Image
+} from "react-native";
+
 import {
   Container,
   Title,
@@ -57,10 +58,13 @@ class AppearancesMenu extends Component {
 
   constructor(props) {
     super(props);
-    const { currentAppearancesView, showOnlyFavourites } = this.props;
+    const {
+      //  currentAppearancesView
+      showOnlyFavourites
+    } = this.props;
 
     this.state = {
-      currentAppearancesView,
+      // currentAppearancesView,
       showOnlyFavourites
     };
   }
@@ -69,8 +73,8 @@ class AppearancesMenu extends Component {
     // console.log("handleDayStagePress, dayStage=" + dayStage);
     const {
       handleSetActiveAppearanceScreen,
-      navigation,
-      onItemSelected
+      navigation
+      // onItemSelected
     } = this.props;
     const navigateTo =
       dayStage === "stage" ? "AppearancesByDayStage" : "AppearancesByDay";
@@ -81,7 +85,7 @@ class AppearancesMenu extends Component {
 
   toggleShowFavourites = () => {
     const {
-      onItemSelected,
+      // onItemSelected,
       setShowOnlyFavourites,
       showOnlyFavourites
     } = this.props;
@@ -107,14 +111,15 @@ class AppearancesMenu extends Component {
       <Container
         style={{
           backgroundColor: "#FFF",
-          marginTop: 20
+          borderRadius: 5,
+          marginTop: Platform.OS === "ios" ? 10 : 0
         }}
       >
         <Content padder>
           <ListItem icon>
             <Left>
               <Icon name="settings" style={{ fontSize: 15 }} />
-              <Text>Show Schedule</Text>
+              <Text>Schedule Display</Text>
             </Left>
           </ListItem>
           <ListItem icon onPress={() => this.handleDayStagePress("day")}>
@@ -127,7 +132,7 @@ class AppearancesMenu extends Component {
               </Button>
             </Left>
             <Body>
-              <Text style={styles.menuItems.text}>By Day</Text>
+              <Text style={styles.menuItems.text}>By Times (flat)</Text>
             </Body>
             <Right>
               <Radio
@@ -151,7 +156,7 @@ class AppearancesMenu extends Component {
               </Button>
             </Left>
             <Body>
-              <Text style={styles.menuItems.text}>By Stage</Text>
+              <Text style={styles.menuItems.text}>Grouped by Stage</Text>
             </Body>
             <Right>
               <Radio
@@ -184,13 +189,11 @@ class AppearancesMenu extends Component {
             </Right>
           </ListItem>
           <ListItem>
-            <Left />
-            <Body>
-              <Button onPress={closeSideMenu}>
-                <Text>Close</Text>
+            <Body style={{ flexDirection: "row", justifyContent: "center" }}>
+              <Button small onPress={closeSideMenu}>
+                <Text>Close Menu</Text>
               </Button>
             </Body>
-            <Right />
           </ListItem>
         </Content>
       </Container>
@@ -253,6 +256,7 @@ class AppearancesMenu extends Component {
 
 AppearancesMenu.propTypes = {
   activeAppearancesScreen: PropTypes.string.isRequired,
+  // currentAppearancesView: PropTypes.object,
   handleSetActiveAppearanceScreen: PropTypes.func.isRequired,
   showOnlyFavourites: PropTypes.bool.isRequired,
   setShowOnlyFavourites: PropTypes.func.isRequired,

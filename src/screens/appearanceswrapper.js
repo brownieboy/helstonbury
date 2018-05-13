@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Button, Segment } from "native-base";
+// import { Button, Segment } from "native-base";
 // import IconMaterial from "react-native-vector-icons/MaterialIcons";
 // import Icon from "react-native-vector-icons";
 // import { format } from "date-fns";
@@ -60,7 +60,7 @@ class Appearances extends Component {
   render() {
     const {
       appearancesList,
-      appearancesView,
+      // appearancesView,
       fetchStatus,
       filterAppearancesByBandId,
       groupAppearancesByDay,
@@ -78,7 +78,7 @@ class Appearances extends Component {
 
     const sharedChildProps = {
       appearancesList,
-      appearancesView,
+      // appearancesView,
       appearancesSideMenuVisible,
       fetchStatus,
       filterAppearancesByBandId,
@@ -90,10 +90,10 @@ class Appearances extends Component {
 
     // let heart = "ios-heart";
     // let heartOutline = "ios-heart-outline";
-    if (Platform.OS === "android") {
-      heart = "md-heart";
-      heartOutline = "md-heart-outline";
-    }
+    // if (Platform.OS === "android") {
+    //   heart = "md-heart";
+    //   heartOutline = "md-heart-outline";
+    // }
 
     const menu = (
       <Menu
@@ -125,7 +125,12 @@ class Appearances extends Component {
               <HelstonburyAvatar />
             </Left>
             <Body style={{ flex: 6 }}>
-              <Title>Schedule by {activeAppearancesScreen}</Title>
+              <Title>
+                Schedule{" "}
+                {activeAppearancesScreen === "day"
+                  ? "Times"
+                  : "Times by Stage"}
+              </Title>
             </Body>
             <Right style={{ flex: 1 }}>
               <Icon
@@ -155,6 +160,7 @@ class Appearances extends Component {
 
 Appearances.propTypes = {
   appearancesList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  fetchStatus: PropTypes.string.isRequired,
   filterAppearancesByBandId: PropTypes.func.isRequired,
   groupAppearancesByDayStage: PropTypes.func.isRequired,
   groupAppearancesByDay: PropTypes.func.isRequired,

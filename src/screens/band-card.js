@@ -141,8 +141,8 @@ class BandCard extends Component {
     const dimensions = this.state.dimensions;
     const imageHeight = fullScreen
       ? dimensions.width
-      : Math.round(dimensions.width * 0.8 * 9 / 16);
-    const imageWidth = fullScreen ? dimensions.width : dimensions.width * 0.8;
+      : Math.round(dimensions.width * 0.85 * 9 / 16);
+    const imageWidth = fullScreen ? dimensions.width : dimensions.width * 0.85;
     return (
       <CachedImage
         style={{

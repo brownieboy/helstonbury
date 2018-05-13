@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import { Image, View } from "react-native";
 import ParsedText from "react-native-parsed-text";
@@ -82,15 +82,18 @@ class Home extends Component {
             <Image source={launchscreenLogo} style={styles.logo} />
           </View>
           <View style={{ marginTop: 50, marginLeft: 20, marginRight: 20 }}>
+            {fetchStatus === "loading" && (
+              <Fragment>
+                <Text>Checking server for latest info, please wait...</Text>
+                <Spinner />
+              </Fragment>
+            )}
             <ParsedText
               parse={parsedTextArray}
               childrenProps={{ allowFontScaling: false }}
             >
-              {fetchStatus === "loading"
-                ? "Getting latest info, please wait..."
-                : homeText}
+              {homeText}
             </ParsedText>
-            {fetchStatus === "loading" ? <Spinner /> : null}
           </View>
         </Content>
       </Container>

@@ -81,7 +81,7 @@ class Home extends Component {
           <View style={styles.logoContainer}>
             <Image source={launchscreenLogo} style={styles.logo} />
           </View>
-          <View style={{ marginTop: 50, marginLeft: 20, marginRight: 20 }}>
+          <View style={{ marginTop: 25, marginLeft: 20, marginRight: 20 }}>
             {fetchStatus === "loading" && (
               <Fragment>
                 <Text>Checking server for the latest info, please wait...</Text>

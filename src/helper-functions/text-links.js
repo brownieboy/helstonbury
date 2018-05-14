@@ -56,6 +56,8 @@ const renderStrikethroughText = (matchingString, matches) => {
   return `${match[0].replace(/-(.*)-/, "$1")}`;
 };
 
+// onPress={() => email([email1], null, null, "Helstonbury", "")}
+
 export const parsedTextArray = [
   {
     style: touchStyles.text,
@@ -65,7 +67,8 @@ export const parsedTextArray = [
   {
     style: touchStyles.text,
     type: "email",
-    onPress: emailAddress => email(emailAddress)
+    onPress: emailAddress =>
+      email([decodeURI(emailAddress)], null, null, "", "")
   },
   {
     // Bold (matching asterisks)

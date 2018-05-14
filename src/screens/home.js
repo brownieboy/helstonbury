@@ -84,7 +84,7 @@ class Home extends Component {
           <View style={{ marginTop: 50, marginLeft: 20, marginRight: 20 }}>
             {fetchStatus === "loading" && (
               <Fragment>
-                <Text>Checking server for latest info, please wait...</Text>
+                <Text>Checking server for the latest info, please wait...</Text>
                 <Spinner />
               </Fragment>
             )}

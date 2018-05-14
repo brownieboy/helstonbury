@@ -88,7 +88,9 @@ class ContactUs extends Component {
     const developerDetails = `App developed for ${
       Platform.OS === "ios" ? "iOS" : "Android"
     } by Michael Brown, brownieboy@gmail.com. Also available for ${
-      Platform.OS === "ios" ? "Android on Google Play" : "iOS in the Apple App Store"
+      Platform.OS === "ios"
+        ? "Android on Google Play"
+        : "iOS in the Apple App Store"
     }.`;
 
     return (
@@ -306,6 +308,12 @@ class ContactUs extends Component {
 
 /*
   
+
+                  <TouchableOpacity
+                  onPress={() => email([email2], null, null, "Helstonbury", "")}
+                >
+                  <Text style={touchStyles.text}>{email2}</Text>
+                </TouchableOpacity>
             App developed by Michael Brown, brownieboy@gmail.com. Also
             available on {Platform.OS === "ios" ? "Android" : "iOS"}. See also
             http://www.browniesblog.com

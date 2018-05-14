@@ -68,7 +68,13 @@ export const parsedTextArray = [
     style: touchStyles.text,
     type: "email",
     onPress: emailAddress =>
-      email([decodeURI(emailAddress)], null, null, "", "")
+      email(
+        [decodeURI(emailAddress)],
+        null,
+        null,
+        emailAddress === "brownieboy@gmail.com" ? "Mobile App Development" : "",
+        ""
+      )
   },
   {
     // Bold (matching asterisks)

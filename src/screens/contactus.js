@@ -84,6 +84,13 @@ class ContactUs extends Component {
       venuePhone,
       venueEmail
     } = this.props;
+
+    const developerDetails = `App developed for ${
+      Platform.OS === "ios" ? "iOS" : "Android"
+    } by Michael Brown, brownieboy@gmail.com. Also available for ${
+      Platform.OS === "ios" ? "Android on Google Play" : "iOS in the Apple App Store"
+    }.`;
+
     return (
       <Container style={styles.container}>
         <Header>
@@ -277,7 +284,20 @@ class ContactUs extends Component {
               </Right>
             </ListItem>
           </List>
-          <Text style={{ marginTop: 30 }} />
+          <ParsedText
+            parse={parsedTextArray}
+            childrenProps={{ allowFontScaling: false }}
+            style={{
+              marginTop: 30,
+              marginBottom: 30,
+              marginLeft: 10,
+              marginRight: 10,
+              fontSize: 12,
+              fontStyle: "italic"
+            }}
+          >
+            {developerDetails}
+          </ParsedText>
         </Content>
       </Container>
     );
@@ -285,6 +305,21 @@ class ContactUs extends Component {
 }
 
 /*
+  
+            App developed by Michael Brown, brownieboy@gmail.com. Also
+            available on {Platform.OS === "ios" ? "Android" : "iOS"}. See also
+            http://www.browniesblog.com
+          </ParsedText>
+
+           <ParsedText
+              parse={parsedTextArray}
+              childrenProps={{ allowFontScaling: false }}
+            >
+              {homeText}
+            </ParsedText>
+
+            style={{ marginTop: 30, marginBottom: 30, fontSize: 12 }}
+
             <ListItem icon>
               <Left style={touchStyles.label}>
                 <Text style={touchStyles.labelText}>Text:</Text>

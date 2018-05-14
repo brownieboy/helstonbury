@@ -56,7 +56,7 @@ export function createEventChannel(ref) {
 }
 
 function* updatedItemSaga() {
-  // console.log("running updatedItemSaga...");
+  console.log("running updatedItemSaga...");
   const updateChannel = createEventChannel(
     firebaseApp.database().ref("publishedData")
   );
@@ -151,7 +151,7 @@ const preloadImages = itemsArray => {
 // worker Saga: will be fired on LOAD_BANDS_NOW actions, and gets all
 // data, not just bands
 function* loadBandsGen() {
-  // yield console.log("loadBands() triggered in sagas.js");
+  yield console.log("loadBands() triggered in sagas.js");
   yield all([
     put(homeDuxActions.setFetchHomeRequest()),
     put(bandsDuxActions.setFetchBandsRequest()),
@@ -176,23 +176,37 @@ function* loadBandsGen() {
     // down from Firebase
     //
     const homeText = bandsDataNormalised.homePageText || "Helstonbury...";
+    yield put(homeDuxActions.setFetchHomeSucceeded(homeText));
+
     const bandsArray = bandsDataNormalised.bandsArray.filter(
       bandMember => bandMember.bandId && bandMember.bandId !== ""
     );
+    yield put(bandsDuxActions.setFetchBandsSucceeded(bandsArray));
+
     const appearancesArray = bandsDataNormalised.appearancesArray.filter(
       appearancesMember =>
         appearancesMember.bandId && appearancesMember.bandId !== ""
     );
-    const stagesArray = bandsDataNormalised.stagesArray || [];
-    const contactsPage = bandsDataNormalised.contactsPage || {};
+    yield put(
+      appearancesDuxActions.setFetchAppearancesSucceeded(appearancesArray)
+    );
 
-    yield all([
-      put(homeDuxActions.setFetchHomeSucceeded(homeText)),
-      put(bandsDuxActions.setFetchBandsSucceeded(bandsArray)),
-      put(appearancesDuxActions.setFetchAppearancesSucceeded(appearancesArray)),
-      put(stagesDuxActions.setFetchStagesSucceeded(stagesArray)),
-      put(contactUsDuxActions.setFetchContactUsSucceeded(contactsPage))
-    ]);
+    const stagesArray = bandsDataNormalised.stagesArray || [];
+    yield put(stagesDuxActions.setFetchStagesSucceeded(stagesArray));
+
+    const contactsPage = bandsDataNormalised.contactsPage || {};
+    yield put(contactUsDuxActions.setFetchContactUsSucceeded(contactsPage));
+
+    // Lumping them together like this was too slow to update, especially for the
+    // home page.
+    // yield all([
+    //   put(homeDuxActions.setFetchHomeSucceeded(homeText)),
+    //   put(bandsDuxActions.setFetchBandsSucceeded(bandsArray)),
+    //   put(appearancesDuxActions.setFetchAppearancesSucceeded(appearancesArray)),
+    //   put(stagesDuxActions.setFetchStagesSucceeded(stagesArray)),
+    //   put(contactUsDuxActions.setFetchContactUsSucceeded(contactsPage))
+    // ]);
+
     preloadImages([...bandsArray, ...stagesArray]);
   } catch (e) {
     console.log("loadBandsGen error=" + e);

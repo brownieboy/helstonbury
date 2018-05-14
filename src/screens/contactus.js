@@ -291,7 +291,7 @@ class ContactUs extends Component {
             childrenProps={{ allowFontScaling: false }}
             style={{
               marginTop: 30,
-              marginBottom: 30,
+              marginBottom: 50,
               marginLeft: 10,
               marginRight: 10,
               fontSize: 12,

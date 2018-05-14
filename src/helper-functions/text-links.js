@@ -72,7 +72,7 @@ export const parsedTextArray = [
         [decodeURI(emailAddress)],
         null,
         null,
-        emailAddress === "brownieboy@gmail.com" ? "Mobile App Development" : "",
+        emailAddress.indexOf("brownieboy") >= 0 ? "Mobile App Development" : "",
         ""
       )
   },

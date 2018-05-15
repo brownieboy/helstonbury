@@ -38,9 +38,14 @@ renderText(matchingString, matches) {
 //   return `lll${match[0].replace(/\*(.*)\*/, "$1")}lll`;
 // };
 
+
+// ^\s-
 const renderBoldText = (matchingString, matches) => {
   const pattern = /\*(.*?)\*/;
+  // const pattern = /\*{2}(.*?)\*{2}/;
+
   const match = matchingString.match(pattern);
+  // console.log("match:" + match);
   return `${match[0].replace(/\*(.*)\*/, "$1")}`;
 };
 

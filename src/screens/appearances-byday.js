@@ -68,12 +68,15 @@ class AppearancesByDay extends Component {
                 fontSize: 12,
                 flexGrow: 0,
                 flexShrink: 0,
-                flexBasis: 40
+                flexBasis: 80
                 // borderColor: "green",
                 // borderWidth: 1
               }}
             >
-              {`${format(lineMember.dateTimeStart, "HH:mm")}:`}
+              {`${format(lineMember.dateTimeStart, "HH:mm")}-${format(
+              lineMember.dateTimeEnd,
+              "HH:mm"
+            )} `}
             </Text>
             <Text
               style={{

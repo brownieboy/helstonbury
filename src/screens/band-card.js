@@ -102,7 +102,10 @@ class BandCard extends Component {
         {`${appearance.stageName}, ${format(
           appearance.dateTimeStart,
           "dddd"
-        )} at ${format(appearance.dateTimeStart, "HH:mm")}`}
+        )} at ${format(appearance.dateTimeStart, "HH:mm")}-${format(
+          appearance.dateTimeEnd,
+          "HH:mm"
+        )}`}
       </Text>
     ));
 

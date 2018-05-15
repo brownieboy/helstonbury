@@ -79,7 +79,7 @@ class AppearancesByDayStage extends Component {
             >{`${format(lineMember.dateTimeStart, "HH:mm")}-${format(
               lineMember.dateTimeEnd,
               "HH:mm"
-            )}: `}</Text>
+            )} `}</Text>
             <Text style={{ fontSize: 14, flex: 8 }}>{lineMember.bandName}</Text>
           </Left>
           <Right

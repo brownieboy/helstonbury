@@ -25,6 +25,8 @@ import {
   Thumbnail
 } from "native-base";
 
+import IconFontAwesome from "react-native-vector-icons/FontAwesome";
+
 import IconMaterialEntypo from "react-native-vector-icons/Entypo";
 import ScheduleTabIcon from "../components/schedule-tab-icon.js";
 
@@ -187,6 +189,51 @@ class AppearancesMenu extends Component {
             </Left>
             <Body>
               <Text style={styles.menuItems.text}>Favourites only</Text>
+            </Body>
+            <Right>
+              <Switch
+                value={showOnlyFavourites}
+                onChange={this.toggleShowFavourites}
+                onTintColor="#50B948"
+              />
+            </Right>
+          </ListItem>
+                    <ListItem icon last onPress={this.toggleShowFavourites}>
+            <Left>
+              <Button style={{ backgroundColor: "white" }}>
+                <Icon
+                  active
+                  ios={showOnlyFavourites ? "ios-heart" : "ios-heart-outline"}
+                  android={showOnlyFavourites ? "md-heart" : "md-heart-outline"}
+                  style={{ color: showOnlyFavourites ? "red" : "grey" }}
+                  onPress={this.toggleShowFavourites}
+                />
+              </Button>
+            </Left>
+            <Body>
+              <Text style={styles.menuItems.text}>Reverse times order</Text>
+            </Body>
+            <Right>
+              <Switch
+                value={showOnlyFavourites}
+                onChange={this.toggleShowFavourites}
+                onTintColor="#50B948"
+              />
+            </Right>
+          </ListItem>
+                    <ListItem icon last onPress={this.toggleShowFavourites}>
+            <Left>
+              <Button style={{ backgroundColor: "white" }}>
+                <IconFontAwesome
+                  active
+                  name="toggle-down"
+                  style={{ color: showOnlyFavourites ? "red" : "grey" }}
+                  onPress={this.toggleShowFavourites}
+                />
+              </Button>
+            </Left>
+            <Body>
+              <Text style={styles.menuItems.text}>Reverse days order</Text>
             </Body>
             <Right>
               <Switch

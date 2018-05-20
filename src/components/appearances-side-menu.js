@@ -94,12 +94,22 @@ class AppearancesMenu extends Component {
     setShowOnlyFavourites(!showOnlyFavourites);
   };
 
+  toggleReverseTimesOrder = () => {
+    const {
+      // onItemSelected,
+      reverseTimesOrder,
+      setReverseTimesOrder
+    } = this.props;
+    setReverseTimesOrder(!reverseTimesOrder);
+  };
+
   render() {
     const {
       activeAppearancesScreen,
       closeSideMenu,
       // onItemSelected,
       // handleShowFavouritesPress,
+      reverseTimesOrder,
       showOnlyFavourites
     } = this.props;
 
@@ -198,15 +208,14 @@ class AppearancesMenu extends Component {
               />
             </Right>
           </ListItem>
-          <ListItem icon last onPress={this.toggleShowFavourites}>
+          <ListItem icon last onPress={this.toggleReverseTimesOrder}>
             <Left>
               <Button style={{ backgroundColor: "white" }}>
-                <Icon
+                <IconFontAwesome
                   active
-                  ios={showOnlyFavourites ? "ios-heart" : "ios-heart-outline"}
-                  android={showOnlyFavourites ? "md-heart" : "md-heart-outline"}
-                  style={{ color: showOnlyFavourites ? "red" : "grey" }}
-                  onPress={this.toggleShowFavourites}
+                  name="toggle-down"
+                  style={{ color: reverseTimesOrder ? "blue" : "grey" }}
+                  onPress={this.toggleReverseTimesOrder}
                 />
               </Button>
             </Left>
@@ -215,30 +224,8 @@ class AppearancesMenu extends Component {
             </Body>
             <Right>
               <Switch
-                value={showOnlyFavourites}
-                onChange={this.toggleShowFavourites}
-                onTintColor="#50B948"
-              />
-            </Right>
-          </ListItem>
-          <ListItem icon last onPress={this.toggleShowFavourites}>
-            <Left>
-              <Button style={{ backgroundColor: "white" }}>
-                <IconFontAwesome
-                  active
-                  name="toggle-down"
-                  style={{ color: showOnlyFavourites ? "red" : "grey" }}
-                  onPress={this.toggleShowFavourites}
-                />
-              </Button>
-            </Left>
-            <Body>
-              <Text style={styles.menuItems.text}>Reverse days</Text>
-            </Body>
-            <Right>
-              <Switch
-                value={showOnlyFavourites}
-                onChange={this.toggleShowFavourites}
+                value={reverseTimesOrder}
+                onChange={this.toggleReverseTimesOrder}
                 onTintColor="#50B948"
               />
             </Right>
@@ -257,6 +244,31 @@ class AppearancesMenu extends Component {
 }
 
 /*
+
+          <ListItem icon last onPress={this.toggleShowFavourites}>
+            <Left>
+              <Button style={{ backgroundColor: "white" }}>
+                <IconFontAwesome
+                  active
+                  name="toggle-down"
+                  style={{ color: showOnlyFavourites ? "blue" : "grey" }}
+                  onPress={this.toggleShowFavourites}
+                />
+              </Button>
+            </Left>
+            <Body>
+              <Text style={styles.menuItems.text}>Reverse days</Text>
+            </Body>
+            <Right>
+              <Switch
+                value={showOnlyFavourites}
+                onChange={this.toggleShowFavourites}
+                onTintColor="#50B948"
+              />
+            </Right>
+          </ListItem>
+
+
     <ScrollView scrollsToTop={false} style={styles.menu}>
       <View style={styles.avatarContainer}>
         <Image style={styles.avatar} source={require(uri)} />
@@ -316,7 +328,9 @@ AppearancesMenu.propTypes = {
   showOnlyFavourites: PropTypes.bool.isRequired,
   setShowOnlyFavourites: PropTypes.func.isRequired,
   navigation: PropTypes.object.isRequired,
-  closeSideMenu: PropTypes.func.isRequired
+  closeSideMenu: PropTypes.func.isRequired,
+  reverseTimesOrder: PropTypes.bool.isRequired,
+  setReverseTimesOrder: PropTypes.func.isRequired
 };
 
 export default AppearancesMenu;

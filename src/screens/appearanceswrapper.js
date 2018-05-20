@@ -71,6 +71,8 @@ class Appearances extends Component {
       groupAppearancesByDayStage,
       favourites,
       navigation,
+      reverseTimesOrder,
+      setReverseTimesOrder,
       showOnlyFavourites
     } = this.props;
 
@@ -79,7 +81,7 @@ class Appearances extends Component {
       appearancesSideMenuVisible
       // showOnlyFavourites
     } = this.state;
-    // console.log("activeAppearancesScreen=" + activeAppearancesScreen);
+     console.log("appearanceswrapper.js, reverseTimesOrder=" + reverseTimesOrder);
 
     const sharedChildProps = {
       appearancesList,
@@ -90,7 +92,8 @@ class Appearances extends Component {
       groupAppearancesByDay,
       favourites,
       navigation,
-      showOnlyFavourites
+      showOnlyFavourites,
+      reverseTimesOrder
     };
 
     console.log("appearanceswrapper.js, appearancesView:" + appearancesView);
@@ -110,6 +113,8 @@ class Appearances extends Component {
         setShowOnlyFavourites={this.handleShowFavouritesPress}
         navigation={navigation}
         showOnlyFavourites={showOnlyFavourites}
+        reverseTimesOrder={reverseTimesOrder}
+        setReverseTimesOrder={setReverseTimesOrder}
       />
     );
 
@@ -172,6 +177,8 @@ Appearances.propTypes = {
   groupAppearancesByDay: PropTypes.func.isRequired,
   favourites: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   navigation: PropTypes.object.isRequired,
+  reverseTimesOrder: PropTypes.bool.isRequired,
+  setReverseTimesOrder: PropTypes.func.isRequired,
   setShowAppearancesView: PropTypes.func.isRequired,
   setShowOnlyFavourites: PropTypes.func.isRequired,
   showOnlyFavourites: PropTypes.bool.isRequired

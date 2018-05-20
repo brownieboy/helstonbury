@@ -30,7 +30,7 @@ const uiReducer = (state = defaultState, action) => {
     case SET_DAYS_ORDER:
       return { ...state, reverseDaysOrder: payload };
     case SET_TIMES_ORDER:
-      return { ...state, reverseTImesOrder: payload };
+      return { ...state, reverseTimesOrder: payload };
     case FETCH_UISTATE_SUCCESS: {
       console.log("uiReducer FETCH_UISTATE_SUCCESS:, payload:");
       console.log(payload);
@@ -79,6 +79,6 @@ export const getAppearancesView = state => state.uiState.appearancesView;
 // export const getAppearancesSideMenuVisible = state =>
 //   state.uiState.showAppearancesSideMenu;
 export const getReverseDaysOrder = state => state.uiState.reverseDaysOrder;
-export const getReverseTimessOrder = state => state.uiState.reverseTimesOrder;
+export const getReverseTimesOrder = state => state.uiState.reverseTimesOrder;
 
 export default uiReducer;

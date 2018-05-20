@@ -140,7 +140,8 @@ class AppearancesByDayStage extends Component {
       filterAppearancesByBandId,
       groupAppearancesByDayStage,
       favourites,
-      showOnlyFavourites
+      showOnlyFavourites,
+      reverseTimesOrder
     } = this.props;
 
     // const { sideMenuOpen } = this.state;
@@ -151,7 +152,8 @@ class AppearancesByDayStage extends Component {
     }
 
     const appearancesGroupedByDayStage = groupAppearancesByDayStage(
-      appearances
+      appearances,
+      reverseTimesOrder
     );
 
     return (
@@ -180,7 +182,8 @@ AppearancesByDayStage.propTypes = {
   groupAppearancesByDayStage: PropTypes.func.isRequired,
   favourites: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   navigation: PropTypes.object.isRequired,
-  showOnlyFavourites: PropTypes.bool.isRequired
+  showOnlyFavourites: PropTypes.bool.isRequired,
+  reverseTimesOrder: PropTypes.bool.isRequired
   // setShowAppearancesView: PropTypes.func.isRequired,
   // setShowOnlyFavourites: PropTypes.func.isRequired
 };

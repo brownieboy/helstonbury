@@ -162,10 +162,10 @@ class AppearancesByDay extends Component {
       filterAppearancesByBandId,
       groupAppearancesByDay,
       favourites,
-      showOnlyFavourites
+      showOnlyFavourites,
+      reverseTimesOrder
     } = this.props;
 
-    console.log("AppearancesByDay render()");
     //
     // const { sideMenuOpen } = this.state;
 
@@ -181,7 +181,9 @@ class AppearancesByDay extends Component {
     // console.log("Filtered (or not) appearances:");
     // console.log(appearances);
 
-    const appearancesGroupedByDay = groupAppearancesByDay(appearances);
+    console.log("AppearancesByDay render(), reverseTimesOrder: " + reverseTimesOrder);
+
+    const appearancesGroupedByDay = groupAppearancesByDay(appearances, reverseTimesOrder);
 
     return (
       <Content style={{ backgroundColor: "#fff" }}>
@@ -217,7 +219,8 @@ AppearancesByDay.propTypes = {
   // setShowOnlyFavourites: PropTypes.func.isRequired,
   // setShowAppearancesSideMenu: PropTypes.func.isRequired,
   // setShowAppearancesView: PropTypes.func.isRequired,
-  showOnlyFavourites: PropTypes.bool.isRequired
+  showOnlyFavourites: PropTypes.bool.isRequired,
+  reverseTimesOrder: PropTypes.bool.isRequired
 };
 
 export default AppearancesByDay;

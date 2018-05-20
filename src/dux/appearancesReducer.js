@@ -134,15 +134,27 @@ export const filterAppearancesByBandId = (
   });
 };
 
-const sortAppearancesByDateTime = appearancesList => {
+const sortAppearancesByDateTime = (appearancesList, reverseTimesOrder) => {
+  console.log(
+    "sortAppearancesByDateTime, reverseTimesOrder=" + reverseTimesOrder
+  );
   const newAppearances = [...appearancesList];
   return newAppearances
     .slice()
-    .sort((a, b) => new Date(a.dateTimeStart) - new Date(b.dateTimeStart));
+    .sort(
+      (a, b) =>
+        reverseTimesOrder
+          ? new Date(b.dateTimeStart) - new Date(a.dateTimeStart)
+          : new Date(a.dateTimeStart) - new Date(b.dateTimeStart)
+    );
 };
 
-export const groupAppearancesByDay = appearances => {
-  const appearancesList = [...sortAppearancesByDateTime(appearances)];
+export const groupAppearancesByDay = (appearances, reverseTimesOrder) => {
+  console.log("groupAppearancesByDay, reverseTimesOrder=" + reverseTimesOrder);
+
+  const appearancesList = [
+    ...sortAppearancesByDateTime(appearances, reverseTimesOrder)
+  ];
   const appearancesGrouped = d3
     .nest()
     .key(appearance =>
@@ -160,8 +172,10 @@ export const groupAppearancesByDay = appearances => {
   return appearancesGrouped;
 };
 
-export const groupAppearancesByDayStage = appearances => {
-  const appearancesList = [...sortAppearancesByDateTime(appearances)];
+export const groupAppearancesByDayStage = (appearances, reverseTimesOrder) => {
+  const appearancesList = [
+    ...sortAppearancesByDateTime(appearances, reverseTimesOrder)
+  ];
   const appearancesGrouped = d3
     .nest()
     .key(appearance =>

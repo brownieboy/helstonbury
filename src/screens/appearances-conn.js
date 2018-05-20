@@ -17,10 +17,12 @@ import {
 } from "../dux/appearancesReducer.js";
 
 import {
+  getReverseTimesOrder,
   getShowOnlyFavourites,
   setShowOnlyFavourites,
   getAppearancesView,
-  setShowAppearancesView
+  setShowAppearancesView,
+  setReverseTimesOrder
   // getAppearancesSideMenuVisible,
   // setShowAppearancesSideMenu
 } from "../dux/uiReducer.js";
@@ -36,21 +38,24 @@ const mapStateToProps = state => ({
   favourites: state.favouritesState.favourites,
   fetchStatus: getFetchStatus(state),
   // appearancesGroupedByDay: getAppearancesGroupedByDay(state),
+  reverseTimesOrder: getReverseTimesOrder(state),
   showOnlyFavourites: getShowOnlyFavourites(state),
   appearancesView: getAppearancesView(state),
   appearancesList: getAppearancesList(state),
   // appearancesSideMenuVisible: getAppearancesSideMenuVisible(state),
   filterAppearancesByBandId: (appearances, bandsToFilterArray) =>
     filterAppearancesByBandId(appearances, bandsToFilterArray),
-  groupAppearancesByDay: appearances => groupAppearancesByDay(appearances),
-  groupAppearancesByDayStage: appearances =>
-    groupAppearancesByDayStage(appearances)
+  groupAppearancesByDay: (appearances, reverseTimesOrder) =>
+    groupAppearancesByDay(appearances, reverseTimesOrder),
+  groupAppearancesByDayStage: (appearances, reverseTimesOrder) =>
+    groupAppearancesByDayStage(appearances, reverseTimesOrder)
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       loadappearancesProp: loadAppearances,
+      setReverseTimesOrder,
       setShowOnlyFavourites,
       setShowAppearancesView
       // setShowAppearancesSideMenu

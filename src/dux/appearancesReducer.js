@@ -134,27 +134,17 @@ export const filterAppearancesByBandId = (
   });
 };
 
-const sortAppearancesByDateTime = (appearancesList, reverseTimesOrder) => {
-  console.log(
-    "sortAppearancesByDateTime, reverseTimesOrder=" + reverseTimesOrder
-  );
+const sortAppearancesByDateTime = appearancesList => {
   const newAppearances = [...appearancesList];
   return newAppearances
     .slice()
-    .sort(
-      (a, b) =>
-        reverseTimesOrder
-          ? new Date(b.dateTimeStart) - new Date(a.dateTimeStart)
-          : new Date(a.dateTimeStart) - new Date(b.dateTimeStart)
-    );
+    .sort((a, b) => new Date(a.dateTimeStart) - new Date(b.dateTimeStart));
 };
 
 export const groupAppearancesByDay = (appearances, reverseTimesOrder) => {
   console.log("groupAppearancesByDay, reverseTimesOrder=" + reverseTimesOrder);
 
-  const appearancesList = [
-    ...sortAppearancesByDateTime(appearances, reverseTimesOrder)
-  ];
+  const appearancesList = [...sortAppearancesByDateTime(appearances, false)];
   const appearancesGrouped = d3
     .nest()
     .key(appearance =>
@@ -165,10 +155,21 @@ export const groupAppearancesByDay = (appearances, reverseTimesOrder) => {
         "dddd MMM Do YYYY"
       )
     )
-    .sortKeys(
-      (a, b) => parseInt(a.split("~")[0], 10) - parseInt(b.split("~")[0], 10)
+    // .sortKeys(
+    //   // (a, b) => parseInt(a.split("~")[0], 10) - parseInt(b.split("~")[0], 10)
+    //   // (a, b) => parseInt(b.split("~")[0], 10) - parseInt(a.split("~")[0], 10)
+    //   // d3.ascending
+    //   (a, b) => b - a
+    // )
+    .sortValues(
+      (a, b) =>
+        reverseTimesOrder
+          ? new Date(b.dateTimeStart) - new Date(a.dateTimeStart)
+          : new Date(a.dateTimeStart) - new Date(b.dateTimeStart)
     )
     .entries(appearancesList);
+  console.log("ascending appearancesGrouped:");
+  console.log(appearancesGrouped);
   return appearancesGrouped;
 };
 

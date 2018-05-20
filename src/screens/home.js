@@ -86,13 +86,30 @@ class Home extends Component {
           <View style={styles.logoContainer}>
             <Image source={launchscreenLogo} style={styles.logo} />
           </View>
-          <View style={{ marginTop: 25, marginLeft: 20, marginRight: 20 }}>
+          <View
+            style={{
+              flexDirection: "row",
+              marginTop: 10,
+              marginLeft: 20,
+              marginRight: 20
+            }}
+          >
             {fetchStatus === "loading" && (
               <Fragment>
-                <Text>Checking server for the latest info, please wait...</Text>
-                <Spinner />
+                <Text style={{ fontSize: 12, marginRight: 10 }}>
+                  Checking server for the latest info...
+                </Text>
+                <Spinner style={{ height: 2, width: 2, marginLeft: 5 }} />
               </Fragment>
             )}
+          </View>
+          <View
+            style={{
+              marginTop: fetchStatus === "loading" ? 5 : 20,
+              marginLeft: 20,
+              marginRight: 20
+            }}
+          >
             <ParsedText
               parse={parsedTextArray}
               childrenProps={{ allowFontScaling: false }}

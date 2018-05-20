@@ -255,6 +255,16 @@ function* toggleFavouriteGen(bandObj) {
   yield AsyncStorage.setItem("localFavourites", JSON.stringify(newFavourites));
 }
 
+function* toggleUISettingsGen() {
+  // console.log("toggling favourite " + JSON.stringify(bandObj, null, 4));
+  const state = yield select();
+  const newUIState = state.favouritesState.favourites;
+  // console.log("toggling favourite state is " + JSON.stringify(state, null, 4));
+  // console.log("newFavourites is "+ newFavrites);
+
+  yield AsyncStorage.setItem("uiState", JSON.stringify(newUIState));
+}
+
 function* mySaga() {
   // yield takeLatest(bandsDuxConstants.LOAD_BANDS_NOW, loadBandsGen);
   yield takeLatest(loadBandsNow().type, loadBandsGen);

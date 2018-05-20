@@ -198,7 +198,7 @@ class AppearancesMenu extends Component {
               />
             </Right>
           </ListItem>
-                    <ListItem icon last onPress={this.toggleShowFavourites}>
+          <ListItem icon last onPress={this.toggleShowFavourites}>
             <Left>
               <Button style={{ backgroundColor: "white" }}>
                 <Icon
@@ -211,7 +211,7 @@ class AppearancesMenu extends Component {
               </Button>
             </Left>
             <Body>
-              <Text style={styles.menuItems.text}>Reverse times order</Text>
+              <Text style={styles.menuItems.text}>Reverse times</Text>
             </Body>
             <Right>
               <Switch
@@ -221,7 +221,7 @@ class AppearancesMenu extends Component {
               />
             </Right>
           </ListItem>
-                    <ListItem icon last onPress={this.toggleShowFavourites}>
+          <ListItem icon last onPress={this.toggleShowFavourites}>
             <Left>
               <Button style={{ backgroundColor: "white" }}>
                 <IconFontAwesome
@@ -233,7 +233,7 @@ class AppearancesMenu extends Component {
               </Button>
             </Left>
             <Body>
-              <Text style={styles.menuItems.text}>Reverse days order</Text>
+              <Text style={styles.menuItems.text}>Reverse days</Text>
             </Body>
             <Right>
               <Switch

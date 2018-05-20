@@ -28,7 +28,7 @@ class Appearances extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeAppearancesScreen: "day",
+      // activeAppearancesScreen: "day",
       // showOnlyFavourites: false,
       appearancesSideMenuVisible: false
     };
@@ -40,7 +40,9 @@ class Appearances extends Component {
   };
 
   handleSetActiveAppearanceScreen = activeAppearancesScreen => {
-    this.setState({ activeAppearancesScreen });
+    // this.setState({ activeAppearancesScreen });
+    const { setShowAppearancesView } = this.props;
+    setShowAppearancesView(activeAppearancesScreen);
   };
 
   handleShowFavouritesPress = () => {
@@ -62,7 +64,7 @@ class Appearances extends Component {
   render() {
     const {
       appearancesList,
-      // appearancesView,
+      appearancesView,
       fetchStatus,
       filterAppearancesByBandId,
       groupAppearancesByDay,
@@ -73,7 +75,7 @@ class Appearances extends Component {
     } = this.props;
 
     const {
-      activeAppearancesScreen,
+      // activeAppearancesScreen,
       appearancesSideMenuVisible
       // showOnlyFavourites
     } = this.state;
@@ -81,7 +83,7 @@ class Appearances extends Component {
 
     const sharedChildProps = {
       appearancesList,
-      // appearancesView,
+      appearancesView,
       appearancesSideMenuVisible,
       fetchStatus,
       filterAppearancesByBandId,
@@ -90,6 +92,8 @@ class Appearances extends Component {
       navigation,
       showOnlyFavourites
     };
+
+    console.log("appearanceswrapper.js, appearancesView:" + appearancesView);
 
     // let heart = "ios-heart";
     // let heartOutline = "ios-heart-outline";
@@ -101,7 +105,7 @@ class Appearances extends Component {
     const menu = (
       <Menu
         closeSideMenu={this.closeSideMenu}
-        activeAppearancesScreen={activeAppearancesScreen}
+        activeAppearancesScreen={appearancesView}
         handleSetActiveAppearanceScreen={this.handleSetActiveAppearanceScreen}
         setShowOnlyFavourites={this.handleShowFavouritesPress}
         navigation={navigation}
@@ -130,7 +134,7 @@ class Appearances extends Component {
             <Body style={{ flex: 6 }}>
               <Title>
                 Schedule{" "}
-                {activeAppearancesScreen === "day" ? "Times" : "Times by Stage"}
+                {appearancesView === "day" ? "Times" : "Times by Stage"}
               </Title>
             </Body>
             <Right style={{ flex: 1 }}>
@@ -142,7 +146,7 @@ class Appearances extends Component {
               />
             </Right>
           </Header>
-          {this.state.activeAppearancesScreen === "stage" ? (
+          {appearancesView === "stage" ? (
             <AppearancesByDayStage
               {...sharedChildProps}
               groupAppearancesByDayStage={groupAppearancesByDayStage}
@@ -161,12 +165,15 @@ class Appearances extends Component {
 
 Appearances.propTypes = {
   appearancesList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  appearancesView: PropTypes.string.isRequired,
   fetchStatus: PropTypes.string.isRequired,
   filterAppearancesByBandId: PropTypes.func.isRequired,
   groupAppearancesByDayStage: PropTypes.func.isRequired,
   groupAppearancesByDay: PropTypes.func.isRequired,
   favourites: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   navigation: PropTypes.object.isRequired,
+  setShowAppearancesView: PropTypes.func.isRequired,
+  setShowOnlyFavourites: PropTypes.func.isRequired,
   showOnlyFavourites: PropTypes.bool.isRequired
 };
 

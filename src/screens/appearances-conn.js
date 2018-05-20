@@ -18,9 +18,9 @@ import {
 
 import {
   getShowOnlyFavourites,
-  setShowOnlyFavourites
-  // getAppearancesView,
-  // setShowAppearancesView,
+  setShowOnlyFavourites,
+  getAppearancesView,
+  setShowAppearancesView
   // getAppearancesSideMenuVisible,
   // setShowAppearancesSideMenu
 } from "../dux/uiReducer.js";
@@ -37,7 +37,7 @@ const mapStateToProps = state => ({
   fetchStatus: getFetchStatus(state),
   // appearancesGroupedByDay: getAppearancesGroupedByDay(state),
   showOnlyFavourites: getShowOnlyFavourites(state),
-  // appearancesView: getAppearancesView(state),
+  appearancesView: getAppearancesView(state),
   appearancesList: getAppearancesList(state),
   // appearancesSideMenuVisible: getAppearancesSideMenuVisible(state),
   filterAppearancesByBandId: (appearances, bandsToFilterArray) =>
@@ -51,8 +51,8 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       loadappearancesProp: loadAppearances,
-      setShowOnlyFavourites
-      // setShowAppearancesView,
+      setShowOnlyFavourites,
+      setShowAppearancesView
       // setShowAppearancesSideMenu
     },
     dispatch

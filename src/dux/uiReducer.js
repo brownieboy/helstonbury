@@ -3,7 +3,7 @@
 // it here for future reference.
 
 export const SET_SHOW_FAVOURITES = "SET_SHOW_FAVOURITES";
-const SET_APPEARANCES_VIEW = "SET_APPEARANCES_VIEW";
+export const SET_APPEARANCES_VIEW = "SET_APPEARANCES_VIEW";
 // const SET_SHOW_APPEARANCES_SIDE_MENU = "SET_SHOW_APPEARANCES_SIDE_MENU";
 const SET_DAYS_ORDER = "SET_DAYS_ORDER";
 const SET_TIMES_ORDER = "SET_TIMES_ORDER";
@@ -34,7 +34,7 @@ const uiReducer = (state = defaultState, action) => {
     case FETCH_UISTATE_SUCCESS: {
       console.log("uiReducer FETCH_UISTATE_SUCCESS:, payload:");
       console.log(payload);
-      return payload;  // yep, the whole thing is replaced
+      return payload; // yep, the whole thing is replaced
     }
     default:
       return state;

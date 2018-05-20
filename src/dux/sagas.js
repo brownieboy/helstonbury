@@ -29,6 +29,7 @@ import {
 import {
   setFetchUIStateSucceeded,
   LOAD_UISTATE_NOW,
+  SET_APPEARANCES_VIEW,
   SET_SHOW_FAVOURITES
 } from "./uiReducer.js";
 
@@ -329,6 +330,7 @@ function* mySaga() {
   yield takeLatest(LOAD_FAVOURITES_NOW, loadFavouritesGen);
   yield takeLatest(LOAD_UISTATE_NOW, loadUIStateGen);
   yield takeLatest(SET_SHOW_FAVOURITES, saveUIStateGen);
+  yield takeLatest(SET_APPEARANCES_VIEW, saveUIStateGen);
   yield takeLatest(
     favouritesDuxActions.toggleBandFavouriteStatus().type,
     toggleFavouriteGen

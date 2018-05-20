@@ -13,7 +13,7 @@ import preloadRNICimages from "../helper-functions/preload-rnic-images.js";
 import {
   bandsDuxActions,
   // bandsDuxConstants,
-  loadBandsNow
+  LOAD_BANDS_NOW
 } from "./bandsReducer.js";
 import {
   appearancesDuxActions
@@ -24,8 +24,13 @@ import { contactUsDuxActions } from "./contactUsReducer.js";
 import { stagesDuxActions } from "./stagesReducer.js";
 import {
   favouritesDuxActions,
-  loadFavouritesNow
+  LOAD_FAVOURITES_NOW
 } from "./favouritesReducer.js";
+import {
+  setFetchUIStateSucceeded,
+  LOAD_UISTATE_NOW,
+  SET_SHOW_FAVOURITES
+} from "./uiReducer.js";
 
 /*
 FastImage.preload([
@@ -255,20 +260,75 @@ function* toggleFavouriteGen(bandObj) {
   yield AsyncStorage.setItem("localFavourites", JSON.stringify(newFavourites));
 }
 
-function* toggleUISettingsGen() {
-  // console.log("toggling favourite " + JSON.stringify(bandObj, null, 4));
+function* saveUIStateGen() {
+  console.log("saveUIStateGen");
   const state = yield select();
-  const newUIState = state.favouritesState.favourites;
+  const newUIState = state.uiState;
+  console.log("newUIState:");
+  console.log(newUIState);
   // console.log("toggling favourite state is " + JSON.stringify(state, null, 4));
   // console.log("newFavourites is "+ newFavrites);
 
   yield AsyncStorage.setItem("uiState", JSON.stringify(newUIState));
 }
 
+function* loadUIStateGen() {
+  console.log("loadUIStateGen");
+  const loadedUIStateString = yield AsyncStorage.getItem("uiState");
+  console.log("loadedUIStateString: " + loadedUIStateString);
+  const loadedUIStateObj = loadedUIStateString
+    ? JSON.parse(loadedUIStateString)
+    : null;
+  yield put(setFetchUIStateSucceeded(loadedUIStateObj));
+}
+
+/*
+
+  try {
+    // const bandsDataNormalised = yield call(bandsApi.fetchBandsData);
+    const favouritesString = yield AsyncStorage.getItem("localFavourites");
+    console.log("favouritesString=" + favouritesString);
+
+    const favourites = favouritesString ? JSON.parse(favouritesString) : [];
+    const state = yield select();
+
+    yield put(
+      favouritesDuxActions.setFetchFavouritesSucceededScrubBandIds(
+        favourites,
+        state.bandsState.bandsList
+      )
+    );
+  } catch (e) {
+    console.log("loadFavouritesGen error=" + e);
+    yield put(favouritesDuxActions.setFetchFavouritesFailed(e));
+  }
+
+
+    const bandsDataNormalised = JSON.parse(bandsDataNormalisedString);
+
+    const homeText = bandsDataNormalised.homePageText || "Helstonbury...";
+    yield put(homeDuxActions.setFetchHomeSucceeded(homeText));
+
+    const bandsArray = bandsDataNormalised.bandsArray.filter(
+      bandMember => bandMember.bandId && bandMember.bandId !== ""
+    );
+    yield put(bandsDuxActions.setFetchBandsSucceeded(bandsArray));
+
+    const appearancesArray = bandsDataNormalised.appearancesArray.filter(
+      appearancesMember =>
+        appearancesMember.bandId && appearancesMember.bandId !== ""
+    );
+    yield put(
+      appearancesDuxActions.setFetchAppearancesSucceeded(appearancesArray)
+    );
+ */
+
 function* mySaga() {
   // yield takeLatest(bandsDuxConstants.LOAD_BANDS_NOW, loadBandsGen);
-  yield takeLatest(loadBandsNow().type, loadBandsGen);
-  yield takeLatest(loadFavouritesNow().type, loadFavouritesGen);
+  yield takeLatest(LOAD_BANDS_NOW, loadBandsGen);
+  yield takeLatest(LOAD_FAVOURITES_NOW, loadFavouritesGen);
+  yield takeLatest(LOAD_UISTATE_NOW, loadUIStateGen);
+  yield takeLatest(SET_SHOW_FAVOURITES, saveUIStateGen);
   yield takeLatest(
     favouritesDuxActions.toggleBandFavouriteStatus().type,
     toggleFavouriteGen

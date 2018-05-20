@@ -58,18 +58,18 @@ class AppearancesMenu extends Component {
     tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
   };
 
-  constructor(props) {
-    super(props);
-    const {
-      //  currentAppearancesView
-      showOnlyFavourites
-    } = this.props;
+  // constructor(props) {
+  //   super(props);
+  //   const {
+  //     //  currentAppearancesView
+  //     showOnlyFavourites
+  //   } = this.props;
 
-    this.state = {
-      // currentAppearancesView,
-      showOnlyFavourites
-    };
-  }
+  //   this.state = {
+  //     // currentAppearancesView,
+  //     showOnlyFavourites
+  //   };
+  // }
 
   handleDayStagePress = dayStage => {
     // console.log("handleDayStagePress, dayStage=" + dayStage);

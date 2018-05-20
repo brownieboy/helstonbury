@@ -2,12 +2,13 @@
 // what I've done, so this file not actually used.  I'll leave
 // it here for future reference.
 
-const SET_SHOW_FAVOURITES = "SET_SHOW_FAVOURITES";
+export const SET_SHOW_FAVOURITES = "SET_SHOW_FAVOURITES";
 const SET_APPEARANCES_VIEW = "SET_APPEARANCES_VIEW";
-const SET_SHOW_APPEARANCES_SIDE_MENU = "SET_SHOW_APPEARANCES_SIDE_MENU";
+// const SET_SHOW_APPEARANCES_SIDE_MENU = "SET_SHOW_APPEARANCES_SIDE_MENU";
 const SET_DAYS_ORDER = "SET_DAYS_ORDER";
 const SET_TIMES_ORDER = "SET_TIMES_ORDER";
 const FETCH_UISTATE_SUCCESS = "FETCH_UISTATE_SUCCESS";
+export const LOAD_UISTATE_NOW = "LOAD_UISTATE_NOW";
 
 const defaultState = {
   showOnlyFavourites: false,
@@ -31,7 +32,9 @@ const uiReducer = (state = defaultState, action) => {
     case SET_TIMES_ORDER:
       return { ...state, reverseTImesOrder: payload };
     case FETCH_UISTATE_SUCCESS: {
-      return payload;
+      console.log("uiReducer FETCH_UISTATE_SUCCESS:, payload:");
+      console.log(payload);
+      return payload;  // yep, the whole thing is replaced
     }
     default:
       return state;
@@ -67,6 +70,8 @@ export const setFetchUIStateSucceeded = uiState => ({
   type: FETCH_UISTATE_SUCCESS,
   payload: uiState || defaultState
 });
+
+export const loadUIStateNow = () => ({ type: LOAD_UISTATE_NOW });
 
 // Getters
 export const getShowOnlyFavourites = state => state.uiState.showOnlyFavourites;

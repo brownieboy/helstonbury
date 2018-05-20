@@ -3,7 +3,7 @@ import { createSelector } from "reselect";
 import { stringSort } from "../helper-functions/sorting.js";
 
 // Action type constants
-const LOAD_BANDS_NOW = "LOAD_BANDS_NOW"; // Imperative, hence "NOW"!
+export const LOAD_BANDS_NOW = "LOAD_BANDS_NOW"; // Imperative, hence "NOW"!
 const FETCH_BANDS_REQUEST = "FETCH_BANDS_REQUEST";
 const FETCH_BANDS_SUCCESS = "FETCH_BANDS_SUCCESS";
 const FETCH_BANDS_FAILURE = "FETCH_BANDS_FAILURE";

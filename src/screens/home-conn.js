@@ -6,10 +6,11 @@ import Home from "./home.js";
 
 import { loadBandsNow } from "../dux/bandsReducer.js";
 import { loadFavouritesNow } from "../dux/favouritesReducer.js";
+import { loadUIStateNow } from "../dux/uiReducer.js";
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
-    { loadBandsProp: loadBandsNow, loadFavouritesNowProp: loadFavouritesNow },
+    { loadBandsProp: loadBandsNow, loadFavouritesNowProp: loadFavouritesNow, loadUIStateNowProp: loadUIStateNow },
     dispatch
   );
 

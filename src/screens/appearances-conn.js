@@ -16,14 +16,14 @@ import {
   selectors as appearanceSelectors
 } from "../dux/appearancesReducer.js";
 
-// import {
-//   getShowOnlyFavourites,
-//   setShowOnlyFavourites,
-//   getAppearancesView,
-//   setShowAppearancesView,
-//   getAppearancesSideMenuVisible,
-//   setShowAppearancesSideMenu
-// } from "../dux/uiReducer.js";
+import {
+  getShowOnlyFavourites,
+  setShowOnlyFavourites
+  // getAppearancesView,
+  // setShowAppearancesView,
+  // getAppearancesSideMenuVisible,
+  // setShowAppearancesSideMenu
+} from "../dux/uiReducer.js";
 
 const mapStateToProps = state => ({
   appearancesListByDateTime: appearanceSelectors.selectAppearancesByDateTime(
@@ -36,7 +36,7 @@ const mapStateToProps = state => ({
   favourites: state.favouritesState.favourites,
   fetchStatus: getFetchStatus(state),
   // appearancesGroupedByDay: getAppearancesGroupedByDay(state),
-  // showOnlyFavourites: getShowOnlyFavourites(state),
+  showOnlyFavourites: getShowOnlyFavourites(state),
   // appearancesView: getAppearancesView(state),
   appearancesList: getAppearancesList(state),
   // appearancesSideMenuVisible: getAppearancesSideMenuVisible(state),
@@ -50,8 +50,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      loadappearancesProp: loadAppearances
-      // setShowOnlyFavourites,
+      loadappearancesProp: loadAppearances,
+      setShowOnlyFavourites
       // setShowAppearancesView,
       // setShowAppearancesSideMenu
     },

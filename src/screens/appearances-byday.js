@@ -143,8 +143,8 @@ class AppearancesByDay extends Component {
 
   getAppearancesListDayLevel = groupedDayData =>
     groupedDayData.map(dayMember => {
-      console.log("dayMember:");
-      console.log(dayMember);
+      // console.log("dayMember:");
+      // console.log(dayMember);
       return [
         <ListItem itemDivider key={dayMember.key}>
           <Text style={{ fontWeight: "bold" }}>{dayMember.key}</Text>

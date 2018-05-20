@@ -29,7 +29,7 @@ class Appearances extends Component {
     super(props);
     this.state = {
       activeAppearancesScreen: "day",
-      showOnlyFavourites: false,
+      // showOnlyFavourites: false,
       appearancesSideMenuVisible: false
     };
   }
@@ -44,8 +44,10 @@ class Appearances extends Component {
   };
 
   handleShowFavouritesPress = () => {
-    const newStatus = !this.state.showOnlyFavourites;
-    this.setState({ showOnlyFavourites: newStatus });
+    // const newStatus = !this.state.showOnlyFavourites;
+    // this.setState({ showOnlyFavourites: newStatus });
+    const { setShowOnlyFavourites, showOnlyFavourites } = this.props;
+    setShowOnlyFavourites(!showOnlyFavourites);
   };
 
   closeSideMenu = () => {
@@ -66,13 +68,14 @@ class Appearances extends Component {
       groupAppearancesByDay,
       groupAppearancesByDayStage,
       favourites,
-      navigation
+      navigation,
+      showOnlyFavourites
     } = this.props;
 
     const {
       activeAppearancesScreen,
-      appearancesSideMenuVisible,
-      showOnlyFavourites
+      appearancesSideMenuVisible
+      // showOnlyFavourites
     } = this.state;
     // console.log("activeAppearancesScreen=" + activeAppearancesScreen);
 
@@ -127,9 +130,7 @@ class Appearances extends Component {
             <Body style={{ flex: 6 }}>
               <Title>
                 Schedule{" "}
-                {activeAppearancesScreen === "day"
-                  ? "Times"
-                  : "Times by Stage"}
+                {activeAppearancesScreen === "day" ? "Times" : "Times by Stage"}
               </Title>
             </Body>
             <Right style={{ flex: 1 }}>
@@ -165,7 +166,8 @@ Appearances.propTypes = {
   groupAppearancesByDayStage: PropTypes.func.isRequired,
   groupAppearancesByDay: PropTypes.func.isRequired,
   favourites: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  navigation: PropTypes.object.isRequired
+  navigation: PropTypes.object.isRequired,
+  showOnlyFavourites: PropTypes.bool.isRequired
 };
 
 export default Appearances;

@@ -42,8 +42,13 @@ class Home extends Component {
 
   componentWillMount() {
     // console.log("BandsList..componentWillMount()");
-    const { loadBandsProp, loadFavouritesNowProp } = this.props;
+    const {
+      loadBandsProp,
+      loadFavouritesNowProp,
+      loadUIStateNowProp
+    } = this.props;
     loadBandsProp();
+    loadUIStateNowProp();
     loadFavouritesNowProp();
   }
 
@@ -128,6 +133,7 @@ class Home extends Component {
 Home.propTypes = {
   homeProp: PropTypes.object.isRequired,
   loadFavouritesNowProp: PropTypes.func.isRequired,
+  loadUIStateNowProp: PropTypes.func.isRequired,
   loadBandsProp: PropTypes.func.isRequired
 };
 

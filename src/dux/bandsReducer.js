@@ -1,6 +1,6 @@
 import { createSelector } from "reselect";
 
-import { stringSort } from "../helper-functions/sorting.js";
+import { stringSort, stringSortIgnoreArticle } from "../helper-functions/sorting.js";
 
 // Action type constants
 export const LOAD_BANDS_NOW = "LOAD_BANDS_NOW"; // Imperative, hence "NOW"!
@@ -44,9 +44,20 @@ const selectBands = state => state.bandsList;
 //   });
 // });
 
-const selectAlphabetical = createSelector([selectBands], bandsList =>
-  stringSort(bandsList.slice(), "name")
+/*
+const sortedArray = myArray.slice().sort((a, b) =>
+  a.name.replace(/^The /, "").localeCompare(b.name.replace(/^The /, ""))
 );
+
+ */
+
+const selectAlphabetical = createSelector([selectBands], bandsList =>
+  stringSortIgnoreArticle(bandsList.slice(), "name")
+);
+
+// const selectAlphabetical = createSelector([selectBands], bandsList =>
+//   stringSort(bandsList.slice(), "name")
+// );
 
 // const selectAlphabetical = () => selectBands();
 

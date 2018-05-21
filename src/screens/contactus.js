@@ -80,6 +80,7 @@ class ContactUs extends Component {
       mapLinkText,
       helstonburyWebSite = "http://www.helstonbury.com",
       helsonburyFacebookId = "382432781776899",
+      helstonburyMerchandiseFBID = "1555153094504856",
       venueAddress,
       venuePhone,
       venueEmail
@@ -192,7 +193,6 @@ class ContactUs extends Component {
                 </TouchableOpacity>
               </Right>
             </ListItem>
-
             <ListItem icon>
               <Left style={touchStyles.label}>
                 <Text style={touchStyles.labelText}>Web:</Text>
@@ -208,6 +208,29 @@ class ContactUs extends Component {
                     style={[touchStyles.icon, { fontSize: 25 }]}
                     name={Platform.OS === "ios" ? "safari" : "chrome"}
                   />
+                </TouchableOpacity>
+              </Right>
+            </ListItem>
+            <ListItem icon>
+              <Left style={touchStyles.label}>
+                <Text style={touchStyles.labelText}>Merhandise:</Text>
+              </Left>
+              <Body>
+                <TouchableOpacity
+                  onPress={() => openFacebookLink(helsonburyFacebookId)}
+                >
+                  <Text style={touchStyles.text}>Get your Helstonbury t-shirts!</Text>
+                </TouchableOpacity>
+              </Body>
+              <Right>
+                <TouchableOpacity
+                  onPress={() =>
+                    openFacebookLink(
+                      `${helsonburyFacebookId}/posts/${helstonburyMerchandiseFBID}`
+                    )
+                  }
+                >
+                  <Icon style={touchStyles.icon} name="shirt" />
                 </TouchableOpacity>
               </Right>
             </ListItem>

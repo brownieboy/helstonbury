@@ -69,6 +69,43 @@ class ContactUs extends Component {
     )
   };
 
+  HelsonburyFBMechandiseListItem = () => {
+    const {
+      helsonburyFacebookId,
+      helstonburyMerchandiseFBID,
+      helstonburyMerchandiseFBText
+    } = this.props;
+    return (
+      <ListItem icon>
+        <Left style={touchStyles.label}>
+          <Text style={touchStyles.labelText}>Merhandise:</Text>
+        </Left>
+        <Body>
+          <TouchableOpacity
+            onPress={() =>
+              openFacebookLink(
+                `${helsonburyFacebookId}/posts/${helstonburyMerchandiseFBID}`
+              )
+            }
+          >
+            <Text style={touchStyles.text}>{helstonburyMerchandiseFBText}</Text>
+          </TouchableOpacity>
+        </Body>
+        <Right>
+          <TouchableOpacity
+            onPress={() =>
+              openFacebookLink(
+                `${helsonburyFacebookId}/posts/${helstonburyMerchandiseFBID}`
+              )
+            }
+          >
+            <Icon style={touchStyles.icon} name="shirt" />
+          </TouchableOpacity>
+        </Right>
+      </ListItem>
+    );
+  };
+
   render() {
     // 50.100415, -5.276919
     const {
@@ -78,9 +115,11 @@ class ContactUs extends Component {
       mobile,
       gettingThereBlurb,
       mapLinkText,
-      helstonburyWebSite = "http://www.helstonbury.com",
-      helsonburyFacebookId = "382432781776899",
-      helstonburyMerchandiseFBID = "1555153094504856",
+      helstonburyWebSite = "",
+      helsonburyFacebookId = "",
+      helstonburyMerchandiseFBID = "",
+      // helsonburyFacebookId = "382432781776899",
+      // helstonburyMerchandiseFBID = "1555153094504856",
       venueAddress,
       venuePhone,
       venueEmail
@@ -192,31 +231,10 @@ class ContactUs extends Component {
                 </TouchableOpacity>
               </Right>
             </ListItem>
-            <ListItem icon>
-              <Left style={touchStyles.label}>
-                <Text style={touchStyles.labelText}>Merhandise:</Text>
-              </Left>
-              <Body>
-                <TouchableOpacity
-                  onPress={() => openFacebookLink(helsonburyFacebookId)}
-                >
-                  <Text style={touchStyles.text}>
-                    Get your Helstonbury t-shirts!
-                  </Text>
-                </TouchableOpacity>
-              </Body>
-              <Right>
-                <TouchableOpacity
-                  onPress={() =>
-                    openFacebookLink(
-                      `${helsonburyFacebookId}/posts/${helstonburyMerchandiseFBID}`
-                    )
-                  }
-                >
-                  <Icon style={touchStyles.icon} name="shirt" />
-                </TouchableOpacity>
-              </Right>
-            </ListItem>
+
+            {helstonburyMerchandiseFBID !== ""
+              ? this.HelsonburyFBMechandiseListItem
+              : null}
           </List>
 
           <H2 style={{ marginTop: 30, marginBottom: 10 }}>Location</H2>
@@ -376,6 +394,8 @@ ContactUs.propTypes = {
   email2: PropTypes.string,
   helstonburyWebSite: PropTypes.string,
   helsonburyFacebookId: PropTypes.string,
+  helstonburyMerchandiseFBID: PropTypes.string,
+  helstonburyMerchandiseFBText: PropTypes.string,
   mobile: PropTypes.string.isRequired,
   gettingThereBlurb: PropTypes.string.isRequired,
   mapLinkText: PropTypes.string.isRequired,

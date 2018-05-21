@@ -139,25 +139,6 @@ class ContactUs extends Component {
             </ListItem>
             <ListItem icon>
               <Left style={touchStyles.label}>
-                <Text style={touchStyles.labelText}>Email:</Text>
-              </Left>
-              <Body>
-                <TouchableOpacity
-                  onPress={() => email([email2], null, null, "Helstonbury", "")}
-                >
-                  <Text style={touchStyles.text}>{email2}</Text>
-                </TouchableOpacity>
-              </Body>
-              <Right>
-                <TouchableOpacity
-                  onPress={() => email([email2], null, null, "Helstonbury", "")}
-                >
-                  <Icon style={touchStyles.icon} name="mail" />
-                </TouchableOpacity>
-              </Right>
-            </ListItem>
-            <ListItem icon>
-              <Left style={touchStyles.label}>
                 <Text style={touchStyles.labelText}>Mobile:</Text>
               </Left>
               <Body>
@@ -219,7 +200,9 @@ class ContactUs extends Component {
                 <TouchableOpacity
                   onPress={() => openFacebookLink(helsonburyFacebookId)}
                 >
-                  <Text style={touchStyles.text}>Get your Helstonbury t-shirts!</Text>
+                  <Text style={touchStyles.text}>
+                    Get your Helstonbury t-shirts!
+                  </Text>
                 </TouchableOpacity>
               </Body>
               <Right>
@@ -330,7 +313,28 @@ class ContactUs extends Component {
 }
 
 /*
-  
+ 
+
+
+              <ListItem icon>
+              <Left style={touchStyles.label}>
+                <Text style={touchStyles.labelText}>Email:</Text>
+              </Left>
+              <Body>
+                <TouchableOpacity
+                  onPress={() => email([email2], null, null, "Helstonbury", "")}
+                >
+                  <Text style={touchStyles.text}>{email2}</Text>
+                </TouchableOpacity>
+              </Body>
+              <Right>
+                <TouchableOpacity
+                  onPress={() => email([email2], null, null, "Helstonbury", "")}
+                >
+                  <Icon style={touchStyles.icon} name="mail" />
+                </TouchableOpacity>
+              </Right>
+            </ListItem>
 
                   <TouchableOpacity
                   onPress={() => email([email2], null, null, "Helstonbury", "")}

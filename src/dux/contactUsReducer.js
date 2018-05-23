@@ -4,7 +4,7 @@ const FETCH_CONTACTUS_REQUEST = "FETCH_CONTACTUS_REQUEST";
 const FETCH_CONTACTUS_SUCCESS = "FETCH_CONTACTUS_SUCCESS";
 const FETCH_CONTACTUS_FAILURE = "FETCH_CONTACTUS_FAILURE";
 
-// helsonburyFacebookId = "382432781776899",
+// helstonburyFBID = "382432781776899",
 // helstonburyMerchandiseFBID = "1555153094504856",
 
 const defaultState = {
@@ -15,9 +15,10 @@ const defaultState = {
     startBlurb: "",
     email1: "",
     email2: "",
-    helsonburyFacebookId: "",
+    helstonburyFBID: "",
     helstonburyMerchandiseFBID: "",
     helstonburyMerchandiseFBText: "",
+    helstonburyWebUrl: "",
     mobile: "",
     gettingThereBlurb: "",
     mapLinkText: "",

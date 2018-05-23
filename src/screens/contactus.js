@@ -57,6 +57,43 @@ const otherTextStyles = StyleSheet.create({
   info: { fontSize: 14 }
 });
 
+const HelstonburyFBMechandiseListItem = ({
+  helstonburyFBID,
+  helstonburyMerchandiseFBID,
+  helstonburyMerchandiseFBText
+}) => {
+  console.log("HelstonburyFBMechandiseListItem");
+  return (
+    <ListItem icon>
+      <Left style={touchStyles.label}>
+        <Text style={touchStyles.labelText}>Merhandise:</Text>
+      </Left>
+      <Body>
+        <TouchableOpacity
+          onPress={() =>
+            openFacebookLink(
+              `${helstonburyFBID}/posts/${helstonburyMerchandiseFBID}`
+            )
+          }
+        >
+          <Text style={touchStyles.text}>{helstonburyMerchandiseFBText}</Text>
+        </TouchableOpacity>
+      </Body>
+      <Right>
+        <TouchableOpacity
+          onPress={() =>
+            openFacebookLink(
+              `${helstonburyFBID}/posts/${helstonburyMerchandiseFBID}`
+            )
+          }
+        >
+          <Icon style={touchStyles.icon} name="shirt" />
+        </TouchableOpacity>
+      </Right>
+    </ListItem>
+  );
+};
+
 class ContactUs extends Component {
   static navigationOptions = {
     tabBarLabel: "Home",
@@ -69,43 +106,6 @@ class ContactUs extends Component {
     )
   };
 
-  HelsonburyFBMechandiseListItem = () => {
-    const {
-      helsonburyFacebookId,
-      helstonburyMerchandiseFBID,
-      helstonburyMerchandiseFBText
-    } = this.props;
-    return (
-      <ListItem icon>
-        <Left style={touchStyles.label}>
-          <Text style={touchStyles.labelText}>Merhandise:</Text>
-        </Left>
-        <Body>
-          <TouchableOpacity
-            onPress={() =>
-              openFacebookLink(
-                `${helsonburyFacebookId}/posts/${helstonburyMerchandiseFBID}`
-              )
-            }
-          >
-            <Text style={touchStyles.text}>{helstonburyMerchandiseFBText}</Text>
-          </TouchableOpacity>
-        </Body>
-        <Right>
-          <TouchableOpacity
-            onPress={() =>
-              openFacebookLink(
-                `${helsonburyFacebookId}/posts/${helstonburyMerchandiseFBID}`
-              )
-            }
-          >
-            <Icon style={touchStyles.icon} name="shirt" />
-          </TouchableOpacity>
-        </Right>
-      </ListItem>
-    );
-  };
-
   render() {
     // 50.100415, -5.276919
     const {
@@ -115,15 +115,19 @@ class ContactUs extends Component {
       mobile,
       gettingThereBlurb,
       mapLinkText,
-      helstonburyWebSite = "",
-      helsonburyFacebookId = "",
+      helstonburyWebUrl = "http://www.helstonbury.com",
+      helstonburyFBID = "",
       helstonburyMerchandiseFBID = "",
-      // helsonburyFacebookId = "382432781776899",
+      helstonburyMerchandiseFBText,
+      // helstonburyFBID = "382432781776899",
       // helstonburyMerchandiseFBID = "1555153094504856",
       venueAddress,
       venuePhone,
       venueEmail
     } = this.props;
+
+    console.log("contactus.js page, props:");
+    console.log(this.props);
 
     const developerDetails = `App developed for ${
       Platform.OS === "ios" ? "iOS" : "Android"
@@ -200,14 +204,14 @@ class ContactUs extends Component {
               </Left>
               <Body>
                 <TouchableOpacity
-                  onPress={() => openFacebookLink(helsonburyFacebookId)}
+                  onPress={() => openFacebookLink(helstonburyFBID)}
                 >
                   <Text style={touchStyles.text}>Helstonbury Facebook</Text>
                 </TouchableOpacity>
               </Body>
               <Right>
                 <TouchableOpacity
-                  onPress={() => openFacebookLink(helsonburyFacebookId)}
+                  onPress={() => openFacebookLink(helstonburyFBID)}
                 >
                   <Icon style={touchStyles.icon} name="logo-facebook" />
                 </TouchableOpacity>
@@ -218,12 +222,12 @@ class ContactUs extends Component {
                 <Text style={touchStyles.labelText}>Web:</Text>
               </Left>
               <Body>
-                <TouchableOpacity onPress={() => web(helstonburyWebSite)}>
+                <TouchableOpacity onPress={() => web(helstonburyWebUrl)}>
                   <Text style={touchStyles.text}>www.helstonbury.com</Text>
                 </TouchableOpacity>
               </Body>
               <Right>
-                <TouchableOpacity onPress={() => web(helstonburyWebSite)}>
+                <TouchableOpacity onPress={() => web(helstonburyWebUrl)}>
                   <IconFontAwesome
                     style={[touchStyles.icon, { fontSize: 25 }]}
                     name={Platform.OS === "ios" ? "safari" : "chrome"}
@@ -231,10 +235,15 @@ class ContactUs extends Component {
                 </TouchableOpacity>
               </Right>
             </ListItem>
-
-            {helstonburyMerchandiseFBID !== ""
-              ? this.HelsonburyFBMechandiseListItem
-              : null}
+            {helstonburyMerchandiseFBID !== "" ? (
+              <HelstonburyFBMechandiseListItem
+                fbProps={{
+                  helstonburyFBID,
+                  helstonburyMerchandiseFBID,
+                  helstonburyMerchandiseFBText
+                }}
+              />
+            ) : null}
           </List>
 
           <H2 style={{ marginTop: 30, marginBottom: 10 }}>Location</H2>
@@ -392,8 +401,8 @@ ContactUs.propTypes = {
   startBlurb: PropTypes.string.isRequired,
   email1: PropTypes.string.isRequired,
   email2: PropTypes.string,
-  helstonburyWebSite: PropTypes.string,
-  helsonburyFacebookId: PropTypes.string,
+  helstonburyWebUrl: PropTypes.string,
+  helstonburyFBID: PropTypes.string,
   helstonburyMerchandiseFBID: PropTypes.string,
   helstonburyMerchandiseFBText: PropTypes.string,
   mobile: PropTypes.string.isRequired,

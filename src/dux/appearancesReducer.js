@@ -142,7 +142,7 @@ const sortAppearancesByDateTime = appearancesList => {
 };
 
 export const groupAppearancesByDay = (appearances, reverseTimesOrder) => {
-  console.log("groupAppearancesByDay, reverseTimesOrder=" + reverseTimesOrder);
+  // console.log("groupAppearancesByDay, reverseTimesOrder=" + reverseTimesOrder);
 
   const appearancesList = [...sortAppearancesByDateTime(appearances, false)];
   const appearancesGrouped = d3
@@ -168,8 +168,8 @@ export const groupAppearancesByDay = (appearances, reverseTimesOrder) => {
           : new Date(a.dateTimeStart) - new Date(b.dateTimeStart)
     )
     .entries(appearancesList);
-  console.log("ascending appearancesGrouped:");
-  console.log(appearancesGrouped);
+  // console.log("ascending appearancesGrouped:");
+  // console.log(appearancesGrouped);
   return appearancesGrouped;
 };
 

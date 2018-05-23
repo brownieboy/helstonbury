@@ -27,6 +27,12 @@ const mapStateToPropsEdit = state => ({
   email1: state.contactUsState.contactUs.email1,
   email2: state.contactUsState.contactUs.email2,
   mobile: state.contactUsState.contactUs.mobile,
+  helstonburyFBID: state.contactUsState.contactUs.helstonburyFBID,
+  helstonburyMerchandiseFBID:
+    state.contactUsState.contactUs.helstonburyMerchandiseFBID,
+  helstonburyMerchandiseFBText:
+    state.contactUsState.contactUs.helstonburyMerchandiseFBText,
+  helstonburyWebUrl: state.contactUsState.contactUs.helstonburyWebUrl,
   gettingThereBlurb: state.contactUsState.contactUs.gettingThereBlurb,
   mapLinkText: state.contactUsState.contactUs.mapLinkText,
   venueAddress: state.contactUsState.contactUs.venueAddress,

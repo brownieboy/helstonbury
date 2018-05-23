@@ -201,6 +201,8 @@ function* loadBandsGen() {
     yield put(stagesDuxActions.setFetchStagesSucceeded(stagesArray));
 
     const contactsPage = bandsDataNormalised.contactsPage || {};
+    console.log("saga contactsPage:");
+    console.log(contactsPage);
     yield put(contactUsDuxActions.setFetchContactUsSucceeded(contactsPage));
 
     // Lumping them together like this was too slow to update, especially for the

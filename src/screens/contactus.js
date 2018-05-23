@@ -237,11 +237,9 @@ class ContactUs extends Component {
             </ListItem>
             {helstonburyMerchandiseFBID !== "" ? (
               <HelstonburyFBMechandiseListItem
-                fbProps={{
-                  helstonburyFBID,
-                  helstonburyMerchandiseFBID,
-                  helstonburyMerchandiseFBText
-                }}
+                helstonburyFBID={helstonburyFBID}
+                helstonburyMerchandiseFBID={helstonburyMerchandiseFBID}
+                helstonburyMerchandiseFBText={helstonburyMerchandiseFBText}
               />
             ) : null}
           </List>

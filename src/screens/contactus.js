@@ -72,7 +72,7 @@ const HelstonburyFBMechandiseListItem = ({
         <TouchableOpacity
           onPress={() =>
             openFacebookLink(
-              `${helstonburyFBID}/posts/${helstonburyMerchandiseFBID}`
+              `${helstonburyFBID}/posts/${helstonburyMerchandiseFBID}`, true
             )
           }
         >
@@ -83,7 +83,7 @@ const HelstonburyFBMechandiseListItem = ({
         <TouchableOpacity
           onPress={() =>
             openFacebookLink(
-              `${helstonburyFBID}/posts/${helstonburyMerchandiseFBID}`
+              `${helstonburyFBID}/posts/${helstonburyMerchandiseFBID}`, true
             )
           }
         >

@@ -182,38 +182,38 @@ function* loadBandsGen() {
     // down from Firebase
     //
     const homeText = bandsDataNormalised.homePageText || "Helstonbury...";
-    yield put(homeDuxActions.setFetchHomeSucceeded(homeText));
+    // yield put(homeDuxActions.setFetchHomeSucceeded(homeText));
 
     const bandsArray = bandsDataNormalised.bandsArray.filter(
       bandMember => bandMember.bandId && bandMember.bandId !== ""
     );
-    yield put(bandsDuxActions.setFetchBandsSucceeded(bandsArray));
+    // yield put(bandsDuxActions.setFetchBandsSucceeded(bandsArray));
 
     const appearancesArray = bandsDataNormalised.appearancesArray.filter(
       appearancesMember =>
         appearancesMember.bandId && appearancesMember.bandId !== ""
     );
-    yield put(
-      appearancesDuxActions.setFetchAppearancesSucceeded(appearancesArray)
-    );
+    // yield put(
+    //   appearancesDuxActions.setFetchAppearancesSucceeded(appearancesArray)
+    // );
 
     const stagesArray = bandsDataNormalised.stagesArray || [];
-    yield put(stagesDuxActions.setFetchStagesSucceeded(stagesArray));
+    // yield put(stagesDuxActions.setFetchStagesSucceeded(stagesArray));
 
     const contactsPage = bandsDataNormalised.contactsPage || {};
     console.log("saga contactsPage:");
     console.log(contactsPage);
-    yield put(contactUsDuxActions.setFetchContactUsSucceeded(contactsPage));
+    // yield put(contactUsDuxActions.setFetchContactUsSucceeded(contactsPage));
 
     // Lumping them together like this was too slow to update, especially for the
     // home page.
-    // yield all([
-    //   put(homeDuxActions.setFetchHomeSucceeded(homeText)),
-    //   put(bandsDuxActions.setFetchBandsSucceeded(bandsArray)),
-    //   put(appearancesDuxActions.setFetchAppearancesSucceeded(appearancesArray)),
-    //   put(stagesDuxActions.setFetchStagesSucceeded(stagesArray)),
-    //   put(contactUsDuxActions.setFetchContactUsSucceeded(contactsPage))
-    // ]);
+    yield all([
+      put(homeDuxActions.setFetchHomeSucceeded(homeText)),
+      put(bandsDuxActions.setFetchBandsSucceeded(bandsArray)),
+      put(appearancesDuxActions.setFetchAppearancesSucceeded(appearancesArray)),
+      put(stagesDuxActions.setFetchStagesSucceeded(stagesArray)),
+      put(contactUsDuxActions.setFetchContactUsSucceeded(contactsPage))
+    ]);
 
     preloadImages([...bandsArray, ...stagesArray]);
   } catch (e) {

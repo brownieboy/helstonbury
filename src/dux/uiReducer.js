@@ -13,7 +13,7 @@ export const LOAD_UISTATE_NOW = "LOAD_UISTATE_NOW";
 const defaultState = {
   showOnlyFavourites: false,
   // showAppearancesSideMenu: false,
-  appearancesView: "day",
+  appearancesView: "stage",
   reverseDaysOrder: false,
   reverseTimesOrder: true
 };

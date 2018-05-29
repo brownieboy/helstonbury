@@ -142,25 +142,6 @@ class AppearancesMenu extends Component {
               </Text>
             </Body>
           </ListItem>
-          <ListItem icon onPress={() => this.handleDayStagePress("day")}>
-            <Left>
-              <Button
-                onPress={() => this.handleDayStagePress("day")}
-                style={{ backgroundColor: "#007AFF" }}
-              >
-                <Icon active name="calendar" />
-              </Button>
-            </Left>
-            <Body>
-              <Text style={styles.menuItems.text}>Times by Day</Text>
-            </Body>
-            <Right>
-              <Radio
-                onPress={() => this.handleDayStagePress("day")}
-                selected={activeAppearancesScreen === "day"}
-              />
-            </Right>
-          </ListItem>
           <ListItem icon onPress={() => this.handleDayStagePress("stage")}>
             <Left>
               <Button
@@ -182,6 +163,25 @@ class AppearancesMenu extends Component {
               <Radio
                 onPress={() => this.handleDayStagePress("stage")}
                 selected={activeAppearancesScreen === "stage"}
+              />
+            </Right>
+          </ListItem>
+          <ListItem icon onPress={() => this.handleDayStagePress("day")}>
+            <Left>
+              <Button
+                onPress={() => this.handleDayStagePress("day")}
+                style={{ backgroundColor: "#007AFF" }}
+              >
+                <Icon active name="calendar" />
+              </Button>
+            </Left>
+            <Body>
+              <Text style={styles.menuItems.text}>Times by Day</Text>
+            </Body>
+            <Right>
+              <Radio
+                onPress={() => this.handleDayStagePress("day")}
+                selected={activeAppearancesScreen === "day"}
               />
             </Right>
           </ListItem>

@@ -112,7 +112,11 @@ class AppearancesByDayStage extends Component {
   };
 
   getStageSummaryText = stageInfo => {
-    if (typeof stageInfo.summary !== "undefined" && stageInfo.summary !== "") {
+    if (
+      typeof stageInfo !== "undefined" &&
+      typeof stageInfo.summary !== "undefined" &&
+      stageInfo.summary !== ""
+    ) {
       return (
         <Text style={{ fontSize: 12, fontStyle: "italic", marginLeft: 5 }}>
           ({stageInfo.summary})
@@ -133,7 +137,7 @@ class AppearancesByDayStage extends Component {
           <Text
             style={{ fontWeight: "bold", fontStyle: "italic", fontSize: 14 }}
           >
-            {stageInfo.name}
+            {typeof stageInfo !== "undefined" ? stageInfo.name : stageId}
           </Text>
           {this.getStageSummaryText(stageInfo)}
         </ListItem>,

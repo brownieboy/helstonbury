@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Platform, View } from "react-native";
+import { Dimensions, Platform, View } from "react-native";
 import { format } from "date-fns";
 import SideMenu from "react-native-side-menu";
 
@@ -23,7 +23,30 @@ import {
 import FavouritesListIcon from "../components/favourites-list-icon.js";
 import NoAppearancesToDisplayMessage from "../components/no-appearances-todisplay-message.js";
 
+const smallestLandscapeWidth = 568;
+
 class AppearancesByDayStage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      screenMode:
+        Dimensions.get("window").width >= smallestLandscapeWidth
+          ? "landscape"
+          : "portrait"
+    };
+  }
+
+  handleOnLayout = () => {
+    this.setState({
+      screenMode:
+        Dimensions.get("window").width >= smallestLandscapeWidth
+          ? "landscape"
+          : "portrait"
+    });
+    // const { height, width } = Dimensions.get("window");
+    // console.log("width=" + width);
+  };
+
   getFavouritesButton = showOnlyFavourites => {
     let heart = "ios-heart";
     let heartOutline = "ios-heart-outline";
@@ -39,6 +62,22 @@ class AppearancesByDayStage extends Component {
         />
       </Button>
     );
+  };
+
+  getBandSummaryText = bandInfo => {
+    console.log("getBandSummaryText for " + bandInfo.name);
+    if (
+      this.state.screenMode === "landscape" &&
+      typeof bandInfo.bandSummary !== "undefined" &&
+      bandInfo.bandSummary !== ""
+    ) {
+      return (
+        <Text style={{ fontSize: 12, flex: 15, marginLeft: 4 }}>
+          {bandInfo.bandSummary}
+        </Text>
+      );
+    }
+    return null;
   };
 
   getAppearanceLines = lineData => {
@@ -81,6 +120,7 @@ class AppearancesByDayStage extends Component {
               "HH:mm"
             )} `}</Text>
             <Text style={{ fontSize: 14, flex: 8 }}>{lineMember.bandName}</Text>
+            {this.getBandSummaryText(lineMember)}
           </Left>
           <Right
             style={{
@@ -192,6 +232,7 @@ class AppearancesByDayStage extends Component {
             showOnlyFavourites={showOnlyFavourites}
           />
         )}
+        <View onLayout={this.handleOnLayout} />
       </Content>
     );
   }

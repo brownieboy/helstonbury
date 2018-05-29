@@ -29,13 +29,12 @@ const stagesReducer = (
   }
 };
 
-
 /*
 export const selectStages = state =>
   state.stagesState.stagesList.sort((a, b) => a.sortOrder - b.sortOrder);
  */
 // Sort/filter functions for selectors
-const selectStages = state => state.stagesState.stagesList;
+export const selectStages = state => state.stagesState.stagesList;
 export const selectStagesBySortOrder = state =>
   state.stagesState.stagesList.sort((a, b) => a.sortOrder - b.sortOrder);
 
@@ -82,8 +81,9 @@ export const stagesDuxActions = {
 // };
 
 // Getters don't use redux-select
-// export const getBandInfoForId = (stagesList, bandId) =>
-//  (stagesList ? stagesList.find(bandMember => bandMember.id === bandId) : null);
+export const getStageInfoForId = (stagesList, stageId) =>
+  stagesList
+    ? stagesList.find(stageMember => stageMember.id === stageId)
+    : null;
 
 export default stagesReducer;
-

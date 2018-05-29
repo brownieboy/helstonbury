@@ -188,7 +188,7 @@ export const groupAppearancesByDayStage = (appearances, reverseTimesOrder) => {
         "dddd MMM Do YYYY"
       )
     )
-    .key(appearance => `${appearance.stageSortOrder}~${appearance.stageName}`)
+    .key(appearance => `${appearance.stageSortOrder}~${appearance.stageId}`)
     .sortKeys(
       (a, b) => parseInt(a.split("~")[0], 10) - parseInt(b.split("~")[0], 10)
     )

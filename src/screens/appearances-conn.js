@@ -27,6 +27,8 @@ import {
   // setShowAppearancesSideMenu
 } from "../dux/uiReducer.js";
 
+import { selectStages, getStageInfoForId } from "../dux/stagesReducer.js";
+
 const mapStateToProps = state => ({
   appearancesListByDateTime: appearanceSelectors.selectAppearancesByDateTime(
     state.appearancesState
@@ -43,6 +45,7 @@ const mapStateToProps = state => ({
   appearancesView: getAppearancesView(state),
   appearancesList: getAppearancesList(state),
   // appearancesSideMenuVisible: getAppearancesSideMenuVisible(state),
+  getStageInfo: stageId => getStageInfoForId(selectStages(state), stageId),
   filterAppearancesByBandId: (appearances, bandsToFilterArray) =>
     filterAppearancesByBandId(appearances, bandsToFilterArray),
   groupAppearancesByDay: (appearances, reverseTimesOrder) =>

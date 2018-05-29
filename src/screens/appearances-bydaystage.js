@@ -111,17 +111,37 @@ class AppearancesByDayStage extends Component {
     });
   };
 
-  getAppearancesStageLevel = groupedStageData =>
-    groupedStageData.map(stageMember => [
-      <ListItem key={stageMember.key}>
-        <Text style={{ fontWeight: "bold", fontStyle: "italic", fontSize: 13 }}>
-          {stageMember.key.split("~")[1]}
+  getStageSummaryText = stageInfo => {
+    if (typeof stageInfo.summary !== "undefined" && stageInfo.summary !== "") {
+      return (
+        <Text style={{ fontSize: 12, fontStyle: "italic", marginLeft: 5 }}>
+          ({stageInfo.summary})
         </Text>
-      </ListItem>,
-      <View key={`${stageMember.key}-lineswrapper`}>
-        {this.getAppearanceLines(stageMember.values)}
-      </View>
-    ]);
+      );
+    }
+    return null;
+  };
+
+  getAppearancesStageLevel = groupedStageData =>
+    groupedStageData.map(stageMember => {
+      const stageId = stageMember.key.split("~")[1];
+      const stageInfo = this.props.getStageInfo(stageId);
+      // console.log("stageInfo for " + stageId + ":");
+      // console.log(stageInfo);
+      return [
+        <ListItem key={stageId}>
+          <Text
+            style={{ fontWeight: "bold", fontStyle: "italic", fontSize: 14 }}
+          >
+            {stageInfo.name}
+          </Text>
+          {this.getStageSummaryText(stageInfo)}
+        </ListItem>,
+        <View key={`${stageMember.key}-lineswrapper`}>
+          {this.getAppearanceLines(stageMember.values)}
+        </View>
+      ];
+    });
 
   getAppearancesListDayLevel = groupedDayData =>
     groupedDayData.map(dayMember => [
@@ -179,6 +199,7 @@ AppearancesByDayStage.propTypes = {
   appearancesList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   fetchStatus: PropTypes.string.isRequired,
   filterAppearancesByBandId: PropTypes.func.isRequired,
+  getStageInfo: PropTypes.func.isRequired,
   groupAppearancesByDayStage: PropTypes.func.isRequired,
   favourites: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   navigation: PropTypes.object.isRequired,

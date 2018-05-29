@@ -10,7 +10,7 @@ import {
   filterAppearancesByBandId,
   groupAppearancesByDay,
   groupAppearancesByDayStage,
-  getAppearancesGroupedByDay,
+  // getAppearancesGroupedByDay,
   getFetchStatus,
   loadAppearances,
   selectors as appearanceSelectors

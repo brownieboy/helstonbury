@@ -5,13 +5,13 @@ import { connect } from "react-redux";
 import StagesList from "./stages-list.js";
 
 // Dux stuff
-import { selectors as stagesSelectors, selectStages } from "../dux/stagesReducer.js";
+import { selectors as stagesSelectors, selectStagesBySortOrder } from "../dux/stagesReducer.js";
 
 const mapDispatchToProps = () => ({});
 
 const mapStateToProps = state => ({
   // stagesStateProp: state.stagesState,
-  stagesList: selectStages(state)
+  stagesList: selectStagesBySortOrder(state)
   // stagesList: stagesSelectors.selectAlphabetical(state)
 });
 

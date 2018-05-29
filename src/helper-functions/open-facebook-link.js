@@ -1,6 +1,6 @@
 import { Linking, Platform } from "react-native";
 
-const openFacebookLink = facebookId => {
+const openFacebookLink = (facebookId, forceWeb = false) => {
   const FANPAGE_URL_FOR_APP = `fb://profile/${facebookId}`;
   const FANPAGE_URL_FOR_BROWSER = `https://fb.com/${facebookId}`;
 
@@ -8,7 +8,7 @@ const openFacebookLink = facebookId => {
 
   Linking.canOpenURL(FANPAGE_URL_FOR_APP)
     .then(appSupported => {
-      if (appSupported && Platform.OS === "ios") {
+      if (appSupported && Platform.OS === "ios" && !forceWeb) {
         console.log(`Can handle native url: ${FANPAGE_URL_FOR_APP}`);
         return Linking.openURL(FANPAGE_URL_FOR_APP);
       } else {

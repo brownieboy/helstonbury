@@ -8,6 +8,32 @@ import { Platform } from "react-native";
 
 import MainNav from "./src/main-nav.js";
 
+import { whyDidYouUpdate } from "why-did-you-update";
+
+// whyDidYouUpdate(React);
+whyDidYouUpdate(React, {
+  exclude: [
+    /^Styled*/,
+    /^Thumbnail/,
+    /^Title/,
+    /^ParsedText/,
+    /^Icon/,
+    /^IconNB/,
+    /^Right/,
+    /^Left/,
+    /^ListItem/,
+    /^Body/,
+    /^CachedImage/,
+    /^TabBarIcon/,
+    /^Text/,
+    /^Radio/,
+    /^Switch/,
+    /^Header/,
+    /^H2/,
+    /^SafeView/
+  ]
+});
+
 const store = configureStore({});
 
 class App extends Component {

@@ -68,7 +68,7 @@ class BandsList extends Component {
     tabBarIcon: ({ tintColor }) => <BandsTabIcon tintColor={tintColor} />
   };
 
-  constructor(props) {
+  /*  constructor(props) {
     super(props);
     this.state = {
       // tabs: [
@@ -79,10 +79,10 @@ class BandsList extends Component {
       // ],
       // bandsList: bandsListData.bandsList
     };
-  }
+  } */
 
   componentWillMount() {
-    // console.log("BandsList..componentWillMount()");
+    console.log("BandsList..componentWillMount() as PureComponent");
     const { loadBandsProp, loadFavouritesNowProp } = this.props;
     loadBandsProp();
     // loadFavouritesNowProp();

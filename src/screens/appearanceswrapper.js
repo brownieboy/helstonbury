@@ -24,7 +24,7 @@ import styles from "../styles/band-card-styles.js";
 const optionsButtonStyles =
   Platform.OS === "android" ? { color: "white" } : null;
 
-class Appearances extends Component {
+class AppearancesWrapper extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -170,7 +170,7 @@ class Appearances extends Component {
   }
 }
 
-Appearances.propTypes = {
+AppearancesWrapper.propTypes = {
   appearancesList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   appearancesView: PropTypes.string.isRequired,
   fetchStatus: PropTypes.string.isRequired,
@@ -187,4 +187,4 @@ Appearances.propTypes = {
   showOnlyFavourites: PropTypes.bool.isRequired
 };
 
-export default Appearances;
+export default AppearancesWrapper;

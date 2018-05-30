@@ -9,11 +9,10 @@ import { Platform } from "react-native";
 import MainNav from "./src/main-nav.js";
 
 import { whyDidYouUpdate } from "why-did-you-update";
-
-// whyDidYouUpdate(React);
 whyDidYouUpdate(React, {
   exclude: [
     /^Styled*/,
+    /^Connect/,
     /^Thumbnail/,
     /^Title/,
     /^ParsedText/,

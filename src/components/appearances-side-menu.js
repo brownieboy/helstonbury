@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import {
   //   Dimensions,
@@ -52,11 +52,16 @@ const styles = {
 }
  */
 
-class AppearancesMenu extends Component {
+class AppearancesMenu extends PureComponent {
   static navigationOptions = {
     tabBarLabel: "by Day",
     tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
   };
+
+  // shouldComponentUpdate(nextProps) {
+
+  // }
+
 
   // constructor(props) {
   //   super(props);

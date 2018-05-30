@@ -65,7 +65,7 @@ class AppearancesByDayStage extends Component {
   };
 
   getBandSummaryText = bandInfo => {
-    console.log("getBandSummaryText for " + bandInfo.name);
+    // console.log("getBandSummaryText for " + bandInfo.name);
     if (
       this.state.screenMode === "landscape" &&
       typeof bandInfo.bandSummary !== "undefined" &&

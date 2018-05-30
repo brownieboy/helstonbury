@@ -32,8 +32,8 @@ const uiReducer = (state = defaultState, action) => {
     case SET_TIMES_ORDER:
       return { ...state, reverseTimesOrder: payload };
     case FETCH_UISTATE_SUCCESS: {
-      console.log("uiReducer FETCH_UISTATE_SUCCESS:, payload:");
-      console.log(payload);
+      // console.log("uiReducer FETCH_UISTATE_SUCCESS:, payload:");
+      // console.log(payload);
       return payload; // yep, the whole thing is replaced
     }
     default:

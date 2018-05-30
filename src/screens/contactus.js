@@ -62,7 +62,7 @@ const HelstonburyFBMechandiseListItem = ({
   helstonburyMerchandiseFBID,
   helstonburyMerchandiseFBText
 }) => {
-  console.log("HelstonburyFBMechandiseListItem");
+  // console.log("HelstonburyFBMechandiseListItem");
   return (
     <ListItem icon>
       <Left style={touchStyles.label}>
@@ -72,7 +72,8 @@ const HelstonburyFBMechandiseListItem = ({
         <TouchableOpacity
           onPress={() =>
             openFacebookLink(
-              `${helstonburyFBID}/posts/${helstonburyMerchandiseFBID}`, true
+              `${helstonburyFBID}/posts/${helstonburyMerchandiseFBID}`,
+              true
             )
           }
         >
@@ -83,7 +84,8 @@ const HelstonburyFBMechandiseListItem = ({
         <TouchableOpacity
           onPress={() =>
             openFacebookLink(
-              `${helstonburyFBID}/posts/${helstonburyMerchandiseFBID}`, true
+              `${helstonburyFBID}/posts/${helstonburyMerchandiseFBID}`,
+              true
             )
           }
         >
@@ -126,8 +128,8 @@ class ContactUs extends Component {
       venueEmail
     } = this.props;
 
-    console.log("contactus.js page, props:");
-    console.log(this.props);
+    // console.log("contactus.js page, props:");
+    // console.log(this.props);
 
     const developerDetails = `App developed for ${
       Platform.OS === "ios" ? "iOS" : "Android"
@@ -393,6 +395,7 @@ class ContactUs extends Component {
                 <Icon style={touchStyles.icon} name="text" />
               </Right>
             </ListItem>
+
 */
 
 ContactUs.propTypes = {
@@ -409,6 +412,12 @@ ContactUs.propTypes = {
   venueAddress: PropTypes.string.isRequired,
   venuePhone: PropTypes.string.isRequired,
   venueEmail: PropTypes.string.isRequired
+};
+
+HelstonburyFBMechandiseListItem.propTypes = {
+  helstonburyFBID: PropTypes.string,
+  helstonburyMerchandiseFBID: PropTypes.string,
+  helstonburyMerchandiseFBText: PropTypes.string
 };
 
 export default ContactUs;

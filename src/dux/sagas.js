@@ -62,7 +62,7 @@ export function createEventChannel(ref) {
 }
 
 function* updatedItemSaga() {
-  console.log("running updatedItemSaga...");
+  // console.log("running updatedItemSaga...");
   const updateChannel = createEventChannel(
     firebaseApp.database().ref("publishedData")
   );
@@ -201,8 +201,8 @@ function* loadBandsGen() {
     // yield put(stagesDuxActions.setFetchStagesSucceeded(stagesArray));
 
     const contactsPage = bandsDataNormalised.contactsPage || {};
-    console.log("saga contactsPage:");
-    console.log(contactsPage);
+    // console.log("saga contactsPage:");
+    // console.log(contactsPage);
     // yield put(contactUsDuxActions.setFetchContactUsSucceeded(contactsPage));
 
     // Lumping them together like this was too slow to update, especially for the
@@ -226,12 +226,12 @@ function* loadBandsGen() {
 }
 
 function* loadFavouritesGen() {
-  console.log("getting favourites");
+  // console.log("getting favourites");
   yield put(favouritesDuxActions.setFetchFavouritesRequest());
   try {
     // const bandsDataNormalised = yield call(bandsApi.fetchBandsData);
     const favouritesString = yield AsyncStorage.getItem("localFavourites");
-    console.log("favouritesString=" + favouritesString);
+    // console.log("favouritesString=" + favouritesString);
 
     const favourites = favouritesString ? JSON.parse(favouritesString) : [];
     const state = yield select();
@@ -264,11 +264,11 @@ function* toggleFavouriteGen(bandObj) {
 }
 
 function* saveUIStateGen() {
-  console.log("saveUIStateGen");
+  // console.log("saveUIStateGen");
   const state = yield select();
   const newUIState = state.uiState;
-  console.log("newUIState:");
-  console.log(newUIState);
+  // console.log("newUIState:");
+  // console.log(newUIState);
   // console.log("toggling favourite state is " + JSON.stringify(state, null, 4));
   // console.log("newFavourites is "+ newFavrites);
 
@@ -276,9 +276,9 @@ function* saveUIStateGen() {
 }
 
 function* loadUIStateGen() {
-  console.log("loadUIStateGen");
+  // console.log("loadUIStateGen");
   const loadedUIStateString = yield AsyncStorage.getItem("uiState");
-  console.log("loadedUIStateString: " + loadedUIStateString);
+  // console.log("loadedUIStateString: " + loadedUIStateString);
   const loadedUIStateObj = loadedUIStateString
     ? JSON.parse(loadedUIStateString)
     : null;

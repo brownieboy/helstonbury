@@ -82,7 +82,7 @@ class Appearances extends Component {
       appearancesSideMenuVisible
       // showOnlyFavourites
     } = this.state;
-     console.log("appearanceswrapper.js, reverseTimesOrder=" + reverseTimesOrder);
+     // console.log("appearanceswrapper.js, reverseTimesOrder=" + reverseTimesOrder);
 
     const sharedChildProps = {
       appearancesList,
@@ -98,7 +98,7 @@ class Appearances extends Component {
       reverseTimesOrder
     };
 
-    console.log("appearanceswrapper.js, appearancesView:" + appearancesView);
+    // console.log("appearanceswrapper.js, appearancesView:" + appearancesView);
 
     // let heart = "ios-heart";
     // let heartOutline = "ios-heart-outline";

@@ -161,13 +161,15 @@ const preloadImages = itemsArray => {
 // data, not just bands
 function* loadBandsGen() {
   yield console.log("loadBands() triggered in sagas.js");
-  yield all([
-    put(homeDuxActions.setFetchHomeRequest()),
-    // put(bandsDuxActions.setFetchBandsRequest()),
-    // put(appearancesDuxActions.setFetchAppearancesRequest()),
-    // put(contactUsDuxActions.setFetchContactUsRequest())
-  ]);
-  yield console.log("loadBandsGe(), yield all set status finished");
+  put(homeDuxActions.setFetchHomeRequest());
+
+  // yield all([
+  //   put(homeDuxActions.setFetchHomeRequest()),
+  //   // put(bandsDuxActions.setFetchBandsRequest()),
+  //   // put(appearancesDuxActions.setFetchAppearancesRequest()),
+  //   // put(contactUsDuxActions.setFetchContactUsRequest())
+  // ]);
+  yield console.log("loadBandsGen(), yield all set status finished");
   try {
     // const bandsDataNormalised = yield call(bandsApi.fetchBandsData);
     const bandsDataNormalisedString = yield AsyncStorage.getItem(
@@ -212,7 +214,7 @@ function* loadBandsGen() {
     // Lumping them together like this was too slow to update, especially for the
     // home page.
     //   yield console.log("loadBandsGe(), yield all set status finished");
-yield console.log("loadBandsGen, about to yield all with loaded data");
+    yield console.log("loadBandsGen, about to yield all with loaded data");
     yield all([
       put(homeDuxActions.setFetchHomeSucceeded(homeText)),
       put(bandsDuxActions.setFetchBandsSucceeded(bandsArray)),
@@ -220,11 +222,10 @@ yield console.log("loadBandsGen, about to yield all with loaded data");
       put(stagesDuxActions.setFetchStagesSucceeded(stagesArray)),
       put(contactUsDuxActions.setFetchContactUsSucceeded(contactsPage))
     ]);
-yield console.log("loadBandsGen, finished yield all with loaded data");
-
+    yield console.log("loadBandsGen, finished yield all with loaded data");
 
     preloadImages([...bandsArray, ...stagesArray]);
-    yield 
+    yield;
   } catch (e) {
     console.log("loadBandsGen error=" + e);
     yield all([

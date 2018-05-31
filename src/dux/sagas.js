@@ -136,6 +136,7 @@ const preloadImages = bandsArray => {
 */
 
 const preloadImages = itemsArray => {
+  console.log("preloadImages start");
   const arrayLength = itemsArray.length;
   const preloadArray = [];
   for (let x = 0; x < arrayLength; x++) {
@@ -151,7 +152,9 @@ const preloadImages = itemsArray => {
   // console.log("preloadArray=" + JSON.stringify(preloadArray, null, 4));
   // console.log("Preloading...preloadArray=" + JSON.stringify(preloadArray, null, 4));
   // FastImage.preload(preloadArray);
+  console.log("preloadRNICimages call");
   preloadRNICimages(preloadArray);
+  console.log("preloadImages end");
 };
 
 // worker Saga: will be fired on LOAD_BANDS_NOW actions, and gets all
@@ -160,10 +163,11 @@ function* loadBandsGen() {
   yield console.log("loadBands() triggered in sagas.js");
   yield all([
     put(homeDuxActions.setFetchHomeRequest()),
-    put(bandsDuxActions.setFetchBandsRequest()),
-    put(appearancesDuxActions.setFetchAppearancesRequest()),
-    put(contactUsDuxActions.setFetchContactUsRequest())
+    // put(bandsDuxActions.setFetchBandsRequest()),
+    // put(appearancesDuxActions.setFetchAppearancesRequest()),
+    // put(contactUsDuxActions.setFetchContactUsRequest())
   ]);
+  yield console.log("loadBandsGe(), yield all set status finished");
   try {
     // const bandsDataNormalised = yield call(bandsApi.fetchBandsData);
     const bandsDataNormalisedString = yield AsyncStorage.getItem(
@@ -207,6 +211,8 @@ function* loadBandsGen() {
 
     // Lumping them together like this was too slow to update, especially for the
     // home page.
+    //   yield console.log("loadBandsGe(), yield all set status finished");
+yield console.log("loadBandsGen, about to yield all with loaded data");
     yield all([
       put(homeDuxActions.setFetchHomeSucceeded(homeText)),
       put(bandsDuxActions.setFetchBandsSucceeded(bandsArray)),
@@ -214,8 +220,11 @@ function* loadBandsGen() {
       put(stagesDuxActions.setFetchStagesSucceeded(stagesArray)),
       put(contactUsDuxActions.setFetchContactUsSucceeded(contactsPage))
     ]);
+yield console.log("loadBandsGen, finished yield all with loaded data");
+
 
     preloadImages([...bandsArray, ...stagesArray]);
+    yield 
   } catch (e) {
     console.log("loadBandsGen error=" + e);
     yield all([

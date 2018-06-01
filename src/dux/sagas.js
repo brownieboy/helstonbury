@@ -161,7 +161,7 @@ const preloadImages = itemsArray => {
 // data, not just bands
 function* loadBandsGen() {
   yield console.log("loadBands() triggered in sagas.js");
-  put(homeDuxActions.setFetchHomeRequest());
+  yield put(homeDuxActions.setFetchHomeRequest());
 
   // yield all([
   //   put(homeDuxActions.setFetchHomeRequest()),
@@ -169,12 +169,15 @@ function* loadBandsGen() {
   //   // put(appearancesDuxActions.setFetchAppearancesRequest()),
   //   // put(contactUsDuxActions.setFetchContactUsRequest())
   // ]);
-  yield console.log("loadBandsGen(), yield all set status finished");
+  // yield console.log("loadBandsGen(), yield all set status finished");
+  console.log("put setFetchHomeRequest() finished?");
   try {
     // const bandsDataNormalised = yield call(bandsApi.fetchBandsData);
+    console.log("Getting data from Firebase");
     const bandsDataNormalisedString = yield AsyncStorage.getItem(
       "localPublishedData"
     );
+    console.log("Parsing data from Firebase");
 
     const bandsDataNormalised = JSON.parse(bandsDataNormalisedString);
     // yield console.log(

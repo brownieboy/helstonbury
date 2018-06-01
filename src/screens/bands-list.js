@@ -84,7 +84,7 @@ class BandsList extends Component {
   componentWillMount() {
     console.log("BandsList..componentWillMount() as PureComponent");
     const { loadBandsProp, loadFavouritesNowProp } = this.props;
-    loadBandsProp();
+    // loadBandsProp();
     // loadFavouritesNowProp();
   }
 

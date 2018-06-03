@@ -63,6 +63,19 @@ class AppearancesWrapper extends Component {
     setShowOnlyFavourites(!showOnlyFavourites);
   };
 
+  handleDayStagePress = dayStage => {
+    // console.log("handleDayStagePress, dayStage=" + dayStage);
+    const {
+      navigation
+      // onItemSelected
+    } = this.props;
+    const navigateTo =
+      dayStage === "stage" ? "AppearancesByDayStage" : "AppearancesByDay";
+    // this.setState({ currentAppearancesView: dayStage });
+    this.handleSetActiveAppearanceScreen(dayStage);
+    navigation.navigate(navigateTo);
+  };
+
   closeSideMenu = () => {
     this.setState({ appearancesSideMenuVisible: false });
   };
@@ -168,10 +181,18 @@ class AppearancesWrapper extends Component {
               <HelstonburyAvatar />
             </Left>
             <Segment>
-              <Button first>
+              <Button
+                first
+                active={appearancesView === "stage"}
+                onPress={() => this.handleDayStagePress("stage")}
+              >
                 <Text>Day/Stage</Text>
               </Button>
-              <Button last>
+              <Button
+                last
+                active={appearancesView === "day"}
+                onPress={() => this.handleDayStagePress("day")}
+              >
                 <Text>Day</Text>
               </Button>
             </Segment>

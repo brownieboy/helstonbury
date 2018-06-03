@@ -62,7 +62,6 @@ class AppearancesMenu extends PureComponent {
 
   // }
 
-
   // constructor(props) {
   //   super(props);
   //   const {
@@ -76,6 +75,7 @@ class AppearancesMenu extends PureComponent {
   //   };
   // }
 
+  /*
   handleDayStagePress = dayStage => {
     // console.log("handleDayStagePress, dayStage=" + dayStage);
     const {
@@ -89,6 +89,7 @@ class AppearancesMenu extends PureComponent {
     handleSetActiveAppearanceScreen(dayStage);
     navigation.navigate(navigateTo);
   };
+*/
 
   toggleShowFavourites = () => {
     const {
@@ -147,49 +148,7 @@ class AppearancesMenu extends PureComponent {
               </Text>
             </Body>
           </ListItem>
-          <ListItem icon onPress={() => this.handleDayStagePress("stage")}>
-            <Left>
-              <Button
-                onPress={() => this.handleDayStagePress("stage")}
-                style={{ backgroundColor: "#007AFF" }}
-              >
-                <IconMaterialEntypo
-                  active
-                  name="modern-mic"
-                  size={20}
-                  style={{ color: "white" }}
-                />
-              </Button>
-            </Left>
-            <Body>
-              <Text style={styles.menuItems.text}>Times by Day/Stage</Text>
-            </Body>
-            <Right>
-              <Radio
-                onPress={() => this.handleDayStagePress("stage")}
-                selected={activeAppearancesScreen === "stage"}
-              />
-            </Right>
-          </ListItem>
-          <ListItem icon onPress={() => this.handleDayStagePress("day")}>
-            <Left>
-              <Button
-                onPress={() => this.handleDayStagePress("day")}
-                style={{ backgroundColor: "#007AFF" }}
-              >
-                <Icon active name="calendar" />
-              </Button>
-            </Left>
-            <Body>
-              <Text style={styles.menuItems.text}>Times by Day</Text>
-            </Body>
-            <Right>
-              <Radio
-                onPress={() => this.handleDayStagePress("day")}
-                selected={activeAppearancesScreen === "day"}
-              />
-            </Right>
-          </ListItem>
+
           <ListItem icon last onPress={this.toggleShowFavourites}>
             <Left>
               <Button style={{ backgroundColor: "white" }}>
@@ -249,6 +208,54 @@ class AppearancesMenu extends PureComponent {
 }
 
 /*
+         <ListItem icon onPress={() => this.handleDayStagePress("stage")}>
+            <Left>
+              <Button
+                onPress={() => this.handleDayStagePress("stage")}
+                style={{ backgroundColor: "#007AFF" }}
+              >
+                <IconMaterialEntypo
+                  active
+                  name="modern-mic"
+                  size={20}
+                  style={{ color: "white" }}
+                />
+              </Button>
+            </Left>
+            <Body>
+              <Text style={styles.menuItems.text}>Times by Day/Stage</Text>
+            </Body>
+            <Right>
+              <Radio
+                onPress={() => this.handleDayStagePress("stage")}
+                selected={activeAppearancesScreen === "stage"}
+              />
+            </Right>
+          </ListItem>
+          <ListItem icon onPress={() => this.handleDayStagePress("day")}>
+            <Left>
+              <Button
+                onPress={() => this.handleDayStagePress("day")}
+                style={{ backgroundColor: "#007AFF" }}
+              >
+                <Icon active name="calendar" />
+              </Button>
+            </Left>
+            <Body>
+              <Text style={styles.menuItems.text}>Times by Day</Text>
+            </Body>
+            <Right>
+              <Radio
+                onPress={() => this.handleDayStagePress("day")}
+                selected={activeAppearancesScreen === "day"}
+              />
+            </Right>
+          </ListItem>
+
+
+
+
+
 
           <ListItem icon last onPress={this.toggleShowFavourites}>
             <Left>

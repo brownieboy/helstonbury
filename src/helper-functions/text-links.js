@@ -38,28 +38,22 @@ renderText(matchingString, matches) {
 //   return `lll${match[0].replace(/\*(.*)\*/, "$1")}lll`;
 // };
 
-// ^\s-
-const renderBoldText = (matchingString, matches) => {
-  //  const pattern = /\*(.*?)\*/;
-  // const pattern = /\*{2}(.*?)\*{2}/;
-  const pattern = /(\s\*|^\*)(?=\S)([\s\S]*?\S)\*(?![*\S])/gm;
+const boldPattern = /(\s\*|^\*)(?=\S)([\s\S]*?\S)\*(?![*\S])/gm;
+const italicPattern = /(\s_|^_)(?=\S)([\s\S]*?\S)_(?![_\S])/gm;
+const strikethroughPattern = /(\s-|^-)(?=\S)([\s\S]*?\S)-(?![-\S])/gm;
 
-  const match = matchingString.match(pattern);
-  // console.log("match:" + match);
+const renderBoldText = (matchingString, matches) => {
+  const match = matchingString.match(boldPattern);
   return `${match[0].replace(/\*(.*)\*/, "$1")}`;
 };
 
 const renderItalicText = (matchingString, matches) => {
-  // const pattern = /_(.*?)_/;
-  const pattern = /(\s_|^_)(?=\S)([\s\S]*?\S)_(?![_\S])/gm;
-  const match = matchingString.match(pattern);
+  const match = matchingString.match(italicPattern);
   return `${match[0].replace(/_(.*)_/, "$1")}`;
 };
 
 const renderStrikethroughText = (matchingString, matches) => {
-  // const pattern = /-(.*?)-/;
-  const pattern = /(\s-|^-)(?=\S)([\s\S]*?\S)-(?![-\S])/gm;
-  const match = matchingString.match(pattern);
+  const match = matchingString.match(strikethroughPattern);
   return `${match[0].replace(/-(.*)-/, "$1")}`;
 };
 
@@ -85,34 +79,22 @@ export const parsedTextArray = [
   },
   {
     // Bold (matching asterisks)
-    // pattern: /\*(.*?)\*/,
-    pattern: /(\s\*|^\*)(?=\S)([\s\S]*?\S)\*(?![*\S])/gm,
-    // pattern: /\*[A-z0-9]+\*/,
+    pattern: boldPattern,
     style: markdownStyles.bold,
     renderText: renderBoldText
   },
   {
     // Italic (matching underscores)
-    // pattern: /_[A-z0-9]+_/,
-    // pattern: /_(.*?)_/,
-    pattern: /(\s_|^_)(?=\S)([\s\S]*?\S)_(?![_\S])/gm,
+    pattern: italicPattern,
     style: markdownStyles.italic,
     renderText: renderItalicText
   },
   {
     // strikethrough (matching dashes)
-    // pattern: /_[A-z0-9]+_/,
-    // pattern: /\-(.*?)\-/,
-    pattern: /(\s-|^-)(?=\S)([\s\S]*?\S)-(?![-\S])/gm,
+    pattern: strikethroughPattern,
     style: markdownStyles.strikethrough,
     renderText: renderStrikethroughText
   }
-  // { // underorder list
-  //   // pattern: /\*(.*?)\*/,
-  //   pattern: /^\/S(.*?)\n/,
-  //   style: markdownStyles.bold,
-  //   renderText: renderUnorderedListItem
-  // }
 ];
 
 /*

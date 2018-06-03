@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { Dimensions, Platform, View } from "react-native";
 import { format } from "date-fns";
@@ -25,7 +25,7 @@ import NoAppearancesToDisplayMessage from "../components/no-appearances-todispla
 
 const smallestLandscapeWidth = 568;
 
-class AppearancesByDayStage extends Component {
+class AppearancesByDayStage extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -37,7 +37,7 @@ class AppearancesByDayStage extends Component {
   }
 
   componentWillMount() {
-    console.log("AppearancesByDayStage..componentWillMount() as Component");
+    console.log("AppearancesByDayStage..componentWillMount() as PureComponent");
     // const { loadBandsProp, loadFavouritesNowProp } = this.props;
     // loadBandsProp();
     // loadFavouritesNowProp();

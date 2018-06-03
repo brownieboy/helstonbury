@@ -36,6 +36,17 @@ class AppearancesByDayStage extends Component {
     };
   }
 
+  componentWillMount() {
+    console.log("AppearancesByDayStage..componentWillMount() as Component");
+    // const { loadBandsProp, loadFavouritesNowProp } = this.props;
+    // loadBandsProp();
+    // loadFavouritesNowProp();
+  }
+
+  componentDidMount() {
+    console.log("AppearancesByDayStage..componentDidMount() as Component");
+  }
+
   handleOnLayout = () => {
     this.setState({
       screenMode:

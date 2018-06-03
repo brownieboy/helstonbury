@@ -82,9 +82,15 @@ class BandsList extends Component {
   } */
 
   componentWillMount() {
-    const { loadBandsProp, loadFavouritesNowProp } = this.props;
+    // const { loadBandsProp, loadFavouritesNowProp } = this.props;
+    console.log("BandsList..componentWillMount() as Component");
+    // const { loadBandsProp, loadFavouritesNowProp } = this.props;
     // loadBandsProp();
     // loadFavouritesNowProp();
+  }
+
+  componentDidMount() {
+    console.log("BandsList..componentDidMount() as Component");
   }
 
   // toggleTab = activeTabNo => {

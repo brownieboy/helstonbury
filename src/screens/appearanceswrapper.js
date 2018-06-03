@@ -8,7 +8,18 @@ import PropTypes from "prop-types";
 import { Platform } from "react-native";
 import SideMenu from "react-native-side-menu";
 
-import { Container, Header, Icon, Title, Left, Right, Body } from "native-base";
+import {
+  Button,
+  Container,
+  Header,
+  Icon,
+  Text,
+  Title,
+  Left,
+  Right,
+  Body,
+  Segment
+} from "native-base";
 
 import Menu from "../components/appearances-side-menu.js";
 import ScheduleTabIcon from "../components/schedule-tab-icon.js";
@@ -82,7 +93,7 @@ class AppearancesWrapper extends Component {
       appearancesSideMenuVisible
       // showOnlyFavourites
     } = this.state;
-     // console.log("appearanceswrapper.js, reverseTimesOrder=" + reverseTimesOrder);
+    // console.log("appearanceswrapper.js, reverseTimesOrder=" + reverseTimesOrder);
 
     const sharedChildProps = {
       appearancesList,
@@ -123,6 +134,24 @@ class AppearancesWrapper extends Component {
     // console.log("appearances..render, appearancesGroupedByDay:");
     // console.log(appearancesGroupedByDay);
 
+    /*
+              <Title>
+                Schedule{" "}
+                {appearancesView === "day" ? "Times" : "Times by Stage"}
+              </Title>
+
+                            <Segment
+                style={{ margin: 0, padding: 0, borderColor: "green", borderWidth: 1 }}
+              >
+                <Button first>
+                  <Text>Day/Stage</Text>
+                </Button>
+                <Button last>
+                  <Text>Day</Text>
+                </Button>
+              </Segment>
+ */
+
     return (
       <SideMenu
         menu={menu}
@@ -138,12 +167,14 @@ class AppearancesWrapper extends Component {
             <Left style={{ flex: 1 }}>
               <HelstonburyAvatar />
             </Left>
-            <Body style={{ flex: 6 }}>
-              <Title>
-                Schedule{" "}
-                {appearancesView === "day" ? "Times" : "Times by Stage"}
-              </Title>
-            </Body>
+            <Segment>
+              <Button first>
+                <Text>Day/Stage</Text>
+              </Button>
+              <Button last>
+                <Text>Day</Text>
+              </Button>
+            </Segment>
             <Right style={{ flex: 1 }}>
               <Icon
                 ios="ios-options"

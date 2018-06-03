@@ -63,18 +63,18 @@ class AppearancesWrapper extends Component {
     setShowOnlyFavourites(!showOnlyFavourites);
   };
 
-  handleDayStagePress = dayStage => {
-    // console.log("handleDayStagePress, dayStage=" + dayStage);
-    const {
-      navigation
-      // onItemSelected
-    } = this.props;
-    const navigateTo =
-      dayStage === "stage" ? "AppearancesByDayStage" : "AppearancesByDay";
-    // this.setState({ currentAppearancesView: dayStage });
-    this.handleSetActiveAppearanceScreen(dayStage);
-    navigation.navigate(navigateTo);
-  };
+  // handleDayStagePress = dayStage => {
+  //   // console.log("handleDayStagePress, dayStage=" + dayStage);
+  //   // const {
+  //   //   navigation
+  //   //   // onItemSelected
+  //   // } = this.props;
+  //   // const navigateTo =
+  //   //   dayStage === "stage" ? "AppearancesByDayStage" : "AppearancesByDay";
+  //   // this.setState({ currentAppearancesView: dayStage });
+  //   this.handleSetActiveAppearanceScreen(dayStage);
+  //   // navigation.navigate(navigateTo);
+  // };
 
   closeSideMenu = () => {
     this.setState({ appearancesSideMenuVisible: false });
@@ -135,7 +135,7 @@ class AppearancesWrapper extends Component {
       <Menu
         closeSideMenu={this.closeSideMenu}
         activeAppearancesScreen={appearancesView}
-        handleSetActiveAppearanceScreen={this.handleSetActiveAppearanceScreen}
+        // handleSetActiveAppearanceScreen={this.handleSetActiveAppearanceScreen}
         setShowOnlyFavourites={this.handleShowFavouritesPress}
         navigation={navigation}
         showOnlyFavourites={showOnlyFavourites}
@@ -184,14 +184,14 @@ class AppearancesWrapper extends Component {
               <Button
                 first
                 active={appearancesView === "stage"}
-                onPress={() => this.handleDayStagePress("stage")}
+                onPress={() => this.handleSetActiveAppearanceScreen("stage")}
               >
                 <Text>Day/Stage</Text>
               </Button>
               <Button
                 last
                 active={appearancesView === "day"}
-                onPress={() => this.handleDayStagePress("day")}
+                onPress={() => this.handleSetActiveAppearanceScreen("day")}
               >
                 <Text>Day</Text>
               </Button>

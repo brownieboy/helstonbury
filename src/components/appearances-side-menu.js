@@ -336,7 +336,7 @@ class AppearancesMenu extends PureComponent {
 AppearancesMenu.propTypes = {
   activeAppearancesScreen: PropTypes.string.isRequired,
   // currentAppearancesView: PropTypes.object,
-  handleSetActiveAppearanceScreen: PropTypes.func.isRequired,
+  // handleSetActiveAppearanceScreen: PropTypes.func.isRequired,
   showOnlyFavourites: PropTypes.bool.isRequired,
   setShowOnlyFavourites: PropTypes.func.isRequired,
   navigation: PropTypes.object.isRequired,

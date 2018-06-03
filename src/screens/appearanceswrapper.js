@@ -180,7 +180,7 @@ class AppearancesWrapper extends Component {
             <Left style={{ flex: 1 }}>
               <HelstonburyAvatar />
             </Left>
-            <Segment>
+            <Segment style={{ marginTop: 3 }}>
               <Button
                 first
                 active={appearancesView === "stage"}

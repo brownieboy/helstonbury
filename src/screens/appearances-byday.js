@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { View } from "react-native";
 import { format } from "date-fns";
@@ -25,7 +25,7 @@ import NoAppearancesToDisplayMessage from "../components/no-appearances-todispla
 
 // ${lineMember.name}:
 
-class AppearancesByDay extends Component {
+class AppearancesByDay extends PureComponent {
   getAppearanceLines = lineData => {
     const itemsLength = lineData.length;
     const favourites = this.props.favourites;

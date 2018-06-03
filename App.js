@@ -29,7 +29,9 @@ whyDidYouUpdate(React, {
     /^Switch/,
     /^Header/,
     /^H2/,
-    /^SafeView/
+    /^SafeView/,
+    /^Button/,
+    /^CardItem/
   ]
 });
 

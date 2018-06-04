@@ -196,23 +196,21 @@ class BandCard extends Component {
 
     const {
       bandsAlphabetical,
-      appearancesByBandThenDateTime,
+      // appearancesByBandThenDateTime,
       favouritesState,
       selectAppearancesForBandByDateTime
       // parentList
     } = this.props; // Basically, the whole state
 
-    const newBand = selectAppearancesForBandByDateTime;
-    console.log("newBand");
-    console.log(newBand);
-
-
+    // const newBand = selectAppearancesForBandByDateTime;
+    // console.log("newBand");
+    // console.log(newBand);
 
     const { fullScreenPhotoCard } = this.state;
-    const sortedAppearances = this.getAppearancesForBand(
-      appearancesByBandThenDateTime,
-      bandId
-    );
+    // const sortedAppearances = this.getAppearancesForBand(
+    //   appearancesByBandThenDateTime,
+    //   bandId
+    // );
     const bandDetails = bandsAlphabetical.filter(
       bandMember => bandMember.bandId === bandId
     )[0]; // Returns an array
@@ -321,7 +319,7 @@ class BandCard extends Component {
                 <Text style={{ fontSize: 12, fontStyle: "italic" }}>
                   Appearing:
                 </Text>
-                {this.getAppearanceTexts(sortedAppearances)}
+                {this.getAppearanceTexts(selectAppearancesForBandByDateTime)}
               </Body>
             </CardItem>
             <CardItem style={{ paddingVertical: 0 }}>
@@ -337,8 +335,11 @@ class BandCard extends Component {
 
 BandCard.propTypes = {
   bandsAlphabetical: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-  appearancesByBandThenDateTime: PropTypes.arrayOf(PropTypes.object.isRequired)
-    .isRequired,
+  // appearancesByBandThenDateTime: PropTypes.arrayOf(PropTypes.object.isRequired)
+  //   .isRequired,
+  selectAppearancesForBandByDateTime: PropTypes.arrayOf(
+    PropTypes.object.isRequired
+  ).isRequired,
   favouritesState: PropTypes.object.isRequired,
   navigation: PropTypes.object.isRequired,
   // parentList: PropTypes.string.isRequired,

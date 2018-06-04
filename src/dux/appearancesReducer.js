@@ -71,7 +71,7 @@ const selectAppearancesByBandNameThenDateTime = createSelector(
     stringThenDateTimeSort(appearancesList.slice(), "name", "dateTimeStart")
 );
 
-// These getters have a supplied parameter, so they'll channge ever time.  Hence no
+// These getters have a supplied parameter, so they'll change ever time.  Hence no
 // point in using Reselect library with them.
 // The function actually returns a function that's a closure over selectAppearancesByBandNameThenDateTimem
 // so needs to be run in the connector.
@@ -109,12 +109,12 @@ export const getAppearancesList = state => {
   return newAppearances;
 };
 
-const getAppearancesByDateTime = appearancesList => {
-  const newAppearances = [...appearancesList];
-  return newAppearances
-    .slice()
-    .sort((a, b) => new Date(a.dateTimeStart) - new Date(b.dateTimeStart));
-};
+// const getAppearancesByDateTime = appearancesList => {
+//   const newAppearances = [...appearancesList];
+//   return newAppearances
+//     .slice()
+//     .sort((a, b) => new Date(a.dateTimeStart) - new Date(b.dateTimeStart));
+// };
 
 // const getFavouriteAppearancesByDateTime = (appearancesList, favouritesList) =>
 //   getAppearancesByDateTime(appearances).filter(
@@ -266,7 +266,7 @@ export const groupAppearancesByDay = (appearances, reverseTimesOrder) => {
 };
 
 */
-
+/*
 export const groupAppearancesByDayStage = (appearances, reverseTimesOrder) => {
   const appearancesList = [
     ...sortAppearancesByDateTime(appearances, reverseTimesOrder)
@@ -295,7 +295,7 @@ export const groupAppearancesByDayStage = (appearances, reverseTimesOrder) => {
     .entries(appearancesList);
   return appearancesGrouped;
 };
-
+*/
 /*
 const selectAppearancesGroupedByDayThenStage = createSelector(
   [selectAppearancesByDateTime],
@@ -311,7 +311,7 @@ const selectAppearancesGroupedByDayThenStage = createSelector(
 );
 
  */
-
+/*
 export const getAppearancesGroupedByDay = state => {
   const appearancesList = [
     ...getAppearancesByDateTime(state.appearancesState.appearancesList)
@@ -327,6 +327,7 @@ export const getAppearancesGroupedByDay = state => {
     .entries(appearancesList);
   return appearancesGrouped;
 };
+*/
 
 /*
 const selectPeopleStateSortOrderThenDate = createSelector(

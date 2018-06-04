@@ -1,4 +1,6 @@
 import { createSelector } from "reselect";
+import createCachedSelector from "re-reselect";
+
 import * as d3 from "d3-collection";
 import { format } from "date-fns";
 
@@ -134,6 +136,28 @@ export const filterAppearancesByBandId = (
   });
 };
 
+// const getAppearancesForBandId = (state, bandId) =>
+//   state.appearancesState.appearancesList.filter(
+//     appearance => appearance.bandId === bandId
+//   );
+
+const getBandId = (state, props) => {
+  console.log("getBandId");
+  return props.navigation.state.params.bandId;
+};
+
+export const selectAppearancesForBandByDateTime = createCachedSelector(
+  [selectAppearancesByBandNameThenDateTime, getBandId],
+  (appearances, bandId) => {
+    console.log("selectAppearancesForBandByDateTime");
+    return appearances.filter(appearance => appearance.bandId === bandId);
+  }
+)((state, props) => {
+  console.log("selectAppearancesForBandByDateTime resolver");
+
+  return props.navigation.state.params.bandId;
+});
+
 /*
 const getVisibilityFilter = (state) => state.visibilityFilter
 const getTodos = (state) => state.todos
@@ -155,14 +179,16 @@ export const getVisibleTodos = createSelector(
 
 // Selectors revisited, June 2018
 const getReverseTimesOrder = state => state.uiState.reverseTimesOrder;
+// Trying to filter favourites as a selector makes no sense.  There's
+// too many variations and it's too dynamic.
 // const getShowOnlyFavourites = state => state.uiState.showOnlyFavourites;
 // const getFavourites = state => state.favouritesState.favourites;
 
 const selectAppearancesSortedByDateTime = createSelector(
   [selectAppearances],
   appearancesList => {
-    console.log("selectAppearancesSortedByDateTime, appearancesList:");
-    console.log(appearancesList);
+    // console.log("selectAppearancesSortedByDateTime, appearancesList:");
+    // console.log(appearancesList);
     return appearancesList
       .slice()
       .sort((a, b) => new Date(a.dateTimeStart) - new Date(b.dateTimeStart));
@@ -198,9 +224,9 @@ export const selectAppearancesGroupedByDay = createSelector(
 export const selectAppearancesGroupedByDayStage = createSelector(
   [selectAppearancesSortedByDateTime, getReverseTimesOrder],
   (appearancesList, reverseTimesOrder) => {
-    console.log("selectAppearancesGroupedByDayStage, appearancesList");
-    console.log(appearancesList);
-    console.log("reverseTimesOrder=" + reverseTimesOrder);
+    // console.log("selectAppearancesGroupedByDayStage, appearancesList");
+    // console.log(appearancesList);
+    // console.log("reverseTimesOrder=" + reverseTimesOrder);
     return d3
       .nest()
       .key(appearance =>
@@ -225,12 +251,12 @@ export const selectAppearancesGroupedByDayStage = createSelector(
 
 //  Getters.  These don't use Reselect so run every time.  Makes them
 //  potentially poor performers, so replace with selectors (see above)
-const sortAppearancesByDateTime = appearancesList => {
-  const newAppearances = [...appearancesList];
-  return newAppearances
-    .slice()
-    .sort((a, b) => new Date(a.dateTimeStart) - new Date(b.dateTimeStart));
-};
+// const sortAppearancesByDateTime = appearancesList => {
+//   const newAppearances = [...appearancesList];
+//   return newAppearances
+//     .slice()
+//     .sort((a, b) => new Date(a.dateTimeStart) - new Date(b.dateTimeStart));
+// };
 
 /*
 export const groupAppearancesByDay = (appearances, reverseTimesOrder) => {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Dimensions, Platform, TouchableOpacity, View } from "react-native";
+import { Dimensions, Platform, View } from "react-native";
 import * as Animatable from "react-native-animatable";
 import ParsedText from "react-native-parsed-text";
 
@@ -82,7 +82,7 @@ class BandCard extends Component {
   };
 
   getAppearancesForBand = (appearances, bandKey) => {
-    console.log("BandCard..getAppearancesForBand");
+    // console.log("BandCard..getAppearancesForBand");
     return appearances
       .slice()
       .filter(bandMember => bandMember.bandId === bandKey);
@@ -193,12 +193,21 @@ class BandCard extends Component {
 
   render() {
     const { bandId, parentList } = this.props.navigation.state.params;
+
     const {
       bandsAlphabetical,
       appearancesByBandThenDateTime,
-      favouritesState
+      favouritesState,
+      selectAppearancesForBandByDateTime
       // parentList
     } = this.props; // Basically, the whole state
+
+    const newBand = selectAppearancesForBandByDateTime;
+    console.log("newBand");
+    console.log(newBand);
+
+
+
     const { fullScreenPhotoCard } = this.state;
     const sortedAppearances = this.getAppearancesForBand(
       appearancesByBandThenDateTime,

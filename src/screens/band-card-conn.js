@@ -9,18 +9,25 @@ import BandsTabIcon from "../components/bands-tab-icon.js";
 
 // Dux stuff
 import { selectors as bandSelectors } from "../dux/bandsReducer.js";
-import { selectors as appearancesSelectors } from "../dux/appearancesReducer.js";
+import {
+  selectors as appearancesSelectors,
+  selectAppearancesForBandByDateTime
+} from "../dux/appearancesReducer.js";
 import { toggleBandFavouriteStatus } from "../dux/favouritesReducer.js";
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ toggleBandFavouriteStatus }, dispatch);
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, props) => ({
   bandsAlphabetical: bandSelectors.selectAlphabetical(state.bandsState),
   appearancesByBandThenDateTime: appearancesSelectors.selectAppearancesByBandNameThenDateTime(
     state
   ),
-  favouritesState: state.favouritesState
+  favouritesState: state.favouritesState,
+  selectAppearancesForBandByDateTime: selectAppearancesForBandByDateTime(
+    state,
+    props
+  )
 });
 
 class BandCardWrapper extends Component {

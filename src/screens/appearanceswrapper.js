@@ -92,12 +92,13 @@ class AppearancesWrapper extends Component {
       fetchStatus,
       filterAppearancesByBandId,
       getStageInfo,
-      groupAppearancesByDay,
-      groupAppearancesByDayStage,
+      // groupAppearancesByDay,
+      // groupAppearancesByDayStage,
       favourites,
       navigation,
       reverseTimesOrder,
       appearancesSelGroupedByDay,
+      appearancesSelGroupedByDayStage,
       setReverseTimesOrder,
       showOnlyFavourites
     } = this.props;
@@ -116,7 +117,7 @@ class AppearancesWrapper extends Component {
       fetchStatus,
       filterAppearancesByBandId,
       getStageInfo,
-      groupAppearancesByDay,
+      // groupAppearancesByDay,
       favourites,
       navigation,
       showOnlyFavourites,
@@ -209,12 +210,11 @@ class AppearancesWrapper extends Component {
           {appearancesView === "stage" ? (
             <AppearancesByDayStage
               {...sharedChildProps}
-              groupAppearancesByDayStage={groupAppearancesByDayStage}
+              appearancesSelGroupedByDayStage={appearancesSelGroupedByDayStage}
             />
           ) : (
             <AppearancesByDay
               {...sharedChildProps}
-              groupAppearancesByDay={groupAppearancesByDay}
               appearancesSelGroupedByDay={appearancesSelGroupedByDay}
             />
           )}
@@ -224,15 +224,19 @@ class AppearancesWrapper extends Component {
   }
 }
 
+//   appearancesSelGroupedByDay: PropTypes.arrayOf(PropTypes.object.isRequiredto).isRequired,
+//                 groupAppearancesByDayStage={groupAppearancesByDayStage}
+
 AppearancesWrapper.propTypes = {
   appearancesList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   appearancesSelGroupedByDay: PropTypes.arrayOf(PropTypes.object).isRequired,
+  appearancesSelGroupedByDayStage: PropTypes.arrayOf(PropTypes.object).isRequired,
   appearancesView: PropTypes.string.isRequired,
   fetchStatus: PropTypes.string.isRequired,
   filterAppearancesByBandId: PropTypes.func.isRequired,
   getStageInfo: PropTypes.func.isRequired,
-  groupAppearancesByDayStage: PropTypes.func.isRequired,
-  groupAppearancesByDay: PropTypes.func.isRequired,
+  // groupAppearancesByDayStage: PropTypes.func.isRequired,
+  // groupAppearancesByDay: PropTypes.func.isRequired,
   favourites: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   navigation: PropTypes.object.isRequired,
   reverseTimesOrder: PropTypes.bool.isRequired,

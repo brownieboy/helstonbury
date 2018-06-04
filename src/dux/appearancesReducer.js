@@ -154,6 +154,10 @@ export const getVisibleTodos = createSelector(
  */
 
 // Selectors revisited, June 2018
+const getReverseTimesOrder = state => state.uiState.reverseTimesOrder;
+// const getShowOnlyFavourites = state => state.uiState.showOnlyFavourites;
+// const getFavourites = state => state.favouritesState.favourites;
+
 const selectAppearancesSortedByDateTime = createSelector(
   [selectAppearances],
   appearancesList => {
@@ -165,14 +169,12 @@ const selectAppearancesSortedByDateTime = createSelector(
   }
 );
 
-const getReverseTimesOrder = state => state.uiState.reverseTimesOrder;
-
 export const selectAppearancesGroupedByDay = createSelector(
   [selectAppearancesSortedByDateTime, getReverseTimesOrder],
   (appearancesList, reverseTimesOrder) => {
-    console.log("selectAppearancesGroupedByDay, appearancesList");
-    console.log(appearancesList);
-    console.log("reverseTimesOrder=" + reverseTimesOrder);
+    // console.log("selectAppearancesGroupedByDay, appearancesList");
+    // console.log(appearancesList);
+    // console.log("reverseTimesOrder=" + reverseTimesOrder);
     return d3
       .nest()
       .key(appearance =>
@@ -193,6 +195,34 @@ export const selectAppearancesGroupedByDay = createSelector(
   }
 );
 
+export const selectAppearancesGroupedByDayStage = createSelector(
+  [selectAppearancesSortedByDateTime, getReverseTimesOrder],
+  (appearancesList, reverseTimesOrder) => {
+    console.log("selectAppearancesGroupedByDayStage, appearancesList");
+    console.log(appearancesList);
+    console.log("reverseTimesOrder=" + reverseTimesOrder);
+    return d3
+      .nest()
+      .key(appearance =>
+        format(
+          new Date(appearance.dateTimeStart.split("T")[0]),
+          "dddd MMM Do YYYY"
+        )
+      )
+      .key(appearance => `${appearance.stageSortOrder}~${appearance.stageId}`)
+      .sortKeys(
+        (a, b) => parseInt(a.split("~")[0], 10) - parseInt(b.split("~")[0], 10)
+      )
+      .sortValues(
+        (a, b) =>
+          reverseTimesOrder
+            ? new Date(b.dateTimeStart) - new Date(a.dateTimeStart)
+            : new Date(a.dateTimeStart) - new Date(b.dateTimeStart)
+      )
+      .entries(appearancesList);
+  }
+);
+
 //  Getters.  These don't use Reselect so run every time.  Makes them
 //  potentially poor performers, so replace with selectors (see above)
 const sortAppearancesByDateTime = appearancesList => {
@@ -202,6 +232,7 @@ const sortAppearancesByDateTime = appearancesList => {
     .sort((a, b) => new Date(a.dateTimeStart) - new Date(b.dateTimeStart));
 };
 
+/*
 export const groupAppearancesByDay = (appearances, reverseTimesOrder) => {
   // console.log("groupAppearancesByDay, reverseTimesOrder=" + reverseTimesOrder);
 
@@ -233,6 +264,8 @@ export const groupAppearancesByDay = (appearances, reverseTimesOrder) => {
   // console.log(appearancesGrouped);
   return appearancesGrouped;
 };
+
+*/
 
 export const groupAppearancesByDayStage = (appearances, reverseTimesOrder) => {
   const appearancesList = [

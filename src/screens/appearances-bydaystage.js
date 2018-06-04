@@ -211,9 +211,10 @@ class AppearancesByDayStage extends PureComponent {
   render() {
     const {
       appearancesList,
+      appearancesSelGroupedByDayStage,
       fetchStatus,
       filterAppearancesByBandId,
-      groupAppearancesByDayStage,
+      // groupAppearancesByDayStage,
       favourites,
       showOnlyFavourites,
       reverseTimesOrder
@@ -226,17 +227,17 @@ class AppearancesByDayStage extends PureComponent {
       appearances = filterAppearancesByBandId(appearancesList, favourites);
     }
 
-    const appearancesGroupedByDayStage = groupAppearancesByDayStage(
-      appearances,
-      reverseTimesOrder
-    );
+    // const appearancesGroupedByDayStage = groupAppearancesByDayStage(
+    //   appearances,
+    //   reverseTimesOrder
+    // );
 
     return (
       <Content style={{ backgroundColor: "#fff" }}>
         {fetchStatus === "fetching" && <Spinner />}
         {appearances.length > 0 ? (
           <List>
-            {this.getAppearancesListDayLevel(appearancesGroupedByDayStage)}
+            {this.getAppearancesListDayLevel(appearancesSelGroupedByDayStage)}
           </List>
         ) : (
           <NoAppearancesToDisplayMessage
@@ -251,12 +252,13 @@ class AppearancesByDayStage extends PureComponent {
 
 AppearancesByDayStage.propTypes = {
   // appearancesView: PropTypes.string.isRequired,
+  appearancesSelGroupedByDayStage: PropTypes.arrayOf(PropTypes.object).isRequired,
   appearancesSideMenuVisible: PropTypes.bool.isRequired,
   appearancesList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   fetchStatus: PropTypes.string.isRequired,
   filterAppearancesByBandId: PropTypes.func.isRequired,
   getStageInfo: PropTypes.func.isRequired,
-  groupAppearancesByDayStage: PropTypes.func.isRequired,
+  // groupAppearancesByDayStage: PropTypes.func.isRequired,
   favourites: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   navigation: PropTypes.object.isRequired,
   showOnlyFavourites: PropTypes.bool.isRequired,

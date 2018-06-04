@@ -8,12 +8,13 @@ import Appearances from "./appearanceswrapper.js";
 import {
   getAppearancesList,
   filterAppearancesByBandId,
-  groupAppearancesByDay,
-  groupAppearancesByDayStage,
+  // groupAppearancesByDay,
+  // groupAppearancesByDayStage,
   // getAppearancesGroupedByDay,
   getFetchStatus,
   loadAppearances,
-  selectAppearancesGroupedByDay
+  selectAppearancesGroupedByDay,
+  selectAppearancesGroupedByDayStage
   // selectors as appearanceSelectors
 } from "../dux/appearancesReducer.js";
 
@@ -47,13 +48,14 @@ const mapStateToProps = state => ({
   appearancesList: getAppearancesList(state),
   // appearancesSideMenuVisible: getAppearancesSideMenuVisible(state),
   appearancesSelGroupedByDay: selectAppearancesGroupedByDay(state),
+  appearancesSelGroupedByDayStage: selectAppearancesGroupedByDayStage(state),
   getStageInfo: stageId => getStageInfoForId(selectStages(state), stageId),
   filterAppearancesByBandId: (appearances, bandsToFilterArray) =>
-    filterAppearancesByBandId(appearances, bandsToFilterArray),
-  groupAppearancesByDay: (appearances, reverseTimesOrder) =>
-    groupAppearancesByDay(appearances, reverseTimesOrder),
-  groupAppearancesByDayStage: (appearances, reverseTimesOrder) =>
-    groupAppearancesByDayStage(appearances, reverseTimesOrder)
+    filterAppearancesByBandId(appearances, bandsToFilterArray)
+  // groupAppearancesByDay: (appearances, reverseTimesOrder) =>
+  //   groupAppearancesByDay(appearances, reverseTimesOrder),
+  // groupAppearancesByDayStage: (appearances, reverseTimesOrder) =>
+  //   groupAppearancesByDayStage(appearances, reverseTimesOrder)
 });
 
 const mapDispatchToProps = dispatch =>

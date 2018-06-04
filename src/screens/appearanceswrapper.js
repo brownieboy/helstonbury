@@ -97,7 +97,7 @@ class AppearancesWrapper extends Component {
       favourites,
       navigation,
       reverseTimesOrder,
-      selectAppearancesGroupedByDay,
+      appearancesSelGroupedByDay,
       setReverseTimesOrder,
       showOnlyFavourites
     } = this.props;
@@ -215,7 +215,7 @@ class AppearancesWrapper extends Component {
             <AppearancesByDay
               {...sharedChildProps}
               groupAppearancesByDay={groupAppearancesByDay}
-              appearancesGroupedByDay={selectAppearancesGroupedByDay}
+              appearancesSelGroupedByDay={appearancesSelGroupedByDay}
             />
           )}
         </Container>
@@ -226,6 +226,7 @@ class AppearancesWrapper extends Component {
 
 AppearancesWrapper.propTypes = {
   appearancesList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  appearancesSelGroupedByDay: PropTypes.arrayOf(PropTypes.object).isRequired,
   appearancesView: PropTypes.string.isRequired,
   fetchStatus: PropTypes.string.isRequired,
   filterAppearancesByBandId: PropTypes.func.isRequired,

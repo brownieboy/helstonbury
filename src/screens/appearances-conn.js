@@ -46,7 +46,7 @@ const mapStateToProps = state => ({
   appearancesView: getAppearancesView(state),
   appearancesList: getAppearancesList(state),
   // appearancesSideMenuVisible: getAppearancesSideMenuVisible(state),
-  selectAppearancesGroupedByDay: selectAppearancesGroupedByDay(state),
+  appearancesSelGroupedByDay: selectAppearancesGroupedByDay(state),
   getStageInfo: stageId => getStageInfoForId(selectStages(state), stageId),
   filterAppearancesByBandId: (appearances, bandsToFilterArray) =>
     filterAppearancesByBandId(appearances, bandsToFilterArray),

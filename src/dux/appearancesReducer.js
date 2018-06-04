@@ -165,13 +165,14 @@ const selectAppearancesSortedByDateTime = createSelector(
   }
 );
 
-const getReverseTimesOrder = state => state.reverseTimesOrder;
+const getReverseTimesOrder = state => state.uiState.reverseTimesOrder;
 
 export const selectAppearancesGroupedByDay = createSelector(
   [selectAppearancesSortedByDateTime, getReverseTimesOrder],
-  (appearancesList, reverseTimesOrder = true) => {
+  (appearancesList, reverseTimesOrder) => {
     console.log("selectAppearancesGroupedByDay, appearancesList");
     console.log(appearancesList);
+    console.log("reverseTimesOrder=" + reverseTimesOrder);
     return d3
       .nest()
       .key(appearance =>

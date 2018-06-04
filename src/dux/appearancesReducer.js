@@ -35,7 +35,7 @@ const appearancesReducer = (
 };
 
 // Sort/filter functions for selectors
-const selectAppearances = state => state.appearancesList;
+const selectAppearances = state => state.appearancesState.appearancesList;
 
 // // Selectors
 // const selectAppearancesByDateTime = createSelector(
@@ -156,10 +156,13 @@ export const getVisibleTodos = createSelector(
 // Selectors revisited, June 2018
 const selectAppearancesSortedByDateTime = createSelector(
   [selectAppearances],
-  appearancesList =>
-    appearancesList
+  appearancesList => {
+    console.log("appearancesList");
+    console.log(appearancesList);
+    return appearancesList
       .slice()
       .sort((a, b) => new Date(a.dateTimeStart) - new Date(b.dateTimeStart))
+  }
 );
 
 const getReverseTimesOrder = state => state.reverseTimesOrder;

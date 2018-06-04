@@ -22,7 +22,7 @@ const mapStateToProps = state => ({
   // bandsStateProp: state.bandsState,
   bandsAlphabeticalProp: bandSelectors.selectAlphabetical(state.bandsState),
   appearancesByBandThenDateTime: appearancesSelectors.selectAppearancesByBandNameThenDateTime(
-    state.appearancesState
+    state
   ),
   favouritesState: state.favouritesState
 });

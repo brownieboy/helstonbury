@@ -81,8 +81,12 @@ class BandCard extends Component {
     this.setState({ dimensions: Dimensions.get("window") });
   };
 
-  getAppearancesForBand = (appearances, bandKey) =>
-    appearances.slice().filter(bandMember => bandMember.bandId === bandKey);
+  getAppearancesForBand = (appearances, bandKey) => {
+    console.log("BandCard..getAppearancesForBand");
+    return appearances
+      .slice()
+      .filter(bandMember => bandMember.bandId === bandKey);
+  };
 
   // <TouchableOpacity
   //   key={`${appearance.dateTimeStart}${appearance.stageId}`}

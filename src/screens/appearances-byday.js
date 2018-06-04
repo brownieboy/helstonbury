@@ -163,7 +163,8 @@ class AppearancesByDay extends PureComponent {
       groupAppearancesByDay,
       favourites,
       showOnlyFavourites,
-      reverseTimesOrder
+      reverseTimesOrder,
+      selectAppearancesGroupedByDay
     } = this.props;
 
     //
@@ -183,14 +184,14 @@ class AppearancesByDay extends PureComponent {
 
     console.log("AppearancesByDay render(), reverseTimesOrder: " + reverseTimesOrder);
 
-    const appearancesGroupedByDay = groupAppearancesByDay(appearances, reverseTimesOrder);
+    // const appearancesGroupedByDay = groupAppearancesByDay(appearances, reverseTimesOrder);
 
     return (
       <Content style={{ backgroundColor: "#fff" }}>
         {fetchStatus === "fetching" && <Spinner />}
         {appearances.length > 0 ? (
           <List>
-            {this.getAppearancesListDayLevel(appearancesGroupedByDay)}
+            {this.getAppearancesListDayLevel(selectAppearancesGroupedByDay)}
           </List>
         ) : (
           <NoAppearancesToDisplayMessage

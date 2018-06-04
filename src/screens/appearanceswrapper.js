@@ -97,6 +97,7 @@ class AppearancesWrapper extends Component {
       favourites,
       navigation,
       reverseTimesOrder,
+      selectAppearancesGroupedByDay,
       setReverseTimesOrder,
       showOnlyFavourites
     } = this.props;
@@ -214,6 +215,7 @@ class AppearancesWrapper extends Component {
             <AppearancesByDay
               {...sharedChildProps}
               groupAppearancesByDay={groupAppearancesByDay}
+              appearancesGroupedByDay={selectAppearancesGroupedByDay}
             />
           )}
         </Container>

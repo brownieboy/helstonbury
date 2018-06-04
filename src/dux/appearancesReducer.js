@@ -65,11 +65,11 @@ const nest = d3.nest()
     .entries(data);
 */
 
-// const selectAppearancesByBandNameThenDateTime = createSelector(
-//   [selectAppearances],
-//   appearancesList =>
-//     stringThenDateTimeSort(appearancesList.slice(), "name", "dateTimeStart")
-// );
+const selectAppearancesByBandNameThenDateTime = createSelector(
+  [selectAppearances],
+  appearancesList =>
+    stringThenDateTimeSort(appearancesList.slice(), "name", "dateTimeStart")
+);
 
 // These getters have a supplied parameter, so they'll channge ever time.  Hence no
 // point in using Reselect library with them.
@@ -82,11 +82,11 @@ const nest = d3.nest()
 
 // const selectAppearancesByDateTime = () => [];
 
-// export const selectors = {
-//   selectAppearancesByDateTime,
-//   selectAppearancesByBandNameThenDateTime,
-//   selectAppearancesGroupedByDayThenStage
-// };
+export const selectors = {
+  // selectAppearancesByDateTime,
+  selectAppearancesByBandNameThenDateTime,
+  // selectAppearancesGroupedByDayThenStage
+};
 
 /*
 const getAppearancesByDateTime = (appearancesList, bandsToFilterArray = []) => {
@@ -162,9 +162,11 @@ const selectAppearancesSortedByDateTime = createSelector(
       .sort((a, b) => new Date(a.dateTimeStart) - new Date(b.dateTimeStart))
 );
 
-const selectAppearancesGroupedByDay = createSelector(
-  [selectAppearancesSortedByDateTime],
-  appearancesList =>
+const getReverseTimesOrder = state => state.reverseTimesOrder;
+
+export const selectAppearancesGroupedByDay = createSelector(
+  [selectAppearancesSortedByDateTime, getReverseTimesOrder],
+  (appearancesList, reverseTimesOrder) =>
     d3
       .nest()
       .key(appearance =>

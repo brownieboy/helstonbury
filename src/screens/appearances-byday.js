@@ -74,9 +74,9 @@ class AppearancesByDay extends PureComponent {
               }}
             >
               {`${format(lineMember.dateTimeStart, "HH:mm")}-${format(
-              lineMember.dateTimeEnd,
-              "HH:mm"
-            )} `}
+                lineMember.dateTimeEnd,
+                "HH:mm"
+              )} `}
             </Text>
             <Text
               style={{
@@ -130,8 +130,8 @@ class AppearancesByDay extends PureComponent {
               flexShrink: 0,
               flexBasis: 16,
               margin: 0
-// borderColor: "red",
-// borderWidth: 1
+              // borderColor: "red",
+              // borderWidth: 1
             }}
           >
             <Icon name="arrow-forward" />
@@ -164,7 +164,7 @@ class AppearancesByDay extends PureComponent {
       favourites,
       showOnlyFavourites,
       reverseTimesOrder,
-      selectAppearancesGroupedByDay
+      appearancesGroupedByDay
     } = this.props;
 
     //
@@ -182,7 +182,14 @@ class AppearancesByDay extends PureComponent {
     // console.log("Filtered (or not) appearances:");
     // console.log(appearances);
 
-    console.log("AppearancesByDay render(), reverseTimesOrder: " + reverseTimesOrder);
+    console.log(
+      "AppearancesByDay render(), reverseTimesOrder: " +
+        reverseTimesOrder +
+        ", appearancesGroupedByDay"
+    );
+    console.log(appearancesGroupedByDay);
+    // console.log("groupAppearancesByDay()");
+    // console.log(groupAppearancesByDay());
 
     // const appearancesGroupedByDay = groupAppearancesByDay(appearances, reverseTimesOrder);
 
@@ -191,7 +198,7 @@ class AppearancesByDay extends PureComponent {
         {fetchStatus === "fetching" && <Spinner />}
         {appearances.length > 0 ? (
           <List>
-            {this.getAppearancesListDayLevel(selectAppearancesGroupedByDay)}
+            {this.getAppearancesListDayLevel(appearancesGroupedByDay)}
           </List>
         ) : (
           <NoAppearancesToDisplayMessage

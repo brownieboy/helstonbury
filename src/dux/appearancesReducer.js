@@ -84,7 +84,7 @@ const selectAppearancesByBandNameThenDateTime = createSelector(
 
 export const selectors = {
   // selectAppearancesByDateTime,
-  selectAppearancesByBandNameThenDateTime,
+  selectAppearancesByBandNameThenDateTime
   // selectAppearancesGroupedByDayThenStage
 };
 
@@ -157,11 +157,11 @@ export const getVisibleTodos = createSelector(
 const selectAppearancesSortedByDateTime = createSelector(
   [selectAppearances],
   appearancesList => {
-    console.log("appearancesList");
+    console.log("selectAppearancesSortedByDateTime, appearancesList:");
     console.log(appearancesList);
     return appearancesList
       .slice()
-      .sort((a, b) => new Date(a.dateTimeStart) - new Date(b.dateTimeStart))
+      .sort((a, b) => new Date(a.dateTimeStart) - new Date(b.dateTimeStart));
   }
 );
 
@@ -169,8 +169,10 @@ const getReverseTimesOrder = state => state.reverseTimesOrder;
 
 export const selectAppearancesGroupedByDay = createSelector(
   [selectAppearancesSortedByDateTime, getReverseTimesOrder],
-  (appearancesList, reverseTimesOrder) =>
-    d3
+  (appearancesList, reverseTimesOrder = true) => {
+    console.log("selectAppearancesGroupedByDay, appearancesList");
+    console.log(appearancesList);
+    return d3
       .nest()
       .key(appearance =>
         format(
@@ -186,7 +188,8 @@ export const selectAppearancesGroupedByDay = createSelector(
             ? new Date(b.dateTimeStart) - new Date(a.dateTimeStart)
             : new Date(a.dateTimeStart) - new Date(b.dateTimeStart)
       )
-      .entries(appearancesList)
+      .entries(appearancesList);
+  }
 );
 
 //  Getters.  These don't use Reselect so run every time.  Makes them

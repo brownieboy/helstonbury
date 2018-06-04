@@ -2,7 +2,7 @@ import { createSelector } from "reselect";
 import createCachedSelector from "re-reselect";
 
 import {
-  stringSort,
+  // stringSort,
   stringSortIgnoreArticle
 } from "../helper-functions/sorting.js";
 

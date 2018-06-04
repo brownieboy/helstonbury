@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import StagesList from "./stages-list.js";
 
 // Dux stuff
-import { selectors as stagesSelectors, selectStagesBySortOrder } from "../dux/stagesReducer.js";
+import { selectStagesBySortOrder } from "../dux/stagesReducer.js";
 
 const mapDispatchToProps = () => ({});
 

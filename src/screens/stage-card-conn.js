@@ -8,12 +8,18 @@ import StageCard from "./stage-card.js";
 import StagesTabIcon from "../components/stages-tab-icon.js";
 
 // Dux stuff
-import { selectors as stagesSelectors } from "../dux/stagesReducer.js";
+import {
+  // selectors as stagesSelectors,
+  // selectStagesBySortOrder,
+  selectStageDetails
+} from "../dux/stagesReducer.js";
 
 const mapDispatchToProps = () => ({});
 
-const mapStateToProps = state => ({
-  stagesList: stagesSelectors.selectAlphabetical(state)
+const mapStateToProps = (state, props) => ({
+  // stagesList: stagesSelectors.selectAlphabetical(state)
+  // stagesList: selectStagesBySortOrder(state),
+  selectStageDetails: selectStageDetails(state, props)
 });
 
 class StageCardWrapper extends Component {

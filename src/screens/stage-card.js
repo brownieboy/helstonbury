@@ -64,13 +64,15 @@ class StageCard extends Component {
   render() {
     const backButtonTextStyle = { fontSize: 12 };
     const { stageId, parentList } = this.props.navigation.state.params;
-    const { stagesList } = this.props;
+    const { selectStageDetails } = this.props;
     const { fullScreenPhotoCard } = this.state;
     const backButtonText = `Back to ${parentList}`;
 
-    const stageDetails = stagesList.filter(
-      stageMember => stageMember.id === stageId
-    )[0]; // Returns an array
+    // const stageDetails = stagesList.filter(
+    //   stageMember => stageMember.id === stageId
+    // )[0]; // Returns an array
+    const stageDetails = selectStageDetails;
+
 
     return (
       <Container style={styles.container}>
@@ -116,7 +118,8 @@ class StageCard extends Component {
 }
 
 StageCard.propTypes = {
-  stagesList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  selectStageDetails: PropTypes.object.isRequired,
+  // stagesList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   navigation: PropTypes.object.isRequired
 };
 

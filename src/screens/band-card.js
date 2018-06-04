@@ -113,11 +113,6 @@ class BandCard extends Component {
       </Text>
     ));
 
-  // onPress={() =>
-  //   this.props.navigation.navigate("StageCard", {
-  //     stageId: stageMember.id,
-  //     parentList: "stages"
-  //   })
 
   getFaceBookLinkComponent = bandDetails => {
     const { facebookId, facebookPageName } = bandDetails;
@@ -183,22 +178,16 @@ class BandCard extends Component {
             ? new Error("promise cancelled")
             : this.faveView.pulseBig()
       )
-      // .then(
-      //   () =>
-      //     this.cancelHeartAnimation
-      //       ? new Error("promise cancelled")
-      //       : this.faveView.pulseBig()
-      // )
       .catch(e => console.log(`error: ${e}`));
 
   render() {
     const { bandId, parentList } = this.props.navigation.state.params;
 
     const {
-      bandsAlphabetical,
       // appearancesByBandThenDateTime,
       favouritesState,
-      selectAppearancesForBandByDateTime
+      selectAppearancesForBandByDateTime,
+      selectBandDetails
       // parentList
     } = this.props; // Basically, the whole state
 
@@ -211,9 +200,11 @@ class BandCard extends Component {
     //   appearancesByBandThenDateTime,
     //   bandId
     // );
-    const bandDetails = bandsAlphabetical.filter(
-      bandMember => bandMember.bandId === bandId
-    )[0]; // Returns an array
+    // const bandDetails = bandsAlphabetical.filter(
+    //   bandMember => bandMember.bandId === bandId
+    // )[0]; // Returns an array
+    const bandDetails = selectBandDetails;
+
     const favourite =
       favouritesState.favourites.indexOf(bandDetails.bandId) > -1;
     const { toggleBandFavouriteStatus } = this.props;
@@ -334,7 +325,7 @@ class BandCard extends Component {
 }
 
 BandCard.propTypes = {
-  bandsAlphabetical: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  selectBandDetails: PropTypes.object.isRequired,
   // appearancesByBandThenDateTime: PropTypes.arrayOf(PropTypes.object.isRequired)
   //   .isRequired,
   selectAppearancesForBandByDateTime: PropTypes.arrayOf(

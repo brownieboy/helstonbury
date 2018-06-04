@@ -20,7 +20,7 @@ const mapDispatchToProps = dispatch =>
 
 const mapStateToProps = state => ({
   // bandsStateProp: state.bandsState,
-  bandsAlphabeticalProp: bandSelectors.selectAlphabetical(state.bandsState),
+  bandsAlphabeticalProp: bandSelectors.selectAlphabetical(state),
   appearancesByBandThenDateTime: appearancesSelectors.selectAppearancesByBandNameThenDateTime(
     state
   ),

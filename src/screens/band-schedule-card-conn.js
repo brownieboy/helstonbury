@@ -7,7 +7,10 @@ import BandCard from "./band-card.js";
 // import ScheduleTabIcon from "../components/schedule-tab-icon.js";
 
 // Dux stuff
-import { selectors as bandSelectors } from "../dux/bandsReducer.js";
+import {
+  // selectors as bandSelectors,
+  selectBandDetails
+} from "../dux/bandsReducer.js";
 import {
   // selectors as appearancesSelectors,
   selectAppearancesForBandByDateTime
@@ -18,7 +21,7 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators({ toggleBandFavouriteStatus }, dispatch);
 
 const mapStateToProps = (state, props) => ({
-  bandsAlphabetical: bandSelectors.selectAlphabetical(state.bandsState),
+  // bandsAlphabetical: bandSelectors.selectAlphabetical(state),
   // appearancesByBandThenDateTime: appearancesSelectors.selectAppearancesByBandNameThenDateTime(
   //   state
   // ),
@@ -26,6 +29,8 @@ const mapStateToProps = (state, props) => ({
     state,
     props
   ),
+  selectBandDetails: selectBandDetails(state, props),
+
   favouritesState: state.favouritesState
 });
 

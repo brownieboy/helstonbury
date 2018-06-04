@@ -141,41 +141,15 @@ export const filterAppearancesByBandId = (
 //     appearance => appearance.bandId === bandId
 //   );
 
-const getBandId = (state, props) => {
-  console.log("getBandId");
-  return props.navigation.state.params.bandId;
-};
+// Because this is called by a selector, the signature has to match
+// how that selector was called in the mapStateToProps.
+const getBandId = (state, props) => props.navigation.state.params.bandId;
 
 export const selectAppearancesForBandByDateTime = createCachedSelector(
   [selectAppearancesByBandNameThenDateTime, getBandId],
-  (appearances, bandId) => {
-    console.log("selectAppearancesForBandByDateTime");
-    return appearances.filter(appearance => appearance.bandId === bandId);
-  }
-)((state, props) => {
-  console.log("selectAppearancesForBandByDateTime resolver");
-
-  return props.navigation.state.params.bandId;
-});
-
-/*
-const getVisibilityFilter = (state) => state.visibilityFilter
-const getTodos = (state) => state.todos
-
-export const getVisibleTodos = createSelector(
-  [ getVisibilityFilter, getTodos ],
-  (visibilityFilter, todos) => {
-    switch (visibilityFilter) {
-      case 'SHOW_ALL':
-        return todos
-      case 'SHOW_COMPLETED':
-        return todos.filter(t => t.completed)
-      case 'SHOW_ACTIVE':
-        return todos.filter(t => !t.completed)
-    }
-  }
-)
- */
+  (appearances, bandId) =>
+    appearances.filter(appearance => appearance.bandId === bandId)
+)((state, props) => getBandId(state, props));
 
 // Selectors revisited, June 2018
 const getReverseTimesOrder = state => state.uiState.reverseTimesOrder;

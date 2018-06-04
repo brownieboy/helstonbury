@@ -12,8 +12,8 @@ import {
   groupAppearancesByDayStage,
   // getAppearancesGroupedByDay,
   getFetchStatus,
-  loadAppearances,
-  selectors as appearanceSelectors
+  loadAppearances
+  // selectors as appearanceSelectors
 } from "../dux/appearancesReducer.js";
 
 import {
@@ -30,12 +30,12 @@ import {
 import { selectStages, getStageInfoForId } from "../dux/stagesReducer.js";
 
 const mapStateToProps = state => ({
-  appearancesListByDateTime: appearanceSelectors.selectAppearancesByDateTime(
-    state.appearancesState
-  ),
-  appearancesGroupedByDayThenStage: appearanceSelectors.selectAppearancesGroupedByDayThenStage(
-    state.appearancesState
-  ),
+  // appearancesListByDateTime: appearanceSelectors.selectAppearancesByDateTime(
+  //   state.appearancesState
+  // ),
+  // appearancesGroupedByDayThenStage: appearanceSelectors.selectAppearancesGroupedByDayThenStage(
+  //   state.appearancesState
+  // ),
   favouritesState: state.favouritesState,
   favourites: state.favouritesState.favourites,
   fetchStatus: getFetchStatus(state),

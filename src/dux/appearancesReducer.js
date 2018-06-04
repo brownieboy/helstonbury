@@ -37,27 +37,27 @@ const appearancesReducer = (
 // Sort/filter functions for selectors
 const selectAppearances = state => state.appearancesList;
 
-// Selectors
-const selectAppearancesByDateTime = createSelector(
-  [selectAppearances],
-  appearancesList =>
-    appearancesList
-      .slice()
-      .sort((a, b) => new Date(a.dateTimeStart) - new Date(b.dateTimeStart))
-);
+// // Selectors
+// const selectAppearancesByDateTime = createSelector(
+//   [selectAppearances],
+//   appearancesList =>
+//     appearancesList
+//       .slice()
+//       .sort((a, b) => new Date(a.dateTimeStart) - new Date(b.dateTimeStart))
+// );
 
-const selectAppearancesGroupedByDayThenStage = createSelector(
-  [selectAppearancesByDateTime],
-  appearancesList =>
-    d3
-      .nest()
-      .key(appearance => format(new Date(appearance.dateTimeStart), "dddd"))
-      .key(appearance => `${appearance.stageSortOrder}~${appearance.stageName}`)
-      .sortKeys(
-        (a, b) => parseInt(a.split("~")[0], 10) - parseInt(b.split("~")[0], 10)
-      )
-      .entries(appearancesList)
-);
+// const selectAppearancesGroupedByDayThenStage = createSelector(
+//   [selectAppearancesByDateTime],
+//   appearancesList =>
+//     d3
+//       .nest()
+//       .key(appearance => format(new Date(appearance.dateTimeStart), "dddd"))
+//       .key(appearance => `${appearance.stageSortOrder}~${appearance.stageName}`)
+//       .sortKeys(
+//         (a, b) => parseInt(a.split("~")[0], 10) - parseInt(b.split("~")[0], 10)
+//       )
+//       .entries(appearancesList)
+// );
 /*
 const nest = d3.nest()
     .key(d => +d.date)
@@ -65,11 +65,11 @@ const nest = d3.nest()
     .entries(data);
 */
 
-const selectAppearancesByBandNameThenDateTime = createSelector(
-  [selectAppearances],
-  appearancesList =>
-    stringThenDateTimeSort(appearancesList.slice(), "name", "dateTimeStart")
-);
+// const selectAppearancesByBandNameThenDateTime = createSelector(
+//   [selectAppearances],
+//   appearancesList =>
+//     stringThenDateTimeSort(appearancesList.slice(), "name", "dateTimeStart")
+// );
 
 // These getters have a supplied parameter, so they'll channge ever time.  Hence no
 // point in using Reselect library with them.
@@ -82,11 +82,11 @@ const selectAppearancesByBandNameThenDateTime = createSelector(
 
 // const selectAppearancesByDateTime = () => [];
 
-export const selectors = {
-  selectAppearancesByDateTime,
-  selectAppearancesByBandNameThenDateTime,
-  selectAppearancesGroupedByDayThenStage
-};
+// export const selectors = {
+//   selectAppearancesByDateTime,
+//   selectAppearancesByBandNameThenDateTime,
+//   selectAppearancesGroupedByDayThenStage
+// };
 
 /*
 const getAppearancesByDateTime = (appearancesList, bandsToFilterArray = []) => {
@@ -134,6 +134,58 @@ export const filterAppearancesByBandId = (
   });
 };
 
+/*
+const getVisibilityFilter = (state) => state.visibilityFilter
+const getTodos = (state) => state.todos
+
+export const getVisibleTodos = createSelector(
+  [ getVisibilityFilter, getTodos ],
+  (visibilityFilter, todos) => {
+    switch (visibilityFilter) {
+      case 'SHOW_ALL':
+        return todos
+      case 'SHOW_COMPLETED':
+        return todos.filter(t => t.completed)
+      case 'SHOW_ACTIVE':
+        return todos.filter(t => !t.completed)
+    }
+  }
+)
+ */
+
+// Selectors revisited, June 2018
+const selectAppearancesSortedByDateTime = createSelector(
+  [selectAppearances],
+  appearancesList =>
+    appearancesList
+      .slice()
+      .sort((a, b) => new Date(a.dateTimeStart) - new Date(b.dateTimeStart))
+);
+
+const selectAppearancesGroupedByDay = createSelector(
+  [selectAppearancesSortedByDateTime],
+  appearancesList =>
+    d3
+      .nest()
+      .key(appearance =>
+        format(
+          // new Date(appearance.dateTimeStart.split("T")[0]),
+          // "dddd DD/MM/YYYY")
+          new Date(appearance.dateTimeStart.split("T")[0]),
+          "dddd MMM Do YYYY"
+        )
+      )
+      .sortValues(
+        (a, b) =>
+          reverseTimesOrder
+            ? new Date(b.dateTimeStart) - new Date(a.dateTimeStart)
+            : new Date(a.dateTimeStart) - new Date(b.dateTimeStart)
+      )
+      .entries(appearancesList)
+);
+
+//  Getters.  These don't use Reselect so run every time.  Makes them
+//  potentially poor performers, so replace with selectors (see above)
 const sortAppearancesByDateTime = appearancesList => {
   const newAppearances = [...appearancesList];
   return newAppearances

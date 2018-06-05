@@ -16,7 +16,10 @@ import {
   // selectors as appearancesSelectors,
   selectAppearancesForBandByDateTime
 } from "../dux/appearancesReducer.js";
-import { toggleBandFavouriteStatus } from "../dux/favouritesReducer.js";
+import {
+  toggleBandFavouriteStatus,
+  selectFavouriteStatusForBandId
+} from "../dux/favouritesReducer.js";
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ toggleBandFavouriteStatus }, dispatch);
@@ -31,7 +34,8 @@ const mapStateToProps = (state, props) => ({
     state,
     props
   ),
-  selectBandDetails: selectBandDetails(state, props)
+  selectBandDetails: selectBandDetails(state, props),
+  selectFavouriteStatus: selectFavouriteStatusForBandId(state, props)
 });
 
 class BandCardWrapper extends Component {

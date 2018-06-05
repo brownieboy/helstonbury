@@ -74,7 +74,7 @@ class BandCard extends Component {
     this.state = {
       dimensions: Dimensions.get("window"),
       fullScreenPhotoCard: false,
-      isFavourite: false
+      isFavourite: this.props.selectFavouriteStatus
     };
   }
 
@@ -206,11 +206,12 @@ class BandCard extends Component {
     // )[0]; // Returns an array
     const bandDetails = selectBandDetails;
 
-    console.log("getting favourite start");
-    const favourite =
-      favouritesState.favourites.indexOf(bandDetails.bandId) > -1;
-    console.log("getting favourite stop");
-
+    // console.log("getting favourite start");
+    // const favourite =
+    //   favouritesState.favourites.indexOf(bandDetails.bandId) > -1;
+    // console.log("getting favourite stop");
+    // const favourite = selectFavouriteStatus;
+    console.log("band-card, isFavourite=" + isFavourite);
     const { toggleBandFavouriteStatus } = this.props;
 
     let backButtonText =
@@ -266,8 +267,8 @@ class BandCard extends Component {
               >
                 <AnimatableIcon
                   ref={this.handleFaveViewRef}
-                  ios={favourite ? "ios-heart" : "ios-heart-outline"}
-                  android={favourite ? "md-heart" : "md-heart-outline"}
+                  ios={isFavourite ? "ios-heart" : "ios-heart-outline"}
+                  android={isFavourite ? "md-heart" : "md-heart-outline"}
                   onAnimationEnd={() => console.log("animation end")}
                   transition="fontSize"
                   duration={1000}
@@ -280,15 +281,16 @@ class BandCard extends Component {
                     // toggleBandFavouriteStatus(bandDetails.bandId);
                     this.setState({ isFavourite: !isFavourite });
 
-                    // if (!favourite) {
-                    //   this.cancelHeartAnimation = false;
-                    //   setTimeout(() => {
-                    //     this.pulse();
-                    //   }, 500);
-                    // } else {
-                    //   console.log("setting this.cancelHeartAnimation = true");
-                    //   this.cancelHeartAnimation = true;
-                    // }
+                    if (!isFavourite) {
+                      this.cancelHeartAnimation = false;
+                      setTimeout(() => {
+                        this.pulse();
+                      }, 500);
+                    } else {
+                      console.log("setting this.cancelHeartAnimation = true");
+                      this.cancelHeartAnimation = true;
+                    }
+                    toggleBandFavouriteStatus(bandDetails.bandId);
                   }}
                 />
               </Right>

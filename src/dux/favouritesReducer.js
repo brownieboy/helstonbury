@@ -1,3 +1,5 @@
+import { createSelector } from "reselect";
+
 // Action type constants
 export const LOAD_FAVOURITES_NOW = "LOAD_FAVOURITES_NOW"; // Imperative, hence "NOW"!
 const FETCH_FAVOURITES_REQUEST = "FETCH_FAVOURITES_REQUEST";
@@ -26,7 +28,7 @@ const homeReducer = (
       console.log("TOGGLE_BAND_FAVOURITES_STATUS start");
       index = state.favourites.indexOf(action.payload);
       // console.log("TOGGLE_BAND_FAVOURITES_STATUS index=" + index);
-          console.log("TOGGLE_BAND_FAVOURITES_STATUS end");
+      console.log("TOGGLE_BAND_FAVOURITES_STATUS end");
 
       if (index > -1) {
         return {
@@ -48,6 +50,17 @@ const homeReducer = (
       return state;
   }
 };
+
+// Selectors
+const selectFavourites = state => state.favouritesState.favourites;
+const getBandId = (state, props) => props.navigation.state.params.bandId;
+
+// This won't memoise well because favourites will be changing all the
+// time.  But better here than in the components.
+export const selectFavouriteStatusForBandId = createSelector(
+  [selectFavourites, getBandId],
+  (favourites, bandId) => favourites.indexOf(bandId) > -1
+);
 
 export const loadFavouritesNow = () => ({ type: LOAD_FAVOURITES_NOW });
 

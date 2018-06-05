@@ -91,74 +91,88 @@ class AppearancesByDayStage extends PureComponent {
     return null;
   };
 
+  /*
+            {favourites.indexOf(lineMember.bandId) > -1 ? (
+              <FavouritesListIcon style={{ fontSize: 14, width: 14 }} />
+            ) : null}
+ */
+
   getAppearanceLines = lineData => {
     const itemsLength = lineData.length;
-    const favourites = this.props.favourites;
+    const { favourites, showOnlyFavourites } = this.props;
+    let isFavourite, lineStyle;
     return lineData.map((lineMember, index) => {
-      const lineStyle = {
-        // height: 35
+      isFavourite = favourites.indexOf(lineMember.bandId) > -1;
+      lineStyle = {
+        // Don't remove.  It's updated later.
       };
       if (itemsLength === index + 1) {
         lineStyle.borderBottomWidth = 0;
       }
-      return (
-        <ListItem
-          key={lineMember.id}
-          onPress={() =>
-            this.props.navigation.navigate("BandScheduleCard", {
-              bandId: lineMember.bandId,
-              parentList: "by Stage"
-            })
-          }
-          style={lineStyle}
-        >
-          <Left
-            style={{
-              flex: 23,
-              marginTop: -10,
-              marginBottom: -10
-            }}
+
+      if (!showOnlyFavourites || isFavourite) {
+        return (
+          <ListItem
+            key={lineMember.id}
+            onPress={() =>
+              this.props.navigation.navigate("BandScheduleCard", {
+                bandId: lineMember.bandId,
+                parentList: "by Stage"
+              })
+            }
+            style={lineStyle}
           >
-            <Text
+            <Left
               style={{
-                fontSize: 12,
+                flex: 23,
+                marginTop: -10,
+                marginBottom: -10
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 12,
+                  flexGrow: 0,
+                  flexShrink: 0,
+                  flexBasis: 80
+                }}
+              >{`${format(lineMember.dateTimeStart, "HH:mm")}-${format(
+                lineMember.dateTimeEnd,
+                "HH:mm"
+              )} `}</Text>
+              <Text style={{ fontSize: 14, flex: 8 }}>
+                {lineMember.bandName}
+              </Text>
+              {this.getBandSummaryText(lineMember)}
+            </Left>
+            <Right
+              style={{
+                marginTop: -10,
+                marginBottom: -10,
                 flexGrow: 0,
                 flexShrink: 0,
-                flexBasis: 80
+                flexBasis: 10
               }}
-            >{`${format(lineMember.dateTimeStart, "HH:mm")}-${format(
-              lineMember.dateTimeEnd,
-              "HH:mm"
-            )} `}</Text>
-            <Text style={{ fontSize: 14, flex: 8 }}>{lineMember.bandName}</Text>
-            {this.getBandSummaryText(lineMember)}
-          </Left>
-          <Right
-            style={{
-              marginTop: -10,
-              marginBottom: -10,
-              flexGrow: 0,
-              flexShrink: 0,
-              flexBasis: 10
-            }}
-          >
-            {favourites.indexOf(lineMember.bandId) > -1 ? (
-              <FavouritesListIcon style={{ fontSize: 14, width: 14 }} />
-            ) : null}
-          </Right>
-          <Right
-            style={{
-              marginTop: -10,
-              marginBottom: -10,
-              flexGrow: 0,
-              flexShrink: 0,
-              flexBasis: 16
-            }}
-          >
-            <Icon name="arrow-forward" />
-          </Right>
-        </ListItem>
-      );
+            >
+              {isFavourite ? (
+                <FavouritesListIcon style={{ fontSize: 14, width: 14 }} />
+              ) : null}
+            </Right>
+            <Right
+              style={{
+                marginTop: -10,
+                marginBottom: -10,
+                flexGrow: 0,
+                flexShrink: 0,
+                flexBasis: 16
+              }}
+            >
+              <Icon name="arrow-forward" />
+            </Right>
+          </ListItem>
+        );
+      }
+      return null;
     });
   };
 
@@ -223,6 +237,7 @@ class AppearancesByDayStage extends PureComponent {
     // const { sideMenuOpen } = this.state;
 
     let appearances = [...appearancesList];
+    console.log("showOnlyFavourites=" + showOnlyFavourites);
     if (showOnlyFavourites) {
       appearances = filterAppearancesByBandId(appearancesList, favourites);
     }
@@ -252,7 +267,8 @@ class AppearancesByDayStage extends PureComponent {
 
 AppearancesByDayStage.propTypes = {
   // appearancesView: PropTypes.string.isRequired,
-  appearancesSelGroupedByDayStage: PropTypes.arrayOf(PropTypes.object).isRequired,
+  appearancesSelGroupedByDayStage: PropTypes.arrayOf(PropTypes.object)
+    .isRequired,
   appearancesSideMenuVisible: PropTypes.bool.isRequired,
   appearancesList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   fetchStatus: PropTypes.string.isRequired,

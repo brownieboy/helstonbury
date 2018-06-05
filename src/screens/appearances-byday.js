@@ -28,9 +28,12 @@ import NoAppearancesToDisplayMessage from "../components/no-appearances-todispla
 class AppearancesByDay extends PureComponent {
   getAppearanceLines = lineData => {
     const itemsLength = lineData.length;
-    const favourites = this.props.favourites;
+    const { favourites, showOnlyFavourites } = this.props;
+    let isFavourite, lineStyle;
     return lineData.map((lineMember, index) => {
-      const lineStyle = {
+      isFavourite = favourites.indexOf(lineMember.bandId) > -1;
+      lineStyle = {
+        // Don't remove.  It's updated later.
         // justifyContent: "space-around",
         // height: 35,
         // alignContent: "flex-start",
@@ -41,103 +44,107 @@ class AppearancesByDay extends PureComponent {
       if (itemsLength === index + 1) {
         lineStyle.borderBottomWidth = 0;
       }
-      return (
-        <ListItem
-          auto
-          key={lineMember.id}
-          onPress={() => {
-            this.props.navigation.navigate("BandScheduleCard", {
-              bandId: lineMember.bandId,
-              parentList: "by Day"
-            });
-          }}
-          style={lineStyle}
-        >
-          <Left
-            style={{
-              marginTop: -10,
-              marginBottom: -10,
-              flex: 20,
-              margin: 0
-              // borderColor: "red",
-              // borderWidth: 1
+
+      if (!showOnlyFavourites || isFavourite) {
+        return (
+          <ListItem
+            auto
+            key={lineMember.id}
+            onPress={() => {
+              this.props.navigation.navigate("BandScheduleCard", {
+                bandId: lineMember.bandId,
+                parentList: "by Day"
+              });
             }}
+            style={lineStyle}
           >
-            <Text
+            <Left
               style={{
-                fontSize: 12,
+                marginTop: -10,
+                marginBottom: -10,
+                flex: 20,
+                margin: 0
+                // borderColor: "red",
+                // borderWidth: 1
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 12,
+                  flexGrow: 0,
+                  flexShrink: 0,
+                  flexBasis: 80
+                  // borderColor: "green",
+                  // borderWidth: 1
+                }}
+              >
+                {`${format(lineMember.dateTimeStart, "HH:mm")}-${format(
+                  lineMember.dateTimeEnd,
+                  "HH:mm"
+                )} `}
+              </Text>
+              <Text
+                style={{
+                  fontSize: 14,
+                  flexWrap: "wrap",
+                  flex: 13
+                  // borderColor: "blue",
+                  // borderWidth: 1
+                }}
+              >
+                {lineMember.bandName}
+              </Text>
+              <Text
+                style={{
+                  fontSize: 10,
+                  flexWrap: "wrap",
+                  flex: 7
+                  // borderColor: "orange",
+                  // borderWidth: 1,
+                }}
+              >
+                {lineMember.stageName}
+              </Text>
+            </Left>
+
+            <Right
+              style={{
+                marginTop: -10,
+                marginBottom: -10,
                 flexGrow: 0,
                 flexShrink: 0,
-                flexBasis: 80
-                // borderColor: "green",
+                flexBasis: 10,
+                margin: 0
+                // borderColor: "purple",
                 // borderWidth: 1
               }}
             >
-              {`${format(lineMember.dateTimeStart, "HH:mm")}-${format(
-                lineMember.dateTimeEnd,
-                "HH:mm"
-              )} `}
-            </Text>
-            <Text
+              {favourites.indexOf(lineMember.bandId) > -1 ? (
+                <FavouritesListIcon style={{ fontSize: 12, width: 12 }} />
+              ) : (
+                <FavouritesListIcon
+                  style={{ fontSize: 12, width: 12, color: "transparent" }}
+                />
+              )}
+            </Right>
+            <Right
               style={{
-                fontSize: 14,
-                flexWrap: "wrap",
-                flex: 13
-                // borderColor: "blue",
+                marginTop: -10,
+                marginBottom: -10,
+                flexGrow: 0,
+                flexShrink: 0,
+                flexBasis: 16,
+                margin: 0
+                // borderColor: "red",
                 // borderWidth: 1
               }}
             >
-              {lineMember.bandName}
-            </Text>
-            <Text
-              style={{
-                fontSize: 10,
-                flexWrap: "wrap",
-                flex: 7
-                // borderColor: "orange",
-                // borderWidth: 1,
-              }}
-            >
-              {lineMember.stageName}
-            </Text>
-          </Left>
-
-          <Right
-            style={{
-              marginTop: -10,
-              marginBottom: -10,
-              flexGrow: 0,
-              flexShrink: 0,
-              flexBasis: 10,
-              margin: 0
-              // borderColor: "purple",
-              // borderWidth: 1
-            }}
-          >
-            {favourites.indexOf(lineMember.bandId) > -1 ? (
-              <FavouritesListIcon style={{ fontSize: 12, width: 12 }} />
-            ) : (
-              <FavouritesListIcon
-                style={{ fontSize: 12, width: 12, color: "transparent" }}
-              />
-            )}
-          </Right>
-          <Right
-            style={{
-              marginTop: -10,
-              marginBottom: -10,
-              flexGrow: 0,
-              flexShrink: 0,
-              flexBasis: 16,
-              margin: 0
-              // borderColor: "red",
-              // borderWidth: 1
-            }}
-          >
-            <Icon name="arrow-forward" />
-          </Right>
-        </ListItem>
-      );
+              <Icon name="arrow-forward" />
+            </Right>
+          </ListItem>
+        );
+      }
+      return null;
     });
   };
 
@@ -175,10 +182,10 @@ class AppearancesByDay extends PureComponent {
     // console.log("appearances-byday.js, appearances:");
     // console.log(appearancesList);
 
-    let appearances = [...appearancesList];
-    if (showOnlyFavourites) {
-      appearances = filterAppearancesByBandId(appearancesList, favourites);
-    }
+    // let appearances = [...appearancesList];
+    // if (showOnlyFavourites) {
+    //   appearances = filterAppearancesByBandId(appearancesList, favourites);
+    // }
     // console.log("Filtered (or not) appearances:");
     // console.log(appearances);
 
@@ -187,7 +194,7 @@ class AppearancesByDay extends PureComponent {
     //     reverseTimesOrder +
     //     ", appearancesSelGroupedByDay"
     // );
-    console.log(appearancesSelGroupedByDay);
+    // console.log(appearancesSelGroupedByDay);
     // console.log("groupAppearancesByDay()");
     // console.log(groupAppearancesByDay());
 
@@ -196,15 +203,9 @@ class AppearancesByDay extends PureComponent {
     return (
       <Content style={{ backgroundColor: "#fff" }}>
         {fetchStatus === "fetching" && <Spinner />}
-        {appearances.length > 0 ? (
-          <List>
-            {this.getAppearancesListDayLevel(appearancesSelGroupedByDay)}
-          </List>
-        ) : (
-          <NoAppearancesToDisplayMessage
-            showOnlyFavourites={showOnlyFavourites}
-          />
-        )}
+        <List>
+          {this.getAppearancesListDayLevel(appearancesSelGroupedByDay)}
+        </List>
       </Content>
     );
   }

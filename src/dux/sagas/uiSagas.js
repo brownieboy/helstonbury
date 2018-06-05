@@ -8,9 +8,9 @@ export function* showFavouritesWarning() {
   const state = yield select();
   if (getShowOnlyFavourites(state) && getFavouritesCount(state) === 0) {
     yield Toast.show({
-      text: "You are displaying favourites only but have none chosen!",
+      text: "You have no Favourites selected so will see nothing in the schedule!  Consider turning off the Favourites only setting.",
       buttonText: "Okay",
-      duration: 5000,
+      duration: 8000,
       position: "top",
       type: "warning"
     });

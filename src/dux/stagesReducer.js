@@ -48,7 +48,7 @@ const getStageId = (state, props) => props.navigation.state.params.stageId;
 
 export const selectStageDetails = createCachedSelector(
   [selectStagesBySortOrder, getStageId],
-  (stagesList, stageId) => 
+  (stagesList, stageId) =>
     stagesList.filter(stageMember => stageMember.id === stageId)[0]
 )((state, props) => getStageId(state, props));
 

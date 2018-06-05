@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { TabNavigator as tabNavigator } from "react-navigation";
-// import { Root } from "native-base";
+import { Root } from "native-base";
 
 // Styles
 import tabNavStyles from "./styles/tab-navigator-styles.js";
@@ -51,7 +51,11 @@ class HomeNav extends Component {
     //     </Root>
     //   );
     // }
-    return <AppNavigator />;
+    return (
+      <Root>
+        <AppNavigator />
+      </Root>
+    );
   }
 }
 

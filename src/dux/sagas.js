@@ -1,6 +1,7 @@
 // import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
 import { AsyncStorage } from "react-native";
 import { buffers, eventChannel } from "redux-saga";
+
 import { all, fork, put, select, take, takeLatest } from "redux-saga/effects";
 // import FastImage from "react-native-fast-image";
 import { ImageCache } from "react-native-img-cache";
@@ -339,6 +340,8 @@ function* loadUIStateGen() {
     );
  */
 
+
+
 function* mySaga() {
   // yield takeLatest(bandsDuxConstants.LOAD_BANDS_NOW, loadBandsGen);
   yield takeLatest(LOAD_BANDS_NOW, loadBandsGen);
@@ -350,6 +353,7 @@ function* mySaga() {
     favouritesDuxActions.toggleBandFavouriteStatus().type,
     toggleFavouriteGen
   );
+
   yield fork(updatedItemSaga);
 }
 

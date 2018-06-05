@@ -14,6 +14,7 @@ import {
   Icon,
   Text,
   Title,
+  // Toast,
   Left,
   Right,
   Body,
@@ -48,6 +49,22 @@ class AppearancesWrapper extends Component {
     tabBarLabel: "Schedule",
     tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
   };
+
+  // showFavouritesWarning = () => {
+  //   Toast.show({
+  //     text: "Wrong password!",
+  //     buttonText: "Okay",
+  //     duration: 3000
+  //   });
+  // };
+
+  // componentDidMount() {
+  //   this.showFavouritesWarning();
+  // }
+
+  // componentDidUpdate() {
+  //   this.showFavouritesWarning();
+  // }
 
   handleSetActiveAppearanceScreen = activeAppearancesScreen => {
     // this.setState({ activeAppearancesScreen });
@@ -86,10 +103,11 @@ class AppearancesWrapper extends Component {
 
   render() {
     const {
-      appearancesList,
+      // appearancesList,
       appearancesView,
+      favouritesCount,
       fetchStatus,
-      filterAppearancesByBandId,
+      // filterAppearancesByBandId,
       getStageInfo,
       // groupAppearancesByDay,
       // groupAppearancesByDayStage,
@@ -110,11 +128,12 @@ class AppearancesWrapper extends Component {
     // console.log("appearanceswrapper.js, reverseTimesOrder=" + reverseTimesOrder);
 
     const sharedChildProps = {
-      appearancesList,
+      // appearancesList,
+      //
       appearancesView,
       appearancesSideMenuVisible,
       fetchStatus,
-      filterAppearancesByBandId,
+      // filterAppearancesByBandId,
       getStageInfo,
       // groupAppearancesByDay,
       favourites,
@@ -144,7 +163,7 @@ class AppearancesWrapper extends Component {
         setReverseTimesOrder={setReverseTimesOrder}
       />
     );
-
+    // console.log("favouritesCount=" + favouritesCount);
     // console.log("appearances..render, appearancesGroupedByDay:");
     // console.log(appearancesGroupedByDay);
 
@@ -184,7 +203,7 @@ class AppearancesWrapper extends Component {
         // }
       >
         <Container style={styles.container}>
-          <Header>
+          <Header hasSegment>
             <Left style={{ flex: 1 }}>
               <HelstonburyAvatar />
             </Left>
@@ -194,14 +213,18 @@ class AppearancesWrapper extends Component {
                 active={appearancesView === "stage"}
                 onPress={() => this.handleSetActiveAppearanceScreen("stage")}
               >
-                <Text style={{ fontSize: headerSegmentFontSize }}>by Stage</Text>
+                <Text style={{ fontSize: headerSegmentFontSize }}>
+                  by Stage
+                </Text>
               </Button>
               <Button
                 last
                 active={appearancesView === "day"}
                 onPress={() => this.handleSetActiveAppearanceScreen("day")}
               >
-                <Text style={{ fontSize: headerSegmentFontSize }}>Schedule</Text>
+                <Text style={{ fontSize: headerSegmentFontSize }}>
+                  Schedule
+                </Text>
               </Button>
             </Segment>
             <Right style={{ flex: 1, alignItems: "center" }}>
@@ -250,6 +273,7 @@ AppearancesWrapper.propTypes = {
   appearancesSelGroupedByDayStage: PropTypes.arrayOf(PropTypes.object)
     .isRequired,
   appearancesView: PropTypes.string.isRequired,
+  favouritesCount: PropTypes.number.isRequired,
   fetchStatus: PropTypes.string.isRequired,
   // filterAppearancesByBandId: PropTypes.func.isRequired,
   getStageInfo: PropTypes.func.isRequired,

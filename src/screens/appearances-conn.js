@@ -18,6 +18,8 @@ import {
   // selectors as appearanceSelectors
 } from "../dux/appearancesReducer.js";
 
+import { getFavouritesCount } from "../dux/favouritesReducer.js";
+
 import {
   getReverseTimesOrder,
   getShowOnlyFavourites,
@@ -49,7 +51,8 @@ const mapStateToProps = state => ({
   // appearancesSideMenuVisible: getAppearancesSideMenuVisible(state),
   appearancesSelGroupedByDay: selectAppearancesGroupedByDay(state),
   appearancesSelGroupedByDayStage: selectAppearancesGroupedByDayStage(state),
-  getStageInfo: stageId => getStageInfoForId(selectStages(state), stageId)
+  getStageInfo: stageId => getStageInfoForId(selectStages(state), stageId),
+  favouritesCount: getFavouritesCount(state)
   // filterAppearancesByBandId: (appearances, bandsToFilterArray) =>
   // filterAppearancesByBandId(appearances, bandsToFilterArray)rr
   // groupAppearancesByDay: (appearances, reverseTimesOrder) =>

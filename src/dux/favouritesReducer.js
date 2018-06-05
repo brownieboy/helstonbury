@@ -78,6 +78,7 @@ const homeReducer = (
 // Selectors
 const selectFavourites = state => state.favouritesState.favourites;
 const getBandId = (state, props) => props.navigation.state.params.bandId;
+export const getFavouritesCount = state => state.favouritesState.favourites.length;
 
 // This won't memoise well because favourites will be changing all the
 // time.  But better here than in the components.

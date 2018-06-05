@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-// import { Button, Segment } from "native-base";
 // import IconMaterial from "react-native-vector-icons/MaterialIcons";
 // import Icon from "react-native-vector-icons";
 // import { format } from "date-fns";
@@ -167,6 +166,13 @@ class AppearancesWrapper extends Component {
               </Segment>
  */
 
+    let headerIndicatorIconColor = "black";
+    let headerSegmentFontSize = 13;
+    if (Platform.OS === "android") {
+      headerIndicatorIconColor = "white";
+      headerSegmentFontSize = 9;
+    }
+
     return (
       <SideMenu
         menu={menu}
@@ -188,14 +194,14 @@ class AppearancesWrapper extends Component {
                 active={appearancesView === "stage"}
                 onPress={() => this.handleSetActiveAppearanceScreen("stage")}
               >
-                <Text style={{ fontSize: 10 }}>by Stage</Text>
+                <Text style={{ fontSize: headerSegmentFontSize }}>by Stage</Text>
               </Button>
               <Button
                 last
                 active={appearancesView === "day"}
                 onPress={() => this.handleSetActiveAppearanceScreen("day")}
               >
-                <Text style={{ fontSize: 11 }}>Schedule</Text>
+                <Text style={{ fontSize: headerSegmentFontSize }}>Schedule</Text>
               </Button>
             </Segment>
             <Right style={{ flex: 1, alignItems: "center" }}>
@@ -206,7 +212,7 @@ class AppearancesWrapper extends Component {
                   style={{
                     marginRight: 5,
                     fontSize: 12,
-                    color: Platform.OS === "android" ? "white" : "black"
+                    color: headerIndicatorIconColor
                   }}
                 />
               )}

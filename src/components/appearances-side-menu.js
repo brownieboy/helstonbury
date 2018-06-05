@@ -21,8 +21,8 @@ import {
   Right,
   Body,
   Switch,
-  Radio,
-  Thumbnail
+  // Radio,
+  // Thumbnail
 } from "native-base";
 
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
@@ -175,9 +175,10 @@ class AppearancesMenu extends PureComponent {
           <ListItem icon last onPress={this.toggleReverseTimesOrder}>
             <Left>
               <Button style={{ backgroundColor: "white" }}>
-                <IconFontAwesome
+                <IconMaterialEntypo
                   active
-                  name="toggle-down"
+                  name="back-in-time"
+                  size={22}
                   style={{ color: reverseTimesOrder ? "blue" : "grey" }}
                   onPress={this.toggleReverseTimesOrder}
                 />
@@ -208,6 +209,14 @@ class AppearancesMenu extends PureComponent {
 }
 
 /*
+
+                <IconFontAwesome
+                  active
+                  name="toggle-down"
+                  style={{ color: reverseTimesOrder ? "blue" : "grey" }}
+                  onPress={this.toggleReverseTimesOrder}
+                />
+
          <ListItem icon onPress={() => this.handleDayStagePress("stage")}>
             <Left>
               <Button

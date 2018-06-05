@@ -188,14 +188,14 @@ class AppearancesWrapper extends Component {
                 active={appearancesView === "stage"}
                 onPress={() => this.handleSetActiveAppearanceScreen("stage")}
               >
-                <Text>Day/Stage</Text>
+                <Text style={{ fontSize: 11 }}>by Stage</Text>
               </Button>
               <Button
                 last
                 active={appearancesView === "day"}
                 onPress={() => this.handleSetActiveAppearanceScreen("day")}
               >
-                <Text>Day</Text>
+                <Text style={{ fontSize: 11 }}>Schedule</Text>
               </Button>
             </Segment>
             <Right style={{ flex: 1 }}>
@@ -230,7 +230,8 @@ class AppearancesWrapper extends Component {
 AppearancesWrapper.propTypes = {
   appearancesList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   appearancesSelGroupedByDay: PropTypes.arrayOf(PropTypes.object).isRequired,
-  appearancesSelGroupedByDayStage: PropTypes.arrayOf(PropTypes.object).isRequired,
+  appearancesSelGroupedByDayStage: PropTypes.arrayOf(PropTypes.object)
+    .isRequired,
   appearancesView: PropTypes.string.isRequired,
   fetchStatus: PropTypes.string.isRequired,
   filterAppearancesByBandId: PropTypes.func.isRequired,

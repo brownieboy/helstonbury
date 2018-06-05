@@ -253,6 +253,7 @@ class AppearancesByDayStage extends PureComponent {
         <List>
           {this.getAppearancesListDayLevel(appearancesSelGroupedByDayStage)}
         </List>
+        <View onLayout={this.handleOnLayout} />
       </Content>
     );
   }

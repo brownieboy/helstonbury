@@ -8,9 +8,11 @@ export function* showFavouritesWarning() {
   const state = yield select();
   if (getShowOnlyFavourites(state) && getFavouritesCount(state) === 0) {
     yield Toast.show({
-      text: "You are displaying only favourites but have not selected any!",
+      text: "You are displaying favourites only but have none chosen!",
       buttonText: "Okay",
-      duration: 3000
+      duration: 5000,
+      position: "top",
+      type: "warning"
     });
   }
 }

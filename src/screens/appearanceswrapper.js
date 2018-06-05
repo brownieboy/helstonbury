@@ -188,7 +188,7 @@ class AppearancesWrapper extends Component {
                 active={appearancesView === "stage"}
                 onPress={() => this.handleSetActiveAppearanceScreen("stage")}
               >
-                <Text style={{ fontSize: 11 }}>by Stage</Text>
+                <Text style={{ fontSize: 10 }}>by Stage</Text>
               </Button>
               <Button
                 last
@@ -198,7 +198,8 @@ class AppearancesWrapper extends Component {
                 <Text style={{ fontSize: 11 }}>Schedule</Text>
               </Button>
             </Segment>
-            <Right style={{ flex: 1 }}>
+            <Right style={{ flex: 2 }}>
+              <Icon name="heart" />
               <Icon
                 ios="ios-options"
                 android="md-options"

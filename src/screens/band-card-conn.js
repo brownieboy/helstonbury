@@ -17,19 +17,23 @@ import {
   selectAppearancesForBandByDateTime
 } from "../dux/appearancesReducer.js";
 import {
-  toggleBandFavouriteStatus,
+  // toggleBandFavouriteStatus,
+  updateBandFavouriteStatus,
   selectFavouriteStatusForBandId
 } from "../dux/favouritesReducer.js";
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ toggleBandFavouriteStatus }, dispatch);
+  bindActionCreators(
+    { updateBandFavouriteStatus },
+    dispatch
+  );
 
 const mapStateToProps = (state, props) => ({
   // bandsAlphabetical: bandSelectors.selectAlphabetical(state),
   // appearancesByBandThenDateTime: appearancesSelectors.selectAppearancesByBandNameThenDateTime(
   //   state
   // ),
-  favouritesState: state.favouritesState,
+  // favouritesState: state.favouritesState,
   selectAppearancesForBandByDateTime: selectAppearancesForBandByDateTime(
     state,
     props

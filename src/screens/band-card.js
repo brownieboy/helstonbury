@@ -182,11 +182,11 @@ class BandCard extends Component {
 
   render() {
     const { bandId, parentList } = this.props.navigation.state.params;
-    const { isFavourite } = this.state;
+    const { fullScreenPhotoCard, isFavourite } = this.state;
 
     const {
       // appearancesByBandThenDateTime,
-      favouritesState,
+      // favouritesState,
       selectAppearancesForBandByDateTime,
       selectBandDetails
       // parentList
@@ -196,7 +196,6 @@ class BandCard extends Component {
     // console.log("newBand");
     // console.log(newBand);
 
-    const { fullScreenPhotoCard } = this.state;
     // const sortedAppearances = this.getAppearancesForBand(
     //   appearancesByBandThenDateTime,
     //   bandId
@@ -211,8 +210,8 @@ class BandCard extends Component {
     //   favouritesState.favourites.indexOf(bandDetails.bandId) > -1;
     // console.log("getting favourite stop");
     // const favourite = selectFavouriteStatus;
-    console.log("band-card, isFavourite=" + isFavourite);
-    const { toggleBandFavouriteStatus } = this.props;
+    // console.log("band-card, isFavourite=" + isFavourite);
+    // const { toggleBandFavouriteStatus } = this.props;
 
     let backButtonText =
       parentList.toLowerCase() === "by day" ||
@@ -330,6 +329,13 @@ class BandCard extends Component {
       </Container>
     );
   }
+
+  componentWillUnmount() {
+    const { updateBandFavouriteStatus } = this.props;
+    const { isFavourite } = this.state;
+    const { bandId } = this.props.navigation.state.params;
+    updateBandFavouriteStatus(bandId, isFavourite);
+  }
 }
 
 BandCard.propTypes = {
@@ -339,10 +345,11 @@ BandCard.propTypes = {
   selectAppearancesForBandByDateTime: PropTypes.arrayOf(
     PropTypes.object.isRequired
   ).isRequired,
-  favouritesState: PropTypes.object.isRequired,
+  // favouritesState: PropTypes.object.isRequired,
   navigation: PropTypes.object.isRequired,
   // parentList: PropTypes.string.isRequired,
-  toggleBandFavouriteStatus: PropTypes.func.isRequired
+  // toggleBandFavouriteStatus: PropTypes.func.isRequired,
+  updateBandFavouriteStatus: PropTypes.func.isRequired
 };
 
 export default BandCard;

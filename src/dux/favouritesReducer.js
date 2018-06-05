@@ -6,6 +6,7 @@ const FETCH_FAVOURITES_REQUEST = "FETCH_FAVOURITES_REQUEST";
 const FETCH_FAVOURITES_SUCCESS = "FETCH_FAVOURITES_SUCCESS";
 const FETCH_FAVOURITES_FAILURE = "FETCH_FAVOURITES_FAILURE";
 const TOGGLE_BAND_FAVOURITES_STATUS = "TOGGLE_BAND_FAVOURITES_STATUS";
+const UPDATE_BAND_FAVOURITES_STATUS = "UPDATE_BAND_FAVOURITES_STATUS";
 
 // Reducer.  Favourites are a simple array of bandId.
 const homeReducer = (
@@ -25,10 +26,7 @@ const homeReducer = (
     case FETCH_FAVOURITES_FAILURE:
       return { ...state, fetchStatus: "failure", fetchError: action.payload };
     case TOGGLE_BAND_FAVOURITES_STATUS:
-      console.log("TOGGLE_BAND_FAVOURITES_STATUS start");
-      index = state.favourites.indexOf(action.payload);
-      // console.log("TOGGLE_BAND_FAVOURITES_STATUS index=" + index);
-      console.log("TOGGLE_BAND_FAVOURITES_STATUS end");
+      index = state.favourites.indexOf(action.payload); // payload is bandId
 
       if (index > -1) {
         return {
@@ -40,12 +38,38 @@ const homeReducer = (
           ]
         };
       }
-      // else add it in there
+      // else add the new Favourite into the array
       // console.log("add it in there...");
       return {
         ...state,
         favourites: [...state.favourites, action.payload]
       };
+
+    case UPDATE_BAND_FAVOURITES_STATUS:
+      console.log("UPDATE_BAND_FAVOURITES_STATUS");
+      index = state.favourites.indexOf(action.payload.bandId);
+
+      if (!action.payload.isFavourite && index >= 0) {
+        // We want to remove a favoruite that's already in the array
+        return {
+          ...state,
+          favourites: [
+            ...state.favourites.slice(0, index),
+            ...state.favourites.slice(index + 1)
+          ]
+        };
+      }
+
+      if (action.payload.isFavourite && index < 0) {
+        // We want to add a favourite that's not in the array
+        return {
+          ...state,
+          favourites: [...state.favourites, action.payload.bandId]
+        };
+      }
+      // For all other cases, our work is done!
+      return state;
+
     default:
       return state;
   }
@@ -95,6 +119,11 @@ const setFetchFavouritesFailed = errorMessage => ({
 export const toggleBandFavouriteStatus = bandId => ({
   type: TOGGLE_BAND_FAVOURITES_STATUS,
   payload: bandId
+});
+
+export const updateBandFavouriteStatus = (bandId, isFavourite) => ({
+  type: UPDATE_BAND_FAVOURITES_STATUS,
+  payload: { bandId, isFavourite }
 });
 
 export const favouritesDuxActions = {

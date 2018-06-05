@@ -1,7 +1,7 @@
 // import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
 import { AsyncStorage } from "react-native";
 import { buffers, eventChannel } from "redux-saga";
-
+// import { Toast } from "native-base";
 import { all, fork, put, select, take, takeLatest } from "redux-saga/effects";
 // import FastImage from "react-native-fast-image";
 import { ImageCache } from "react-native-img-cache";
@@ -25,7 +25,8 @@ import { contactUsDuxActions } from "./contactUsReducer.js";
 import { stagesDuxActions } from "./stagesReducer.js";
 import {
   favouritesDuxActions,
-  LOAD_FAVOURITES_NOW
+  LOAD_FAVOURITES_NOW,
+  UPDATE_BAND_FAVOURITES_STATUS
 } from "./favouritesReducer.js";
 import {
   setFetchUIStateSucceeded,
@@ -33,6 +34,8 @@ import {
   SET_APPEARANCES_VIEW,
   SET_SHOW_FAVOURITES
 } from "./uiReducer.js";
+
+import { showFavouritesWarning } from "./sagas/uiSagas.js";
 
 /*
 FastImage.preload([
@@ -340,7 +343,13 @@ function* loadUIStateGen() {
     );
  */
 
-
+// function* showFavouritesWarning() {
+//   yield Toast.show({
+//     text: "Saga favourites Warning!",
+//     buttonText: "Okay",
+//     duration: 3000
+//   });
+// }
 
 function* mySaga() {
   // yield takeLatest(bandsDuxConstants.LOAD_BANDS_NOW, loadBandsGen);
@@ -353,6 +362,8 @@ function* mySaga() {
     favouritesDuxActions.toggleBandFavouriteStatus().type,
     toggleFavouriteGen
   );
+  yield takeLatest(SET_SHOW_FAVOURITES, showFavouritesWarning);
+  yield takeLatest(UPDATE_BAND_FAVOURITES_STATUS, showFavouritesWarning);
 
   yield fork(updatedItemSaga);
 }

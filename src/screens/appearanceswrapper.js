@@ -228,13 +228,13 @@ class AppearancesWrapper extends Component {
 //                 groupAppearancesByDayStage={groupAppearancesByDayStage}
 
 AppearancesWrapper.propTypes = {
-  appearancesList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  // appearancesList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   appearancesSelGroupedByDay: PropTypes.arrayOf(PropTypes.object).isRequired,
   appearancesSelGroupedByDayStage: PropTypes.arrayOf(PropTypes.object)
     .isRequired,
   appearancesView: PropTypes.string.isRequired,
   fetchStatus: PropTypes.string.isRequired,
-  filterAppearancesByBandId: PropTypes.func.isRequired,
+  // filterAppearancesByBandId: PropTypes.func.isRequired,
   getStageInfo: PropTypes.func.isRequired,
   // groupAppearancesByDayStage: PropTypes.func.isRequired,
   // groupAppearancesByDay: PropTypes.func.isRequired,

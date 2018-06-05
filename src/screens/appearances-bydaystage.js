@@ -224,23 +224,23 @@ class AppearancesByDayStage extends PureComponent {
 
   render() {
     const {
-      appearancesList,
+      // appearancesList,
       appearancesSelGroupedByDayStage,
-      fetchStatus,
-      filterAppearancesByBandId,
+      fetchStatus
+      // filterAppearancesByBandId,
       // groupAppearancesByDayStage,
-      favourites,
-      showOnlyFavourites,
-      reverseTimesOrder
+      // favourites,
+      // showOnlyFavourites,
+      // reverseTimesOrder
     } = this.props;
 
     // const { sideMenuOpen } = this.state;
 
-    let appearances = [...appearancesList];
-    console.log("showOnlyFavourites=" + showOnlyFavourites);
-    if (showOnlyFavourites) {
-      appearances = filterAppearancesByBandId(appearancesList, favourites);
-    }
+    // let appearances = [...appearancesList];
+    // console.log("showOnlyFavourites=" + showOnlyFavourites);
+    // if (showOnlyFavourites) {
+    //   appearances = filterAppearancesByBandId(appearancesList, favourites);
+    // }
 
     // const appearancesGroupedByDayStage = groupAppearancesByDayStage(
     //   appearances,
@@ -250,16 +250,9 @@ class AppearancesByDayStage extends PureComponent {
     return (
       <Content style={{ backgroundColor: "#fff" }}>
         {fetchStatus === "fetching" && <Spinner />}
-        {appearances.length > 0 ? (
-          <List>
-            {this.getAppearancesListDayLevel(appearancesSelGroupedByDayStage)}
-          </List>
-        ) : (
-          <NoAppearancesToDisplayMessage
-            showOnlyFavourites={showOnlyFavourites}
-          />
-        )}
-        <View onLayout={this.handleOnLayout} />
+        <List>
+          {this.getAppearancesListDayLevel(appearancesSelGroupedByDayStage)}
+        </List>
       </Content>
     );
   }
@@ -270,15 +263,15 @@ AppearancesByDayStage.propTypes = {
   appearancesSelGroupedByDayStage: PropTypes.arrayOf(PropTypes.object)
     .isRequired,
   appearancesSideMenuVisible: PropTypes.bool.isRequired,
-  appearancesList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  // appearancesList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   fetchStatus: PropTypes.string.isRequired,
-  filterAppearancesByBandId: PropTypes.func.isRequired,
+  // filterAppearancesByBandId: PropTypes.func.isRequired,
   getStageInfo: PropTypes.func.isRequired,
   // groupAppearancesByDayStage: PropTypes.func.isRequired,
   favourites: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   navigation: PropTypes.object.isRequired,
-  showOnlyFavourites: PropTypes.bool.isRequired,
-  reverseTimesOrder: PropTypes.bool.isRequired
+  showOnlyFavourites: PropTypes.bool.isRequired
+  // reverseTimesOrder: PropTypes.bool.isRequired
   // setShowAppearancesView: PropTypes.func.isRequired,
   // setShowOnlyFavourites: PropTypes.func.isRequired
 };

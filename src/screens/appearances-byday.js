@@ -164,13 +164,13 @@ class AppearancesByDay extends PureComponent {
 
   render() {
     const {
-      appearancesList,
+      // appearancesList,
       fetchStatus,
-      filterAppearancesByBandId,
+      // filterAppearancesByBandId,
       // groupAppearancesByDay,
-      favourites,
-      showOnlyFavourites,
-      reverseTimesOrder,
+      // favourites,
+      // showOnlyFavourites,
+      // reverseTimesOrder,
       appearancesSelGroupedByDay
     } = this.props;
 
@@ -219,18 +219,18 @@ class AppearancesByDay extends PureComponent {
 AppearancesByDay.propTypes = {
   // appearancesView: PropTypes.string.isRequired,
   // appearancesSideMenuVisible: PropTypes.bool.isRequired,
-  appearancesList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  // appearancesList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   appearancesSelGroupedByDay: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchStatus: PropTypes.string.isRequired,
-  filterAppearancesByBandId: PropTypes.func.isRequired,
+  // filterAppearancesByBandId: PropTypes.func.isRequired,
   // groupAppearancesByDay: PropTypes.func.isRequired,
   favourites: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   navigation: PropTypes.object.isRequired,
   // setShowOnlyFavourites: PropTypes.func.isRequired,
   // setShowAppearancesSideMenu: PropTypes.func.isRequired,
   // setShowAppearancesView: PropTypes.func.isRequired,
-  showOnlyFavourites: PropTypes.bool.isRequired,
-  reverseTimesOrder: PropTypes.bool.isRequired
+  showOnlyFavourites: PropTypes.bool.isRequired
+  // reverseTimesOrder: PropTypes.bool.isRequired
 };
 
 export default AppearancesByDay;

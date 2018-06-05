@@ -45,13 +45,13 @@ const mapStateToProps = state => ({
   reverseTimesOrder: getReverseTimesOrder(state),
   showOnlyFavourites: getShowOnlyFavourites(state),
   appearancesView: getAppearancesView(state),
-  appearancesList: getAppearancesList(state),
+  // appearancesList: getAppearancesList(state),
   // appearancesSideMenuVisible: getAppearancesSideMenuVisible(state),
   appearancesSelGroupedByDay: selectAppearancesGroupedByDay(state),
   appearancesSelGroupedByDayStage: selectAppearancesGroupedByDayStage(state),
-  getStageInfo: stageId => getStageInfoForId(selectStages(state), stageId),
-  filterAppearancesByBandId: (appearances, bandsToFilterArray) =>
-    filterAppearancesByBandId(appearances, bandsToFilterArray)
+  getStageInfo: stageId => getStageInfoForId(selectStages(state), stageId)
+  // filterAppearancesByBandId: (appearances, bandsToFilterArray) =>
+    // filterAppearancesByBandId(appearances, bandsToFilterArray)rr
   // groupAppearancesByDay: (appearances, reverseTimesOrder) =>
   //   groupAppearancesByDay(appearances, reverseTimesOrder),
   // groupAppearancesByDayStage: (appearances, reverseTimesOrder) =>

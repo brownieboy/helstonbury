@@ -279,18 +279,18 @@ class BandCard extends Component {
                   onPress={() => {
                     // this.setState({ favouritesFontSize: favourite ? 35 : 50 });
                     // toggleBandFavouriteStatus(bandDetails.bandId);
-                    this.setState({ isFavourite: !isFavourite });
-
-                    if (!isFavourite) {
-                      this.cancelHeartAnimation = false;
-                      setTimeout(() => {
-                        this.pulse();
-                      }, 500);
-                    } else {
-                      console.log("setting this.cancelHeartAnimation = true");
-                      this.cancelHeartAnimation = true;
-                    }
-                    toggleBandFavouriteStatus(bandDetails.bandId);
+                    this.setState({ isFavourite: !isFavourite }, () => {
+                      if (!isFavourite) {
+                        this.cancelHeartAnimation = false;
+                        setTimeout(() => {
+                          this.pulse();
+                        }, 500);
+                      } else {
+                        console.log("setting this.cancelHeartAnimation = true");
+                        this.cancelHeartAnimation = true;
+                      }
+                     toggleBandFavouriteStatus(bandDetails.bandId);
+                    });
                   }}
                 />
               </Right>

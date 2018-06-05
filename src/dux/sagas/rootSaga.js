@@ -5,7 +5,7 @@ import uiSagas from "./uiSagas.js";
 // Combine sagas solution taken from Andarist's comment at:
 // https://github.com/redux-saga/redux-saga/issues/160
 function* sagas() {
-  yield all([...dataSagas, uiSagas]);
+  yield all([...dataSagas, ...uiSagas]);
 }
 export default sagas;
 

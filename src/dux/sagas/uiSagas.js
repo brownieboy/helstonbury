@@ -17,9 +17,9 @@ export function* showFavouritesWarning() {
   }
 }
 
-// function* uiSagas() {
-//   yield takeLatest("SET_SHOW_FAVOURITES", showFavouritesWarning);
-// }
+function* uiSagas() {
+  yield takeLatest("SET_SHOW_FAVOURITES", showFavouritesWarning);
+}
 
-// export default uiSagas;
-//
+export default uiSagas;
+

@@ -198,8 +198,18 @@ class AppearancesWrapper extends Component {
                 <Text style={{ fontSize: 11 }}>Schedule</Text>
               </Button>
             </Segment>
-            <Right style={{ flex: 2 }}>
-              <Icon name="heart" />
+            <Right style={{ flex: 1, alignItems: "center" }}>
+              {showOnlyFavourites && (
+                <Icon
+                  ios="ios-heart"
+                  android="md-heart"
+                  style={{
+                    marginRight: 5,
+                    fontSize: 12,
+                    color: Platform.OS === "android" ? "white" : "black"
+                  }}
+                />
+              )}
               <Icon
                 ios="ios-options"
                 android="md-options"

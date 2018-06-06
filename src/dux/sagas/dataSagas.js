@@ -269,15 +269,15 @@ function* loadBandsGen() {
 //      JSON.stringify(item.value)
 //    );
 
-function* toggleFavouriteGen(bandObj) {
-  // console.log("toggling favourite " + JSON.stringify(bandObj, null, 4));
-  const state = yield select();
-  const newFavourites = state.favouritesState.favourites;
-  // console.log("toggling favourite state is " + JSON.stringify(state, null, 4));
-  // console.log("newFavourites is "+ newFavourites);
+// function* toggleFavouriteGen(bandObj) {
+//   // console.log("toggling favourite " + JSON.stringify(bandObj, null, 4));
+//   const state = yield select();
+//   const newFavourites = state.favouritesState.favourites;
+//   // console.log("toggling favourite state is " + JSON.stringify(state, null, 4));
+//   // console.log("newFavourites is "+ newFavourites);
 
-  yield AsyncStorage.setItem("localFavourites", JSON.stringify(newFavourites));
-}
+//   yield AsyncStorage.setItem("localFavourites", JSON.stringify(newFavourites));
+// }
 
 // function* saveUIStateGen() {
 //   // console.log("saveUIStateGen");
@@ -291,15 +291,15 @@ function* toggleFavouriteGen(bandObj) {
 //   yield AsyncStorage.setItem("uiState", JSON.stringify(newUIState));
 // }
 
-function* loadUIStateGen() {
-  // console.log("loadUIStateGen");
-  const loadedUIStateString = yield AsyncStorage.getItem("uiState");
-  // console.log("loadedUIStateString: " + loadedUIStateString);
-  const loadedUIStateObj = loadedUIStateString
-    ? JSON.parse(loadedUIStateString)
-    : null;
-  yield put(setFetchUIStateSucceeded(loadedUIStateObj));
-}
+// function* loadUIStateGen() {
+//   // console.log("loadUIStateGen");
+//   const loadedUIStateString = yield AsyncStorage.getItem("uiState");
+//   // console.log("loadedUIStateString: " + loadedUIStateString);
+//   const loadedUIStateObj = loadedUIStateString
+//     ? JSON.parse(loadedUIStateString)
+//     : null;
+//   yield put(setFetchUIStateSucceeded(loadedUIStateObj));
+// }
 
 /*
 
@@ -374,10 +374,10 @@ const dataSagas = [
   // takeLatest(LOAD_UISTATE_NOW, loadUIStateGen),
   // takeLatest(SET_SHOW_FAVOURITES, saveUIStateGen),
   // takeLatest(SET_APPEARANCES_VIEW, saveUIStateGen),
-  takeLatest(
-    favouritesDuxActions.toggleBandFavouriteStatus().type,
-    toggleFavouriteGen
-  ),
+  // takeLatest(
+  //   favouritesDuxActions.toggleBandFavouriteStatus().type,
+  //   toggleFavouriteGen
+  // ),
   fork(updatedItemSaga)
 ];
 

@@ -27,24 +27,20 @@ export function* showFavouritesWarning() {
   }
 }
 
-// function* saveUIStateGen() {
-//   console.log("uiSagas saveUIStateGen");
-//   const state = yield select();
-//   const newUIState = state.uiState;
-//   yield AsyncStorage.setItem("uiState", JSON.stringify(newUIState));
-// }
+function* saveUIStateGen() {
+  console.log("uiSagas saveUIStateGen");
+  const state = yield select();
+  const newUIState = state.uiState;
+  yield AsyncStorage.setItem("uiState", JSON.stringify(newUIState));
+}
 
-// function* uiSagas() {
-//   yield takeLatest(SET_SHOW_FAVOURITES, showFavouritesWarning);
-//   yield takeLatest(UPDATE_BAND_FAVOURITES_STATUS, showFavouritesWarning);
-// }
 
 const uiSagas = [
   takeLatest(SET_SHOW_FAVOURITES, showFavouritesWarning),
   takeLatest(UPDATE_BAND_FAVOURITES_STATUS, showFavouritesWarning),
-  // takeLatest(SET_SHOW_FAVOURITES, saveUIStateGen),
-  // takeLatest(SET_APPEARANCES_VIEW, saveUIStateGen),
-  // takeLatest(SET_TIMES_ORDER, saveUIStateGen)
+  takeLatest(SET_SHOW_FAVOURITES, saveUIStateGen),
+  takeLatest(SET_APPEARANCES_VIEW, saveUIStateGen),
+  takeLatest(SET_TIMES_ORDER, saveUIStateGen)
 ];
 
 export default uiSagas;

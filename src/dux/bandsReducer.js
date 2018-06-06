@@ -137,7 +137,7 @@ export const loadBandsNow = () => ({ type: LOAD_BANDS_NOW });
 const setFetchBandsRequest = () => ({
   type: FETCH_BANDS_REQUEST
 });
-const setFetchBandsSucceeded = bandsList => ({
+export const setFetchBandsSucceeded = bandsList => ({
   type: FETCH_BANDS_SUCCESS,
   payload: bandsList
 });

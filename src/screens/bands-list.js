@@ -81,17 +81,17 @@ class BandsList extends Component {
     };
   } */
 
-  componentWillMount() {
-    console.log("BandsList..componentWillMount() as Component");
-    // console.log("calling loadBandsProp manually");
-    // const { loadBandsProp, loadFavouritesNowProp } = this.props;
-    // loadBandsProp();
-    // loadFavouritesNowProp();
+  // componentWillMount() {
+  //   console.log("BandsList..componentWillMount() as Component");
+  //   // console.log("calling loadBandsProp manually");
+  //   // const { loadBandsProp, loadFavouritesNowProp } = this.props;
+  //   // loadBandsProp();
+  //   // loadFavouritesNowProp();
   }
 
-  componentDidMount() {
-    console.log("BandsList..componentDidMount() as Component");
-  }
+  // componentDidMount() {
+  //   console.log("BandsList..componentDidMount() as Component");
+  // }
 
   // toggleTab = activeTabNo => {
   //   const newTabs = this.state.tabs.map((element, index) => {

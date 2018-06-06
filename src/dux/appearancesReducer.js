@@ -380,11 +380,11 @@ export const loadAppearances = () => ({ type: LOAD_APPEARANCES_NOW });
 const setFetchAppearancesRequest = () => ({
   type: FETCH_APPEARANCES_REQUEST
 });
-const setFetchAppearancesSucceeded = appearancesList => ({
+export const setFetchAppearancesSucceeded = appearancesList => ({
   type: FETCH_APPEARANCES_SUCCESS,
   payload: appearancesList
 });
-const setFetchAppearancesFailed = errorMessage => ({
+export const setFetchAppearancesFailed = errorMessage => ({
   type: FETCH_APPEARANCES_FAILURE,
   payload: errorMessage
 });

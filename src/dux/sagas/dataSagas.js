@@ -2,7 +2,7 @@
 import { AsyncStorage } from "react-native";
 import { buffers, eventChannel } from "redux-saga";
 // import { Toast } from "native-base";
-import { all, fork, put, select, take, takeLatest } from "redux-saga/effects";
+import { all, fork, put,  take, takeLatest } from "redux-saga/effects";
 // import FastImage from "react-native-fast-image";
 import { ImageCache } from "react-native-img-cache";
 import deepEqual from "deep-equal";
@@ -138,6 +138,7 @@ const preloadImages = bandsArray => {
 };
 */
 
+/*
 const preloadImages = itemsArray => {
   console.log("preloadImages start");
   const arrayLength = itemsArray.length;
@@ -155,9 +156,9 @@ const preloadImages = itemsArray => {
   // console.log("preloadArray=" + JSON.stringify(preloadArray, null, 4));
   // console.log("Preloading...preloadArray=" + JSON.stringify(preloadArray, null, 4));
   // FastImage.preload(preloadArray);
-  console.log("preloadRNICimages call");
+  // console.log("preloadRNICimages call");
   preloadRNICimages(preloadArray);
-  console.log("preloadImages end");
+  // console.log("preloadImages end");
 };
 
 // worker Saga: will be fired on LOAD_BANDS_NOW actions, and gets all
@@ -240,6 +241,7 @@ function* loadBandsGen() {
     ]);
   }
 }
+*/
 
 // function* loadFavouritesGen() {
 //   // console.log("getting favourites");
@@ -369,7 +371,7 @@ function* mySaga() {
 */
 
 const dataSagas = [
-  takeLatest(LOAD_BANDS_NOW, loadBandsGen),
+  // takeLatest(LOAD_BANDS_NOW, loadBandsGen),
   // takeLatest(LOAD_FAVOURITES_NOW, loadFavouritesGen),
   // takeLatest(LOAD_UISTATE_NOW, loadUIStateGen),
   // takeLatest(SET_SHOW_FAVOURITES, saveUIStateGen),

@@ -29,14 +29,16 @@ const homeReducer = (
 export const loadHomeNow = () => ({ type: LOAD_HOME_NOW });
 // export const fetchHOMESucceeded = () => ({ type: FETCH_HOME_REQUEST });
 
-const setFetchHomeRequest = () => ({
+export const setFetchHomeRequest = () => ({
   type: FETCH_HOME_REQUEST
 });
-const setFetchHomeSucceeded = homeText => ({
+
+export const setFetchHomeSucceeded = homeText => ({
   type: FETCH_HOME_SUCCESS,
   payload: homeText
 });
-const setFetchHomeFailed = errorMessage => ({
+
+export const setFetchHomeFailed = errorMessage => ({
   type: FETCH_HOME_FAILURE,
   payload: errorMessage
 });

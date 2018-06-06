@@ -5,7 +5,7 @@ export const LOAD_FAVOURITES_NOW = "LOAD_FAVOURITES_NOW"; // Imperative, hence "
 const FETCH_FAVOURITES_REQUEST = "FETCH_FAVOURITES_REQUEST";
 const FETCH_FAVOURITES_SUCCESS = "FETCH_FAVOURITES_SUCCESS";
 const FETCH_FAVOURITES_FAILURE = "FETCH_FAVOURITES_FAILURE";
-const TOGGLE_BAND_FAVOURITES_STATUS = "TOGGLE_BAND_FAVOURITES_STATUS";
+export const TOGGLE_BAND_FAVOURITES_STATUS = "TOGGLE_BAND_FAVOURITES_STATUS";
 export const UPDATE_BAND_FAVOURITES_STATUS = "UPDATE_BAND_FAVOURITES_STATUS";
 
 // Reducer.  Favourites are a simple array of bandId.
@@ -89,16 +89,16 @@ export const selectFavouriteStatusForBandId = createSelector(
 
 export const loadFavouritesNow = () => ({ type: LOAD_FAVOURITES_NOW });
 
-const setFetchFavouritesRequest = () => ({
+export const setFetchFavouritesRequest = () => ({
   type: FETCH_FAVOURITES_REQUEST
 });
 
-const setFetchFavouritesSucceeded = favourites => ({
+export const setFetchFavouritesSucceeded = favourites => ({
   type: FETCH_FAVOURITES_SUCCESS,
   payload: favourites || []
 });
 
-const setFetchFavouritesSucceededScrubBandIds = (favourites, bandsList) => {
+export const setFetchFavouritesSucceededScrubBandIds = (favourites, bandsList) => {
   // Filter our all favourites for which no band currentl exist, otherwise
   // we'll clog up with faves from previous years.
   const newFaves = favourites.filter(
@@ -112,7 +112,7 @@ const setFetchFavouritesSucceededScrubBandIds = (favourites, bandsList) => {
   };
 };
 
-const setFetchFavouritesFailed = errorMessage => ({
+export const setFetchFavouritesFailed = errorMessage => ({
   type: FETCH_FAVOURITES_FAILURE,
   payload: errorMessage
 });

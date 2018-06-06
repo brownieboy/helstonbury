@@ -6,7 +6,8 @@ import createSagaMiddleware from "redux-saga";
 
 import mainReducer from "../dux/mainReducer.js";
 
-import sagas from "../dux/sagas.js";
+// import sagas from "../dux/sagas.js";
+import sagas from "../dux/sagas/rootSaga.js";
 
 const sagaMiddleware = createSagaMiddleware();
 

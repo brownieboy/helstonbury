@@ -134,14 +134,14 @@ export const selectors = {
 export const loadBandsNow = () => ({ type: LOAD_BANDS_NOW });
 // export const fetchBandsSucceeded = () => ({ type: FETCH_BANDS_REQUEST });
 
-const setFetchBandsRequest = () => ({
+export const setFetchBandsRequest = () => ({
   type: FETCH_BANDS_REQUEST
 });
 export const setFetchBandsSucceeded = bandsList => ({
   type: FETCH_BANDS_SUCCESS,
   payload: bandsList
 });
-const setFetchBandsFailed = errorMessage => ({
+export const setFetchBandsFailed = errorMessage => ({
   type: FETCH_BANDS_FAILURE,
   payload: errorMessage
 });

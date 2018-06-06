@@ -69,14 +69,14 @@ export const selectStageDetails = createCachedSelector(
 export const loadStagesNow = () => ({ type: LOAD_STAGES_NOW });
 // export const fetchStagesSucceeded = () => ({ type: FETCH_STAGES_REQUEST });
 
-const setFetchStagesRequest = () => ({
+export const setFetchStagesRequest = () => ({
   type: FETCH_STAGES_REQUEST
 });
-const setFetchStagesSucceeded = stagesList => ({
+export const setFetchStagesSucceeded = stagesList => ({
   type: FETCH_STAGES_SUCCESS,
   payload: stagesList
 });
-const setFetchStagesFailed = errorMessage => ({
+export const setFetchStagesFailed = errorMessage => ({
   type: FETCH_STAGES_FAILURE,
   payload: errorMessage
 });

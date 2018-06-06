@@ -1,8 +1,7 @@
 import { all, fork, put, take, takeLatest } from "redux-saga/effects";
 import { AsyncStorage } from "react-native";
 
-import preloadRNICimages from "../../helper-functions/preloadRNICimages";
-
+import preloadRNICimages from "../../helper-functions/preload-rnic-images.js";
 import { setFetchHomeRequest, setFetchHomeSucceeded } from "../homeReducer.js";
 import {
   LOAD_BANDS_NOW,

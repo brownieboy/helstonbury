@@ -89,16 +89,16 @@ export const selectFavouriteStatusForBandId = createSelector(
 
 export const loadFavouritesNow = () => ({ type: LOAD_FAVOURITES_NOW });
 
-const setFetchFavouritesRequest = () => ({
+export const setFetchFavouritesRequest = () => ({
   type: FETCH_FAVOURITES_REQUEST
 });
 
-const setFetchFavouritesSucceeded = favourites => ({
+export const setFetchFavouritesSucceeded = favourites => ({
   type: FETCH_FAVOURITES_SUCCESS,
   payload: favourites || []
 });
 
-const setFetchFavouritesSucceededScrubBandIds = (favourites, bandsList) => {
+export const setFetchFavouritesSucceededScrubBandIds = (favourites, bandsList) => {
   // Filter our all favourites for which no band currentl exist, otherwise
   // we'll clog up with faves from previous years.
   const newFaves = favourites.filter(
@@ -112,7 +112,7 @@ const setFetchFavouritesSucceededScrubBandIds = (favourites, bandsList) => {
   };
 };
 
-const setFetchFavouritesFailed = errorMessage => ({
+export const setFetchFavouritesFailed = errorMessage => ({
   type: FETCH_FAVOURITES_FAILURE,
   payload: errorMessage
 });

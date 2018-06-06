@@ -241,28 +241,28 @@ function* loadBandsGen() {
   }
 }
 
-function* loadFavouritesGen() {
-  // console.log("getting favourites");
-  yield put(favouritesDuxActions.setFetchFavouritesRequest());
-  try {
-    // const bandsDataNormalised = yield call(bandsApi.fetchBandsData);
-    const favouritesString = yield AsyncStorage.getItem("localFavourites");
-    // console.log("favouritesString=" + favouritesString);
+// function* loadFavouritesGen() {
+//   // console.log("getting favourites");
+//   yield put(favouritesDuxActions.setFetchFavouritesRequest());
+//   try {
+//     // const bandsDataNormalised = yield call(bandsApi.fetchBandsData);
+//     const favouritesString = yield AsyncStorage.getItem("localFavourites");
+//     // console.log("favouritesString=" + favouritesString);
 
-    const favourites = favouritesString ? JSON.parse(favouritesString) : [];
-    const state = yield select();
+//     const favourites = favouritesString ? JSON.parse(favouritesString) : [];
+//     const state = yield select();
 
-    yield put(
-      favouritesDuxActions.setFetchFavouritesSucceededScrubBandIds(
-        favourites,
-        state.bandsState.bandsList
-      )
-    );
-  } catch (e) {
-    console.log("loadFavouritesGen error=" + e);
-    yield put(favouritesDuxActions.setFetchFavouritesFailed(e));
-  }
-}
+//     yield put(
+//       favouritesDuxActions.setFetchFavouritesSucceededScrubBandIds(
+//         favourites,
+//         state.bandsState.bandsList
+//       )
+//     );
+//   } catch (e) {
+//     console.log("loadFavouritesGen error=" + e);
+//     yield put(favouritesDuxActions.setFetchFavouritesFailed(e));
+//   }
+// }
 
 // yield AsyncStorage.setItem(
 //      "localPublishedData",
@@ -370,8 +370,8 @@ function* mySaga() {
 
 const dataSagas = [
   takeLatest(LOAD_BANDS_NOW, loadBandsGen),
-  takeLatest(LOAD_FAVOURITES_NOW, loadFavouritesGen),
-  takeLatest(LOAD_UISTATE_NOW, loadUIStateGen),
+  // takeLatest(LOAD_FAVOURITES_NOW, loadFavouritesGen),
+  // takeLatest(LOAD_UISTATE_NOW, loadUIStateGen),
   // takeLatest(SET_SHOW_FAVOURITES, saveUIStateGen),
   // takeLatest(SET_APPEARANCES_VIEW, saveUIStateGen),
   takeLatest(

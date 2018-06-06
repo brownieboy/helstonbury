@@ -6,35 +6,36 @@ import { all, fork, put, select, take, takeLatest } from "redux-saga/effects";
 // import FastImage from "react-native-fast-image";
 import { ImageCache } from "react-native-img-cache";
 import deepEqual from "deep-equal";
-import firebaseApp from "../../api/firebase.js";
+import firebaseApp from "../api/firebase.js";
 
-import preloadRNICimages from "../../helper-functions/preload-rnic-images.js";
+import preloadRNICimages from "../helper-functions/preload-rnic-images.js";
 
 // import bandsApi from "../api/bandsApi.js";
 import {
   bandsDuxActions,
   // bandsDuxConstants,
   LOAD_BANDS_NOW
-} from "../bandsReducer.js";
+} from "./bandsReducer.js";
 import {
   appearancesDuxActions
   // appearancesDuxConstants
-} from "../appearancesReducer.js";
-import { homeDuxActions } from "../homeReducer.js";
-import { contactUsDuxActions } from "../contactUsReducer.js";
-import { stagesDuxActions } from "../stagesReducer.js";
+} from "./appearancesReducer.js";
+import { homeDuxActions } from "./homeReducer.js";
+import { contactUsDuxActions } from "./contactUsReducer.js";
+import { stagesDuxActions } from "./stagesReducer.js";
 import {
   favouritesDuxActions,
   LOAD_FAVOURITES_NOW,
   UPDATE_BAND_FAVOURITES_STATUS
-} from "../favouritesReducer.js";
+} from "./favouritesReducer.js";
 import {
   setFetchUIStateSucceeded,
   LOAD_UISTATE_NOW,
   SET_APPEARANCES_VIEW,
   SET_SHOW_FAVOURITES
-} from "../uiReducer.js";
+} from "./uiReducer.js";
 
+import { showFavouritesWarning } from "./sagas/uiSagas.js";
 
 /*
 FastImage.preload([
@@ -279,17 +280,17 @@ function* toggleFavouriteGen(bandObj) {
   yield AsyncStorage.setItem("localFavourites", JSON.stringify(newFavourites));
 }
 
-// function* saveUIStateGen() {
-//   // console.log("saveUIStateGen");
-//   const state = yield select();
-//   const newUIState = state.uiState;
-//   // console.log("newUIState:");
-//   // console.log(newUIState);
-//   // console.log("toggling favourite state is " + JSON.stringify(state, null, 4));
-//   // console.log("newFavourites is "+ newFavrites);
+function* saveUIStateGen() {
+  // console.log("saveUIStateGen");
+  const state = yield select();
+  const newUIState = state.uiState;
+  // console.log("newUIState:");
+  // console.log(newUIState);
+  // console.log("toggling favourite state is " + JSON.stringify(state, null, 4));
+  // console.log("newFavourites is "+ newFavrites);
 
-//   yield AsyncStorage.setItem("uiState", JSON.stringify(newUIState));
-// }
+  yield AsyncStorage.setItem("uiState", JSON.stringify(newUIState));
+}
 
 function* loadUIStateGen() {
   // console.log("loadUIStateGen");
@@ -350,8 +351,8 @@ function* loadUIStateGen() {
 //   });
 // }
 
-/*
 function* mySaga() {
+  // yield takeLatest(bandsDuxConstants.LOAD_BANDS_NOW, loadBandsGen);
   yield takeLatest(LOAD_BANDS_NOW, loadBandsGen);
   yield takeLatest(LOAD_FAVOURITES_NOW, loadFavouritesGen);
   yield takeLatest(LOAD_UISTATE_NOW, loadUIStateGen);
@@ -366,20 +367,6 @@ function* mySaga() {
 
   yield fork(updatedItemSaga);
 }
-*/
-
-const dataSagas = [
-  takeLatest(LOAD_BANDS_NOW, loadBandsGen),
-  takeLatest(LOAD_FAVOURITES_NOW, loadFavouritesGen),
-  takeLatest(LOAD_UISTATE_NOW, loadUIStateGen),
-  // takeLatest(SET_SHOW_FAVOURITES, saveUIStateGen),
-  // takeLatest(SET_APPEARANCES_VIEW, saveUIStateGen),
-  takeLatest(
-    favouritesDuxActions.toggleBandFavouriteStatus().type,
-    toggleFavouriteGen
-  ),
-  fork(updatedItemSaga)
-];
 
 //  yield takeLatest(loadBandsNow(), loadBandsGen);
 
@@ -396,4 +383,4 @@ const dataSagas = [
 // Then need to change bandsApi to read from async storage
 // or better still, do it right here in the Saga.
 
-export default dataSagas;
+export default mySaga;

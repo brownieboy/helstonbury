@@ -11,7 +11,6 @@ import {
 
 import {
   Container,
-  Title,
   Content,
   Button,
   Icon,
@@ -20,12 +19,12 @@ import {
   Left,
   Right,
   Body,
-  Switch,
+  Switch
   // Radio,
   // Thumbnail
 } from "native-base";
 
-import IconFontAwesome from "react-native-vector-icons/FontAwesome";
+// import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 
 import IconMaterialEntypo from "react-native-vector-icons/Entypo";
 import ScheduleTabIcon from "../components/schedule-tab-icon.js";
@@ -53,73 +52,54 @@ const styles = {
  */
 
 class AppearancesMenu extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showOnlyFavourites: props.showOnlyFavourites,
+      reverseTimesOrder: props.reverseTimesOrder
+    };
+  }
+
   static navigationOptions = {
     tabBarLabel: "by Day",
     tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
   };
 
-  // shouldComponentUpdate(nextProps) {
-
-  // }
-
-  // constructor(props) {
-  //   super(props);
-  //   const {
-  //     //  currentAppearancesView
-  //     showOnlyFavourites
-  //   } = this.props;
-
-  //   this.state = {
-  //     // currentAppearancesView,
-  //     showOnlyFavourites
-  //   };
-  // }
-
-  /*
-  handleDayStagePress = dayStage => {
-    // console.log("handleDayStagePress, dayStage=" + dayStage);
-    const {
-      handleSetActiveAppearanceScreen,
-      navigation
-      // onItemSelected
-    } = this.props;
-    const navigateTo =
-      dayStage === "stage" ? "AppearancesByDayStage" : "AppearancesByDay";
-    // this.setState({ currentAppearancesView: dayStage });
-    handleSetActiveAppearanceScreen(dayStage);
-    navigation.navigate(navigateTo);
-  };
-*/
-
   toggleShowFavourites = () => {
-    const {
-      // onItemSelected,
-      setShowOnlyFavourites,
-      showOnlyFavourites
-    } = this.props;
-    setShowOnlyFavourites(!showOnlyFavourites);
+    // const {
+    //   // onItemSelected,
+    //   // setShowOnlyFavourites,
+    //   showOnlyFavourites
+    // } = this.props;
+    // setShowOnlyFavourites(!showOnlyFavourites);
+    const { showOnlyFavourites } = this.state;
+    this.setState({ showOnlyFavourites: !showOnlyFavourites });
   };
 
   toggleReverseTimesOrder = () => {
-    const {
-      // onItemSelected,
-      reverseTimesOrder,
-      setReverseTimesOrder
-    } = this.props;
-    setReverseTimesOrder(!reverseTimesOrder);
+    // const {
+    //   // onItemSelected,
+    //   reverseTimesOrder
+    //   // setReverseTimesOrder
+    // } = this.props;
+    // setReverseTimesOrder(!reverseTimesOrder);
+    const { reverseTimesOrder } = this.state;
+    this.setState({ reverseTimesOrder: !reverseTimesOrder });
   };
 
   render() {
     const {
-      activeAppearancesScreen,
+      // activeAppearancesScreen,
       closeSideMenu,
       // onItemSelected,
       // handleShowFavouritesPress,
-      reverseTimesOrder,
-      showOnlyFavourites
+      // reverseTimesOrder,
+      // showOnlyFavourites
+      setShowOnlyFavourites,
+      setReverseTimesOrder
     } = this.props;
 
-    // const { showOnlyFavourites } = this.state;
+    const { reverseTimesOrder, showOnlyFavourites } = this.state;
     // console.log(
     //   "menu.render..currentAppearancesView = " + currentAppearancesView
     // );
@@ -197,7 +177,14 @@ class AppearancesMenu extends PureComponent {
           </ListItem>
           <ListItem>
             <Body style={{ flexDirection: "row", justifyContent: "center" }}>
-              <Button small onPress={closeSideMenu}>
+              <Button
+                small
+                onPress={() => {
+                  closeSideMenu();
+                  setShowOnlyFavourites(showOnlyFavourites);
+                  setReverseTimesOrder(reverseTimesOrder);
+                }}
+              >
                 <Text>Close Menu</Text>
               </Button>
             </Body>

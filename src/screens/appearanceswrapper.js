@@ -117,6 +117,7 @@ class AppearancesWrapper extends Component {
       appearancesSelGroupedByDay,
       appearancesSelGroupedByDayStage,
       setReverseTimesOrder,
+      setShowOnlyFavourites,
       showOnlyFavourites
     } = this.props;
 
@@ -156,7 +157,7 @@ class AppearancesWrapper extends Component {
         closeSideMenu={this.closeSideMenu}
         activeAppearancesScreen={appearancesView}
         // handleSetActiveAppearanceScreen={this.handleSetActiveAppearanceScreen}
-        setShowOnlyFavourites={this.handleShowFavouritesPress}
+        setShowOnlyFavourites={setShowOnlyFavourites}
         navigation={navigation}
         showOnlyFavourites={showOnlyFavourites}
         reverseTimesOrder={reverseTimesOrder}

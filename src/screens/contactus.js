@@ -54,7 +54,8 @@ const touchStyles = StyleSheet.create({
 });
 
 const otherTextStyles = StyleSheet.create({
-  info: { fontSize: 14 }
+  info: { fontSize: 14 },
+  sectionHeader: { fontSize: 14, fontWeight: "bold", marginLeft: -6 }
 });
 
 const HelstonburyFBMechandiseListItem = ({
@@ -114,7 +115,7 @@ class ContactUs extends Component {
       return (
         <Fragment>
           <ListItem itemDivider style={{ marginTop: 30, marginBottom: 10 }}>
-            <H3>App Tips</H3>
+            <Text style={otherTextStyles.sectionHeader}>App Tips</Text>
           </ListItem>
           <View style={rnViewStyles.parsedTextViewWrapper}>
             <ParsedText
@@ -177,7 +178,7 @@ class ContactUs extends Component {
 
         <Content padder>
           <ListItem itemDivider style={{ marginBottom: 10 }}>
-            <H3>Organsition</H3>
+            <Text style={otherTextStyles.sectionHeader}>Organsition</Text>
           </ListItem>
           <View style={rnViewStyles.parsedTextViewWrapper}>
             <ParsedText
@@ -273,7 +274,7 @@ class ContactUs extends Component {
           </List>
 
           <ListItem itemDivider style={{ marginTop: 30, marginBottom: 10 }}>
-            <H3>Location</H3>
+            <Text style={otherTextStyles.sectionHeader}>Location</Text>
           </ListItem>
           <View style={rnViewStyles.parsedTextViewWrapper}>
             <ParsedText

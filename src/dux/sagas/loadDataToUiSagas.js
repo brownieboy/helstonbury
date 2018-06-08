@@ -47,38 +47,44 @@ function* loadBandsGen() {
       "localPublishedData"
     );
     // console.log("Parsing data from Firebase");
+    // console.log("bandsDataNormalisedString");
+    // console.log(bandsDataNormalisedString);
+    if (bandsDataNormalisedString) {
+      console.log("Local storage returned data");
+      const bandsDataNormalised = JSON.parse(bandsDataNormalisedString);
 
-    const bandsDataNormalised = JSON.parse(bandsDataNormalisedString);
+      // Filter out any half-completed data that we might have pulled
+      // down from Firebase
+      const homeText = bandsDataNormalised.homePageText || "Helstonbury...";
 
-    // Filter out any half-completed data that we might have pulled
-    // down from Firebase
-    const homeText = bandsDataNormalised.homePageText || "Helstonbury...";
+      const bandsArray = bandsDataNormalised.bandsArray.filter(
+        bandMember => bandMember.bandId && bandMember.bandId !== ""
+      );
 
-    const bandsArray = bandsDataNormalised.bandsArray.filter(
-      bandMember => bandMember.bandId && bandMember.bandId !== ""
-    );
+      const appearancesArray = bandsDataNormalised.appearancesArray.filter(
+        appearancesMember =>
+          appearancesMember.bandId && appearancesMember.bandId !== ""
+      );
 
-    const appearancesArray = bandsDataNormalised.appearancesArray.filter(
-      appearancesMember =>
-        appearancesMember.bandId && appearancesMember.bandId !== ""
-    );
+      const stagesArray = bandsDataNormalised.stagesArray || [];
 
-    const stagesArray = bandsDataNormalised.stagesArray || [];
+      const contactsPage = bandsDataNormalised.contactsPage || {};
 
-    const contactsPage = bandsDataNormalised.contactsPage || {};
+      yield console.log("loadBandsGen, about to yield all with loaded data");
+      yield all([
+        put(setFetchHomeSucceeded(homeText)),
+        put(setFetchBandsSucceeded(bandsArray)),
+        put(setFetchAppearancesSucceeded(appearancesArray)),
+        put(setFetchStagesSucceeded(stagesArray)),
+        put(setFetchContactUsSucceeded(contactsPage))
+      ]);
+      yield console.log("loadBandsGen, finished yield all with loaded data");
 
-    yield console.log("loadBandsGen, about to yield all with loaded data");
-    yield all([
-      put(setFetchHomeSucceeded(homeText)),
-      put(setFetchBandsSucceeded(bandsArray)),
-      put(setFetchAppearancesSucceeded(appearancesArray)),
-      put(setFetchStagesSucceeded(stagesArray)),
-      put(setFetchContactUsSucceeded(contactsPage))
-    ]);
-    yield console.log("loadBandsGen, finished yield all with loaded data");
-
-    preloadImages([...bandsArray, ...stagesArray]);
-    yield;
+      preloadImages([...bandsArray, ...stagesArray]);
+      yield;
+    } else {
+      console.log("Local storage returned null");
+    }
   } catch (e) {
     console.log("loadBandsGen error=" + e);
     yield all([put(setFetchBandsFailed(e)), put(setFetchAppearancesFailed(e))]);

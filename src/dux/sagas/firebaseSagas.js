@@ -8,6 +8,9 @@ import firebaseApp from "../../api/firebase.js";
 import { CLEAR_ALL_LOCAL_DATA } from "../homeReducer.js";
 import { LOAD_BANDS_NOW } from "../bandsReducer.js";
 
+let updateChannel;
+const firebaseDatabaseRef = firebaseApp.database().ref("publishedData");
+
 export function createEventChannel(ref) {
   const listener = eventChannel(emit => {
     ref.on("value", snap => {
@@ -25,9 +28,8 @@ export function createEventChannel(ref) {
 
 function* updatedItemSaga() {
   // console.log("running updatedItemSaga...");
-  const updateChannel = createEventChannel(
-    firebaseApp.database().ref("publishedData")
-  );
+  updateChannel = createEventChannel(firebaseDatabaseRef);
+
   while (true) {
     // console.log("running updatedItemSaga, inside loop...");
     const item = yield take(updateChannel);
@@ -54,8 +56,9 @@ function* updatedItemSaga() {
       overwriteLocal = true;
     } finally {
       if (overwriteLocal) {
-        console.log("Clearing images cache, the whole smash....");
-        ImageCache.get().clear();
+        console.log("Overwriting local data...");
+        // console.log("Clearing images cache, the whole smash....");
+        // ImageCache.get().clear();
 
         yield AsyncStorage.setItem(
           "localPublishedData",
@@ -70,6 +73,11 @@ function* updatedItemSaga() {
 function* clearAllLocalDataGen() {
   ImageCache.get().clear();
   yield AsyncStorage.setItem("localPublishedData", "");
+  console.log("Closing channel");
+  updateChannel.close();
+  console.log("...and reopening");
+  updateChannel = createEventChannel(firebaseDatabaseRef);
+
   yield put({ type: LOAD_BANDS_NOW });
 }
 

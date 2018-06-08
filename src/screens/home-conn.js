@@ -9,13 +9,15 @@ import { loadFavouritesNow } from "../dux/favouritesReducer.js";
 import { loadUIStateNow } from "../dux/uiReducer.js";
 import { clearAllLocalData } from "../dux/homeReducer.js";
 
+console.log("home-conn, clearAllLocalData=" +  clearAllLocalData);
+
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       loadBandsProp: loadBandsNow,
       loadFavouritesNowProp: loadFavouritesNow,
       loadUIStateNowProp: loadUIStateNow,
-      clearAllLocalData
+      clearAllLocalDataProp: clearAllLocalData
     },
     dispatch
   );

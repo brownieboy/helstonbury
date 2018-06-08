@@ -82,20 +82,26 @@ class Home extends Component {
  */
 
   render() {
-    const menu = <Menu closeSideMenu={this.closeSideMenu} />;
+    const { homeText, fetchStatus } = this.props.homeProp;
+    const { clearAllLocalDataProp } = this.props;
+    const { homeSideMenuVisible } = this.state;
+    const menu = (
+      <Menu
+        closeSideMenu={this.closeSideMenu}
+        clearAllLocalData={clearAllLocalDataProp}
+      />
+    );
 
     // const { navigate } = this.props.navigation;
     // console.log("home props=") + this.props;
-    const { homeText, fetchStatus } = this.props.homeProp;
-    const { clearAllLocalData } = this.props;
-    const { homeSideMenuVisible } = this.state;
+
     console.log("homeSideMenuVisible=" + homeSideMenuVisible);
     return (
       <SideMenu
         menu={menu}
         menuPosition="left"
         isOpen={homeSideMenuVisible}
-        clearAllLocalData={clearAllLocalData}
+
         // onChange={isOpen =>
         //   isOpen === appearancesSideMenuVisible &&
         //   setShowAppearancesSideMenu(isOpen)
@@ -161,7 +167,7 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-  clearAllLocalData: PropTypes.func.isRequired,
+  clearAllLocalDataProp: PropTypes.func.isRequired,
   homeProp: PropTypes.object.isRequired,
   loadFavouritesNowProp: PropTypes.func.isRequired,
   loadUIStateNowProp: PropTypes.func.isRequired,

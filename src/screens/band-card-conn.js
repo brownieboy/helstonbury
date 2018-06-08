@@ -8,19 +8,38 @@ import BandCard from "./band-card.js";
 import BandsTabIcon from "../components/bands-tab-icon.js";
 
 // Dux stuff
-import { selectors as bandSelectors } from "../dux/bandsReducer.js";
-import { selectors as appearancesSelectors } from "../dux/appearancesReducer.js";
-import { toggleBandFavouriteStatus } from "../dux/favouritesReducer.js";
+import {
+  // selectors as bandSelectors,
+  selectBandDetails
+} from "../dux/bandsReducer.js";
+import {
+  // selectors as appearancesSelectors,
+  selectAppearancesForBandByDateTime
+} from "../dux/appearancesReducer.js";
+import {
+  // toggleBandFavouriteStatus,
+  updateBandFavouriteStatus,
+  selectFavouriteStatusForBandId
+} from "../dux/favouritesReducer.js";
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ toggleBandFavouriteStatus }, dispatch);
+  bindActionCreators(
+    { updateBandFavouriteStatus },
+    dispatch
+  );
 
-const mapStateToProps = state => ({
-  bandsAlphabetical: bandSelectors.selectAlphabetical(state.bandsState),
-  appearancesByBandThenDateTime: appearancesSelectors.selectAppearancesByBandNameThenDateTime(
-    state.appearancesState
+const mapStateToProps = (state, props) => ({
+  // bandsAlphabetical: bandSelectors.selectAlphabetical(state),
+  // appearancesByBandThenDateTime: appearancesSelectors.selectAppearancesByBandNameThenDateTime(
+  //   state
+  // ),
+  // favouritesState: state.favouritesState,
+  selectAppearancesForBandByDateTime: selectAppearancesForBandByDateTime(
+    state,
+    props
   ),
-  favouritesState: state.favouritesState
+  selectBandDetails: selectBandDetails(state, props),
+  selectFavouriteStatus: selectFavouriteStatusForBandId(state, props)
 });
 
 class BandCardWrapper extends Component {

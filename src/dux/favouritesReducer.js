@@ -1,9 +1,12 @@
+import { createSelector } from "reselect";
+
 // Action type constants
 export const LOAD_FAVOURITES_NOW = "LOAD_FAVOURITES_NOW"; // Imperative, hence "NOW"!
 const FETCH_FAVOURITES_REQUEST = "FETCH_FAVOURITES_REQUEST";
 const FETCH_FAVOURITES_SUCCESS = "FETCH_FAVOURITES_SUCCESS";
 const FETCH_FAVOURITES_FAILURE = "FETCH_FAVOURITES_FAILURE";
-const TOGGLE_BAND_FAVOURITES_STATUS = "TOGGLE_BAND_FAVOURITES_STATUS";
+export const TOGGLE_BAND_FAVOURITES_STATUS = "TOGGLE_BAND_FAVOURITES_STATUS";
+export const UPDATE_BAND_FAVOURITES_STATUS = "UPDATE_BAND_FAVOURITES_STATUS";
 
 // Reducer.  Favourites are a simple array of bandId.
 const homeReducer = (
@@ -23,8 +26,8 @@ const homeReducer = (
     case FETCH_FAVOURITES_FAILURE:
       return { ...state, fetchStatus: "failure", fetchError: action.payload };
     case TOGGLE_BAND_FAVOURITES_STATUS:
-      index = state.favourites.indexOf(action.payload);
-      // console.log("TOGGLE_BAND_FAVOURITES_STATUS index=" + index);
+      index = state.favourites.indexOf(action.payload); // payload is bandId
+
       if (index > -1) {
         return {
           // If the band is in the favourites list then remove it.
@@ -35,29 +38,67 @@ const homeReducer = (
           ]
         };
       }
-      // else add it in there
-      console.log("add it in there...");
+      // else add the new Favourite into the array
+      // console.log("add it in there...");
       return {
         ...state,
         favourites: [...state.favourites, action.payload]
       };
+
+    case UPDATE_BAND_FAVOURITES_STATUS:
+      console.log("UPDATE_BAND_FAVOURITES_STATUS");
+      index = state.favourites.indexOf(action.payload.bandId);
+
+      if (!action.payload.isFavourite && index >= 0) {
+        // We want to remove a favoruite that's already in the array
+        return {
+          ...state,
+          favourites: [
+            ...state.favourites.slice(0, index),
+            ...state.favourites.slice(index + 1)
+          ]
+        };
+      }
+
+      if (action.payload.isFavourite && index < 0) {
+        // We want to add a favourite that's not in the array
+        return {
+          ...state,
+          favourites: [...state.favourites, action.payload.bandId]
+        };
+      }
+      // For all other cases, our work is done!
+      return state;
+
     default:
       return state;
   }
 };
 
+// Selectors
+const selectFavourites = state => state.favouritesState.favourites;
+const getBandId = (state, props) => props.navigation.state.params.bandId;
+export const getFavouritesCount = state => state.favouritesState.favourites.length;
+
+// This won't memoise well because favourites will be changing all the
+// time.  But better here than in the components.
+export const selectFavouriteStatusForBandId = createSelector(
+  [selectFavourites, getBandId],
+  (favourites, bandId) => favourites.indexOf(bandId) > -1
+);
+
 export const loadFavouritesNow = () => ({ type: LOAD_FAVOURITES_NOW });
 
-const setFetchFavouritesRequest = () => ({
+export const setFetchFavouritesRequest = () => ({
   type: FETCH_FAVOURITES_REQUEST
 });
 
-const setFetchFavouritesSucceeded = favourites => ({
+export const setFetchFavouritesSucceeded = favourites => ({
   type: FETCH_FAVOURITES_SUCCESS,
   payload: favourites || []
 });
 
-const setFetchFavouritesSucceededScrubBandIds = (favourites, bandsList) => {
+export const setFetchFavouritesSucceededScrubBandIds = (favourites, bandsList) => {
   // Filter our all favourites for which no band currentl exist, otherwise
   // we'll clog up with faves from previous years.
   const newFaves = favourites.filter(
@@ -71,7 +112,7 @@ const setFetchFavouritesSucceededScrubBandIds = (favourites, bandsList) => {
   };
 };
 
-const setFetchFavouritesFailed = errorMessage => ({
+export const setFetchFavouritesFailed = errorMessage => ({
   type: FETCH_FAVOURITES_FAILURE,
   payload: errorMessage
 });
@@ -79,6 +120,11 @@ const setFetchFavouritesFailed = errorMessage => ({
 export const toggleBandFavouriteStatus = bandId => ({
   type: TOGGLE_BAND_FAVOURITES_STATUS,
   payload: bandId
+});
+
+export const updateBandFavouriteStatus = (bandId, isFavourite) => ({
+  type: UPDATE_BAND_FAVOURITES_STATUS,
+  payload: { bandId, isFavourite }
 });
 
 export const favouritesDuxActions = {

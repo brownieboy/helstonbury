@@ -1,37 +1,40 @@
 // import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
 import { AsyncStorage } from "react-native";
 import { buffers, eventChannel } from "redux-saga";
-import { all, fork, put, select, take, takeLatest } from "redux-saga/effects";
+// import { Toast } from "native-base";
+import { all, fork, put,  take, takeLatest } from "redux-saga/effects";
 // import FastImage from "react-native-fast-image";
 import { ImageCache } from "react-native-img-cache";
 import deepEqual from "deep-equal";
-import firebaseApp from "../api/firebase.js";
+import firebaseApp from "../../api/firebase.js";
 
-import preloadRNICimages from "../helper-functions/preload-rnic-images.js";
+import preloadRNICimages from "../../helper-functions/preload-rnic-images.js";
 
 // import bandsApi from "../api/bandsApi.js";
 import {
   bandsDuxActions,
   // bandsDuxConstants,
   LOAD_BANDS_NOW
-} from "./bandsReducer.js";
+} from "../bandsReducer.js";
 import {
   appearancesDuxActions
   // appearancesDuxConstants
-} from "./appearancesReducer.js";
-import { homeDuxActions } from "./homeReducer.js";
-import { contactUsDuxActions } from "./contactUsReducer.js";
-import { stagesDuxActions } from "./stagesReducer.js";
+} from "../appearancesReducer.js";
+import { homeDuxActions } from "../homeReducer.js";
+import { contactUsDuxActions } from "../contactUsReducer.js";
+import { stagesDuxActions } from "../stagesReducer.js";
 import {
   favouritesDuxActions,
-  LOAD_FAVOURITES_NOW
-} from "./favouritesReducer.js";
+  LOAD_FAVOURITES_NOW,
+  UPDATE_BAND_FAVOURITES_STATUS
+} from "../favouritesReducer.js";
 import {
   setFetchUIStateSucceeded,
   LOAD_UISTATE_NOW,
   SET_APPEARANCES_VIEW,
   SET_SHOW_FAVOURITES
-} from "./uiReducer.js";
+} from "../uiReducer.js";
+
 
 /*
 FastImage.preload([
@@ -135,6 +138,7 @@ const preloadImages = bandsArray => {
 };
 */
 
+/*
 const preloadImages = itemsArray => {
   console.log("preloadImages start");
   const arrayLength = itemsArray.length;
@@ -152,9 +156,9 @@ const preloadImages = itemsArray => {
   // console.log("preloadArray=" + JSON.stringify(preloadArray, null, 4));
   // console.log("Preloading...preloadArray=" + JSON.stringify(preloadArray, null, 4));
   // FastImage.preload(preloadArray);
-  console.log("preloadRNICimages call");
+  // console.log("preloadRNICimages call");
   preloadRNICimages(preloadArray);
-  console.log("preloadImages end");
+  // console.log("preloadImages end");
 };
 
 // worker Saga: will be fired on LOAD_BANDS_NOW actions, and gets all
@@ -237,66 +241,67 @@ function* loadBandsGen() {
     ]);
   }
 }
+*/
 
-function* loadFavouritesGen() {
-  // console.log("getting favourites");
-  yield put(favouritesDuxActions.setFetchFavouritesRequest());
-  try {
-    // const bandsDataNormalised = yield call(bandsApi.fetchBandsData);
-    const favouritesString = yield AsyncStorage.getItem("localFavourites");
-    // console.log("favouritesString=" + favouritesString);
+// function* loadFavouritesGen() {
+//   // console.log("getting favourites");
+//   yield put(favouritesDuxActions.setFetchFavouritesRequest());
+//   try {
+//     // const bandsDataNormalised = yield call(bandsApi.fetchBandsData);
+//     const favouritesString = yield AsyncStorage.getItem("localFavourites");
+//     // console.log("favouritesString=" + favouritesString);
 
-    const favourites = favouritesString ? JSON.parse(favouritesString) : [];
-    const state = yield select();
+//     const favourites = favouritesString ? JSON.parse(favouritesString) : [];
+//     const state = yield select();
 
-    yield put(
-      favouritesDuxActions.setFetchFavouritesSucceededScrubBandIds(
-        favourites,
-        state.bandsState.bandsList
-      )
-    );
-  } catch (e) {
-    console.log("loadFavouritesGen error=" + e);
-    yield put(favouritesDuxActions.setFetchFavouritesFailed(e));
-  }
-}
+//     yield put(
+//       favouritesDuxActions.setFetchFavouritesSucceededScrubBandIds(
+//         favourites,
+//         state.bandsState.bandsList
+//       )
+//     );
+//   } catch (e) {
+//     console.log("loadFavouritesGen error=" + e);
+//     yield put(favouritesDuxActions.setFetchFavouritesFailed(e));
+//   }
+// }
 
 // yield AsyncStorage.setItem(
 //      "localPublishedData",
 //      JSON.stringify(item.value)
 //    );
 
-function* toggleFavouriteGen(bandObj) {
-  // console.log("toggling favourite " + JSON.stringify(bandObj, null, 4));
-  const state = yield select();
-  const newFavourites = state.favouritesState.favourites;
-  // console.log("toggling favourite state is " + JSON.stringify(state, null, 4));
-  // console.log("newFavourites is "+ newFavourites);
+// function* toggleFavouriteGen(bandObj) {
+//   // console.log("toggling favourite " + JSON.stringify(bandObj, null, 4));
+//   const state = yield select();
+//   const newFavourites = state.favouritesState.favourites;
+//   // console.log("toggling favourite state is " + JSON.stringify(state, null, 4));
+//   // console.log("newFavourites is "+ newFavourites);
 
-  yield AsyncStorage.setItem("localFavourites", JSON.stringify(newFavourites));
-}
+//   yield AsyncStorage.setItem("localFavourites", JSON.stringify(newFavourites));
+// }
 
-function* saveUIStateGen() {
-  // console.log("saveUIStateGen");
-  const state = yield select();
-  const newUIState = state.uiState;
-  // console.log("newUIState:");
-  // console.log(newUIState);
-  // console.log("toggling favourite state is " + JSON.stringify(state, null, 4));
-  // console.log("newFavourites is "+ newFavrites);
+// function* saveUIStateGen() {
+//   // console.log("saveUIStateGen");
+//   const state = yield select();
+//   const newUIState = state.uiState;
+//   // console.log("newUIState:");
+//   // console.log(newUIState);
+//   // console.log("toggling favourite state is " + JSON.stringify(state, null, 4));
+//   // console.log("newFavourites is "+ newFavrites);
 
-  yield AsyncStorage.setItem("uiState", JSON.stringify(newUIState));
-}
+//   yield AsyncStorage.setItem("uiState", JSON.stringify(newUIState));
+// }
 
-function* loadUIStateGen() {
-  // console.log("loadUIStateGen");
-  const loadedUIStateString = yield AsyncStorage.getItem("uiState");
-  // console.log("loadedUIStateString: " + loadedUIStateString);
-  const loadedUIStateObj = loadedUIStateString
-    ? JSON.parse(loadedUIStateString)
-    : null;
-  yield put(setFetchUIStateSucceeded(loadedUIStateObj));
-}
+// function* loadUIStateGen() {
+//   // console.log("loadUIStateGen");
+//   const loadedUIStateString = yield AsyncStorage.getItem("uiState");
+//   // console.log("loadedUIStateString: " + loadedUIStateString);
+//   const loadedUIStateObj = loadedUIStateString
+//     ? JSON.parse(loadedUIStateString)
+//     : null;
+//   yield put(setFetchUIStateSucceeded(loadedUIStateObj));
+// }
 
 /*
 
@@ -339,8 +344,16 @@ function* loadUIStateGen() {
     );
  */
 
+// function* showFavouritesWarning() {
+//   yield Toast.show({
+//     text: "Saga favourites Warning!",
+//     buttonText: "Okay",
+//     duration: 3000
+//   });
+// }
+
+/*
 function* mySaga() {
-  // yield takeLatest(bandsDuxConstants.LOAD_BANDS_NOW, loadBandsGen);
   yield takeLatest(LOAD_BANDS_NOW, loadBandsGen);
   yield takeLatest(LOAD_FAVOURITES_NOW, loadFavouritesGen);
   yield takeLatest(LOAD_UISTATE_NOW, loadUIStateGen);
@@ -350,8 +363,25 @@ function* mySaga() {
     favouritesDuxActions.toggleBandFavouriteStatus().type,
     toggleFavouriteGen
   );
+  yield takeLatest(SET_SHOW_FAVOURITES, showFavouritesWarning);
+  yield takeLatest(UPDATE_BAND_FAVOURITES_STATUS, showFavouritesWarning);
+
   yield fork(updatedItemSaga);
 }
+*/
+
+const dataSagas = [
+  // takeLatest(LOAD_BANDS_NOW, loadBandsGen),
+  // takeLatest(LOAD_FAVOURITES_NOW, loadFavouritesGen),
+  // takeLatest(LOAD_UISTATE_NOW, loadUIStateGen),
+  // takeLatest(SET_SHOW_FAVOURITES, saveUIStateGen),
+  // takeLatest(SET_APPEARANCES_VIEW, saveUIStateGen),
+  // takeLatest(
+  //   favouritesDuxActions.toggleBandFavouriteStatus().type,
+  //   toggleFavouriteGen
+  // ),
+  fork(updatedItemSaga)
+];
 
 //  yield takeLatest(loadBandsNow(), loadBandsGen);
 
@@ -368,4 +398,4 @@ function* mySaga() {
 // Then need to change bandsApi to read from async storage
 // or better still, do it right here in the Saga.
 
-export default mySaga;
+export default dataSagas;

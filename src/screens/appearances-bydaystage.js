@@ -91,74 +91,88 @@ class AppearancesByDayStage extends PureComponent {
     return null;
   };
 
+  /*
+            {favourites.indexOf(lineMember.bandId) > -1 ? (
+              <FavouritesListIcon style={{ fontSize: 14, width: 14 }} />
+            ) : null}
+ */
+
   getAppearanceLines = lineData => {
     const itemsLength = lineData.length;
-    const favourites = this.props.favourites;
+    const { favourites, showOnlyFavourites } = this.props;
+    let isFavourite, lineStyle;
     return lineData.map((lineMember, index) => {
-      const lineStyle = {
-        // height: 35
+      isFavourite = favourites.indexOf(lineMember.bandId) > -1;
+      lineStyle = {
+        // Don't remove.  It's updated later.
       };
       if (itemsLength === index + 1) {
         lineStyle.borderBottomWidth = 0;
       }
-      return (
-        <ListItem
-          key={lineMember.id}
-          onPress={() =>
-            this.props.navigation.navigate("BandScheduleCard", {
-              bandId: lineMember.bandId,
-              parentList: "by Stage"
-            })
-          }
-          style={lineStyle}
-        >
-          <Left
-            style={{
-              flex: 23,
-              marginTop: -10,
-              marginBottom: -10
-            }}
+
+      if (!showOnlyFavourites || isFavourite) {
+        return (
+          <ListItem
+            key={lineMember.id}
+            onPress={() =>
+              this.props.navigation.navigate("BandScheduleCard", {
+                bandId: lineMember.bandId,
+                parentList: "by Stage"
+              })
+            }
+            style={lineStyle}
           >
-            <Text
+            <Left
               style={{
-                fontSize: 12,
+                flex: 23,
+                marginTop: -10,
+                marginBottom: -10
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 12,
+                  flexGrow: 0,
+                  flexShrink: 0,
+                  flexBasis: 80
+                }}
+              >{`${format(lineMember.dateTimeStart, "HH:mm")}-${format(
+                lineMember.dateTimeEnd,
+                "HH:mm"
+              )} `}</Text>
+              <Text style={{ fontSize: 14, flex: 8 }}>
+                {lineMember.bandName}
+              </Text>
+              {this.getBandSummaryText(lineMember)}
+            </Left>
+            <Right
+              style={{
+                marginTop: -10,
+                marginBottom: -10,
                 flexGrow: 0,
                 flexShrink: 0,
-                flexBasis: 80
+                flexBasis: 10
               }}
-            >{`${format(lineMember.dateTimeStart, "HH:mm")}-${format(
-              lineMember.dateTimeEnd,
-              "HH:mm"
-            )} `}</Text>
-            <Text style={{ fontSize: 14, flex: 8 }}>{lineMember.bandName}</Text>
-            {this.getBandSummaryText(lineMember)}
-          </Left>
-          <Right
-            style={{
-              marginTop: -10,
-              marginBottom: -10,
-              flexGrow: 0,
-              flexShrink: 0,
-              flexBasis: 10
-            }}
-          >
-            {favourites.indexOf(lineMember.bandId) > -1 ? (
-              <FavouritesListIcon style={{ fontSize: 14, width: 14 }} />
-            ) : null}
-          </Right>
-          <Right
-            style={{
-              marginTop: -10,
-              marginBottom: -10,
-              flexGrow: 0,
-              flexShrink: 0,
-              flexBasis: 16
-            }}
-          >
-            <Icon name="arrow-forward" />
-          </Right>
-        </ListItem>
-      );
+            >
+              {isFavourite ? (
+                <FavouritesListIcon style={{ fontSize: 14, width: 14 }} />
+              ) : null}
+            </Right>
+            <Right
+              style={{
+                marginTop: -10,
+                marginBottom: -10,
+                flexGrow: 0,
+                flexShrink: 0,
+                flexBasis: 16
+              }}
+            >
+              <Icon name="arrow-forward" />
+            </Right>
+          </ListItem>
+        );
+      }
+      return null;
     });
   };
 
@@ -210,39 +224,35 @@ class AppearancesByDayStage extends PureComponent {
 
   render() {
     const {
-      appearancesList,
-      fetchStatus,
-      filterAppearancesByBandId,
-      groupAppearancesByDayStage,
-      favourites,
-      showOnlyFavourites,
-      reverseTimesOrder
+      // appearancesList,
+      appearancesSelGroupedByDayStage,
+      fetchStatus
+      // filterAppearancesByBandId,
+      // groupAppearancesByDayStage,
+      // favourites,
+      // showOnlyFavourites,
+      // reverseTimesOrder
     } = this.props;
 
     // const { sideMenuOpen } = this.state;
 
-    let appearances = [...appearancesList];
-    if (showOnlyFavourites) {
-      appearances = filterAppearancesByBandId(appearancesList, favourites);
-    }
+    // let appearances = [...appearancesList];
+    // console.log("showOnlyFavourites=" + showOnlyFavourites);
+    // if (showOnlyFavourites) {
+    //   appearances = filterAppearancesByBandId(appearancesList, favourites);
+    // }
 
-    const appearancesGroupedByDayStage = groupAppearancesByDayStage(
-      appearances,
-      reverseTimesOrder
-    );
+    // const appearancesGroupedByDayStage = groupAppearancesByDayStage(
+    //   appearances,
+    //   reverseTimesOrder
+    // );
 
     return (
       <Content style={{ backgroundColor: "#fff" }}>
         {fetchStatus === "fetching" && <Spinner />}
-        {appearances.length > 0 ? (
-          <List>
-            {this.getAppearancesListDayLevel(appearancesGroupedByDayStage)}
-          </List>
-        ) : (
-          <NoAppearancesToDisplayMessage
-            showOnlyFavourites={showOnlyFavourites}
-          />
-        )}
+        <List>
+          {this.getAppearancesListDayLevel(appearancesSelGroupedByDayStage)}
+        </List>
         <View onLayout={this.handleOnLayout} />
       </Content>
     );
@@ -251,16 +261,18 @@ class AppearancesByDayStage extends PureComponent {
 
 AppearancesByDayStage.propTypes = {
   // appearancesView: PropTypes.string.isRequired,
+  appearancesSelGroupedByDayStage: PropTypes.arrayOf(PropTypes.object)
+    .isRequired,
   appearancesSideMenuVisible: PropTypes.bool.isRequired,
-  appearancesList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  // appearancesList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   fetchStatus: PropTypes.string.isRequired,
-  filterAppearancesByBandId: PropTypes.func.isRequired,
+  // filterAppearancesByBandId: PropTypes.func.isRequired,
   getStageInfo: PropTypes.func.isRequired,
-  groupAppearancesByDayStage: PropTypes.func.isRequired,
+  // groupAppearancesByDayStage: PropTypes.func.isRequired,
   favourites: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   navigation: PropTypes.object.isRequired,
-  showOnlyFavourites: PropTypes.bool.isRequired,
-  reverseTimesOrder: PropTypes.bool.isRequired
+  showOnlyFavourites: PropTypes.bool.isRequired
+  // reverseTimesOrder: PropTypes.bool.isRequired
   // setShowAppearancesView: PropTypes.func.isRequired,
   // setShowOnlyFavourites: PropTypes.func.isRequired
 };

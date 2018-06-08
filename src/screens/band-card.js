@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Dimensions, Platform, TouchableOpacity, View } from "react-native";
+import { Dimensions, Platform, View } from "react-native";
 import * as Animatable from "react-native-animatable";
 import ParsedText from "react-native-parsed-text";
 
@@ -73,7 +73,8 @@ class BandCard extends Component {
     super(props);
     this.state = {
       dimensions: Dimensions.get("window"),
-      fullScreenPhotoCard: false
+      fullScreenPhotoCard: false,
+      isFavourite: this.props.selectFavouriteStatus
     };
   }
 
@@ -81,8 +82,12 @@ class BandCard extends Component {
     this.setState({ dimensions: Dimensions.get("window") });
   };
 
-  getAppearancesForBand = (appearances, bandKey) =>
-    appearances.slice().filter(bandMember => bandMember.bandId === bandKey);
+  getAppearancesForBand = (appearances, bandKey) => {
+    // console.log("BandCard..getAppearancesForBand");
+    return appearances
+      .slice()
+      .filter(bandMember => bandMember.bandId === bandKey);
+  };
 
   // <TouchableOpacity
   //   key={`${appearance.dateTimeStart}${appearance.stageId}`}
@@ -108,12 +113,6 @@ class BandCard extends Component {
         )}`}
       </Text>
     ));
-
-  // onPress={() =>
-  //   this.props.navigation.navigate("StageCard", {
-  //     stageId: stageMember.id,
-  //     parentList: "stages"
-  //   })
 
   getFaceBookLinkComponent = bandDetails => {
     const { facebookId, facebookPageName } = bandDetails;
@@ -179,33 +178,40 @@ class BandCard extends Component {
             ? new Error("promise cancelled")
             : this.faveView.pulseBig()
       )
-      // .then(
-      //   () =>
-      //     this.cancelHeartAnimation
-      //       ? new Error("promise cancelled")
-      //       : this.faveView.pulseBig()
-      // )
       .catch(e => console.log(`error: ${e}`));
 
   render() {
     const { bandId, parentList } = this.props.navigation.state.params;
+    const { fullScreenPhotoCard, isFavourite } = this.state;
+
     const {
-      bandsAlphabetical,
-      appearancesByBandThenDateTime,
-      favouritesState
+      // appearancesByBandThenDateTime,
+      // favouritesState,
+      selectAppearancesForBandByDateTime,
+      selectBandDetails
       // parentList
     } = this.props; // Basically, the whole state
-    const { fullScreenPhotoCard } = this.state;
-    const sortedAppearances = this.getAppearancesForBand(
-      appearancesByBandThenDateTime,
-      bandId
-    );
-    const bandDetails = bandsAlphabetical.filter(
-      bandMember => bandMember.bandId === bandId
-    )[0]; // Returns an array
-    const favourite =
-      favouritesState.favourites.indexOf(bandDetails.bandId) > -1;
-    const { toggleBandFavouriteStatus } = this.props;
+
+    // const newBand = selectAppearancesForBandByDateTime;
+    // console.log("newBand");
+    // console.log(newBand);
+
+    // const sortedAppearances = this.getAppearancesForBand(
+    //   appearancesByBandThenDateTime,
+    //   bandId
+    // );
+    // const bandDetails = bandsAlphabetical.filter(
+    //   bandMember => bandMember.bandId === bandId
+    // )[0]; // Returns an array
+    const bandDetails = selectBandDetails;
+
+    // console.log("getting favourite start");
+    // const favourite =
+    //   favouritesState.favourites.indexOf(bandDetails.bandId) > -1;
+    // console.log("getting favourite stop");
+    // const favourite = selectFavouriteStatus;
+    // console.log("band-card, isFavourite=" + isFavourite);
+    // const { toggleBandFavouriteStatus } = this.props;
 
     let backButtonText =
       parentList.toLowerCase() === "by day" ||
@@ -260,18 +266,21 @@ class BandCard extends Component {
               >
                 <AnimatableIcon
                   ref={this.handleFaveViewRef}
-                  ios={favourite ? "ios-heart" : "ios-heart-outline"}
-                  android={favourite ? "md-heart" : "md-heart-outline"}
+                  ios={isFavourite ? "ios-heart" : "ios-heart-outline"}
+                  android={isFavourite ? "md-heart" : "md-heart-outline"}
                   onAnimationEnd={() => console.log("animation end")}
                   transition="fontSize"
                   duration={1000}
                   style={{
-                    fontSize: favourite ? 42 : 32,
-                    color: favourite ? "red" : "grey"
+                    fontSize: isFavourite ? 42 : 32,
+                    color: isFavourite ? "red" : "grey"
                   }}
                   onPress={() => {
                     // this.setState({ favouritesFontSize: favourite ? 35 : 50 });
-                    if (!favourite) {
+                    // toggleBandFavouriteStatus(bandDetails.bandId);
+                    this.setState({ isFavourite: !isFavourite });
+
+                    if (!isFavourite) {
                       this.cancelHeartAnimation = false;
                       setTimeout(() => {
                         this.pulse();
@@ -280,7 +289,7 @@ class BandCard extends Component {
                       console.log("setting this.cancelHeartAnimation = true");
                       this.cancelHeartAnimation = true;
                     }
-                    toggleBandFavouriteStatus(bandDetails.bandId);
+                    // toggleBandFavouriteStatus(bandDetails.bandId);
                   }}
                 />
               </Right>
@@ -308,7 +317,7 @@ class BandCard extends Component {
                 <Text style={{ fontSize: 12, fontStyle: "italic" }}>
                   Appearing:
                 </Text>
-                {this.getAppearanceTexts(sortedAppearances)}
+                {this.getAppearanceTexts(selectAppearancesForBandByDateTime)}
               </Body>
             </CardItem>
             <CardItem style={{ paddingVertical: 0 }}>
@@ -320,16 +329,27 @@ class BandCard extends Component {
       </Container>
     );
   }
+
+  componentWillUnmount() {
+    const { updateBandFavouriteStatus } = this.props;
+    const { isFavourite } = this.state;
+    const { bandId } = this.props.navigation.state.params;
+    updateBandFavouriteStatus(bandId, isFavourite);
+  }
 }
 
 BandCard.propTypes = {
-  bandsAlphabetical: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-  appearancesByBandThenDateTime: PropTypes.arrayOf(PropTypes.object.isRequired)
-    .isRequired,
-  favouritesState: PropTypes.object.isRequired,
+  selectBandDetails: PropTypes.object.isRequired,
+  // appearancesByBandThenDateTime: PropTypes.arrayOf(PropTypes.object.isRequired)
+  //   .isRequired,
+  selectAppearancesForBandByDateTime: PropTypes.arrayOf(
+    PropTypes.object.isRequired
+  ).isRequired,
+  // favouritesState: PropTypes.object.isRequired,
   navigation: PropTypes.object.isRequired,
   // parentList: PropTypes.string.isRequired,
-  toggleBandFavouriteStatus: PropTypes.func.isRequired
+  // toggleBandFavouriteStatus: PropTypes.func.isRequired,
+  updateBandFavouriteStatus: PropTypes.func.isRequired
 };
 
 export default BandCard;

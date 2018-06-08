@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-// import { Button, Segment } from "native-base";
 // import IconMaterial from "react-native-vector-icons/MaterialIcons";
 // import Icon from "react-native-vector-icons";
 // import { format } from "date-fns";
@@ -15,6 +14,7 @@ import {
   Icon,
   Text,
   Title,
+  // Toast,
   Left,
   Right,
   Body,
@@ -50,6 +50,22 @@ class AppearancesWrapper extends Component {
     tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
   };
 
+  // showFavouritesWarning = () => {
+  //   Toast.show({
+  //     text: "Wrong password!",
+  //     buttonText: "Okay",
+  //     duration: 3000
+  //   });
+  // };
+
+  // componentDidMount() {
+  //   this.showFavouritesWarning();
+  // }
+
+  // componentDidUpdate() {
+  //   this.showFavouritesWarning();
+  // }
+
   handleSetActiveAppearanceScreen = activeAppearancesScreen => {
     // this.setState({ activeAppearancesScreen });
     const { setShowAppearancesView } = this.props;
@@ -63,18 +79,18 @@ class AppearancesWrapper extends Component {
     setShowOnlyFavourites(!showOnlyFavourites);
   };
 
-  handleDayStagePress = dayStage => {
-    // console.log("handleDayStagePress, dayStage=" + dayStage);
-    const {
-      navigation
-      // onItemSelected
-    } = this.props;
-    const navigateTo =
-      dayStage === "stage" ? "AppearancesByDayStage" : "AppearancesByDay";
-    // this.setState({ currentAppearancesView: dayStage });
-    this.handleSetActiveAppearanceScreen(dayStage);
-    navigation.navigate(navigateTo);
-  };
+  // handleDayStagePress = dayStage => {
+  //   // console.log("handleDayStagePress, dayStage=" + dayStage);
+  //   // const {
+  //   //   navigation
+  //   //   // onItemSelected
+  //   // } = this.props;
+  //   // const navigateTo =
+  //   //   dayStage === "stage" ? "AppearancesByDayStage" : "AppearancesByDay";
+  //   // this.setState({ currentAppearancesView: dayStage });
+  //   this.handleSetActiveAppearanceScreen(dayStage);
+  //   // navigation.navigate(navigateTo);
+  // };
 
   closeSideMenu = () => {
     this.setState({ appearancesSideMenuVisible: false });
@@ -87,17 +103,21 @@ class AppearancesWrapper extends Component {
 
   render() {
     const {
-      appearancesList,
+      // appearancesList,
       appearancesView,
+      favouritesCount,
       fetchStatus,
-      filterAppearancesByBandId,
+      // filterAppearancesByBandId,
       getStageInfo,
-      groupAppearancesByDay,
-      groupAppearancesByDayStage,
+      // groupAppearancesByDay,
+      // groupAppearancesByDayStage,
       favourites,
       navigation,
       reverseTimesOrder,
+      appearancesSelGroupedByDay,
+      appearancesSelGroupedByDayStage,
       setReverseTimesOrder,
+      setShowOnlyFavourites,
       showOnlyFavourites
     } = this.props;
 
@@ -109,13 +129,14 @@ class AppearancesWrapper extends Component {
     // console.log("appearanceswrapper.js, reverseTimesOrder=" + reverseTimesOrder);
 
     const sharedChildProps = {
-      appearancesList,
+      // appearancesList,
+      //
       appearancesView,
       appearancesSideMenuVisible,
       fetchStatus,
-      filterAppearancesByBandId,
+      // filterAppearancesByBandId,
       getStageInfo,
-      groupAppearancesByDay,
+      // groupAppearancesByDay,
       favourites,
       navigation,
       showOnlyFavourites,
@@ -135,15 +156,15 @@ class AppearancesWrapper extends Component {
       <Menu
         closeSideMenu={this.closeSideMenu}
         activeAppearancesScreen={appearancesView}
-        handleSetActiveAppearanceScreen={this.handleSetActiveAppearanceScreen}
-        setShowOnlyFavourites={this.handleShowFavouritesPress}
+        // handleSetActiveAppearanceScreen={this.handleSetActiveAppearanceScreen}
+        setShowOnlyFavourites={setShowOnlyFavourites}
         navigation={navigation}
         showOnlyFavourites={showOnlyFavourites}
         reverseTimesOrder={reverseTimesOrder}
         setReverseTimesOrder={setReverseTimesOrder}
       />
     );
-
+    // console.log("favouritesCount=" + favouritesCount);
     // console.log("appearances..render, appearancesGroupedByDay:");
     // console.log(appearancesGroupedByDay);
 
@@ -165,6 +186,13 @@ class AppearancesWrapper extends Component {
               </Segment>
  */
 
+    let headerIndicatorIconColor = "black";
+    let headerSegmentFontSize = 13;
+    if (Platform.OS === "android") {
+      headerIndicatorIconColor = "white";
+      headerSegmentFontSize = 9;
+    }
+
     return (
       <SideMenu
         menu={menu}
@@ -176,7 +204,7 @@ class AppearancesWrapper extends Component {
         // }
       >
         <Container style={styles.container}>
-          <Header>
+          <Header hasSegment>
             <Left style={{ flex: 1 }}>
               <HelstonburyAvatar />
             </Left>
@@ -184,19 +212,34 @@ class AppearancesWrapper extends Component {
               <Button
                 first
                 active={appearancesView === "stage"}
-                onPress={() => this.handleDayStagePress("stage")}
+                onPress={() => this.handleSetActiveAppearanceScreen("stage")}
               >
-                <Text>Day/Stage</Text>
+                <Text style={{ fontSize: headerSegmentFontSize }}>
+                  by Stage
+                </Text>
               </Button>
               <Button
                 last
                 active={appearancesView === "day"}
-                onPress={() => this.handleDayStagePress("day")}
+                onPress={() => this.handleSetActiveAppearanceScreen("day")}
               >
-                <Text>Day</Text>
+                <Text style={{ fontSize: headerSegmentFontSize }}>
+                  Schedule
+                </Text>
               </Button>
             </Segment>
-            <Right style={{ flex: 1 }}>
+            <Right style={{ flex: 1, alignItems: "center" }}>
+              {showOnlyFavourites && (
+                <Icon
+                  ios="ios-heart"
+                  android="md-heart"
+                  style={{
+                    marginRight: 5,
+                    fontSize: 12,
+                    color: headerIndicatorIconColor
+                  }}
+                />
+              )}
               <Icon
                 ios="ios-options"
                 android="md-options"
@@ -208,12 +251,12 @@ class AppearancesWrapper extends Component {
           {appearancesView === "stage" ? (
             <AppearancesByDayStage
               {...sharedChildProps}
-              groupAppearancesByDayStage={groupAppearancesByDayStage}
+              appearancesSelGroupedByDayStage={appearancesSelGroupedByDayStage}
             />
           ) : (
             <AppearancesByDay
               {...sharedChildProps}
-              groupAppearancesByDay={groupAppearancesByDay}
+              appearancesSelGroupedByDay={appearancesSelGroupedByDay}
             />
           )}
         </Container>
@@ -222,14 +265,21 @@ class AppearancesWrapper extends Component {
   }
 }
 
+//   appearancesSelGroupedByDay: PropTypes.arrayOf(PropTypes.object.isRequiredto).isRequired,
+//                 groupAppearancesByDayStage={groupAppearancesByDayStage}
+
 AppearancesWrapper.propTypes = {
-  appearancesList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  // appearancesList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  appearancesSelGroupedByDay: PropTypes.arrayOf(PropTypes.object).isRequired,
+  appearancesSelGroupedByDayStage: PropTypes.arrayOf(PropTypes.object)
+    .isRequired,
   appearancesView: PropTypes.string.isRequired,
+  favouritesCount: PropTypes.number.isRequired,
   fetchStatus: PropTypes.string.isRequired,
-  filterAppearancesByBandId: PropTypes.func.isRequired,
+  // filterAppearancesByBandId: PropTypes.func.isRequired,
   getStageInfo: PropTypes.func.isRequired,
-  groupAppearancesByDayStage: PropTypes.func.isRequired,
-  groupAppearancesByDay: PropTypes.func.isRequired,
+  // groupAppearancesByDayStage: PropTypes.func.isRequired,
+  // groupAppearancesByDay: PropTypes.func.isRequired,
   favourites: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   navigation: PropTypes.object.isRequired,
   reverseTimesOrder: PropTypes.bool.isRequired,

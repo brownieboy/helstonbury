@@ -1,6 +1,10 @@
 import { createSelector } from "reselect";
+import createCachedSelector from "re-reselect";
 
-import { stringSort, stringSortIgnoreArticle } from "../helper-functions/sorting.js";
+import {
+  // stringSort,
+  stringSortIgnoreArticle
+} from "../helper-functions/sorting.js";
 
 // Action type constants
 export const LOAD_BANDS_NOW = "LOAD_BANDS_NOW"; // Imperative, hence "NOW"!
@@ -30,7 +34,7 @@ const bandsReducer = (
 };
 
 // Sort/filter functions for selectors
-const selectBands = state => state.bandsList;
+const selectBands = state => state.bandsState.bandsList;
 
 // Selectors
 // const selectBandsByDateTime = createSelector([selectBands], bandsList => {
@@ -49,11 +53,23 @@ const sortedArray = myArray.slice().sort((a, b) =>
   a.name.replace(/^The /, "").localeCompare(b.name.replace(/^The /, ""))
 );
 
+    const bandDetails = bandsAlphabetical.filter(
+      bandMember => bandMember.bandId === bandId
+    )[0]; // Returns an array
+
  */
+
+const getBandId = (state, props) => props.navigation.state.params.bandId;
 
 const selectAlphabetical = createSelector([selectBands], bandsList =>
   stringSortIgnoreArticle(bandsList.slice(), "name")
 );
+
+export const selectBandDetails = createCachedSelector(
+  [selectAlphabetical, getBandId],
+  (bandsList, bandId) =>
+    bandsList.filter(bandMember => bandMember.bandId === bandId)[0]
+)((state, props) => getBandId(state, props));
 
 // const selectAlphabetical = createSelector([selectBands], bandsList =>
 //   stringSort(bandsList.slice(), "name")
@@ -118,14 +134,14 @@ export const selectors = {
 export const loadBandsNow = () => ({ type: LOAD_BANDS_NOW });
 // export const fetchBandsSucceeded = () => ({ type: FETCH_BANDS_REQUEST });
 
-const setFetchBandsRequest = () => ({
+export const setFetchBandsRequest = () => ({
   type: FETCH_BANDS_REQUEST
 });
-const setFetchBandsSucceeded = bandsList => ({
+export const setFetchBandsSucceeded = bandsList => ({
   type: FETCH_BANDS_SUCCESS,
   payload: bandsList
 });
-const setFetchBandsFailed = errorMessage => ({
+export const setFetchBandsFailed = errorMessage => ({
   type: FETCH_BANDS_FAILURE,
   payload: errorMessage
 });

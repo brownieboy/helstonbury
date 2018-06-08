@@ -52,7 +52,7 @@ export const loadContactUsNow = () => ({ type: LOAD_CONTACTUS_NOW });
 const setFetchContactUsRequest = () => ({
   type: FETCH_CONTACTUS_REQUEST
 });
-const setFetchContactUsSucceeded = contactUs => ({
+export const setFetchContactUsSucceeded = contactUs => ({
   type: FETCH_CONTACTUS_SUCCESS,
   payload: contactUs
 });

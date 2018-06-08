@@ -38,9 +38,9 @@ renderText(matchingString, matches) {
 //   return `lll${match[0].replace(/\*(.*)\*/, "$1")}lll`;
 // };
 
-const boldPattern = /(\s\*|^\*)(?=\S)([\s\S]*?\S)\*(?![*\S])/gm;
-const italicPattern = /(\s_|^_)(?=\S)([\s\S]*?\S)_(?![_\S])/gm;
-const strikethroughPattern = /(\s-|^-)(?=\S)([\s\S]*?\S)-(?![-\S])/gm;
+const boldPattern = /(\s\*|^\*)(?=\S)([\s\S]*?\S)\*(?![**])/gm;
+const italicPattern = /(\s_|^_)(?=\S)([\s\S]*?\S)_(?![_*])/gm;
+const strikethroughPattern = /(\s-|^-)(?=\S)([\s\S]*?\S)-(?![-*])/gm;
 
 const renderBoldText = (matchingString, matches) => {
   const match = matchingString.match(boldPattern);

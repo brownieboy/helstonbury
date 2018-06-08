@@ -8,13 +8,17 @@ import Appearances from "./appearanceswrapper.js";
 import {
   getAppearancesList,
   filterAppearancesByBandId,
-  groupAppearancesByDay,
-  groupAppearancesByDayStage,
+  // groupAppearancesByDay,
+  // groupAppearancesByDayStage,
   // getAppearancesGroupedByDay,
   getFetchStatus,
   loadAppearances,
-  selectors as appearanceSelectors
+  selectAppearancesGroupedByDay,
+  selectAppearancesGroupedByDayStage
+  // selectors as appearanceSelectors
 } from "../dux/appearancesReducer.js";
+
+import { getFavouritesCount } from "../dux/favouritesReducer.js";
 
 import {
   getReverseTimesOrder,
@@ -30,12 +34,12 @@ import {
 import { selectStages, getStageInfoForId } from "../dux/stagesReducer.js";
 
 const mapStateToProps = state => ({
-  appearancesListByDateTime: appearanceSelectors.selectAppearancesByDateTime(
-    state.appearancesState
-  ),
-  appearancesGroupedByDayThenStage: appearanceSelectors.selectAppearancesGroupedByDayThenStage(
-    state.appearancesState
-  ),
+  // appearancesListByDateTime: appearanceSelectors.selectAppearancesByDateTime(
+  //   state.appearancesState
+  // ),
+  // appearancesGroupedByDayThenStage: appearanceSelectors.selectAppearancesGroupedByDayThenStage(
+  //   state.appearancesState
+  // ),
   favouritesState: state.favouritesState,
   favourites: state.favouritesState.favourites,
   fetchStatus: getFetchStatus(state),
@@ -43,15 +47,18 @@ const mapStateToProps = state => ({
   reverseTimesOrder: getReverseTimesOrder(state),
   showOnlyFavourites: getShowOnlyFavourites(state),
   appearancesView: getAppearancesView(state),
-  appearancesList: getAppearancesList(state),
+  // appearancesList: getAppearancesList(state),
   // appearancesSideMenuVisible: getAppearancesSideMenuVisible(state),
+  appearancesSelGroupedByDay: selectAppearancesGroupedByDay(state),
+  appearancesSelGroupedByDayStage: selectAppearancesGroupedByDayStage(state),
   getStageInfo: stageId => getStageInfoForId(selectStages(state), stageId),
-  filterAppearancesByBandId: (appearances, bandsToFilterArray) =>
-    filterAppearancesByBandId(appearances, bandsToFilterArray),
-  groupAppearancesByDay: (appearances, reverseTimesOrder) =>
-    groupAppearancesByDay(appearances, reverseTimesOrder),
-  groupAppearancesByDayStage: (appearances, reverseTimesOrder) =>
-    groupAppearancesByDayStage(appearances, reverseTimesOrder)
+  favouritesCount: getFavouritesCount(state)
+  // filterAppearancesByBandId: (appearances, bandsToFilterArray) =>
+  // filterAppearancesByBandId(appearances, bandsToFilterArray)rr
+  // groupAppearancesByDay: (appearances, reverseTimesOrder) =>
+  //   groupAppearancesByDay(appearances, reverseTimesOrder),
+  // groupAppearancesByDayStage: (appearances, reverseTimesOrder) =>
+  //   groupAppearancesByDayStage(appearances, reverseTimesOrder)
 });
 
 const mapDispatchToProps = dispatch =>

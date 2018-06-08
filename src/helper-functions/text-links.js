@@ -41,6 +41,7 @@ renderText(matchingString, matches) {
 const boldPattern = /(\s\*|^\*)(?=\S)([\s\S]*?\S)\*(?![**])/gm;
 const italicPattern = /(\s_|^_)(?=\S)([\s\S]*?\S)_(?![_*])/gm;
 const strikethroughPattern = /(\s-|^-)(?=\S)([\s\S]*?\S)-(?![-*])/gm;
+const bulletsPattern = /^\* .*/gm;
 
 const renderBoldText = (matchingString, matches) => {
   const match = matchingString.match(boldPattern);

@@ -1,6 +1,6 @@
 import { AsyncStorage } from "react-native";
 import { buffers, eventChannel } from "redux-saga";
-import { fork, put, take } from "redux-saga/effects";
+import { fork, put, take, takeLatest } from "redux-saga/effects";
 import { ImageCache } from "react-native-img-cache";
 import deepEqual from "deep-equal";
 import firebaseApp from "../../api/firebase.js";
@@ -64,6 +64,15 @@ function* updatedItemSaga() {
   }
 }
 
-const firebaseSagas = [fork(updatedItemSaga)];
+// function* clearAllLocalData() {
+//   ImageCache.get().clear();
+//   yield AsyncStorage.setItem("localPublishedData", "");
+//   yield put({ type: "LOAD_BANDS_NOW" });
+// }
+
+const firebaseSagas = [
+  fork(updatedItemSaga),
+  // takeLatest(CLEAR_ALL_LOCAL_DATA, clearAllLocalData)
+];
 
 export default firebaseSagas;

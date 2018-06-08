@@ -2,6 +2,8 @@ import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import { Image, View } from "react-native";
 import ParsedText from "react-native-parsed-text";
+import SideMenu from "react-native-side-menu";
+
 // import { ImageCache } from "react-native-img-cache";
 
 import {
@@ -20,6 +22,7 @@ import {
   // FooterTab
 } from "native-base";
 
+import Menu from "../components/home-side-menu.js";
 import { parsedTextArray } from "../helper-functions/text-links.js";
 import { rnViewStyles } from "../styles/general-styles.js";
 // import MainFooterTabNav from "../components/mainfootertabnav.js";
@@ -33,6 +36,13 @@ const launchscreenLogo = require("../../img/helstonbury_logo.jpg");
 // import bandsApi from "../api/bandsApi.js";
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      homeSideMenuVisible: false
+    };
+  }
+
   static navigationOptions = {
     tabBarLabel: "Home",
     tabBarIcon: ({ tintColor }) => (
@@ -52,6 +62,10 @@ class Home extends Component {
     loadFavouritesNowProp();
   }
 
+  closeSideMenu = () => {
+    this.setState({ homeSideMenuVisible: false });
+  };
+
   /*
             <Button
               transparent
@@ -68,86 +82,86 @@ class Home extends Component {
  */
 
   render() {
+    const menu = <Menu closeSideMenu={this.closeSideMenu} />;
+
     // const { navigate } = this.props.navigation;
     // console.log("home props=") + this.props;
     const { homeText, fetchStatus } = this.props.homeProp;
+    const { clearAllLocalData } = this.props;
+    const { homeSideMenuVisible } = this.state;
+    console.log("homeSideMenuVisible=" + homeSideMenuVisible);
     return (
-      <Container>
-        <Header>
-          <Left>
-            <HelstonburyAvatar />
-          </Left>
-          <Body>
-            <Title>Helstonbury</Title>
-          </Body>
-          <Right />
-        </Header>
-        <Content>
-          <View style={styles.logoContainer}>
-            <Image source={launchscreenLogo} style={styles.logo} />
-          </View>
-          <View
-            style={{
-              flexDirection: "row",
-              marginTop: 10,
-              marginLeft: 20,
-              marginRight: 20
-            }}
-          >
-            {fetchStatus === "loading" && (
-              <Fragment>
-                <Text style={{ fontSize: 12, marginRight: 10 }}>
-                  Checking server for the latest info...
-                </Text>
-                <Spinner style={{ height: 2, width: 2, marginLeft: 5 }} />
-              </Fragment>
-            )}
-          </View>
-          <View
-            style={{
-              marginTop: fetchStatus === "loading" ? 5 : 20,
-              marginLeft: 20,
-              marginRight: 20
-            }}
-          >
-            <ParsedText
-              parse={parsedTextArray}
-              childrenProps={{ allowFontScaling: false }}
+      <SideMenu
+        menu={menu}
+        menuPosition="left"
+        isOpen={homeSideMenuVisible}
+        clearAllLocalData={clearAllLocalData}
+        // onChange={isOpen =>
+        //   isOpen === appearancesSideMenuVisible &&
+        //   setShowAppearancesSideMenu(isOpen)
+        // }
+      >
+        <Container
+          style={{
+            backgroundColor: "#FFF"
+          }}
+        >
+          <Header>
+            <Left>
+              <Icon
+                name="menu"
+                onPress={() => this.setState({ homeSideMenuVisible: true })}
+              />
+            </Left>
+            <Body>
+              <Title>Helstonbury</Title>
+            </Body>
+            <Right />
+          </Header>
+          <Content>
+            <View style={styles.logoContainer}>
+              <Image source={launchscreenLogo} style={styles.logo} />
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                marginTop: 10,
+                marginLeft: 20,
+                marginRight: 20
+              }}
             >
-              {homeText}
-            </ParsedText>
-          </View>
-        </Content>
-      </Container>
+              {fetchStatus === "loading" && (
+                <Fragment>
+                  <Text style={{ fontSize: 12, marginRight: 10 }}>
+                    Checking server for the latest info...
+                  </Text>
+                  <Spinner style={{ height: 2, width: 2, marginLeft: 5 }} />
+                </Fragment>
+              )}
+            </View>
+            <View
+              style={{
+                marginTop: fetchStatus === "loading" ? 5 : 20,
+                marginLeft: 20,
+                marginRight: 20
+              }}
+            >
+              <ParsedText
+                parse={parsedTextArray}
+                childrenProps={{ allowFontScaling: false }}
+              >
+                {homeText}
+              </ParsedText>
+            </View>
+          </Content>
+        </Container>
+      </SideMenu>
     );
   }
 }
 
-/*
-
-             <ParsedText
-              parse={parsedTextArray}
-              childrenProps={{ allowFontScaling: false }}
-            >
-              Here is some test with some markdown including *bold* and _italic_
-              and then some more *bold* and then yet more _italic_.  Then here's a list
-              * point 1
-              * point 2
-            </ParsedText>
-
-
-           <View style={{ marginTop: 20 }}>
-            <Button
-              transparent
-              onPress={() => openFacebookLink("382432781776899")}
-            >
-              <Icon name="logo-facebook" />
-              <Text>Helstonbury Facebook Page</Text>
-            </Button>
-          </View>
- */
-
 Home.propTypes = {
+  clearAllLocalData: PropTypes.func.isRequired,
   homeProp: PropTypes.object.isRequired,
   loadFavouritesNowProp: PropTypes.func.isRequired,
   loadUIStateNowProp: PropTypes.func.isRequired,

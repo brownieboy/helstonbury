@@ -1,9 +1,9 @@
-
 // Action type constants
 const LOAD_HOME_NOW = "LOAD_HOME_NOW"; // Imperative, hence "NOW"!
 const FETCH_HOME_REQUEST = "FETCH_HOME_REQUEST";
 const FETCH_HOME_SUCCESS = "FETCH_HOME_SUCCESS";
 const FETCH_HOME_FAILURE = "FETCH_HOME_FAILURE";
+export const CLEAR_ALL_LOCAL_DATA = "CLEAR_ALL_LOCAL_DATA";
 
 // Reducer
 const homeReducer = (
@@ -43,12 +43,14 @@ export const setFetchHomeFailed = errorMessage => ({
   payload: errorMessage
 });
 
+export const clearAllLocalData = () => ({
+  type: CLEAR_ALL_LOCAL_DATA
+});
+
 export const homeDuxActions = {
   setFetchHomeFailed,
   setFetchHomeRequest,
   setFetchHomeSucceeded
 };
 
-
 export default homeReducer;
-

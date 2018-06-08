@@ -5,6 +5,9 @@ import { ImageCache } from "react-native-img-cache";
 import deepEqual from "deep-equal";
 import firebaseApp from "../../api/firebase.js";
 
+import { CLEAR_ALL_LOCAL_DATA } from "../homeReducer.js";
+import { LOAD_BANDS_NOW } from "../bandsReducer.js";
+
 export function createEventChannel(ref) {
   const listener = eventChannel(emit => {
     ref.on("value", snap => {
@@ -58,21 +61,21 @@ function* updatedItemSaga() {
           "localPublishedData",
           JSON.stringify(item.value)
         );
-        yield put({ type: "LOAD_BANDS_NOW" });
+        yield put({ type: LOAD_BANDS_NOW });
       }
     }
   }
 }
 
-// function* clearAllLocalData() {
-//   ImageCache.get().clear();
-//   yield AsyncStorage.setItem("localPublishedData", "");
-//   yield put({ type: "LOAD_BANDS_NOW" });
-// }
+function* clearAllLocalDataGen() {
+  ImageCache.get().clear();
+  yield AsyncStorage.setItem("localPublishedData", "");
+  yield put({ type: LOAD_BANDS_NOW });
+}
 
 const firebaseSagas = [
   fork(updatedItemSaga),
-  // takeLatest(CLEAR_ALL_LOCAL_DATA, clearAllLocalData)
+  takeLatest(CLEAR_ALL_LOCAL_DATA, clearAllLocalDataGen)
 ];
 
 export default firebaseSagas;

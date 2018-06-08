@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import {
   Container,
@@ -108,6 +108,29 @@ class ContactUs extends Component {
     )
   };
 
+  getAppTips = () => {
+    const { appTips } = this.props;
+    if (typeof appTips !== "undefined" && appTips !== "") {
+      return (
+        <Fragment>
+          <ListItem itemDivider style={{ marginTop: 30, marginBottom: 10 }}>
+            <H2>App Tips</H2>
+          </ListItem>
+          <View style={rnViewStyles.parsedTextViewWrapper}>
+            <ParsedText
+              parse={parsedTextArray}
+              childrenProps={{ allowFontScaling: false }}
+            >
+              {appTips}
+            </ParsedText>
+          </View>
+        </Fragment>
+      );
+    }
+
+    return null;
+  };
+
   render() {
     // 50.100415, -5.276919
     const {
@@ -125,7 +148,8 @@ class ContactUs extends Component {
       // helstonburyMerchandiseFBID = "1555153094504856",
       venueAddress,
       venuePhone,
-      venueEmail
+      venueEmail,
+      appTips
     } = this.props;
 
     // console.log("contactus.js page, props:");
@@ -152,7 +176,9 @@ class ContactUs extends Component {
         </Header>
 
         <Content padder>
-          <H2 style={{ marginBottom: 10 }}>Organsition</H2>
+          <ListItem itemDivider style={{ marginBottom: 10 }}>
+            <H2>Organsition</H2>
+          </ListItem>
           <View style={rnViewStyles.parsedTextViewWrapper}>
             <ParsedText
               parse={parsedTextArray}
@@ -246,7 +272,9 @@ class ContactUs extends Component {
             ) : null}
           </List>
 
-          <H2 style={{ marginTop: 30, marginBottom: 10 }}>Location</H2>
+          <ListItem itemDivider style={{ marginTop: 30, marginBottom: 10 }}>
+            <H2>Location</H2>
+          </ListItem>
           <View style={rnViewStyles.parsedTextViewWrapper}>
             <ParsedText
               parse={parsedTextArray}
@@ -319,11 +347,12 @@ class ContactUs extends Component {
               </Right>
             </ListItem>
           </List>
+          {this.getAppTips()}
           <ParsedText
             parse={parsedTextArray}
             childrenProps={{ allowFontScaling: false }}
             style={{
-              marginTop: 30,
+              marginTop: 60,
               marginBottom: 50,
               marginLeft: 10,
               marginRight: 10,
@@ -340,7 +369,7 @@ class ContactUs extends Component {
 }
 
 /*
- 
+
 
 
               <ListItem icon>
@@ -411,7 +440,8 @@ ContactUs.propTypes = {
   mapLinkText: PropTypes.string.isRequired,
   venueAddress: PropTypes.string.isRequired,
   venuePhone: PropTypes.string.isRequired,
-  venueEmail: PropTypes.string.isRequired
+  venueEmail: PropTypes.string.isRequired,
+  appTips: PropTypes.string.isRequired
 };
 
 HelstonburyFBMechandiseListItem.propTypes = {

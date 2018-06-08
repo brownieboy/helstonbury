@@ -24,7 +24,8 @@ const defaultState = {
     mapLinkText: "",
     venueAddress: "",
     venueEmail: "",
-    venuePhone: ""
+    venuePhone: "",
+    appTips: ""
   }
 };
 

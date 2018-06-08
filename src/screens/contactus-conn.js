@@ -38,6 +38,7 @@ const mapStateToPropsEdit = state => ({
   venueAddress: state.contactUsState.contactUs.venueAddress,
   venueEmail: state.contactUsState.contactUs.venueEmail,
   venuePhone: state.contactUsState.contactUs.venuePhone,
+  appTips: state.contactUsState.contactUs.appTips,
   isEditExisting: true
 });
 

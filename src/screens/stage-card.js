@@ -18,6 +18,9 @@ import {
   Body
 } from "native-base";
 
+import ParsedText from "react-native-parsed-text";
+
+import { parsedTextArray } from "../helper-functions/text-links.js";
 import styles from "../styles/band-card-styles.js"; // Yes, styles shared with band card
 // import tabNavStyles from "../styles/tab-navigator-styles.js";
 // import IconMaterialEntypo from "react-native-vector-icons/Entypo";
@@ -73,7 +76,6 @@ class StageCard extends Component {
     // )[0]; // Returns an array
     const stageDetails = selectStageDetails;
 
-
     return (
       <Container style={styles.container}>
         <Header>
@@ -106,7 +108,13 @@ class StageCard extends Component {
                       fullScreenPhotoCard
                     )
                   : null}
-                <Text>{stageDetails.blurb}</Text>
+                <ParsedText
+                  style={{ marginTop: 10 }}
+                  parse={parsedTextArray}
+                  childrenProps={{ allowFontScaling: false }}
+                >
+                  {stageDetails.blurb}
+                </ParsedText>
               </Body>
             </CardItem>
           </Card>

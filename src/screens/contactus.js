@@ -114,7 +114,7 @@ class ContactUs extends Component {
       return (
         <Fragment>
           <ListItem itemDivider style={{ marginTop: 30, marginBottom: 10 }}>
-            <H2>App Tips</H2>
+            <H3>App Tips</H3>
           </ListItem>
           <View style={rnViewStyles.parsedTextViewWrapper}>
             <ParsedText
@@ -177,7 +177,7 @@ class ContactUs extends Component {
 
         <Content padder>
           <ListItem itemDivider style={{ marginBottom: 10 }}>
-            <H2>Organsition</H2>
+            <H3>Organsition</H3>
           </ListItem>
           <View style={rnViewStyles.parsedTextViewWrapper}>
             <ParsedText
@@ -273,7 +273,7 @@ class ContactUs extends Component {
           </List>
 
           <ListItem itemDivider style={{ marginTop: 30, marginBottom: 10 }}>
-            <H2>Location</H2>
+            <H3>Location</H3>
           </ListItem>
           <View style={rnViewStyles.parsedTextViewWrapper}>
             <ParsedText

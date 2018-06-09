@@ -1,9 +1,9 @@
 import { AsyncStorage } from "react-native";
 import { buffers, eventChannel } from "redux-saga";
-import { fork, put, take, takeLatest } from "redux-saga/effects";
+import { call, fork, put, take, takeLatest } from "redux-saga/effects";
 import { ImageCache } from "react-native-img-cache";
 import deepEqual from "deep-equal";
-import firebaseApp from "../../api/firebase.js";
+import firebaseApp, { reduxSagaFirebase } from "../../api/firebase.js";
 
 import { CLEAR_ALL_LOCAL_DATA } from "../homeReducer.js";
 import { LOAD_BANDS_NOW } from "../bandsReducer.js";
@@ -70,14 +70,21 @@ function* updatedItemSaga() {
   }
 }
 
+/*
+function* getTodo() {
+  const firstTodo = yield call(rsf.database.read, 'todos/1');
+  yield put(gotTodo(firstTodo));
+}
+ */
+
 function* clearAllLocalDataGen() {
   ImageCache.get().clear();
   yield AsyncStorage.setItem("localPublishedData", "");
-  console.log("Closing channel");
-  updateChannel.close();
-  console.log("...and reopening");
-  updateChannel = createEventChannel(firebaseDatabaseRef);
-
+  const newData = yield call(reduxSagaFirebase.database.read, "publishedData");
+  console.log("newData:");
+  console.log(newData);
+  console.log("setting localStorage to newData");
+  yield AsyncStorage.setItem("localPublishedData", JSON.stringify(newData));
   yield put({ type: LOAD_BANDS_NOW });
 }
 

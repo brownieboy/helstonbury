@@ -39,6 +39,11 @@ const styles = {
 };
 
 class HomeMenu extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = { clearLocalDataSwitchValue: false };
+  }
+
   static navigationOptions = {
     tabBarLabel: "by Day",
     tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
@@ -46,6 +51,7 @@ class HomeMenu extends PureComponent {
 
   render() {
     const { clearAllLocalData, closeSideMenu } = this.props;
+    const { clearLocalDataSwitchValue } = this.state;
 
     return (
       <Container
@@ -79,18 +85,27 @@ class HomeMenu extends PureComponent {
             </Body>
             <Right>
               <Switch
-                value={false}
+                value={clearLocalDataSwitchValue}
                 onChange={() => {
-                  console.log("switched clear cache");
+                  this.setState({ clearLocalDataSwitchValue: true });
                   Alert.alert(
                     "Clear Cache",
                     "Clear all local data and pull down from server afresh?",
                     [
                       {
                         text: "Cancel",
-                        style: "cancel"
+                        style: "cancel",
+                        onPress: () =>
+                          this.setState({ clearLocalDataSwitchValue: false })
                       },
-                      { text: "OK", onPress: () => clearAllLocalData() }
+                      {
+                        text: "OK",
+                        onPress: () => {
+                          clearAllLocalData();
+                          this.setState({ clearLocalDataSwitchValue: false });
+                          closeSideMenu();
+                        }
+                      }
                     ],
                     { cancelable: true }
                   );

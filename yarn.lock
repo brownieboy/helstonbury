@@ -4646,6 +4646,12 @@ realpath-native@^1.0.0:
   dependencies:
     util.promisify "^1.0.0"
 
+redux-saga-firebase@^0.13.0:
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/redux-saga-firebase/-/redux-saga-firebase-0.13.0.tgz#156d78601014fdf42f16a8c3b8e5c90389f34db4"
+  dependencies:
+    redux-saga "^0.16.0"
+
 redux-saga@^0.16.0:
   version "0.16.0"
   resolved "https://registry.yarnpkg.com/redux-saga/-/redux-saga-0.16.0.tgz#0a231db0a1489301dd980f6f2f88d8ced418f724"

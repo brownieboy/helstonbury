@@ -66,21 +66,6 @@ class Home extends Component {
     this.setState({ homeSideMenuVisible: false });
   };
 
-  /*
-            <Button
-              transparent
-              // onPress={() => {
-              //   ImageCache.get().clear();
-              //   bandsApi.clearAsyncStorage();
-              // }}
-            >
-              <Icon
-                name="menu"
-                onPress={() => alert("Options page coming soon!")}
-              />
-            </Button>
- */
-
   render() {
     const { homeText, fetchStatus } = this.props.homeProp;
     const { clearAllLocalDataProp } = this.props;
@@ -95,7 +80,6 @@ class Home extends Component {
     // const { navigate } = this.props.navigation;
     // console.log("home props=") + this.props;
 
-    console.log("homeSideMenuVisible=" + homeSideMenuVisible);
     return (
       <SideMenu
         menu={menu}
@@ -115,6 +99,7 @@ class Home extends Component {
           <Header>
             <Left>
               <Icon
+              style={{marginLeft: 5}}
                 name="menu"
                 onPress={() => this.setState({ homeSideMenuVisible: true })}
               />

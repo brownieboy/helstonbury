@@ -25,10 +25,10 @@ import {
   // Thumbnail
 } from "native-base";
 
-import IconMaterialEntypo from "react-native-vector-icons/Entypo";
-import ScheduleTabIcon from "../components/schedule-tab-icon.js";
+// import IconMaterialEntypo from "react-native-vector-icons/Entypo";
+// import ScheduleTabIcon from "../components/schedule-tab-icon.js";
 
-import { CLEAR_ALL_LOCAL_DATA } from "../dux/homeReducer.js";
+// import { CLEAR_ALL_LOCAL_DATA } from "../dux/homeReducer.js";
 
 const styles = {
   menuItems: {
@@ -44,10 +44,10 @@ class HomeMenu extends PureComponent {
     this.state = { clearLocalDataSwitchValue: false };
   }
 
-  static navigationOptions = {
-    tabBarLabel: "by Day",
-    tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
-  };
+  // static navigationOptions = {
+  //   tabBarLabel: "by Day",
+  //   tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
+  // };
 
   render() {
     const { clearAllLocalData, closeSideMenu } = this.props;
@@ -90,7 +90,7 @@ class HomeMenu extends PureComponent {
                   this.setState({ clearLocalDataSwitchValue: true });
                   Alert.alert(
                     "Clear Cache",
-                    "Clear all local data and pull down from server afresh?",
+                    "Clear all local data and pull down from server afresh? (This will use approx 5 meg of data.)",
                     [
                       {
                         text: "Cancel",
@@ -101,9 +101,9 @@ class HomeMenu extends PureComponent {
                       {
                         text: "OK",
                         onPress: () => {
-                          clearAllLocalData();
                           this.setState({ clearLocalDataSwitchValue: false });
                           closeSideMenu();
+                          setTimeout(clearAllLocalData, 500);
                         }
                       }
                     ],

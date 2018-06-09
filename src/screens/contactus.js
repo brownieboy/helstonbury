@@ -115,7 +115,7 @@ class ContactUs extends Component {
       return (
         <Fragment>
           <ListItem itemDivider style={{ marginTop: 30, marginBottom: 10 }}>
-            <Text style={otherTextStyles.sectionHeader}>App Tips</Text>
+            <Text style={otherTextStyles.sectionHeader}>Tips on using the app</Text>
           </ListItem>
           <View style={rnViewStyles.parsedTextViewWrapper}>
             <ParsedText

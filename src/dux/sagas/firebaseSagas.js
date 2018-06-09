@@ -70,20 +70,10 @@ function* updatedItemSaga() {
   }
 }
 
-/*
-function* getTodo() {
-  const firstTodo = yield call(rsf.database.read, 'todos/1');
-  yield put(gotTodo(firstTodo));
-}
- */
-
 function* clearAllLocalDataGen() {
   ImageCache.get().clear();
   yield AsyncStorage.setItem("localPublishedData", "");
   const newData = yield call(reduxSagaFirebase.database.read, "publishedData");
-  console.log("newData:");
-  console.log(newData);
-  console.log("setting localStorage to newData");
   yield AsyncStorage.setItem("localPublishedData", JSON.stringify(newData));
   yield put({ type: LOAD_BANDS_NOW });
 }

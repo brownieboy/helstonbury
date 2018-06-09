@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
-import { Image, View } from "react-native";
+import { Image, Platform, View } from "react-native";
 import ParsedText from "react-native-parsed-text";
 import SideMenu from "react-native-side-menu";
 
@@ -24,16 +24,19 @@ import {
 
 import Menu from "../components/home-side-menu.js";
 import { parsedTextArray } from "../helper-functions/text-links.js";
-import { rnViewStyles } from "../styles/general-styles.js";
+// import { rnViewStyles } from "../styles/general-styles.js";
 // import MainFooterTabNav from "../components/mainfootertabnav.js";
 // import openFacebookLink from "../helper-functions/open-facebook-link.js";
 import styles from "../styles/home-styles.js";
 // import tabNavStyles from "../styles/tab-navigator-styles.js";
-import HelstonburyAvatar from "../components/helstonbury-avatar.js";
+// import HelstonburyAvatar from "../components/helstonbury-avatar.js";
 // const launchscreenBg = require("../../../img/mqdefault.jpg");
 const launchscreenLogo = require("../../img/helstonbury_logo.jpg");
 
 // import bandsApi from "../api/bandsApi.js";
+
+const optionsButtonStyles =
+  Platform.OS === "android" ? { color: "white" } : null;
 
 class Home extends Component {
   constructor(props) {
@@ -99,7 +102,7 @@ class Home extends Component {
           <Header>
             <Left>
               <Icon
-              style={{marginLeft: 5}}
+                style={{ ...optionsButtonStyles, marginLeft: 5 }}
                 name="menu"
                 onPress={() => this.setState({ homeSideMenuVisible: true })}
               />

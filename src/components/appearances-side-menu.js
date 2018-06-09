@@ -60,10 +60,10 @@ class AppearancesMenu extends PureComponent {
     };
   }
 
-  static navigationOptions = {
-    tabBarLabel: "by Day",
-    tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
-  };
+  // static navigationOptions = {
+  //   tabBarLabel: "by Day",
+  //   tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
+  // };
 
   toggleShowFavourites = () => {
     // const {

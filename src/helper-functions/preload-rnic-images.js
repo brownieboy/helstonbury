@@ -2,7 +2,7 @@ import { ImageCache } from "react-native-img-cache";
 import FetchBlob from "react-native-fetch-blob";
 
 function preloadImage(url) {
-  return new Promise(function(resolve, reject) {
+  return new Promise((resolve, reject) => {
     // Create instance of ImageCache
     const instance = ImageCache.get();
     let finished = false;

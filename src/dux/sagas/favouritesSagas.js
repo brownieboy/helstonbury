@@ -6,7 +6,8 @@ import {
   setFetchFavouritesFailed,
   setFetchFavouritesRequest,
   setFetchFavouritesSucceededScrubBandIds,
-  TOGGLE_BAND_FAVOURITES_STATUS
+  TOGGLE_BAND_FAVOURITES_STATUS,
+  UPDATE_BAND_FAVOURITES_STATUS
 } from "../favouritesReducer.js";
 
 function* loadFavouritesGen() {
@@ -33,7 +34,7 @@ function* loadFavouritesGen() {
 }
 
 function* saveFavouritesGen() {
-  // console.log("favouritesSagas saveFavouritesGen");
+  console.log("favouritesSagas saveFavouritesGen");
   const state = yield select();
   const newFavourites = state.favouritesState.favourites;
   // console.log("toggling favourite state is " + JSON.stringify(state, null, 4));
@@ -44,7 +45,9 @@ function* saveFavouritesGen() {
 
 const favouritesSagas = [
   takeLatest(LOAD_FAVOURITES_NOW, loadFavouritesGen),
-  takeLatest(TOGGLE_BAND_FAVOURITES_STATUS, saveFavouritesGen)
+  takeLatest(TOGGLE_BAND_FAVOURITES_STATUS, saveFavouritesGen),
+  takeLatest(UPDATE_BAND_FAVOURITES_STATUS, saveFavouritesGen)
+
 ];
 
 export default favouritesSagas;

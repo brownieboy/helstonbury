@@ -46,7 +46,7 @@ const homeReducer = (
       };
 
     case UPDATE_BAND_FAVOURITES_STATUS:
-      console.log("UPDATE_BAND_FAVOURITES_STATUS");
+      // console.log("UPDATE_BAND_FAVOURITES_STATUS");
       index = state.favourites.indexOf(action.payload.bandId);
 
       if (!action.payload.isFavourite && index >= 0) {

@@ -36,16 +36,16 @@ class AppearancesByDayStage extends PureComponent {
     };
   }
 
-  componentWillMount() {
-    console.log("AppearancesByDayStage..componentWillMount() as PureComponent");
-    // const { loadBandsProp, loadFavouritesNowProp } = this.props;
-    // loadBandsProp();
-    // loadFavouritesNowProp();
-  }
+  // componentWillMount() {
+  //   console.log("AppearancesByDayStage..componentWillMount() as PureComponent");
+  //   // const { loadBandsProp, loadFavouritesNowProp } = this.props;
+  //   // loadBandsProp();
+  //   // loadFavouritesNowProp();
+  // }
 
-  componentDidMount() {
-    console.log("AppearancesByDayStage..componentDidMount() as Component");
-  }
+  // componentDidMount() {
+  //   console.log("AppearancesByDayStage..componentDidMount() as Component");
+  // }
 
   handleOnLayout = () => {
     this.setState({

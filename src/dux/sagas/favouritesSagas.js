@@ -10,7 +10,7 @@ import {
 } from "../favouritesReducer.js";
 
 function* loadFavouritesGen() {
-  console.log("favouritesSagas loadFavouritesGen");
+  // console.log("favouritesSagas loadFavouritesGen");
   yield put(setFetchFavouritesRequest());
   try {
     // const bandsDataNormalised = yield call(bandsApi.fetchBandsData);
@@ -33,7 +33,7 @@ function* loadFavouritesGen() {
 }
 
 function* saveFavouritesGen() {
-  console.log("favouritesSagas saveFavouritesGen");
+  // console.log("favouritesSagas saveFavouritesGen");
   const state = yield select();
   const newFavourites = state.favouritesState.favourites;
   // console.log("toggling favourite state is " + JSON.stringify(state, null, 4));

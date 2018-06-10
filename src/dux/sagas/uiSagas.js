@@ -16,7 +16,7 @@ import {
 } from "../favouritesReducer.js";
 
 export function* showFavouritesWarning() {
-  console.log("uiSagas showFavouritesWarning");
+  // console.log("uiSagas showFavouritesWarning");
   const state = yield select();
   if (getShowOnlyFavourites(state) && getFavouritesCount(state) === 0) {
     yield Toast.show({
@@ -30,7 +30,7 @@ export function* showFavouritesWarning() {
 }
 
 function* loadUIStateGen() {
-  console.log("uiSagas loadUIStateGen");
+  // console.log("uiSagas loadUIStateGen");
   const loadedUIStateString = yield AsyncStorage.getItem("uiState");
   // console.log("loadedUIStateString: " + loadedUIStateString);
   const loadedUIStateObj = loadedUIStateString
@@ -40,7 +40,7 @@ function* loadUIStateGen() {
 }
 
 function* saveUIStateGen() {
-  console.log("uiSagas saveUIStateGen");
+  // console.log("uiSagas saveUIStateGen");
   const state = yield select();
   const newUIState = state.uiState;
   yield AsyncStorage.setItem("uiState", JSON.stringify(newUIState));

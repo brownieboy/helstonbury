@@ -42,16 +42,16 @@ renderText(matchingString, matches) {
 //   return `lll${match[0].replace(/\*(.*)\*/, "$1")}lll`;
 // };
 
-const boldItalicPattern = /(\*_|^\*)(?=\S)([\s\S]*?\S)\*(?![_**])/gm;
+// const boldItalicPattern = /(\*_|^\*)(?=\S)([\s\S]*?\S)\*(?![_**])/gm;
 const boldPattern = /(\*|^\*)(?=\S)([\s\S]*?\S)\*(?![**])/gm;
 const italicPattern = /(_|^_)(?=\S)([\s\S]*?\S)_(?![_*])/gm;
 const strikethroughPattern = /(-|^-)(?=\S)([\s\S]*?\S)-(?![-*])/gm;
 // const bulletsPattern = /^\* .*/gm;
 
-const renderBoldItalicText = (matchingString, matches) => {
-  const match = matchingString.match(boldItalicPattern);
-  return `${match[0].replace(/\*_(.*)_\*/, "$1")}`;
-};
+// const renderBoldItalicText = (matchingString, matches) => {
+//   const match = matchingString.match(boldItalicPattern);
+//   return `${match[0].replace(/\*_(.*)_\*/, "$1")}`;
+// };
 
 const renderBoldText = (matchingString, matches) => {
   const match = matchingString.match(boldPattern);
@@ -88,13 +88,13 @@ export const parsedTextArray = [
         ""
       )
   },
-  {
-    // Bold and italics (matching underscores inside asterisks)
-    // This must go before the separate bold and italic entries
-    pattern: boldItalicPattern,
-    style: markdownStyles.boldItalic,
-    renderText: renderBoldItalicText
-  },
+  // {
+  //   // Bold and italics (matching underscores inside asterisks)
+  //   // This must go before the separate bold and italic entries
+  //   pattern: boldItalicPattern,
+  //   style: markdownStyles.boldItalic,
+  //   renderText: renderBoldItalicText
+  // },
   {
     // Bold (matching asterisks)
     pattern: boldPattern,

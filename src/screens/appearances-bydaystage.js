@@ -262,6 +262,28 @@ class AppearancesByDayStage extends PureComponent {
   }
 }
 
+
+/*
+    return (
+      <View style={{ marginTop: Platform.OS === "ios" ? 20 : 0 }}>
+        <SectionList
+          sections={dataObj}
+          renderSectionHeader={({ section }) => (
+            <Text style={styles.SectionHeaderStyle}> {section.key} </Text>
+          )}
+          renderItem={({ item }) => (
+            <Text style={styles.SectionListItemStyle}>
+              {" "}
+              {item.bandName} {item.dateTimeStart} {item.stageName}
+            </Text>
+          )}
+          keyExtractor={(item, index) => item.id}
+          stickySectionHeadersEnabled={true}
+        />
+      </View>
+    );
+ */
+
 AppearancesByDayStage.propTypes = {
   // appearancesView: PropTypes.string.isRequired,
   appearancesSelGroupedByDayStage: PropTypes.arrayOf(PropTypes.object)

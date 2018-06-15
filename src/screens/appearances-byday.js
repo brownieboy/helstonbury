@@ -157,7 +157,7 @@ class AppearancesByDay extends PureComponent {
           <Text style={{ fontWeight: "bold" }}>{dayMember.key}</Text>
         </ListItem>,
         <View key={`${dayMember.key}-lineswrapper`} style={{ marginBottom: 5 }}>
-          {this.getAppearanceLines(dayMember.values)}
+          {this.getAppearanceLines(dayMember.data)}
         </View>
       ];
     });
@@ -174,6 +174,9 @@ class AppearancesByDay extends PureComponent {
       appearancesSelGroupedByDay
     } = this.props;
 
+
+    console.log("AppearancesByDay..appearancesSelGroupedByDay");
+    console.log(JSON.stringify(appearancesSelGroupedByDay, null, 4));
     //
     // const { sideMenuOpen } = this.state;
 

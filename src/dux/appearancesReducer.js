@@ -191,9 +191,12 @@ export const selectAppearancesGroupedByDay = createSelector(
             ? new Date(b.dateTimeStart) - new Date(a.dateTimeStart)
             : new Date(a.dateTimeStart) - new Date(b.dateTimeStart)
       )
-      .entries(appearancesList);
+      .entries(appearancesList)
+      .map(group => ({ key: group.key, data: group.values }));
   }
 );
+
+//   .map(group => ({ key: group.key, data: group.values })group => ({ key: group.key, data: group.values }));
 
 export const selectAppearancesGroupedByDayStage = createSelector(
   [selectAppearancesSortedByDateTime, getReverseTimesOrder],
@@ -219,7 +222,8 @@ export const selectAppearancesGroupedByDayStage = createSelector(
             ? new Date(b.dateTimeStart) - new Date(a.dateTimeStart)
             : new Date(a.dateTimeStart) - new Date(b.dateTimeStart)
       )
-      .entries(appearancesList);
+      .entries(appearancesList)
+      .map(group => ({ key: group.key, data: group.values }));
   }
 );
 

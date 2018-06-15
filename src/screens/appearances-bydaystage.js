@@ -218,7 +218,7 @@ class AppearancesByDayStage extends PureComponent {
         <Text style={{ fontWeight: "bold" }}>{dayMember.key}</Text>
       </ListItem>,
       <View key={`${dayMember.key}-stagewrapper`} style={{ marginBottom: 20 }}>
-        {this.getAppearancesStageLevel(dayMember.values)}
+        {this.getAppearancesStageLevel(dayMember.data)}
       </View>
     ]);
 
@@ -233,6 +233,9 @@ class AppearancesByDayStage extends PureComponent {
       // showOnlyFavourites,
       // reverseTimesOrder
     } = this.props;
+
+    console.log("AppearancesByDayStage..appearancesSelGroupedByDayStage");
+    console.log(JSON.stringify(appearancesSelGroupedByDayStage, null, 4));
 
     // const { sideMenuOpen } = this.state;
 

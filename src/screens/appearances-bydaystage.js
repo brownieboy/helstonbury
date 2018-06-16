@@ -234,8 +234,8 @@ class AppearancesByDayStage extends PureComponent {
       // reverseTimesOrder
     } = this.props;
 
-    console.log("AppearancesByDayStage..appearancesSelGroupedByDayStage");
-    console.log(JSON.stringify(appearancesSelGroupedByDayStage, null, 4));
+    // console.log("AppearancesByDayStage..appearancesSelGroupedByDayStage");
+    // console.log(JSON.stringify(appearancesSelGroupedByDayStage, null, 4));
 
     // const { sideMenuOpen } = this.state;
 

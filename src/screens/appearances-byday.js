@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
-import { SectionList, StyleSheet, View } from "react-native";
+import { Platform, SectionList, StyleSheet, View } from "react-native";
 import { format } from "date-fns";
 
 import {
@@ -218,23 +218,35 @@ class AppearancesByDay extends PureComponent {
       }
     });
 
+    const A = ["Apple", "Apricot", "Avocado"];
+    const B = [
+      "Banana",
+      "Blackberry",
+      "Blackcurrant",
+      "Blueberry",
+      "Boysenberry"
+    ];
+    const C = ["Cherry", "Coconut"];
+
     return (
-      <Content style={{ backgroundColor: "#fff" }}>
-        {fetchStatus === "fetching" && <Spinner />}
-        <SectionList>
-          sections={appearancesSelGroupedByDay} renderSectionHeader={({
-            section
-          }) => <Text style={styles.SectionHeaderStyle}> {section.key} </Text>}
-          renderItem={({ item }) => (
-            <Text style={styles.SectionListItemStyle}>
-              {" "}
-              {item.bandName} {item.dateTimeStart} {item.stageName}
-            </Text>
+      <View style={{ marginTop: Platform.OS == "ios" ? 20 : 0 }}>
+        <SectionList
+          sections={[
+            { title: "Fruits Name From A", data: A },
+
+            { title: "Fruits Name From B", data: B },
+
+            { title: "Fruits Name From C", data: C }
+          ]}
+          renderSectionHeader={({ section }) => (
+            <Text style={styles.SectionHeaderStyle}> {section.title} </Text>
           )}
-          keyExtractor={(item, index) => item.id}
-          stickySectionHeadersEnabled={true}
-        </SectionList>
-      </Content>
+          renderItem={({ item }) => (
+            <Text style={styles.SectionListItemStyle}> {item} </Text>
+          )}
+          keyExtractor={(item, index) => index}
+        />
+      </View>
     );
   }
 }

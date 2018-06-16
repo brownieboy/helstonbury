@@ -228,23 +228,21 @@ class AppearancesByDay extends PureComponent {
     ];
     const C = ["Cherry", "Coconut"];
 
-    return (
-      <View style={{ marginTop: Platform.OS == "ios" ? 20 : 0 }}>
+     return (
+      <View style={{ marginTop: Platform.OS === "ios" ? 20 : 0 }}>
         <SectionList
-          sections={[
-            { title: "Fruits Name From A", data: A },
-
-            { title: "Fruits Name From B", data: B },
-
-            { title: "Fruits Name From C", data: C }
-          ]}
+          sections={appearancesSelGroupedByDay}
           renderSectionHeader={({ section }) => (
-            <Text style={styles.SectionHeaderStyle}> {section.title} </Text>
+            <Text style={styles.SectionHeaderStyle}> {section.key} </Text>
           )}
           renderItem={({ item }) => (
-            <Text style={styles.SectionListItemStyle}> {item} </Text>
+            <Text style={styles.SectionListItemStyle}>
+              {" "}
+              {item.bandName} {item.dateTimeStart} {item.stageName}
+            </Text>
           )}
-          keyExtractor={(item, index) => index}
+          keyExtractor={(item, index) => item.id}
+          stickySectionHeadersEnabled={true}
         />
       </View>
     );

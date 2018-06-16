@@ -327,7 +327,7 @@ class AppearancesByDay extends PureComponent {
     });
 
     return (
-      <View style={{ marginTop: Platform.OS === "ios" ? 0 : 0 }}>
+      <View style={{ marginTop: Platform.OS === "ios" ? 0 : 0, flex: 1 }}>
         <SectionList
           sections={appearancesSelGroupedByDay}
           renderSectionHeader={({ section }) => (

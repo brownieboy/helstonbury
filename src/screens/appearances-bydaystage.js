@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
-import { Dimensions, Platform, View } from "react-native";
+import { Dimensions, Platform, SectionList, View } from "react-native";
 import { format } from "date-fns";
 import SideMenu from "react-native-side-menu";
 
@@ -222,6 +222,73 @@ class AppearancesByDayStage extends PureComponent {
       </View>
     ]);
 
+  renderLineItem = item => {
+    const { favourites, showOnlyFavourites } = this.props;
+    let lineStyle = {};
+    const isFavourite = favourites.indexOf(item.bandId) > -1;
+    if (!showOnlyFavourites || isFavourite) {
+      return (
+        <ListItem
+          key={item.id}
+          onPress={() =>
+            this.props.navigation.navigate("BandScheduleCard", {
+              bandId: item.bandId,
+              parentList: "by Stage"
+            })
+          }
+          style={lineStyle}
+        >
+          <Left
+            style={{
+              flex: 23,
+              marginTop: -10,
+              marginBottom: -10
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 12,
+                flexGrow: 0,
+                flexShrink: 0,
+                flexBasis: 80
+              }}
+            >{`${format(item.dateTimeStart, "HH:mm")}-${format(
+              item.dateTimeEnd,
+              "HH:mm"
+            )} `}</Text>
+            <Text style={{ fontSize: 14, flex: 8 }}>{item.bandName}</Text>
+            {this.getBandSummaryText(item)}
+          </Left>
+          <Right
+            style={{
+              marginTop: -10,
+              marginBottom: -10,
+              flexGrow: 0,
+              flexShrink: 0,
+              flexBasis: 10
+            }}
+          >
+            {isFavourite ? (
+              <FavouritesListIcon style={{ fontSize: 14, width: 14 }} />
+            ) : null}
+          </Right>
+          <Right
+            style={{
+              marginTop: -10,
+              marginBottom: -10,
+              flexGrow: 0,
+              flexShrink: 0,
+              flexBasis: 16
+            }}
+          >
+            <Icon name="arrow-forward" />
+          </Right>
+        </ListItem>
+      );
+    }
+    return null;
+  };
+
   render() {
     const {
       // appearancesList,
@@ -251,6 +318,26 @@ class AppearancesByDayStage extends PureComponent {
     // );
 
     return (
+      <View style={{ marginTop: Platform.OS === "ios" ? 0 : 0 }}>
+        <SectionList
+          sections={appearancesSelGroupedByDayStage}
+          renderSectionHeader={({ section }) => (
+            <ListItem itemDivider key={section.key}>
+              <Text style={{ fontWeight: "bold" }}>{section.key}</Text>
+            </ListItem>
+          )}
+          renderItem={({ item }) => this.renderLineItem(item)}
+          keyExtractor={(item, index) => item.id}
+          stickySectionHeadersEnabled={true}
+        />
+      </View>
+    );
+  }
+}
+
+/*
+
+    return (
       <Content style={{ backgroundColor: "#fff" }}>
         {fetchStatus === "fetching" && <Spinner />}
         <List>
@@ -259,11 +346,8 @@ class AppearancesByDayStage extends PureComponent {
         <View onLayout={this.handleOnLayout} />
       </Content>
     );
-  }
-}
 
 
-/*
     return (
       <View style={{ marginTop: Platform.OS === "ios" ? 20 : 0 }}>
         <SectionList

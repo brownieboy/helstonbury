@@ -26,6 +26,7 @@ import NoAppearancesToDisplayMessage from "../components/no-appearances-todispla
 // ${lineMember.name}:
 
 class AppearancesByDay extends PureComponent {
+  /*
   getAppearanceLines = lineData => {
     const itemsLength = lineData.length;
     const { favourites, showOnlyFavourites } = this.props;
@@ -160,11 +161,12 @@ class AppearancesByDay extends PureComponent {
           {this.getAppearanceLines(dayMember.data)}
         </View>
       ];
-    });
+    }
+    */
 
   renderLineItem = item => {
     const { favourites, showOnlyFavourites } = this.props;
-    lineStyle = {};
+    let lineStyle = {};
     const isFavourite = favourites.indexOf(item.bandId) > -1;
     if (!showOnlyFavourites || isFavourite) {
       return (

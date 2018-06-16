@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
-import { View } from "react-native";
+import { SectionList, StyleSheet, View } from "react-native";
 import { format } from "date-fns";
 
 import {
@@ -174,9 +174,8 @@ class AppearancesByDay extends PureComponent {
       appearancesSelGroupedByDay
     } = this.props;
 
-
     console.log("AppearancesByDay..appearancesSelGroupedByDay");
-    console.log(JSON.stringify(appearancesSelGroupedByDay, null, 4));
+    console.log(appearancesSelGroupedByDay);
     //
     // const { sideMenuOpen } = this.state;
 
@@ -203,6 +202,45 @@ class AppearancesByDay extends PureComponent {
 
     // const appearancesSelGroupedByDay = groupAppearancesByDay(appearances, reverseTimesOrder);
 
+    const styles = StyleSheet.create({
+      SectionHeaderStyle: {
+        backgroundColor: "#CDDC39",
+        fontSize: 20,
+        padding: 5,
+        color: "#fff"
+      },
+
+      SectionListItemStyle: {
+        fontSize: 15,
+        padding: 5,
+        color: "#000",
+        backgroundColor: "#F5F5F5"
+      }
+    });
+
+    return (
+      <Content style={{ backgroundColor: "#fff" }}>
+        {fetchStatus === "fetching" && <Spinner />}
+        <SectionList>
+          sections={appearancesSelGroupedByDay} renderSectionHeader={({
+            section
+          }) => <Text style={styles.SectionHeaderStyle}> {section.key} </Text>}
+          renderItem={({ item }) => (
+            <Text style={styles.SectionListItemStyle}>
+              {" "}
+              {item.bandName} {item.dateTimeStart} {item.stageName}
+            </Text>
+          )}
+          keyExtractor={(item, index) => item.id}
+          stickySectionHeadersEnabled={true}
+        </SectionList>
+      </Content>
+    );
+  }
+}
+
+/*
+
     return (
       <Content style={{ backgroundColor: "#fff" }}>
         {fetchStatus === "fetching" && <Spinner />}
@@ -211,13 +249,26 @@ class AppearancesByDay extends PureComponent {
         </List>
       </Content>
     );
-  }
-}
 
-/*
-            {fetchStatus === "fetching" && <Spinner />}
-
-*/
+    return (
+      <View style={{ marginTop: Platform.OS === "ios" ? 20 : 0 }}>
+        <SectionList
+          sections={dataObj}
+          renderSectionHeader={({ section }) => (
+            <Text style={styles.SectionHeaderStyle}> {section.key} </Text>
+          )}
+          renderItem={({ item }) => (
+            <Text style={styles.SectionListItemStyle}>
+              {" "}
+              {item.bandName} {item.dateTimeStart} {item.stageName}
+            </Text>
+          )}
+          keyExtractor={(item, index) => item.id}
+          stickySectionHeadersEnabled={true}
+        />
+      </View>
+    );
+ */
 
 AppearancesByDay.propTypes = {
   // appearancesView: PropTypes.string.isRequired,

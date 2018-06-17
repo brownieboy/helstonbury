@@ -282,8 +282,8 @@ class AppearancesByDay extends PureComponent {
       appearancesSelGroupedByDay
     } = this.props;
 
-    console.log("AppearancesByDay..appearancesSelGroupedByDay");
-    console.log(appearancesSelGroupedByDay);
+    // console.log("AppearancesByDay..appearancesSelGroupedByDay");
+    // console.log(appearancesSelGroupedByDay);
     //
     // const { sideMenuOpen } = this.state;
 
@@ -310,21 +310,6 @@ class AppearancesByDay extends PureComponent {
 
     // const appearancesSelGroupedByDay = groupAppearancesByDay(appearances, reverseTimesOrder);
 
-    const styles = StyleSheet.create({
-      SectionHeaderStyle: {
-        backgroundColor: "#CDDC39",
-        fontSize: 20,
-        padding: 5,
-        color: "#fff"
-      },
-
-      SectionListItemStyle: {
-        fontSize: 15,
-        padding: 5,
-        color: "#000",
-        backgroundColor: "#F5F5F5"
-      }
-    });
 
     return (
       <View style={{ marginTop: Platform.OS === "ios" ? 0 : 0, flex: 1 }}>

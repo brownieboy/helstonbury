@@ -1,6 +1,12 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
-import { Dimensions, Platform, SectionList, View } from "react-native";
+import {
+  Dimensions,
+  Fragment,
+  Platform,
+  SectionList,
+  View
+} from "react-native";
 import { format } from "date-fns";
 import SideMenu from "react-native-side-menu";
 
@@ -96,7 +102,7 @@ class AppearancesByDayStage extends PureComponent {
               <FavouritesListIcon style={{ fontSize: 14, width: 14 }} />
             ) : null}
  */
-
+/*
   getAppearanceLines = lineData => {
     const itemsLength = lineData.length;
     const { favourites, showOnlyFavourites } = this.props;
@@ -175,7 +181,7 @@ class AppearancesByDayStage extends PureComponent {
       return null;
     });
   };
-
+*/
   getStageSummaryText = stageInfo => {
     if (
       typeof stageInfo !== "undefined" &&
@@ -191,6 +197,7 @@ class AppearancesByDayStage extends PureComponent {
     return null;
   };
 
+/*
   getAppearancesStageLevel = groupedStageData =>
     groupedStageData.map(stageMember => {
       const stageId = stageMember.key.split("~")[1];
@@ -221,8 +228,11 @@ class AppearancesByDayStage extends PureComponent {
         {this.getAppearancesStageLevel(dayMember.data)}
       </View>
     ]);
+*/
 
   renderLineItem = item => {
+    // console.log("renderLineItem, item:");
+    // console.log(item);
     const { favourites, showOnlyFavourites } = this.props;
     let lineStyle = {};
     const isFavourite = favourites.indexOf(item.bandId) > -1;
@@ -289,6 +299,32 @@ class AppearancesByDayStage extends PureComponent {
     return null;
   };
 
+  renderStageLine = stageLineString => {
+    const stageId = stageLineString.split("~")[1];
+    const stageInfo = this.props.getStageInfo(stageId);
+    return (
+      <ListItem>
+        <Text style={{ fontWeight: "bold", fontStyle: "italic", fontSize: 14 }}>
+          {typeof stageInfo !== "undefined" ? stageInfo.name : stageId}
+        </Text>
+        {this.getStageSummaryText(stageInfo)}
+      </ListItem>
+    );
+  };
+
+  renderSecondLevelItem = item => {
+    const stageLineItem = this.renderStageLine(item.key);
+    const lineItems = item.values.map(lineItem =>
+      this.renderLineItem(lineItem)
+    );
+    return (
+      <View>
+        {stageLineItem}
+        {lineItems}
+      </View>
+    );
+  };
+
   render() {
     const {
       // appearancesList,
@@ -302,7 +338,7 @@ class AppearancesByDayStage extends PureComponent {
     } = this.props;
 
     // console.log("AppearancesByDayStage..appearancesSelGroupedByDayStage");
-    // console.log(JSON.stringify(appearancesSelGroupedByDayStage, null, 4));
+    // console.log(appearancesSelGroupedByDayStage);
 
     // const { sideMenuOpen } = this.state;
 
@@ -318,7 +354,7 @@ class AppearancesByDayStage extends PureComponent {
     // );
 
     return (
-      <View style={{ marginTop: Platform.OS === "ios" ? 0 : 0 }}>
+      <View style={{ marginTop: 0, flex: 1 }}>
         <SectionList
           sections={appearancesSelGroupedByDayStage}
           renderSectionHeader={({ section }) => (
@@ -326,8 +362,8 @@ class AppearancesByDayStage extends PureComponent {
               <Text style={{ fontWeight: "bold" }}>{section.key}</Text>
             </ListItem>
           )}
-          renderItem={({ item }) => this.renderLineItem(item)}
-          keyExtractor={(item, index) => item.id}
+          renderItem={({ item }) => this.renderSecondLevelItem(item)}
+          keyExtractor={(item, index) => item.key}
           stickySectionHeadersEnabled={true}
         />
       </View>

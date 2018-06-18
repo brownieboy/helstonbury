@@ -1,12 +1,6 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
-import {
-  Dimensions,
-  Fragment,
-  Platform,
-  SectionList,
-  View
-} from "react-native";
+import { Dimensions, Platform, SectionList, View } from "react-native";
 import { format } from "date-fns";
 import SideMenu from "react-native-side-menu";
 
@@ -102,7 +96,7 @@ class AppearancesByDayStage extends PureComponent {
               <FavouritesListIcon style={{ fontSize: 14, width: 14 }} />
             ) : null}
  */
-/*
+  /*
   getAppearanceLines = lineData => {
     const itemsLength = lineData.length;
     const { favourites, showOnlyFavourites } = this.props;
@@ -197,7 +191,7 @@ class AppearancesByDayStage extends PureComponent {
     return null;
   };
 
-/*
+  /*
   getAppearancesStageLevel = groupedStageData =>
     groupedStageData.map(stageMember => {
       const stageId = stageMember.key.split("~")[1];
@@ -354,7 +348,7 @@ class AppearancesByDayStage extends PureComponent {
     // );
 
     return (
-      <View style={{ marginTop: 0, flex: 1 }}>
+      <View style={{ marginTop: 0, flex: 1 }} onLayout={this.handleOnLayout}>
         <SectionList
           sections={appearancesSelGroupedByDayStage}
           renderSectionHeader={({ section }) => (

@@ -182,7 +182,7 @@ export const selectAppearancesGroupedByDay = createSelector(
           // new Date(appearance.dateTimeStart.split("T")[0]),
           // "dddd DD/MM/YYYY")
           new Date(appearance.dateTimeStart.split("T")[0]),
-          "dddd MMM Do YYYY"
+          "dddd MMMM Do YYYY"
         )
       )
       .sortValues(
@@ -209,7 +209,7 @@ export const selectAppearancesGroupedByDayStage = createSelector(
       .key(appearance =>
         format(
           new Date(appearance.dateTimeStart.split("T")[0]),
-          "dddd MMM Do YYYY"
+          "dddd MMMM Do YYYY"
         )
       )
       .key(appearance => `${appearance.stageSortOrder}~${appearance.stageId}`)

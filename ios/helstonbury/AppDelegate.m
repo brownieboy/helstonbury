@@ -30,6 +30,10 @@
  // Prod
   // jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 
+  [application setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
+  [application setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+
+
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"helstonbury"
                                                initialProperties:nil

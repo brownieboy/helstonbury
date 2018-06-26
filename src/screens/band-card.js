@@ -146,15 +146,14 @@ class BandCard extends Component {
     const dimensions = this.state.dimensions;
     const imageHeight = fullScreen
       ? dimensions.width
-      : Math.round(dimensions.width * 0.85 * 9 / 16);
+      : Math.round((dimensions.width * 0.85 * 9) / 16);
     const imageWidth = fullScreen ? dimensions.width : dimensions.width * 0.85;
     return (
       <CachedImage
         style={{
-          alignSelf: "center",
           height: imageHeight,
-          width: imageWidth,
-          marginVertical: 5
+          width: null,
+          flex: 1
         }}
         source={{ uri: cardFullUrl }}
       />
@@ -242,7 +241,7 @@ class BandCard extends Component {
         </Header>
 
         <Content padder>
-          <Card style={styles.mb}>
+          <Card>
             <CardItem
               bordered
               style={{
@@ -295,22 +294,22 @@ class BandCard extends Component {
               </Right>
             </CardItem>
 
+            <CardItem cardBody>
+              {bandDetails.cardFullUrl
+                ? this.getCardImage(
+                    bandDetails.cardFullUrl,
+                    fullScreenPhotoCard
+                  )
+                : null}
+            </CardItem>
             <CardItem>
-              <Body>
-                {bandDetails.cardFullUrl
-                  ? this.getCardImage(
-                      bandDetails.cardFullUrl,
-                      fullScreenPhotoCard
-                    )
-                  : null}
-                <ParsedText
-                  style={{ marginTop: 10 }}
-                  parse={parsedTextArray}
-                  childrenProps={{ allowFontScaling: false }}
-                >
-                  {bandDetails.blurb}
-                </ParsedText>
-              </Body>
+              <ParsedText
+                style={{ marginTop: 5 }}
+                parse={parsedTextArray}
+                childrenProps={{ allowFontScaling: false }}
+              >
+                {bandDetails.blurb}
+              </ParsedText>
             </CardItem>
             <CardItem>
               <Body>

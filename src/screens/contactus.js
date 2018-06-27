@@ -350,6 +350,25 @@ class ContactUs extends Component {
                 </TouchableOpacity>
               </Right>
             </ListItem>
+            <ListItem>
+              <Left style={listItemStyles.leftItem}>
+                <Text style={touchStyles.labelText}>Email:</Text>
+              </Left>
+              <Body style={listItemStyles.bodyItem}>
+                <TouchableOpacity
+                  onPress={() => email([venueEmail], null, null, "", "")}
+                >
+                  <Text style={touchStyles.text}>{venueEmail}</Text>
+                </TouchableOpacity>
+              </Body>
+              <Right style={listItemStyles.rightItem}>
+                <TouchableOpacity
+                  onPress={() => email([venueEmail], null, null, "", "")}
+                >
+                  <Icon name="mail" style={touchStyles.icon} />
+                </TouchableOpacity>
+              </Right>
+            </ListItem>
           </List>
           {this.getAppTips()}
           <ParsedText

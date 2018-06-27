@@ -58,6 +58,18 @@ const otherTextStyles = StyleSheet.create({
   sectionHeader: { fontSize: 14, fontWeight: "bold", marginLeft: -6 }
 });
 
+const listItemStyles = StyleSheet.create({
+  leftItem: {
+    flex: 2
+  },
+  bodyItem: {
+    flex: 5
+  },
+  rightItem: {
+    flex: 1
+  }
+});
+
 const HelstonburyFBMechandiseListItem = ({
   helstonburyFBID,
   helstonburyMerchandiseFBID,
@@ -115,7 +127,9 @@ class ContactUs extends Component {
       return (
         <Fragment>
           <ListItem itemDivider style={{ marginTop: 30, marginBottom: 10 }}>
-            <Text style={otherTextStyles.sectionHeader}>Tips on using the app</Text>
+            <Text style={otherTextStyles.sectionHeader}>
+              Tips on using the app
+            </Text>
           </ListItem>
           <View style={rnViewStyles.parsedTextViewWrapper}>
             <ParsedText
@@ -167,7 +181,7 @@ class ContactUs extends Component {
     return (
       <Container style={styles.container}>
         <Header>
-          <Left style={{ flex: 1 }}>
+          <Left style={{ flex: 2 }}>
             <HelstonburyAvatar />
           </Left>
           <Body style={{ flex: 6 }}>
@@ -286,21 +300,10 @@ class ContactUs extends Component {
           </View>
           <List style={{ marginTop: -20 }}>
             <ListItem>
-              <Left
-                style={[touchStyles.label, { flexGrow: 1, marginLeft: -10 }]}
-              >
+              <Left style={listItemStyles.leftItem}>
                 <Text style={touchStyles.labelText}>Address:</Text>
               </Left>
-              <Body style={{ flexGrow: 3 }}>
-                <Text style={otherTextStyles.info}>{venueAddress}</Text>
-              </Body>
-            </ListItem>
-
-            <ListItem icon>
-              <Left style={touchStyles.label}>
-                <Text style={touchStyles.labelText}>Map:</Text>
-              </Left>
-              <Body>
+              <Body style={listItemStyles.bodyItem}>
                 <TouchableOpacity
                   onPress={() =>
                     openMap({
@@ -312,11 +315,11 @@ class ContactUs extends Component {
                   }
                 >
                   <Text style={touchStyles.text}>
-                    {mapLinkText !== "" ? mapLinkText : "Open in Google Maps"}
+                    {venueAddress !== "" ? venueAddress : "Open in Google Maps"}
                   </Text>
                 </TouchableOpacity>
               </Body>
-              <Right>
+              <Right style={listItemStyles.rightItem}>
                 <TouchableOpacity
                   onPress={() =>
                     openMap({
@@ -332,16 +335,16 @@ class ContactUs extends Component {
               </Right>
             </ListItem>
 
-            <ListItem icon>
-              <Left style={touchStyles.label}>
+            <ListItem>
+              <Left style={listItemStyles.leftItem}>
                 <Text style={touchStyles.labelText}>Phone:</Text>
               </Left>
-              <Body>
+              <Body style={listItemStyles.bodyItem}>
                 <TouchableOpacity onPress={() => phonecall(venuePhone, true)}>
                   <Text style={touchStyles.text}>{venuePhone}</Text>
                 </TouchableOpacity>
               </Body>
-              <Right>
+              <Right style={listItemStyles.rightItem}>
                 <TouchableOpacity onPress={() => phonecall(venuePhone, true)}>
                   <Icon style={touchStyles.icon} name="call" />
                 </TouchableOpacity>

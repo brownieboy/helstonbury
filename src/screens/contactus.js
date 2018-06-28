@@ -63,7 +63,7 @@ const listItemStyles = StyleSheet.create({
     flex: 2
   },
   bodyItem: {
-    flex: 7
+    flex: 8
   },
   rightItem: {
     flex: 1

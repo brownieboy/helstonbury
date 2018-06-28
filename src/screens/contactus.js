@@ -46,6 +46,8 @@ const touchStyles = StyleSheet.create({
   labelText: {
     // width: 70,
     fontSize: 12
+    // borderWidth: 1,
+    // borderColor: "red"
   },
   icon: {
     color: "blue",
@@ -58,42 +60,52 @@ const otherTextStyles = StyleSheet.create({
   sectionHeader: { fontSize: 14, fontWeight: "bold", marginLeft: -6 }
 });
 
-const listItemIconStyles = StyleSheet.create({
-  leftItem: {
-    flex: 2
-  },
-  bodyItem: {
-    flex: 7
-  },
-  rightItem: {
-    flex: 1
-  }
-})
+// const listItemIconStyles = StyleSheet.create({
+//   leftItem: {
+//     display: "flex",
+//     alignItems: "flex-start",
+//     flex: 2,
+//     borderWidth: 1,
+//     paddingLeft: 0
+//   },
+//   bodyItem: {
+//     flex: 6
+//   },
+//   rightItem: {
+//     flex: 2
+//   }
+// });
 
 const listItemStyles = StyleSheet.create({
+  listItem: {
+    height: 40
+  },
   leftItem: {
-    flex: 2
+    flex: 4
   },
   bodyItem: {
-    flex: 8
+    flex: 16
   },
   rightItem: {
-    flex: 1
+    flex: 2,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between"
   }
 });
 
-const HelstonburyFBMechandiseListItem = ({
+const HelstonburyFBMerchandiseListItem = ({
   helstonburyFBID,
   helstonburyMerchandiseFBID,
   helstonburyMerchandiseFBText
 }) => {
-  // console.log("HelstonburyFBMechandiseListItem");
+  // console.log("HelstonburyFBMerchandiseListItem");
   return (
-    <ListItem icon>
-      <Left style={touchStyles.label}>
-        <Text style={touchStyles.labelText}>Merhandise:</Text>
+    <ListItem style={listItemStyles.listItem}>
+      <Left style={listItemStyles.leftItem}>
+        <Text style={touchStyles.labelText}>Merch:</Text>
       </Left>
-      <Body>
+      <Body style={listItemStyles.bodyItem}>
         <TouchableOpacity
           onPress={() =>
             openFacebookLink(
@@ -105,7 +117,7 @@ const HelstonburyFBMechandiseListItem = ({
           <Text style={touchStyles.text}>{helstonburyMerchandiseFBText}</Text>
         </TouchableOpacity>
       </Body>
-      <Right>
+      <Right style={listItemStyles.rightItem}>
         <TouchableOpacity
           onPress={() =>
             openFacebookLink(
@@ -217,18 +229,18 @@ class ContactUs extends Component {
           </View>
 
           <List>
-            <ListItem icon>
-              <Left style={listItemIconStyles.leftItem}>
+            <ListItem style={listItemStyles.listItem}>
+              <Left style={listItemStyles.leftItem}>
                 <Text style={touchStyles.labelText}>Email:</Text>
               </Left>
-              <Body style={listItemIconStyles.bodyItem}>
+              <Body style={listItemStyles.bodyItem}>
                 <TouchableOpacity
                   onPress={() => email([email1], null, null, "Helstonbury", "")}
                 >
                   <Text style={touchStyles.text}>{email1}</Text>
                 </TouchableOpacity>
               </Body>
-              <Right style={listItemIconStyles.rightItem}>
+              <Right style={listItemStyles.rightItem}>
                 <TouchableOpacity
                   onPress={() => email([email1], null, null, "Helstonbury", "")}
                 >
@@ -236,16 +248,16 @@ class ContactUs extends Component {
                 </TouchableOpacity>
               </Right>
             </ListItem>
-            <ListItem icon>
-              <Left style={touchStyles.label}>
+            <ListItem style={listItemStyles.listItem}>
+              <Left style={[listItemStyles.leftItem]}>
                 <Text style={touchStyles.labelText}>Mobile:</Text>
               </Left>
-              <Body>
+              <Body style={[listItemStyles.bodyItem, { flex: 15 }]}>
                 <TouchableOpacity onPress={() => phonecall(mobile, true)}>
                   <Text style={touchStyles.text}>{mobile}</Text>
                 </TouchableOpacity>
               </Body>
-              <Right>
+              <Right style={[listItemStyles.rightItem, { flex: 4 }]}>
                 <TouchableOpacity onPress={() => phonecall(mobile, true)}>
                   <Icon style={touchStyles.icon} name="call" />
                 </TouchableOpacity>
@@ -254,18 +266,18 @@ class ContactUs extends Component {
                 </TouchableOpacity>
               </Right>
             </ListItem>
-            <ListItem icon>
-              <Left style={touchStyles.label}>
+            <ListItem style={listItemStyles.listItem}>
+              <Left style={listItemStyles.leftItem}>
                 <Text style={touchStyles.labelText}>Facebook:</Text>
               </Left>
-              <Body>
+              <Body style={listItemStyles.bodyItem}>
                 <TouchableOpacity
                   onPress={() => openFacebookLink(helstonburyFBID)}
                 >
                   <Text style={touchStyles.text}>Helstonbury Facebook</Text>
                 </TouchableOpacity>
               </Body>
-              <Right>
+              <Right style={listItemStyles.rightItem}>
                 <TouchableOpacity
                   onPress={() => openFacebookLink(helstonburyFBID)}
                 >
@@ -273,16 +285,16 @@ class ContactUs extends Component {
                 </TouchableOpacity>
               </Right>
             </ListItem>
-            <ListItem icon>
-              <Left style={touchStyles.label}>
+            <ListItem style={listItemStyles.listItem}>
+              <Left style={listItemStyles.leftItem}>
                 <Text style={touchStyles.labelText}>Web:</Text>
               </Left>
-              <Body>
+              <Body style={listItemStyles.bodyItem}>
                 <TouchableOpacity onPress={() => web(helstonburyWebUrl)}>
-                  <Text style={touchStyles.text}>www.helstonbury.com</Text>
+                  <Text style={touchStyles.text}>{helstonburyWebUrl}</Text>
                 </TouchableOpacity>
               </Body>
-              <Right>
+              <Right style={listItemStyles.rightItem}>
                 <TouchableOpacity onPress={() => web(helstonburyWebUrl)}>
                   <IconFontAwesome
                     style={[touchStyles.icon, { fontSize: 25 }]}
@@ -292,7 +304,7 @@ class ContactUs extends Component {
               </Right>
             </ListItem>
             {helstonburyMerchandiseFBID !== "" ? (
-              <HelstonburyFBMechandiseListItem
+              <HelstonburyFBMerchandiseListItem
                 helstonburyFBID={helstonburyFBID}
                 helstonburyMerchandiseFBID={helstonburyMerchandiseFBID}
                 helstonburyMerchandiseFBText={helstonburyMerchandiseFBText}
@@ -352,7 +364,7 @@ class ContactUs extends Component {
               </Right>
             </ListItem>
 
-            <ListItem style={{ height: 50 }}>
+            <ListItem style={listItemStyles.listItem}>
               <Left style={listItemStyles.leftItem}>
                 <Text style={touchStyles.labelText}>Phone:</Text>
               </Left>
@@ -367,7 +379,7 @@ class ContactUs extends Component {
                 </TouchableOpacity>
               </Right>
             </ListItem>
-            <ListItem>
+            <ListItem style={listItemStyles.listItem}>
               <Left style={listItemStyles.leftItem}>
                 <Text style={touchStyles.labelText}>Email:</Text>
               </Left>
@@ -498,7 +510,7 @@ ContactUs.propTypes = {
   appTips: PropTypes.string.isRequired
 };
 
-HelstonburyFBMechandiseListItem.propTypes = {
+HelstonburyFBMerchandiseListItem.propTypes = {
   helstonburyFBID: PropTypes.string,
   helstonburyMerchandiseFBID: PropTypes.string,
   helstonburyMerchandiseFBText: PropTypes.string

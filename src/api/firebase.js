@@ -2,14 +2,24 @@
 import firebase from "firebase";
 import ReduxSagaFirebase from "redux-saga-firebase";
 
+// Production
+// const config = {
+//   apiKey: "AIzaSyDWMrob4ieV9UVEOCXUlDt19O9YAWAZveA",
+//   authDomain: "helstonbury-cadbf.firebaseapp.com",
+//   databaseURL: "https://helstonbury-cadbf.firebaseio.com",
+//   projectId: "helstonbury-cadbf",
+//   storageBucket: "helstonbury-cadbf.appspot.com",
+//   messagingSenderId: "597390507245"
+// };
 
+// Dev
 const config = {
-  apiKey: "AIzaSyDWMrob4ieV9UVEOCXUlDt19O9YAWAZveA",
-  authDomain: "helstonbury-cadbf.firebaseapp.com",
-  databaseURL: "https://helstonbury-cadbf.firebaseio.com",
-  projectId: "helstonbury-cadbf",
-  storageBucket: "helstonbury-cadbf.appspot.com",
-  messagingSenderId: "597390507245"
+  apiKey: "AIzaSyDRUoHuO7Zr1cUkWggCy6vDCzlLW1wbK7w",
+  authDomain: "helstonbury-dev.firebaseapp.com",
+  databaseURL: "https://helstonbury-dev.firebaseio.com",
+  projectId: "helstonbury-dev",
+  storageBucket: "helstonbury-dev.appspot.com",
+  messagingSenderId: "536136928665"
 };
 
 // The firebase config with some extra app level stuff added.
@@ -23,7 +33,6 @@ const firebaseApp = firebase.initializeApp(config);
 export const reduxSagaFirebase = new ReduxSagaFirebase(firebaseApp);
 
 export default firebaseApp;
-
 
 /*
 // import firebase from "react-native-firebase";

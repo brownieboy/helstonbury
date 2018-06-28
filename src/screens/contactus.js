@@ -153,8 +153,9 @@ class ContactUs extends Component {
       email1,
       email2,
       mobile,
-      gettingThereBlurb,
-      mapLinkText,
+      locationBlurb = "",
+      gettingThereBlurb = "",
+      mapLinkText = "",
       helstonburyWebUrl = "http://www.helstonbury.com",
       helstonburyFBID = "",
       helstonburyMerchandiseFBID = "",
@@ -167,8 +168,8 @@ class ContactUs extends Component {
       appTips
     } = this.props;
 
-    // console.log("contactus.js page, props:");
-    // console.log(this.props);
+    console.log("contactus.js page, props:");
+    console.log(this.props);
 
     const developerDetails = `App developed for ${
       Platform.OS === "ios" ? "iOS" : "Android"
@@ -290,15 +291,19 @@ class ContactUs extends Component {
           <ListItem itemDivider style={{ marginTop: 30, marginBottom: 10 }}>
             <Text style={otherTextStyles.sectionHeader}>Location</Text>
           </ListItem>
-          <View style={rnViewStyles.parsedTextViewWrapper}>
-            <ParsedText
-              parse={parsedTextArray}
-              childrenProps={{ allowFontScaling: false }}
+          {locationBlurb !== "" ? (
+            <View
+              style={[rnViewStyles.parsedTextViewWrapper, { marginBottom: 15 }]}
             >
-              {gettingThereBlurb}
-            </ParsedText>
-          </View>
-          <List style={{ marginTop: -20 }}>
+              <ParsedText
+                parse={parsedTextArray}
+                childrenProps={{ allowFontScaling: false }}
+              >
+                {locationBlurb}
+              </ParsedText>
+            </View>
+          ) : null}
+          <List style={{ marginTop: -15 }}>
             <ListItem>
               <Left style={listItemStyles.leftItem}>
                 <Text style={touchStyles.labelText}>Address:</Text>
@@ -369,6 +374,19 @@ class ContactUs extends Component {
                 </TouchableOpacity>
               </Right>
             </ListItem>
+
+            {gettingThereBlurb !== "" ? (
+              <View
+                style={[rnViewStyles.parsedTextViewWrapper, { marginTop: 15 }]}
+              >
+                <ParsedText
+                  parse={parsedTextArray}
+                  childrenProps={{ allowFontScaling: false }}
+                >
+                  {gettingThereBlurb}
+                </ParsedText>
+              </View>
+            ) : null}
           </List>
           {this.getAppTips()}
           <ParsedText
@@ -459,7 +477,8 @@ ContactUs.propTypes = {
   helstonburyMerchandiseFBID: PropTypes.string,
   helstonburyMerchandiseFBText: PropTypes.string,
   mobile: PropTypes.string.isRequired,
-  gettingThereBlurb: PropTypes.string.isRequired,
+  gettingThereBlurb: PropTypes.string,
+  locationBlurb: PropTypes.string,
   mapLinkText: PropTypes.string.isRequired,
   venueAddress: PropTypes.string.isRequired,
   venuePhone: PropTypes.string.isRequired,

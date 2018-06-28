@@ -340,7 +340,7 @@ class ContactUs extends Component {
               </Right>
             </ListItem>
 
-            <ListItem>
+            <ListItem style={{ height: 50 }}>
               <Left style={listItemStyles.leftItem}>
                 <Text style={touchStyles.labelText}>Phone:</Text>
               </Left>

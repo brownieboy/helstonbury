@@ -41,10 +41,10 @@ const touchStyles = StyleSheet.create({
     fontSize: 14
   },
   label: {
-    width: 75
+    // width: 75
   },
   labelText: {
-    width: 70,
+    // width: 70,
     fontSize: 12
   },
   icon: {
@@ -57,6 +57,18 @@ const otherTextStyles = StyleSheet.create({
   info: { fontSize: 14 },
   sectionHeader: { fontSize: 14, fontWeight: "bold", marginLeft: -6 }
 });
+
+const listItemIconStyles = StyleSheet.create({
+  leftItem: {
+    flex: 2
+  },
+  bodyItem: {
+    flex: 7
+  },
+  rightItem: {
+    flex: 1
+  }
+})
 
 const listItemStyles = StyleSheet.create({
   leftItem: {
@@ -206,17 +218,17 @@ class ContactUs extends Component {
 
           <List>
             <ListItem icon>
-              <Left style={touchStyles.label}>
+              <Left style={listItemIconStyles.leftItem}>
                 <Text style={touchStyles.labelText}>Email:</Text>
               </Left>
-              <Body>
+              <Body style={listItemIconStyles.bodyItem}>
                 <TouchableOpacity
                   onPress={() => email([email1], null, null, "Helstonbury", "")}
                 >
                   <Text style={touchStyles.text}>{email1}</Text>
                 </TouchableOpacity>
               </Body>
-              <Right>
+              <Right style={listItemIconStyles.rightItem}>
                 <TouchableOpacity
                   onPress={() => email([email1], null, null, "Helstonbury", "")}
                 >

@@ -217,7 +217,7 @@ class ContactUs extends Component {
 
         <Content padder>
           <ListItem itemDivider style={{ marginBottom: 10 }}>
-            <Text style={otherTextStyles.sectionHeader}>Organsition</Text>
+            <Text style={otherTextStyles.sectionHeader}>Organisation</Text>
           </ListItem>
           <View style={rnViewStyles.parsedTextViewWrapper}>
             <ParsedText

@@ -1,5 +1,5 @@
 import { ImageCache } from "react-native-img-cache";
-import FetchBlob from "react-native-fetch-blob";
+import FetchBlob from "rn-fetch-blob";
 
 function preloadImage(url) {
   return new Promise((resolve, reject) => {

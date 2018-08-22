@@ -4604,9 +4604,11 @@ react-native-keyboard-aware-scroll-view@0.5.0:
     prop-types "^15.6.0"
     react-native-iphone-x-helper "^1.0.1"
 
-react-native-open-maps@^0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/react-native-open-maps/-/react-native-open-maps-0.2.2.tgz#e21c143b6c0a8ba17403f9646523d95cf13c5cbf"
+react-native-open-maps@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/react-native-open-maps/-/react-native-open-maps-0.3.1.tgz#3e9fc678a02f02db8add1ad91ae6b9fa6e0ea4cf"
+  dependencies:
+    query-string "^6.1.0"
 
 react-native-parsed-text@^0.0.20:
   version "0.0.20"

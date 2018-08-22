@@ -1,17 +1,5 @@
 {
   "presets": ["react-native"],
-  "plugins": [
-    [
-      "module-resolver",
-      {
-        "root": ["./src"],
-        "alias": {
-          "extensions": [".js", ".ios.js", ".android.js", ".json"],
-          "react-native-fetch-blob": "rn-fetch-blob"
-        }
-      }
-    ]
-  ],
   "env": {
     "production": {
       "plugins": ["transform-remove-console"]

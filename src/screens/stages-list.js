@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import { CachedImage } from "react-native-img-cache";
+// import { CachedImage } from "react-native-img-cache";
+import FastImage from "react-native-fast-image";
 
 import { Dimensions, Image, TouchableOpacity, View } from "react-native";
 
@@ -60,7 +61,7 @@ class StagesList extends Component {
   getThumbNail = stageMemberObj => {
     if (stageMemberObj.thumbFullUrl) {
       return (
-        <CachedImage
+        <FastImage
           source={{ uri: stageMemberObj.thumbFullUrl }}
           style={{ width: "60%", height: "60%" }}
         />

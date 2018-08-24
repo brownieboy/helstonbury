@@ -80,7 +80,8 @@ function* loadBandsGen() {
       ]);
       yield console.log("loadBandsGen, finished yield all with loaded data");
 
-      preloadImages([...bandsArray, ...stagesArray]);
+      console.log("Need to restore preloadImage here");
+      // preloadImages([...bandsArray, ...stagesArray]);
       yield;
     } else {
       console.log("Local storage returned null");

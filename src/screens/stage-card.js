@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Dimensions, View } from "react-native";
-import { CachedImage } from "react-native-img-cache";
+// import { CachedImage } from "react-native-img-cache";
+import FastImage from "react-native-fast-image";
 
 import {
   Button,
@@ -52,7 +53,7 @@ class StageCard extends Component {
       : Math.round(dimensions.width * 0.8 * 9 / 16);
     const imageWidth = fullScreen ? dimensions.width : dimensions.width * 0.8;
     return (
-      <CachedImage
+      <FastImage
         style={{
           alignSelf: "center",
           height: imageHeight,

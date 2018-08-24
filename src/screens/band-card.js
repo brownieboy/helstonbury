@@ -7,7 +7,8 @@ import PropTypes from "prop-types";
 import { format } from "date-fns";
 // import { CachedImage } from "react-native-img-cache";
 // import FastImage from "react-native-fast-image";
-import { CachedImage } from "react-native-img-cache";
+// import { CachedImage } from "react-native-img-cache";
+import FastImage from "react-native-fast-image";
 
 import {
   Container,
@@ -149,7 +150,7 @@ class BandCard extends Component {
       : Math.round((dimensions.width * 0.85 * 9) / 16);
     const imageWidth = fullScreen ? dimensions.width : dimensions.width * 0.85;
     return (
-      <CachedImage
+      <FastImage
         style={{
           height: imageHeight,
           width: null,

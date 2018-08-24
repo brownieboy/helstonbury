@@ -1,4 +1,5 @@
-import { ImageCache } from "react-native-img-cache";
+// import { ImageCache } from "react-native-img-cache";
+console.log("Do we actually need rn-fetch-blob?");
 import FetchBlob from "rn-fetch-blob";
 
 function preloadImage(url) {

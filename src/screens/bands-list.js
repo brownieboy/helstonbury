@@ -6,7 +6,8 @@ import PropTypes from "prop-types";
 
 // import { Alert } from "react-native";
 // import FastImage from "react-native-fast-image";
-import { CachedImage } from "react-native-img-cache";
+// import { CachedImage } from "react-native-img-cache";
+import FastImage from "react-native-fast-image";
 
 import { Image } from "react-native";
 
@@ -81,7 +82,6 @@ class BandsList extends Component {
     };
   } */
 
-
   // toggleTab = activeTabNo => {
   //   const newTabs = this.state.tabs.map((element, index) => {
   //     element.active = index === activeTabNo;
@@ -110,7 +110,7 @@ class BandsList extends Component {
       //   />
       // );
       return (
-        <CachedImage
+        <FastImage
           source={{ uri: bandMemberObj.thumbFullUrl }}
           style={{ width: 55, height: 55, borderRadius: 27.5 }}
         />

@@ -1,5 +1,8 @@
 // import firebase from "react-native-firebase";
-import firebase from "firebase";
+// import firebase from "firebase";
+import firebase from '@firebase/app' // Necessary for Firebase > 5 ?
+import "@firebase/storage";
+import "@firebase/database";
 import ReduxSagaFirebase from "redux-saga-firebase";
 
 // Production

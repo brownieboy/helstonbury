@@ -13,7 +13,7 @@
     "d3-collection": "^1.0.4",
     "date-fns": "^1.29.0",
     "deep-equal": "^1.0.1",
-    "firebase": "^5.4.0",
+    "firebase": "^5.4.1",
     "native-base": "^2.7",
     "prop-types": "^15.6.0",
     "re-reselect": "^2.1.0",

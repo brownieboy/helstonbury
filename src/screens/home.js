@@ -53,7 +53,7 @@ class Home extends Component {
     )
   };
 
-  componentWillMount() {
+  componentDidMount() {
     // console.log("BandsList..componentWillMount()");
     const {
       loadBandsProp,

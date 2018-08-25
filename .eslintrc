@@ -1,15 +1,11 @@
 {
     "parser": "babel-eslint",
-    "env":
-    {
-        "node": true,
-        "browser": true,
-        "es6": true
+    "env": {
+        "es6": true,
+        "react-native/react-native": true
     },
     "plugins": ["react", "react-native"],
-    "extends": ["eslint", "plugin:react/recommended"],
-    "rules":
-    {
+    "rules": {
         "func-style": [
             2,
             "declaration",
@@ -19,7 +15,7 @@
         ],
         "class-methods-use-this": "off",
         "generator-star-spacing": "off",
-        "indent": ["warn", 2, {"SwitchCase": 1}],
+        "indent": ["warn", 2, { "SwitchCase": 1 }],
         "require-jsdoc": "off",
         "lines-around-comment": "off",
         "newline-after-var": "off",

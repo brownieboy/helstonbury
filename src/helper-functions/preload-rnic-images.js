@@ -1,7 +1,25 @@
 // import { ImageCache } from "react-native-img-cache";
 console.log("Do we actually need rn-fetch-blob?");
-import FetchBlob from "rn-fetch-blob";
+// import FetchBlob from "rn-fetch-blob";
+import FastImage from "react-native-fast-image";
 
+/*
+FastImage.preload: (source[]) => void
+Preload images to display later. e.g.
+
+FastImage.preload([
+  {
+    uri: 'https://facebook.github.io/react/img/logo_og.png',
+    headers: { Authorization: 'someAuthToken' },
+  },
+  {
+    uri: 'https://facebook.github.io/react/img/logo_og.png',
+    headers: { Authorization: 'someAuthToken' },
+  },
+])
+ */
+
+/*
 function preloadImage(url) {
   return new Promise((resolve, reject) => {
     // Create instance of ImageCache
@@ -54,7 +72,9 @@ function preloadImage(url) {
     );
   });
 }
+*/
 
+/*
 const preloadImages = imageUrlsArray => {
   if (imageUrlsArray.length > 0) {
     // console.log(
@@ -76,5 +96,27 @@ const preloadImages = imageUrlsArray => {
     );
   }
 };
+*/
+
+/*
+FastImage.preload: (source[]) => void
+Preload images to display later. e.g.
+
+FastImage.preload([
+  {
+    uri: 'https://facebook.github.io/react/img/logo_og.png',
+    headers: { Authorization: 'someAuthToken' },
+  },
+  {
+    uri: 'https://facebook.github.io/react/img/logo_og.png',
+    headers: { Authorization: 'someAuthToken' },
+  },
+])
+ */
+
+const preloadImages = imageUrlsArray => {
+  const uriObjArray = imageUrlsArray.map(url => ({ uri: url }));
+};
 
 export default preloadImages;
+

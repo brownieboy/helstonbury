@@ -1,9 +1,10 @@
-import { StackNavigator as stackNavigator } from "react-navigation";
+// import { StackNavigator as stackNavigator } from "react-navigation";
+import { createStackNavigator } from "react-navigation";
 
 import AppearancesConn from "./appearances-conn.js";
 import BandCard from "./band-schedule-card-conn.js";
 
-const AppearancesNavigator = stackNavigator(
+const AppearancesNavigator = createStackNavigator(
   {
     Appearances: {
       screen: AppearancesConn

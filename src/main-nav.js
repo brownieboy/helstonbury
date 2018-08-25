@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { TabNavigator as tabNavigator } from "react-navigation";
+// import { TabNavigator as tabNavigator } from "react-navigation";
+import { createBottomTabNavigator } from "react-navigation";
+
 import { Root } from "native-base";
 
 // Styles
@@ -13,7 +15,7 @@ import Appearances from "./screens/appearances-nav.js";
 import StagesList from "./screens/stages-list-nav.js";
 import ContactUs from "./screens/contactus-conn.js";
 
-const AppNavigator = tabNavigator(
+const AppNavigator = createBottomTabNavigator(
   {
     Home: {
       screen: Home

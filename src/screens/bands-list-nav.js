@@ -1,9 +1,10 @@
-import { StackNavigator as stackNavigator } from "react-navigation";
+// import { StackNavigator as stackNavigator } from "react-navigation";
+import { createStackNavigator } from "react-navigation";
 
 import BandsListConn from "./bands-list-conn.js";
 import BandCard from "./band-card-conn.js";
 
-const BandsNavigator = stackNavigator(
+const BandsNavigator = createStackNavigator(
   {
     BandsList: {
       screen: BandsListConn

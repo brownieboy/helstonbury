@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 // import { StackNavigator as stackNavigator } from "react-navigation";
-import { TabNavigator as tabNavigator } from "react-navigation";
+// import { TabNavigator as tabNavigator } from "react-navigation";
+import { createBottomTabNavigator } from "react-navigation";
 // import { Root } from "native-base";
 
 // Screens
@@ -90,7 +91,7 @@ const SimpleTabs = TabNavigator({
 });
 */
 
-const AppNavigator = tabNavigator(
+const AppNavigator = createBottomTabNavigator(
   {
     Home: {
       screen: Home

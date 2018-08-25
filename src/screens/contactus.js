@@ -192,8 +192,8 @@ class ContactUs extends Component {
       appTips
     } = this.props;
 
-    console.log("contactus.js page, props:");
-    console.log(this.props);
+    // console.log("contactus.js page, props:");
+    // console.log(this.props);
 
     const developerDetails = `App developed for ${
       Platform.OS === "ios" ? "iOS" : "Android"

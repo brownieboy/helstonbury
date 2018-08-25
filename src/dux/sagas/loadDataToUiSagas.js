@@ -80,7 +80,7 @@ function* loadBandsGen() {
       ]);
       yield console.log("loadBandsGen, finished yield all with loaded data");
 
-      console.log("Have restored preloadImage here");
+      // console.log("Have restored preloadImage here");
       preloadImages([...bandsArray, ...stagesArray]);
       yield;
     } else {

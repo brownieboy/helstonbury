@@ -1,5 +1,5 @@
 // import { ImageCache } from "react-native-img-cache";
-console.log("Do we actually need rn-fetch-blob?");
+// console.log("Do we actually need rn-fetch-blob?");
 // import FetchBlob from "rn-fetch-blob";
 import FastImage from "react-native-fast-image";
 
@@ -116,6 +116,9 @@ FastImage.preload([
 
 const preloadImages = imageUrlsArray => {
   const uriObjArray = imageUrlsArray.map(url => ({ uri: url }));
+  console.log("uriObjArray");
+  console.log(uriObjArray);
+  FastImage.preload(uriObjArray);
 };
 
 export default preloadImages;

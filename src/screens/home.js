@@ -46,10 +46,27 @@ class Home extends Component {
     };
   }
 
+  /*
   static navigationOptions = {
     tabBarLabel: "Home",
     tabBarIcon: ({ tintColor }) => (
-      <Icon name="home" style={{ color: tintColor }} />
+      <Icon
+        android="md-information-circle"
+        ios="ios-information-circle-outline"
+        style={{ color: tintColor }}
+      />
+    )
+  };
+ */
+
+  static navigationOptions = {
+    tabBarLabel: "Home",
+    tabBarIcon: ({ tintColor }) => (
+      <Icon
+        android="md-home"
+        ios="ios-home"
+        style={{ color: tintColor }}
+      />
     )
   };
 

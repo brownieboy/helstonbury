@@ -135,7 +135,7 @@ const HelstonburyFBMerchandiseListItem = ({
 
 class ContactUs extends Component {
   static navigationOptions = {
-    tabBarLabel: "Home",
+    tabBarLabel: "Info",
     tabBarIcon: ({ tintColor }) => (
       <Icon
         android="md-information-circle"

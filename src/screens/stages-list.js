@@ -41,17 +41,30 @@ import HelstonburyAvatar from "../components/helstonbury-avatar.js";
 const paddingValue = 8;
 
 class StagesList extends Component {
+  // static navigationOptions = {
+  //   tabBarLabel: "Stages",
+  //   tabBarIcon: ({ tintColor }) => <StagesTabIcon tintColor={tintColor} />
+  // };
   static navigationOptions = {
-    tabBarLabel: "Stages",
-    tabBarIcon: ({ tintColor }) => <StagesTabIcon tintColor={tintColor} />
+    tabBarLabel: "Home",
+    tabBarIcon: ({ tintColor }) => (
+      <Icon
+        android="home"
+        ios="home"
+        style={{ color: tintColor }}
+      />
+    )
   };
 
+
+  /*
   componentWillMount() {
     // console.log("StagesList..componentWillMount()");
     // const { loadStagesProp, loadFavouritesNowProp } = this.props;
     // loadStagesProp();
     // loadFavouritesNowProp();
   }
+*/
 
   _calculateItemSize() {
     const { width } = Dimensions.get("window");

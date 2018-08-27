@@ -47,26 +47,26 @@ class Home extends Component {
   }
 
   /*
+// This syntax stopped working with RN 56
   static navigationOptions = {
     tabBarLabel: "Home",
     tabBarIcon: ({ tintColor }) => (
-      <Icon
-        android="md-information-circle"
-        ios="ios-information-circle-outline"
-        style={{ color: tintColor }}
-      />
+      <Icon name="home" style={{ color: tintColor }} />
     )
   };
- */
+*/
+
+  // static navigationOptions = {
+  //   tabBarLabel: "Home",
+  //   tabBarIcon: ({ tintColor }) => (
+  //     <Icon android="md-home" ios="ios-home" style={{ color: tintColor }} />
+  //   )
+  // };
 
   static navigationOptions = {
     tabBarLabel: "Home",
     tabBarIcon: ({ tintColor }) => (
-      <Icon
-        android="md-home"
-        ios="ios-home"
-        style={{ color: tintColor }}
-      />
+      <Icon android="md-home" ios="ios-home" style={{ color: tintColor }} />
     )
   };
 

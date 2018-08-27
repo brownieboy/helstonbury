@@ -45,9 +45,35 @@ class AppearancesWrapper extends Component {
     };
   }
 
+  /*
+  static navigationOptions = {
+    tabBarLabel: "Info",
+    tabBarIcon: ({ tintColor }) => (
+      <Icon
+        android="md-information-circle"
+        ios="ios-information-circle-outline"
+        style={{ color: tintColor }}
+      />
+    )
+  };
+
+
   static navigationOptions = {
     tabBarLabel: "Schedule",
     tabBarIcon: ({ tintColor }) => <ScheduleTabIcon tintColor={tintColor} />
+  };
+  
+ */
+
+  static navigationOptions = {
+    tabBarLabel: "Info",
+    tabBarIcon: ({ tintColor }) => (
+      <Icon
+        android="md-information-circle"
+        ios="ios-information-circle-outline"
+        style={{ color: tintColor }}
+      />
+    )
   };
 
   // showFavouritesWarning = () => {

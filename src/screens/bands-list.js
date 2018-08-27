@@ -38,7 +38,7 @@ import {
 
 // import MainFooterTabNav from "../components/mainfootertabnav.js";
 import styles from "../styles/home-styles.js";
-import BandsTabIcon from "../components/bands-tab-icon.js";
+// import BandsTabIcon from "../components/bands-tab-icon.js";
 import FavouritesListIcon from "../components/favourites-list-icon.js";
 
 const defaultThumb = "../../img/RockNRollGuitarist.png";
@@ -64,10 +64,10 @@ import HelstonburyAvatar from "../components/helstonbury-avatar.js";
 //   };
 
 class BandsList extends Component {
-  static navigationOptions = {
-    tabBarLabel: "Bands",
-    tabBarIcon: ({ tintColor }) => <BandsTabIcon tintColor={tintColor} />
-  };
+  // static navigationOptions = {
+  //   tabBarLabel: "Bands",
+  //   tabBarIcon: ({ tintColor }) => <BandsTabIcon tintColor={tintColor} />
+  // };
 
   /*  constructor(props) {
     super(props);

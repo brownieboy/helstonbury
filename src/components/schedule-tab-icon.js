@@ -1,19 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-// import { Platform } from "react-native";
-// import IconEvil from "react-native-vector-icons/EvilIcons";
-import { Icon } from "native-base";
+import { Platform } from "react-native";
+import IconEvil from "react-native-vector-icons/EvilIcons";
 
 // tintColor passed in is an object
-/*
+const ScheduleTabIcon = ({ tintColor }) => (
   <IconEvil
     name="calendar"
     size={Platform.OS === "ios" ? 35 : 30}
     style={{ color: tintColor }}
   />
-  */
-const ScheduleTabIcon = ({ tintColor }) => (
-  <Icon name="calendar" ios="calendar" android="calendar" style={{ color: tintColor }} />
 );
 
 ScheduleTabIcon.propTypes = {

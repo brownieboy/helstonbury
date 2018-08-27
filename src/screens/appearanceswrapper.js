@@ -22,7 +22,7 @@ import {
 } from "native-base";
 
 import Menu from "../components/appearances-side-menu.js";
-import ScheduleTabIcon from "../components/schedule-tab-icon.js";
+// import ScheduleTabIcon from "../components/schedule-tab-icon.js";
 import HelstonburyAvatar from "../components/helstonbury-avatar.js";
 // import FavouritesListIcon from "../components/favourites-list-icon.js";
 
@@ -65,16 +65,16 @@ class AppearancesWrapper extends Component {
   
  */
 
-  static navigationOptions = {
-    tabBarLabel: "Info",
-    tabBarIcon: ({ tintColor }) => (
-      <Icon
-        android="md-information-circle"
-        ios="ios-information-circle-outline"
-        style={{ color: tintColor }}
-      />
-    )
-  };
+  // static navigationOptions = {
+  //   tabBarLabel: "Info",
+  //   tabBarIcon: ({ tintColor }) => (
+  //     <Icon
+  //       android="md-information-circle"
+  //       ios="ios-information-circle-outline"
+  //       style={{ color: tintColor }}
+  //     />
+  //   )
+  // };
 
   // showFavouritesWarning = () => {
   //   Toast.show({

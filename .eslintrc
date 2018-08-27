@@ -33,6 +33,8 @@
         "prefer-template": "warn",
         "react/jsx-uses-vars": 1,
         "react/react-in-jsx-scope": 1,
+        "react/display-name": "off",
+        "react/prop-types": "warn",
         "react-native/no-unused-styles": "warn",
         "react-native/split-platform-components": 2,
         "react-native/no-inline-styles": "warn",

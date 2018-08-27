@@ -63,12 +63,12 @@ class Home extends Component {
   //   )
   // };
 
-  static navigationOptions = {
-    tabBarLabel: "Home",
-    tabBarIcon: ({ tintColor }) => (
-      <Icon android="md-home" ios="ios-home" style={{ color: tintColor }} />
-    )
-  };
+  // static navigationOptions = {
+  //   tabBarLabel: "Home",
+  //   tabBarIcon: ({ tintColor }) => (
+  //     <Icon android="md-home" ios="ios-home" style={{ color: tintColor }} />
+  //   )
+  // };
 
   componentDidMount() {
     // console.log("BandsList..componentWillMount()");

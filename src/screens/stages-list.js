@@ -33,7 +33,7 @@ import {
 
 // import MainFooterTabNav from "../components/mainfootertabnav.js";
 import styles from "../styles/home-styles.js";
-import StagesTabIcon from "../components/stages-tab-icon.js";
+// import StagesTabIcon from "../components/stages-tab-icon.js";
 
 const defaultThumb = "../../img/RockNRollGuitarist.png";
 import HelstonburyAvatar from "../components/helstonbury-avatar.js";

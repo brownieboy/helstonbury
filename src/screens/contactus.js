@@ -134,16 +134,16 @@ const HelstonburyFBMerchandiseListItem = ({
 };
 
 class ContactUs extends Component {
-  static navigationOptions = {
-    tabBarLabel: "Info",
-    tabBarIcon: ({ tintColor }) => (
-      <Icon
-        android="md-information-circle"
-        ios="ios-information-circle-outline"
-        style={{ color: tintColor }}
-      />
-    )
-  };
+  // static navigationOptions = {
+  //   tabBarLabel: "Info",
+  //   tabBarIcon: ({ tintColor }) => (
+  //     <Icon
+  //       android="md-information-circle"
+  //       ios="ios-information-circle-outline"
+  //       style={{ color: tintColor }}
+  //     />
+  //   )
+  // };
 
   getAppTips = () => {
     const { appTips } = this.props;

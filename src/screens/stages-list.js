@@ -45,16 +45,16 @@ class StagesList extends Component {
   //   tabBarLabel: "Stages",
   //   tabBarIcon: ({ tintColor }) => <StagesTabIcon tintColor={tintColor} />
   // };
-  static navigationOptions = {
-    tabBarLabel: "Home",
-    tabBarIcon: ({ tintColor }) => (
-      <Icon
-        android="home"
-        ios="home"
-        style={{ color: tintColor }}
-      />
-    )
-  };
+  // static navigationOptions = {
+  //   tabBarLabel: "Home",
+  //   tabBarIcon: ({ tintColor }) => (
+  //     <Icon
+  //       android="home"
+  //       ios="home"
+  //       style={{ color: tintColor }}
+  //     />
+  //   )
+  // };
 
 
   /*

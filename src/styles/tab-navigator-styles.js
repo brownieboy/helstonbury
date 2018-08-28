@@ -1,9 +1,12 @@
 import { Platform } from "react-native";
 
-const activeTintColor = Platform.OS === "ios" ? "blue" : "#fff";
-
 export default {
   icon: {
-    activeTintColor
+    activeTintColor: Platform.OS === "ios" ? "blue" : "#fff",
+    inactiveTintColor: Platform.OS == "ios" ? "gray": "lightgray"
+  },
+  tabBar: {
+    activeBackgroundColor: Platform.OS === "android" ? "#4656b0" : "#f9f9f9",
+    inactiveBackgroundColor: Platform.OS === "android" ? "#4656b0" : "#f9f9f9"
   }
 };

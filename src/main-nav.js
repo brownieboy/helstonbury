@@ -3,7 +3,7 @@ import { Platform } from "react-native";
 // import { TabNavigator as tabNavigator } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation";
 
-import Ionicons from "react-native-vector-icons/Ionicons";
+// import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 
@@ -81,11 +81,14 @@ const AppNavigator = createBottomTabNavigator(
   {
     // animationEnabled: true,
     initialRouteName: "Home",
-    lazy: true,
+    lazy: false,
     tabBarOptions: {
       showIcon: true,
       showLabel: false,
-      activeTintColor: tabNavStyles.icon.activeTintColor
+      activeTintColor: tabNavStyles.icon.activeTintColor,
+      inactiveTintColor: tabNavStyles.icon.inactiveTintColor,
+      activeBackgroundColor: tabNavStyles.tabBar.inactiveBackgroundColor,
+      inactiveBackgroundColor: tabNavStyles.tabBar.activeBackgroundColor
     }
   }
 );

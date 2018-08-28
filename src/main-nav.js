@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Platform } from "react-native";
 // import { TabNavigator as tabNavigator } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation";
+import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 
 // import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
@@ -62,23 +63,26 @@ ContactUs.navigationOptions = {
   )
 };
 
-const AppNavigator = createBottomTabNavigator(
-  {
-    Home: {
-      screen: Home
-    },
-    BandsList: {
-      screen: BandsListStack
-    },
-    Appearances: { screen: AppearancesListStack },
-    Stages: {
-      screen: StagesListStack
-    },
-    ContactUs: {
-      screen: ContactUs
-    }
+const routes = {
+  Home: {
+    screen: Home
   },
-  {
+  BandsList: {
+    screen: BandsListStack
+  },
+  Appearances: { screen: AppearancesListStack },
+  Stages: {
+    screen: StagesListStack
+  },
+  ContactUs: {
+    screen: ContactUs
+  }
+};
+
+let AppNavigator;
+
+if (Platform.OS === "ios") {
+  AppNavigator = createBottomTabNavigator(routes, {
     // animationEnabled: true,
     initialRouteName: "Home",
     lazy: false,
@@ -90,8 +94,16 @@ const AppNavigator = createBottomTabNavigator(
       activeBackgroundColor: tabNavStyles.tabBar.inactiveBackgroundColor,
       inactiveBackgroundColor: tabNavStyles.tabBar.activeBackgroundColor
     }
-  }
-);
+  });
+} else {
+  AppNavigator = createMaterialBottomTabNavigator(routes, {
+    labeled: true,
+    showLabel: true,
+    barStyle: {
+      backgroundColor: tabNavStyles.tabBar.inactiveBackgroundColor
+    }
+  });
+}
 
 /*
 const AppNavigator = createBottomTabNavigator(

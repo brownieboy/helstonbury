@@ -20,6 +20,7 @@ import ParsedText from "react-native-parsed-text";
 import openMap from "react-native-open-maps";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 import IconFontFeather from "react-native-vector-icons/Feather";
+import IconFontEntypo from "react-native-vector-icons/Entypo";
 
 import { Platform, StyleSheet, TouchableOpacity, View } from "react-native";
 
@@ -246,7 +247,7 @@ class ContactUs extends Component {
                 <TouchableOpacity
                   onPress={() => email([email1], null, null, "Helstonbury", "")}
                 >
-                  <IconFontFeather name="mail" style={touchStyles.icon} />
+                  <IconFontEntypo name="mail" style={touchStyles.icon} />
                 </TouchableOpacity>
               </Right>
             </ListItem>

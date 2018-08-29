@@ -6,7 +6,7 @@ import IconMaterialEntypo from "react-native-vector-icons/Entypo";
 const StageTabIcon = ({ tintColor }) => (
   <IconMaterialEntypo
     name="modern-mic"
-    size={25}
+    size={23}
     style={{ color: tintColor }}
   />
 );

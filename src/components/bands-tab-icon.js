@@ -7,7 +7,7 @@ import IconMaterialCommunity from "react-native-vector-icons/MaterialCommunityIc
 const BandsTabIcon = ({ tintColor }) => (
   <IconMaterialCommunity
     name="guitar-acoustic"
-    size={Platform.OS === "android" ? 27 : 30}
+    size={Platform.OS === "android" ? 25 : 30}
     style={{ color: tintColor }}
   />
 );

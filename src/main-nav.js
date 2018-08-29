@@ -58,7 +58,7 @@ ContactUs.navigationOptions = {
     <MaterialCommunityIcons
       name="information"
       style={{ color: tintColor }}
-      size={Platform.OS === "ios" ? 28 : 25}
+      size={Platform.OS === "ios" ? 28 : 23}
     />
   )
 };

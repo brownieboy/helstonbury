@@ -103,7 +103,10 @@ class BandCard extends Component {
     appearances.map(appearance => (
       <Text
         key={`${appearance.dateTimeStart}${appearance.stageId}`}
-        style={{ fontSize: 14 }}
+        style={{
+          fontSize: 14,
+          textDecorationLine: appearance.isCancelled ? "line-through" : null
+        }}
       >
         {`${appearance.stageName}, ${format(
           appearance.dateTimeStart,

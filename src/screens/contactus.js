@@ -19,7 +19,7 @@ import {
 import ParsedText from "react-native-parsed-text";
 import openMap from "react-native-open-maps";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
-import IconFontFeather from "react-native-vector-icons/Feather";
+// import IconFontFeather from "react-native-vector-icons/Feather";
 import IconFontEntypo from "react-native-vector-icons/Entypo";
 
 import { Platform, StyleSheet, TouchableOpacity, View } from "react-native";

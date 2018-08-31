@@ -254,13 +254,22 @@ class AppearancesByDayStage extends PureComponent {
                 fontSize: 12,
                 flexGrow: 0,
                 flexShrink: 0,
-                flexBasis: 80
+                flexBasis: 80,
+                textDecorationLine: item.isCancelled ? "line-through" : null
               }}
             >{`${format(item.dateTimeStart, "HH:mm")}-${format(
               item.dateTimeEnd,
               "HH:mm"
             )} `}</Text>
-            <Text style={{ fontSize: 14, flex: 8 }}>{item.bandName}</Text>
+            <Text
+              style={{
+                fontSize: 14,
+                flex: 8,
+                textDecorationLine: item.isCancelled ? "line-through" : null
+              }}
+            >
+              {item.bandName}
+            </Text>
             {this.getBandSummaryText(item)}
           </Left>
           <Right

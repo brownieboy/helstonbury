@@ -196,7 +196,8 @@ class AppearancesByDay extends PureComponent {
                 fontSize: 12,
                 flexGrow: 0,
                 flexShrink: 0,
-                flexBasis: 80
+                flexBasis: 80,
+                textDecorationLine: item.isCancelled ? "line-through" : null
                 // borderColor: "green",
                 // borderWidth: 1
               }}
@@ -210,7 +211,8 @@ class AppearancesByDay extends PureComponent {
               style={{
                 fontSize: 14,
                 flexWrap: "wrap",
-                flex: 13
+                flex: 13,
+                textDecorationLine: item.isCancelled ? "line-through" : null
                 // borderColor: "blue",
                 // borderWidth: 1
               }}
@@ -221,7 +223,8 @@ class AppearancesByDay extends PureComponent {
               style={{
                 fontSize: 10,
                 flexWrap: "wrap",
-                flex: 7
+                flex: 7,
+                textDecorationLine: item.isCancelled ? "line-through" : null
                 // borderColor: "orange",
                 // borderWidth: 1,
               }}
@@ -309,7 +312,6 @@ class AppearancesByDay extends PureComponent {
     // console.log(groupAppearancesByDay());
 
     // const appearancesSelGroupedByDay = groupAppearancesByDay(appearances, reverseTimesOrder);
-
 
     return (
       <View style={{ marginTop: Platform.OS === "ios" ? 0 : 0, flex: 1 }}>

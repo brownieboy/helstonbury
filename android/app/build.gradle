@@ -101,8 +101,8 @@ android {
         applicationId "com.helstonbury"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 88
-        versionName "1.2.7"
+        versionCode 89
+        versionName "1.3.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
